@@ -16,9 +16,9 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,11 +39,47 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FusionCharts">
+      <HintPath>..\DLLs\FusionCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\DLLs\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Intelligencia.UrlRewriter">
       <HintPath>..\DLLs\Intelligencia.UrlRewriter.dll</HintPath>
     </Reference>
+    <Reference Include="LitJSON">
+      <HintPath>..\DLLs\LitJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.9.0, Culture=neutral, PublicKeyToken=b32731d11ce58905">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLLs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lottery.Collect, Version=7.0.1.203, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLLs\Lottery.Collect.dll</HintPath>
+    </Reference>
+    <Reference Include="Lottery.DBUtility">
+      <HintPath>..\DLLs\Lottery.DBUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Lottery.Utils">
+      <HintPath>..\DLLs\Lottery.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\DLLs\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLLs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StriveEngine">
+      <HintPath>..\DLLs\StriveEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Json">
+      <HintPath>..\DLLs\System.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -58,6 +94,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="THPayHelper">
+      <HintPath>..\DLLs\THPayHelper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ajax\ajax.aspx.cs">
@@ -156,6 +195,34 @@
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="contract2\Contractfh.aspx.cs">
+      <DependentUpon>Contractfh.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contract2\ContractfhOper.aspx.cs">
+      <DependentUpon>ContractfhOper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contract2\ContractfhPop.aspx.cs">
+      <DependentUpon>ContractfhPop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contract2\Contractgz.aspx.cs">
+      <DependentUpon>Contractgz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contract2\ContractgzOper.aspx.cs">
+      <DependentUpon>ContractgzOper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contract2\ContractgzPop.aspx.cs">
+      <DependentUpon>ContractgzPop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contract2\MyAgentfhlist.aspx.cs">
+      <DependentUpon>MyAgentfhlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="contract\Contractfh.aspx.cs">
       <DependentUpon>Contractfh.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +251,7 @@
       <DependentUpon>MyAgentfhlist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="core\Common.cs" />
     <Compile Include="email\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
@@ -196,6 +264,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EMWeb\ajaxuploadhandler.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -216,6 +287,28 @@
       <DependentUpon>info.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="pay\suibipay\notify.aspx.cs">
+      <DependentUpon>notify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\suibipay\notify.aspx.designer.cs">
+      <DependentUpon>notify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pay\suibipay\pay.aspx.cs">
+      <DependentUpon>pay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\suibipay\pay.aspx.designer.cs">
+      <DependentUpon>pay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pay\suibipay\result.aspx.cs">
+      <DependentUpon>result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\suibipay\result.aspx.designer.cs">
+      <DependentUpon>result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pay\suibipay\SbfHelper.cs" />
     <Compile Include="plus\auto.aspx.cs">
       <DependentUpon>auto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -250,13 +343,6 @@
       <DependentUpon>WebSite.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-    </Compile>
     <Compile Include="user\useradd.aspx.cs">
       <DependentUpon>useradd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -273,28 +359,6 @@
       <DependentUpon>userupdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Lottery.Collect\Lottery.Collect.csproj">
-      <Project>{fad04abe-6dcf-40ff-98e6-170fbe3f1fe8}</Project>
-      <Name>Lottery.Collect</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
-      <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
-      <Name>Lottery.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lottery.DBUtility\Lottery.DBUtility.csproj">
-      <Project>{71e9ac32-7eaf-4677-9b25-9adb150f8bcf}</Project>
-      <Name>Lottery.DBUtility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
-      <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>
-      <Name>Lottery.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lottery.Utils\Lottery.Utils.csproj">
-      <Project>{7fde2b50-2656-4ed1-8c0c-d6547fe9a21a}</Project>
-      <Name>Lottery.Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="active\actCharge.html" />
@@ -342,6 +406,15 @@
     <Content Include="chart\style\jquery-1.11.1.min.js" />
     <Content Include="chart\style\line.js" />
     <Content Include="chart\style\style.css" />
+    <Content Include="contract2\Contractfh.aspx" />
+    <Content Include="contract2\ContractfhOper.aspx" />
+    <Content Include="contract2\ContractfhPop.aspx" />
+    <Content Include="contract2\Contractgz.aspx" />
+    <Content Include="contract2\ContractgzOper.aspx" />
+    <Content Include="contract2\ContractgzPop.aspx" />
+    <Content Include="contract2\index.aspx" />
+    <Content Include="contract2\index2.aspx" />
+    <Content Include="contract2\MyAgentfhlist.aspx" />
     <Content Include="contract\Contractfh.aspx" />
     <Content Include="contract\ContractfhOper.aspx" />
     <Content Include="contract\ContractfhPop.aspx" />
@@ -355,6 +428,7 @@
     <Content Include="email\index.aspx" />
     <Content Include="email\Info.aspx" />
     <Content Include="email\Info2.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="help\11x5.html" />
     <Content Include="help\3d.html" />
     <Content Include="help\ssc.html" />
@@ -382,6 +456,9 @@
     <Content Include="news\info.aspx" />
     <Content Include="news\newsindex.html" />
     <Content Include="news\newslist.html" />
+    <Content Include="pay\suibipay\notify.aspx" />
+    <Content Include="pay\suibipay\pay.aspx" />
+    <Content Include="pay\suibipay\result.aspx" />
     <Content Include="plus\auto.aspx" />
     <Content Include="plus\getcode.aspx" />
     <Content Include="plus\GetNumber.aspx" />
@@ -893,6 +970,7 @@
     <Content Include="statics\js\lottery.js" />
     <Content Include="statics\js\member.js" />
     <Content Include="statics\js\page.charge.js" />
+    <Content Include="statics\js\page.contract.js" />
     <Content Include="statics\js\page.getcash.js" />
     <Content Include="statics\js\page.header.js" />
     <Content Include="statics\js\page.index.js" />
@@ -913,6 +991,7 @@
     <Content Include="statics\mp3\kaijiang.mp3" />
     <Content Include="statics\mp3\paijiang.mp3" />
     <Content Include="statics\MSClass.js" />
+    <Content Include="statics\music\pay.mp3" />
     <Content Include="statics\music\pop.mp3" />
     <Content Include="statics\music\time.mp3" />
     <Content Include="statics\My97DatePicker\calendar.js" />
@@ -933,7 +1012,6 @@
     <Content Include="temp\WebPlay.aspx" />
     <Content Include="temp\WebPoint.aspx" />
     <Content Include="temp\WebSite.aspx" />
-    <Content Include="Test.aspx" />
     <Content Include="user\index.aspx" />
     <Content Include="user\useradd.aspx" />
     <Content Include="user\userAgentFH.aspx" />
@@ -968,6 +1046,7 @@
     <Content Include="statics\log\hacker_20170601.log" />
     <Content Include="statics\log\hacker_20170602.log" />
     <Content Include="statics\log\hacker_20171229.log" />
+    <None Include="Properties\PublishProfiles\ffapp.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -977,6 +1056,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="statics\Bets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
+      <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
+      <Name>Lottery.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
+      <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>
+      <Name>Lottery.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

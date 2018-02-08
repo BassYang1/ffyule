@@ -44,6 +44,7 @@
     <Compile Include="ComData.cs" />
     <Compile Include="LotteryDataDAL.cs" />
     <Compile Include="SiteDAL.cs" />
+    <Compile Include="Flex\SbfDAL.cs" />
     <Compile Include="Youle11x5Check.cs" />
     <Compile Include="YouleCheck.cs" />
     <Compile Include="LotteryUtils.cs" />

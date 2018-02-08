@@ -6,61 +6,61 @@
 
 namespace Lottery.Utils.Mail
 {
-  public class SmtpClient
-  {
-    private string _SmtpServer;
-    private int _SmtpPort;
-    private string errmsg;
-
-    public SmtpClient()
+    public class SmtpClient
     {
-    }
+        private string _SmtpServer;
+        private int _SmtpPort;
+        private string errmsg;
 
-    public SmtpClient(string _smtpServer, int _smtpPort)
-    {
-      this._SmtpServer = _smtpServer;
-      this._SmtpPort = _smtpPort;
-    }
+        public SmtpClient()
+        {
+        }
 
-    public string ErrMsg
-    {
-      get
-      {
-        return this.errmsg;
-      }
-    }
+        public SmtpClient(string _smtpServer, int _smtpPort)
+        {
+            this._SmtpServer = _smtpServer;
+            this._SmtpPort = _smtpPort;
+        }
 
-    public string SmtpServer
-    {
-      set
-      {
-        this._SmtpServer = value;
-      }
-      get
-      {
-        return this._SmtpServer;
-      }
-    }
+        public string ErrMsg
+        {
+            get
+            {
+                return this.errmsg;
+            }
+        }
 
-    public int SmtpPort
-    {
-      set
-      {
-        this._SmtpPort = value;
-      }
-      get
-      {
-        return this._SmtpPort;
-      }
-    }
+        public string SmtpServer
+        {
+            set
+            {
+                this._SmtpServer = value;
+            }
+            get
+            {
+                return this._SmtpServer;
+            }
+        }
 
-    public bool Send(MailMessage mailMessage, string username, string password)
-    {
-      SmtpServerHelper smtpServerHelper = new SmtpServerHelper();
-      if (smtpServerHelper.SendEmail(this._SmtpServer, this._SmtpPort, username, password, mailMessage))
-        return true;
-      this.errmsg = smtpServerHelper.ErrMsg;
-      return false;
+        public int SmtpPort
+        {
+            set
+            {
+                this._SmtpPort = value;
+            }
+            get
+            {
+                return this._SmtpPort;
+            }
+        }
+
+        public bool Send(MailMessage mailMessage, string username, string password)
+        {
+            SmtpServerHelper smtpServerHelper = new SmtpServerHelper();
+            if (smtpServerHelper.SendEmail(this._SmtpServer, this._SmtpPort, username, password, mailMessage))
+                return true;
+            this.errmsg = smtpServerHelper.ErrMsg;
+            return false;
+        }
     }
-  }
 }
