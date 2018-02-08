@@ -8,6 +8,9 @@ Lottery.FFApp
 information.txt
 	相关信息
 
+publish
+	发布目录
+	
 document
 	相关文档
 	

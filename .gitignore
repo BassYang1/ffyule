@@ -3,4 +3,6 @@ bin
 debug
 log
 packages
+publish
 information.txt
+FFHelper

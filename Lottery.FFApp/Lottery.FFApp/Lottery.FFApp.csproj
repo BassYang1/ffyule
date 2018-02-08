@@ -62,9 +62,6 @@
     <Reference Include="Lottery.DBUtility">
       <HintPath>..\DLLs\Lottery.DBUtility.dll</HintPath>
     </Reference>
-    <Reference Include="Lottery.Utils">
-      <HintPath>..\DLLs\Lottery.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="Lucene.Net">
       <HintPath>..\DLLs\Lucene.Net.dll</HintPath>
     </Reference>
@@ -1065,6 +1062,10 @@
     <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
       <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>
       <Name>Lottery.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.Utils\Lottery.Utils.csproj">
+      <Project>{7fde2b50-2656-4ed1-8c0c-d6547fe9a21a}</Project>
+      <Name>Lottery.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

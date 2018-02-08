@@ -24,13 +24,13 @@ namespace Lottery.WebApp.user
       this.getUserGroupDropDownList(ref this.ddlType, 0);
       if (Convert.ToDecimal(this.AdminPoint) < new Decimal(131))
       {
-        this.lblPoint2.Text = "可分配范围10-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10));
-        this.lblPoint3.Text = "可分配范围10-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10));
+        this.lblPoint2.Text = "可分配范围0-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10));
+        this.lblPoint3.Text = "可分配范围0-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10));
       }
       else
       {
-        this.lblPoint2.Text = "可分配范围10-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10) - Convert.ToDecimal(0.1));
-        this.lblPoint3.Text = "可分配范围10-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10) - Convert.ToDecimal(0.1));
+        this.lblPoint2.Text = "可分配范围0-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10) - Convert.ToDecimal(0.1));
+        this.lblPoint3.Text = "可分配范围0-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10) - Convert.ToDecimal(0.1));
       }
     }
   }

@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace Lottery.FFApp.SuiBiPay
+namespace Lottery.FFApp
 {
     public class Global : System.Web.HttpApplication
     {

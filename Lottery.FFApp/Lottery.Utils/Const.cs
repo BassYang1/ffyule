@@ -24,7 +24,7 @@ namespace Lottery.Utils
         {
             get
             {
-                return ConfigurationManager.AppSettings["ConnStr"];
+                return ConfigurationManager.ConnectionStrings["ConnStr"].ToString();
             }
         }
 

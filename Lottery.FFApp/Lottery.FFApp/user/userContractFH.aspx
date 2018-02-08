@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>立博国际娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -34,7 +34,7 @@
                      if (d.table.length > 0) {
                         for (var i = 0; i < d.table.length; i++) {
                             var t = d.table[i];
-                            html+='<div class="input-group"><label class="lab">0'+(i + 1)+'.半月平均日量</label><label class="lab">'+t.minmoney+'万</label><label class="lab">，分红'+t.money+'%</label></div>';
+                            html+='<div class="input-group"><label class="lab">0'+(i + 1)+'.半月亏损金额</label><label class="lab">'+t.minmoney+'万</label><label class="lab">，分红'+t.money+'%</label></div>';
                         }
                         if (d.table[0].groupid == 4) {
                             $i("info").innerHTML = "该会员是招商会员，直接用平台分红标准";
@@ -91,7 +91,7 @@
 
                 var label = document.createElement('label');
                 label.className = 'lab';
-                label.innerHTML = '0' + count + '.半月平均日量';
+                label.innerHTML = '0' + count + '.半月亏损金额';
 
                 var input = document.createElement('input');
                 input.className = 'ipt';

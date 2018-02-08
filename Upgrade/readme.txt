@@ -9,3 +9,15 @@
 1, 备份站点
 2, 执行升级脚本upgrade.sql
 3, 更新站点
+
+2018-02-08
+契约
+1, 备份站点
+2, 执行升级脚本V_User.sql
+3, 替换文件
+	list.aspx
+	Contract/*
+	Global.asax
+	user/userContractFH.aspx
+	Lottery.Utils.dll
+	Lottery.FFApp.dll
