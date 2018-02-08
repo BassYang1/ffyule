@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: F:\pros\tianheng\bf\WebAppOld\bin\Lottery.FFApp.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1584823C-6AE2-4052-BE41-C289204A35BC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Lottery.FFApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <ApplicationVersion>1.0.1.1</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>Lottery</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Lottery.DAL">
+      <HintPath>lib\Lottery.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Lottery.DBUtility">
+      <HintPath>lib\Lottery.DBUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Lottery.Utils">
+      <HintPath>lib\Lottery.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="Lottery.Entity">
+      <HintPath>lib\Lottery.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="Lottery.Collect">
+      <HintPath>lib\Lottery.Collect.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Web\index.cs" />
+    <Compile Include="FFApp\Login.cs" />
+    <Compile Include="FFApp\page.cs" />
+    <Compile Include="FFApp\Properties\Settings.cs" />
+    <Compile Include="FFApp\aspx\adminTologin.cs" />
+    <Compile Include="Web\nav.cs" />
+    <Compile Include="Web\temp\WebSite.cs" />
+    <Compile Include="Web\temp\WebLot.cs" />
+    <Compile Include="Web\temp\WebPoint.cs" />
+    <Compile Include="Web\temp\WebPlay.cs" />
+    <Compile Include="Web\money\charge.cs" />
+    <Compile Include="WebApp\ajaxBank.cs" />
+    <Compile Include="WebApp\Index.cs" />
+    <Compile Include="WebApp\ajaxMoney.cs" />
+    <Compile Include="WebApp\ajaxLotterydata.cs" />
+    <Compile Include="WebApp\ajaxProfitloss.cs" />
+    <Compile Include="WebApp\ajaxContractGZ.cs" />
+    <Compile Include="WebApp\ajaxBet.cs" />
+    <Compile Include="WebApp\Register.cs" />
+    <Compile Include="WebApp\ajaxHistory.cs" />
+    <Compile Include="WebApp\ajaxNews.cs" />
+    <Compile Include="WebApp\ajax.cs" />
+    <Compile Include="WebApp\ajaxEmail.cs" />
+    <Compile Include="WebApp\list.cs" />
+    <Compile Include="WebApp\ajaxContractFH.cs" />
+    <Compile Include="WebApp\ajaxAgentFH.cs" />
+    <Compile Include="WebApp\ajaxUser.cs" />
+    <Compile Include="WebApp\ajaxBetting.cs" />
+    <Compile Include="WebApp\ajaxCenter.cs" />
+    <Compile Include="WebApp\ajaxActive.cs" />
+    <Compile Include="WebApp\user\userindex.cs" />
+    <Compile Include="WebApp\user\useradd.cs" />
+    <Compile Include="WebApp\user\usertranacc.cs" />
+    <Compile Include="WebApp\user\userupdate.cs" />
+    <Compile Include="WebApp\contract\ContractfhOper.cs" />
+    <Compile Include="WebApp\contract\ContractgzPop.cs" />
+    <Compile Include="WebApp\contract\Contractfh.cs" />
+    <Compile Include="WebApp\contract\MyAgentfhlist.cs" />
+    <Compile Include="WebApp\contract\ContractgzOper.cs" />
+    <Compile Include="WebApp\contract\ContractfhPop.cs" />
+    <Compile Include="WebApp\contract\Contractgz.cs" />
+    <Compile Include="WebApp\money\getcash.cs" />
+    <Compile Include="WebApp\center\index.cs" />
+    <Compile Include="WebApp\center\bankInfo.cs" />
+    <Compile Include="WebApp\email\index.cs" />
+    <Compile Include="WebApp\email\Info.cs" />
+    <Compile Include="WebApp\email\Info2.cs" />
+    <Compile Include="WebApp\plus\auto.cs" />
+    <Compile Include="WebApp\Plus\_getcode.cs" />
+    <Compile Include="WebApp\bet\index.cs" />
+    <Compile Include="WebApp\news\info.cs" />
+    <Compile Include="EMWeb\ajaxuploadhandler.cs" />
+    <Compile Include="EMWeb\plus\GetNumber.cs" />
+    <Compile Include="WebApp2\trueNameEdit.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

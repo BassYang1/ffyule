@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: F:\pros\tianheng\bf\WebAppOld\bin\Lottery.Collect.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FAD04ABE-6DCF-40FF-98E6-170FBE3F1FE8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Lottery.Collect</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <ApplicationVersion>7.0.1.203</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Lottery.DAL">
+      <HintPath>lib\Lottery.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="Lottery.Utils">
+      <HintPath>lib\Lottery.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJSON">
+      <HintPath>lib\LitJSON.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Web\MIL\Html\HtmlNodeCollection.cs" />
+    <Compile Include="Web\MIL\Html\HtmlAttribute.cs" />
+    <Compile Include="Web\MIL\Html\HtmlNode.cs" />
+    <Compile Include="Web\MIL\Html\HtmlElement.cs" />
+    <Compile Include="Web\MIL\Html\HtmlText.cs" />
+    <Compile Include="Web\MIL\Html\HtmlDocument.cs" />
+    <Compile Include="Web\MIL\Html\HtmlParser.cs" />
+    <Compile Include="Web\MIL\Html\HtmlEncoder.cs" />
+    <Compile Include="Web\MIL\Html\HtmlAttributeCollection.cs" />
+    <Compile Include="Lottery\Collect\TimeData.cs" />
+    <Compile Include="Lottery\Collect\Global.cs" />
+    <Compile Include="Lottery\Collect\Tcp3Data.cs" />
+    <Compile Include="Lottery\Collect\YouleToOther3d.cs" />
+    <Compile Include="Lottery\Collect\YouleToOther11x5.cs" />
+    <Compile Include="Lottery\Collect\Public.cs" />
+    <Compile Include="Lottery\Collect\Config.cs" />
+    <Compile Include="Lottery\Collect\Fc3dData.cs" />
+    <Compile Include="Lottery\Collect\TaskData.cs" />
+    <Compile Include="Lottery\Collect\DefaultToOther.cs" />
+    <Compile Include="Lottery\Collect\HtmlOperate2.cs" />
+    <Compile Include="Lottery\Collect\YouleToOther.cs" />
+    <Compile Include="Lottery\Collect\QqSscData.cs" />
+    <Compile Include="Lottery\Collect\Default.cs" />
+    <Compile Include="Lottery\Collect\HtmlOperate.cs" />
+    <Compile Include="Lottery\Collect\DoGetObjTask.cs" />
+    <Compile Include="Lottery\Collect\AsyncHelper.cs" />
+    <Compile Include="Lottery\AdminFile\Properties\Settings.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

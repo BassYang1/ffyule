@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE5D9373-2D6C-4974-81C3-ACCD93B04120}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lottery.Admin</RootNamespace>
+    <AssemblyName>Lottery.Admin</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Lottery.Collect">
+      <HintPath>..\DLLs\Lottery.Collect.dll</HintPath>
+    </Reference>
+    <Reference Include="Lottery.DBUtility, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLLs\Lottery.DBUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json.Net20">
+      <HintPath>..\DLLs\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\DLLs\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="statics\app\Thumbs.db" />
+    <Content Include="statics\config\site.config" />
+    <Content Include="statics\config\UrlRewriter.config" />
+    <Content Include="statics\database\ipdata.config" />
+    <Content Include="statics\database\qqwry.dat" />
+    <Content Include="statics\loading\Thumbs.db" />
+    <Content Include="statics\log\hacker_20160929.log" />
+    <Content Include="statics\log\hacker_20160930.log" />
+    <Content Include="statics\log\hacker_20161001.log" />
+    <Content Include="statics\log\hacker_20161004.log" />
+    <Content Include="statics\log\hacker_20161014.log" />
+    <Content Include="statics\log\hacker_20161015.log" />
+    <Content Include="statics\log\hacker_20161016.log" />
+    <Content Include="statics\log\hacker_20161017.log" />
+    <Content Include="statics\log\hacker_20161019.log" />
+    <Content Include="statics\log\hacker_20161020.log" />
+    <Content Include="statics\log\hacker_20161023.log" />
+    <Content Include="statics\log\hacker_20161027.log" />
+    <Content Include="statics\log\hacker_20161028.log" />
+    <Content Include="statics\log\hacker_20161029.log" />
+    <Content Include="statics\log\hacker_20161031.log" />
+    <Content Include="statics\log\hacker_20161101.log" />
+    <Content Include="statics\log\hacker_20161102.log" />
+    <Content Include="statics\log\hacker_20161104.log" />
+    <Content Include="statics\log\hacker_20161114.log" />
+    <Content Include="statics\log\hacker_20161116.log" />
+    <Content Include="statics\log\hacker_20161118.log" />
+    <Content Include="statics\log\hacker_20161120.log" />
+    <Content Include="statics\log\hacker_20161121.log" />
+    <Content Include="statics\log\hacker_20161123.log" />
+    <Content Include="statics\log\hacker_20161124.log" />
+    <Content Include="statics\log\hacker_20161125.log" />
+    <Content Include="statics\log\hacker_20161126.log" />
+    <Content Include="statics\log\hacker_20161128.log" />
+    <Content Include="statics\log\hacker_20161129.log" />
+    <Content Include="statics\log\hacker_20161201.log" />
+    <Content Include="statics\log\hacker_20161227.log" />
+    <Content Include="statics\log\hacker_20161231.log" />
+    <Content Include="statics\log\hacker_20170115.log" />
+    <Content Include="statics\log\hacker_20170116.log" />
+    <Content Include="statics\log\hacker_20170117.log" />
+    <Content Include="statics\log\hacker_20170118.log" />
+    <Content Include="statics\log\hacker_20170124.log" />
+    <Content Include="statics\log\hacker_20170126.log" />
+    <Content Include="statics\log\hacker_20170127.log" />
+    <Content Include="statics\log\hacker_20170128.log" />
+    <Content Include="statics\log\hacker_20170204.log" />
+    <Content Include="statics\log\hacker_20170207.log" />
+    <Content Include="statics\log\hacker_20170315.log" />
+    <Content Include="statics\log\hacker_20170322.log" />
+    <Content Include="statics\log\hacker_20170329.log" />
+    <Content Include="statics\log\hacker_20170330.log" />
+    <Content Include="statics\log\hacker_20170331.log" />
+    <Content Include="statics\log\hacker_20170401.log" />
+    <Content Include="statics\log\hacker_20170402.log" />
+    <Content Include="statics\log\hacker_20170403.log" />
+    <Content Include="statics\log\hacker_20170404.log" />
+    <Content Include="statics\log\hacker_20170405.log" />
+    <Content Include="statics\log\hacker_20170406.log" />
+    <Content Include="statics\log\hacker_20170407.log" />
+    <Content Include="statics\log\hacker_20170408.log" />
+    <Content Include="statics\log\hacker_20170409.log" />
+    <Content Include="statics\log\hacker_20170410.log" />
+    <Content Include="statics\log\hacker_20170411.log" />
+    <Content Include="statics\log\hacker_20170412.log" />
+    <Content Include="statics\log\hacker_20170413.log" />
+    <Content Include="statics\log\hacker_20170414.log" />
+    <Content Include="statics\log\hacker_20170415.log" />
+    <Content Include="statics\log\hacker_20170416.log" />
+    <Content Include="statics\log\hacker_20170417.log" />
+    <Content Include="statics\log\hacker_20170418.log" />
+    <Content Include="statics\log\hacker_20170421.log" />
+    <Content Include="statics\log\hacker_20170422.log" />
+    <Content Include="statics\log\hacker_20170423.log" />
+    <Content Include="statics\log\hacker_20170424.log" />
+    <Content Include="statics\log\hacker_20170425.log" />
+    <Content Include="statics\log\hacker_20170426.log" />
+    <Content Include="statics\log\hacker_20170428.log" />
+    <Content Include="statics\log\hacker_20170429.log" />
+    <Content Include="statics\log\hacker_20170531.log" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\activeNewsEdit.aspx" />
+    <Content Include="admin\activeOpers.aspx" />
+    <Content Include="admin\adminLock.aspx" />
+    <Content Include="admin\adminPower.aspx" />
+    <Content Include="admin\adminPwd.aspx" />
+    <Content Include="admin\ajax.aspx" />
+    <Content Include="admin\ajaxActive.aspx" />
+    <Content Include="admin\ajaxAdmin.aspx" />
+    <Content Include="admin\ajaxAdminLoginCheck.aspx" />
+    <Content Include="admin\ajaxAdminStat.aspx" />
+    <Content Include="admin\ajaxAgentFH.aspx" />
+    <Content Include="admin\ajaxAutoRank.aspx" />
+    <Content Include="admin\ajaxBet.aspx" />
+    <Content Include="admin\ajaxCharge.aspx" />
+    <Content Include="admin\ajaxContract.aspx" />
+    <Content Include="admin\ajaxHistory.aspx" />
+    <Content Include="admin\ajaxLoginCheck.aspx" />
+    <Content Include="admin\ajaxLogs.aspx" />
+    <Content Include="admin\ajaxLottery.aspx" />
+    <Content Include="admin\ajaxLotterydata.aspx" />
+    <Content Include="admin\ajaxMessage.aspx" />
+    <Content Include="admin\ajaxMoneyStatAll.aspx" />
+    <Content Include="admin\ajaxMyinfo.aspx" />
+    <Content Include="admin\ajaxPayRecord.aspx" />
+    <Content Include="admin\ajaxProfitloss.aspx" />
+    <Content Include="admin\ajaxSave.aspx" />
+    <Content Include="admin\ajaxSysBank.aspx" />
+    <Content Include="admin\ajaxSysDelData.aspx" />
+    <Content Include="admin\ajaxSysInfo.aspx" />
+    <Content Include="admin\ajaxSysNews.aspx" />
+    <Content Include="admin\ajaxTask.aspx" />
+    <Content Include="admin\ajaxUser.aspx" />
+    <Content Include="admin\ajaxUserlevel.aspx" />
+    <Content Include="admin\ajaxWarn.aspx" />
+    <Content Include="admin\betCancel.aspx" />
+    <Content Include="admin\betCancelOfNO.aspx" />
+    <Content Include="admin\betInfo.aspx" />
+    <Content Include="admin\betOpers.aspx" />
+    <Content Include="admin\betUpdate.aspx" />
+    <Content Include="admin\betZhinfo.aspx" />
+    <Content Include="admin\close.htm" />
+    <Content Include="admin\conList.aspx" />
+    <Content Include="admin\conListpop.aspx" />
+    <Content Include="admin\contractPop.aspx" />
+    <Content Include="admin\default.aspx" />
+    <Content Include="admin\login.aspx" />
+    <Content Include="admin\login20170109.aspx" />
+    <Content Include="admin\lotteryDataAdd.aspx" />
+    <Content Include="admin\lotteryNoPlay.aspx" />
+    <Content Include="admin\PageEdit.aspx" />
+    <Content Include="admin\PageEditPop.aspx" />
+    <Content Include="admin\PageSavePop.aspx" />
+    <Content Include="admin\SendMessage.aspx" />
+    <Content Include="admin\sysDelData.aspx" />
+    <Content Include="admin\sysNewsAdd.aspx" />
+    <Content Include="admin\sysNewsEdit.aspx" />
+    <Content Include="admin\sysSetInfo.aspx" />
+    <Content Include="admin\Temp.aspx" />
+    <Content Include="admin\userAdd.aspx" />
+    <Content Include="admin\userBankDel.aspx" />
+    <Content Include="admin\userBankEdit.aspx" />
+    <Content Include="admin\userBankUnLock.aspx" />
+    <Content Include="admin\userCashEdit.aspx" />
+    <Content Include="admin\userCharge.aspx" />
+    <Content Include="admin\userChargeAct.aspx" />
+    <Content Include="admin\userChargeEdit.aspx" />
+    <Content Include="admin\userChargeUpList.aspx" />
+    <Content Include="admin\userEdit.aspx" />
+    <Content Include="admin\userHistoryPop.aspx" />
+    <Content Include="admin\userMoneyCFLog.aspx" />
+    <Content Include="admin\userMoneyLog.aspx" />
+    <Content Include="admin\userNoPlay.aspx" />
+    <Content Include="admin\userQuotaadd.aspx" />
+    <Content Include="admin\userQuotas.aspx" />
+    <Content Include="admin\userQuotasEdit.aspx" />
+    <Content Include="admin\userTrueNameEdit.aspx" />
+    <Content Include="admin\userUpdateParent.aspx" />
+    <Content Include="admin\userUpdatePoint.aspx" />
+    <Content Include="admin\userUpdatePoints.aspx" />
+    <Content Include="index.html" />
+    <Content Include="statics\admin\css\common.css" />
+    <Content Include="statics\admin\css\pop.css" />
+    <Content Include="statics\admin\css\style.css" />
+    <Content Include="statics\admin\img\logo.png" />
+    <Content Include="statics\admin\img\maskBG.png" />
+    <Content Include="statics\admin\img\public.png" />
+    <Content Include="statics\admin\img\uc_popup.png" />
+    <Content Include="statics\admin\img\uc_sn.png" />
+    <Content Include="statics\admin\img\uc_ts.png" />
+    <Content Include="statics\admin\img\user_photo.png" />
+    <Content Include="statics\admin\img\v1.jpg" />
+    <Content Include="statics\admin\img\yl_logo.png" />
+    <Content Include="statics\admin\js\admin.js" />
+    <Content Include="statics\admin\js\bet.js" />
+    <Content Include="statics\admin\js\common.js" />
+    <Content Include="statics\admin\js\index.js" />
+    <Content Include="statics\admin\js\lotBase.js" />
+    <Content Include="statics\admin\js\lotData.js" />
+    <Content Include="statics\admin\js\lotFun.js" />
+    <Content Include="statics\admin\js\lotInput.js" />
+    <Content Include="statics\admin\js\StringBuilder.js" />
+    <Content Include="statics\admin\js\temp.js" />
+    <Content Include="statics\admin\js\yanue.pop.js" />
+    <Content Include="statics\app\album.gif" />
+    <Content Include="statics\app\blog.gif" />
+    <Content Include="statics\app\bobi.gif" />
+    <Content Include="statics\app\cart.gif" />
+    <Content Include="statics\app\chat.gif" />
+    <Content Include="statics\app\doing.gif" />
+    <Content Include="statics\app\favorite.gif" />
+    <Content Include="statics\app\friend.gif" />
+    <Content Include="statics\app\fwu.gif" />
+    <Content Include="statics\app\group.gif" />
+    <Content Include="statics\app\home.gif" />
+    <Content Include="statics\app\maimai.gif" />
+    <Content Include="statics\app\member.gif" />
+    <Content Include="statics\app\message.gif" />
+    <Content Include="statics\app\mtag.gif" />
+    <Content Include="statics\app\network.gif" />
+    <Content Include="statics\app\pm.gif" />
+    <Content Include="statics\app\quanzi.gif" />
+    <Content Include="statics\app\share.gif" />
+    <Content Include="statics\app\tougao.gif" />
+    <Content Include="statics\app\zuop.gif" />
+    <Content Include="statics\dialog\0\0.gif" />
+    <Content Include="statics\dialog\0\1.gif" />
+    <Content Include="statics\dialog\0\button1.gif" />
+    <Content Include="statics\dialog\0\button2.gif" />
+    <Content Include="statics\dialog\0\dialogCloseOut.gif" />
+    <Content Include="statics\dialog\0\dialogCloseOver.gif" />
+    <Content Include="statics\dialog\0\login.gif" />
+    <Content Include="statics\dialog\0\png.htc" />
+    <Content Include="statics\dialog\0\sbody_bg.png" />
+    <Content Include="statics\dialog\0\title_bg.png" />
+    <Content Include="statics\dialog\1\0.gif" />
+    <Content Include="statics\dialog\1\1.gif" />
+    <Content Include="statics\dialog\1\button1.gif" />
+    <Content Include="statics\dialog\1\button2.gif" />
+    <Content Include="statics\dialog\1\dialogCloseOut.gif" />
+    <Content Include="statics\dialog\1\dialogCloseOver.gif" />
+    <Content Include="statics\dialog\1\login.gif" />
+    <Content Include="statics\dialog\1\png.htc" />
+    <Content Include="statics\dialog\1\sbody_bg.png" />
+    <Content Include="statics\dialog\1\title_bg.png" />
+    <Content Include="statics\dialog\2\0.gif" />
+    <Content Include="statics\dialog\2\1.gif" />
+    <Content Include="statics\dialog\2\button1.gif" />
+    <Content Include="statics\dialog\2\button2.gif" />
+    <Content Include="statics\dialog\2\dialogCloseOut.gif" />
+    <Content Include="statics\dialog\2\dialogCloseOut.png" />
+    <Content Include="statics\dialog\2\dialogCloseOver.gif" />
+    <Content Include="statics\dialog\2\dialogCloseOver.png" />
+    <Content Include="statics\dialog\2\login.gif" />
+    <Content Include="statics\dialog\2\notice.gif" />
+    <Content Include="statics\dialog\2\png.htc" />
+    <Content Include="statics\dialog\2\sbody_bg.gif" />
+    <Content Include="statics\dialog\2\sbody_bg.png" />
+    <Content Include="statics\dialog\2\title_bg.png" />
+    <Content Include="statics\dialog\ie.gif" />
+    <Content Include="statics\dialog\loading.gif" />
+    <Content Include="statics\flex3\admin\AdminLogin.swf" />
+    <Content Include="statics\flex3\admin\FileUpload.swf" />
+    <Content Include="statics\global.css" />
+    <Content Include="statics\global.js" />
+    <Content Include="statics\json\BigAndSmalldata.js" />
+    <Content Include="statics\json\LotAndSmalldata.js" />
+    <Content Include="statics\json\Lottery_Json.js" />
+    <Content Include="statics\json\playBigdate.js" />
+    <Content Include="statics\loading.html" />
+    <Content Include="statics\loading\00.gif" />
+    <Content Include="statics\loading\01.gif" />
+    <Content Include="statics\loading\02.gif" />
+    <Content Include="statics\loading\03.gif" />
+    <Content Include="statics\loading\04.gif" />
+    <Content Include="statics\loading\05.gif" />
+    <Content Include="statics\loading\07.gif" />
+    <Content Include="statics\loading\11.gif" />
+    <Content Include="statics\loading\21.gif" />
+    <Content Include="statics\loading\22.gif" />
+    <Content Include="statics\loading\23.gif" />
+    <Content Include="statics\loading\24.gif" />
+    <Content Include="statics\loading\25.gif" />
+    <Content Include="statics\loading\26.gif" />
+    <Content Include="statics\loading\31.gif" />
+    <Content Include="statics\log\autotask_20140130.txt" />
+    <Content Include="statics\log\autotask_20140131.txt" />
+    <Content Include="statics\log\autotask_20140717.txt" />
+    <Content Include="statics\log\autotask_20140718.txt" />
+    <Content Include="statics\log\autotask_20140720.txt" />
+    <Content Include="statics\log\autotask_20140722.txt" />
+    <Content Include="statics\log\autotask_20140730.txt" />
+    <Content Include="statics\log\autotask_20140731.txt" />
+    <Content Include="statics\log\autotask_20140801.txt" />
+    <Content Include="statics\log\autotask_20140802.txt" />
+    <Content Include="statics\log\autotask_20140804.txt" />
+    <Content Include="statics\log\autotask_20140811.txt" />
+    <Content Include="statics\log\autotask_20140812.txt" />
+    <Content Include="statics\log\autotask_20140813.txt" />
+    <Content Include="statics\log\autotask_20140814.txt" />
+    <Content Include="statics\log\autotask_20150107.txt" />
+    <Content Include="statics\log\autotask_20150111.txt" />
+    <Content Include="statics\log\autotask_20150112.txt" />
+    <Content Include="statics\log\autotask_20150114.txt" />
+    <Content Include="statics\log\autotask_20150115.txt" />
+    <Content Include="statics\log\autotask_20150120.txt" />
+    <Content Include="statics\log\autotask_20150121.txt" />
+    <Content Include="statics\log\autotask_20150122.txt" />
+    <Content Include="statics\log\index.htm" />
+    <Content Include="statics\plus\getcode.aspx" />
+    <Content Include="statics\sound\0.mp3" />
+    <Content Include="statics\sound\1.mp3" />
+    <Content Include="statics\sound\2.mp3" />
+    <Content Include="statics\sound\3.mp3" />
+    <Content Include="statics\sound\4.mp3" />
+    <Content Include="statics\sound\5.mp3" />
+    <Content Include="statics\sound\6.mp3" />
+    <Content Include="statics\sound\7.mp3" />
+    <Content Include="statics\sound\8.mp3" />
+    <Content Include="statics\sound\9.mp3" />
+    <Content Include="statics\sound\a.mp3" />
+    <Content Include="statics\sound\b.mp3" />
+    <Content Include="statics\sound\begin.mp3" />
+    <Content Include="statics\sound\c.mp3" />
+    <Content Include="statics\sound\d.mp3" />
+    <Content Include="statics\sound\e.mp3" />
+    <Content Include="statics\sound\end.mp3" />
+    <Content Include="statics\sound\f.mp3" />
+    <Content Include="statics\sound\g.mp3" />
+    <Content Include="statics\sound\h.mp3" />
+    <Content Include="statics\sound\i.mp3" />
+    <Content Include="statics\sound\j.mp3" />
+    <Content Include="statics\sound\k.mp3" />
+    <Content Include="statics\sound\l.mp3" />
+    <Content Include="statics\sound\m.mp3" />
+    <Content Include="statics\sound\n.mp3" />
+    <Content Include="statics\sound\o.mp3" />
+    <Content Include="statics\sound\p.mp3" />
+    <Content Include="statics\sound\q.mp3" />
+    <Content Include="statics\sound\r.mp3" />
+    <Content Include="statics\sound\s.mp3" />
+    <Content Include="statics\sound\t.mp3" />
+    <Content Include="statics\sound\u.mp3" />
+    <Content Include="statics\sound\v.mp3" />
+    <Content Include="statics\sound\w.mp3" />
+    <Content Include="statics\sound\x.mp3" />
+    <Content Include="statics\sound\y.mp3" />
+    <Content Include="statics\sound\z.mp3" />
+    <Content Include="statics\tips\0.gif" />
+    <Content Include="statics\tips\1.gif" />
+    <Content Include="WEB-INF\site.xml" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admin\activeNewsEdit.aspx.cs">
+      <DependentUpon>activeNewsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\activeOpers.aspx.cs">
+      <DependentUpon>activeOpers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminLock.aspx.cs">
+      <DependentUpon>adminLock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminPower.aspx.cs">
+      <DependentUpon>adminPower.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminPwd.aspx.cs">
+      <DependentUpon>adminPwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajax.aspx.cs">
+      <DependentUpon>ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxActive.aspx.cs">
+      <DependentUpon>ajaxActive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxAdmin.aspx.cs">
+      <DependentUpon>ajaxAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxAdminLoginCheck.aspx.cs">
+      <DependentUpon>ajaxAdminLoginCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxAgentFH.aspx.cs">
+      <DependentUpon>ajaxAgentFH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxAutoRank.aspx.cs">
+      <DependentUpon>ajaxAutoRank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxBet.aspx.cs">
+      <DependentUpon>ajaxBet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxCharge.aspx.cs">
+      <DependentUpon>ajaxCharge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxContract.aspx.cs">
+      <DependentUpon>ajaxContract.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxHistory.aspx.cs">
+      <DependentUpon>ajaxHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxLoginCheck.aspx.cs">
+      <DependentUpon>ajaxLoginCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxLogs.aspx.cs">
+      <DependentUpon>ajaxLogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxLottery.aspx.cs">
+      <DependentUpon>ajaxLottery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxLotterydata.aspx.cs">
+      <DependentUpon>ajaxLotterydata.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxMessage.aspx.cs">
+      <DependentUpon>ajaxMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxMoneyStatAll.aspx.cs">
+      <DependentUpon>ajaxMoneyStatAll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxMyinfo.aspx.cs">
+      <DependentUpon>ajaxMyinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxPayRecord.aspx.cs">
+      <DependentUpon>ajaxPayRecord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxProfitloss.aspx.cs">
+      <DependentUpon>ajaxProfitloss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxSave.aspx.cs">
+      <DependentUpon>ajaxSave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxSysBank.aspx.cs">
+      <DependentUpon>ajaxSysBank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxSysDelData.aspx.cs">
+      <DependentUpon>ajaxSysDelData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxSysInfo.aspx.cs">
+      <DependentUpon>ajaxSysInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxSysNews.aspx.cs">
+      <DependentUpon>ajaxSysNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxTask.aspx.cs">
+      <DependentUpon>ajaxTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxUser.aspx.cs">
+      <DependentUpon>ajaxUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxUserlevel.aspx.cs">
+      <DependentUpon>ajaxUserlevel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ajaxWarn.aspx.cs">
+      <DependentUpon>ajaxWarn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\betCancel.aspx.cs">
+      <DependentUpon>betCancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\betCancelOfNO.aspx.cs">
+      <DependentUpon>betCancelOfNO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\betInfo.aspx.cs">
+      <DependentUpon>betInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\betOpers.aspx.cs">
+      <DependentUpon>betOpers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\betUpdate.aspx.cs">
+      <DependentUpon>betUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\betZhinfo.aspx.cs">
+      <DependentUpon>betZhinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\conList.aspx.cs">
+      <DependentUpon>conList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\conListpop.aspx.cs">
+      <DependentUpon>conListpop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\login20170109.aspx.cs">
+      <DependentUpon>login20170109.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\lotteryDataAdd.aspx.cs">
+      <DependentUpon>lotteryDataAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\lotteryNoPlay.aspx.cs">
+      <DependentUpon>lotteryNoPlay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\PageEdit.aspx.cs">
+      <DependentUpon>PageEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\PageEditPop.aspx.cs">
+      <DependentUpon>PageEditPop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\PageSavePop.aspx.cs">
+      <DependentUpon>PageSavePop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\SendMessage.aspx.cs">
+      <DependentUpon>SendMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sysDelData.aspx.cs">
+      <DependentUpon>sysDelData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sysNewsAdd.aspx.cs">
+      <DependentUpon>sysNewsAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sysNewsEdit.aspx.cs">
+      <DependentUpon>sysNewsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sysSetInfo.aspx.cs">
+      <DependentUpon>sysSetInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Temp.aspx.cs">
+      <DependentUpon>Temp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userAdd.aspx.cs">
+      <DependentUpon>userAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userBankDel.aspx.cs">
+      <DependentUpon>userBankDel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userBankEdit.aspx.cs">
+      <DependentUpon>userBankEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userBankUnLock.aspx.cs">
+      <DependentUpon>userBankUnLock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userCashEdit.aspx.cs">
+      <DependentUpon>userCashEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userCharge.aspx.cs">
+      <DependentUpon>userCharge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userChargeAct.aspx.cs">
+      <DependentUpon>userChargeAct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userChargeEdit.aspx.cs">
+      <DependentUpon>userChargeEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userEdit.aspx.cs">
+      <DependentUpon>userEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userHistoryPop.aspx.cs">
+      <DependentUpon>userHistoryPop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userMoneyCFLog.aspx.cs">
+      <DependentUpon>userMoneyCFLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userMoneyLog.aspx.cs">
+      <DependentUpon>userMoneyLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userNoPlay.aspx.cs">
+      <DependentUpon>userNoPlay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userQuotaadd.aspx.cs">
+      <DependentUpon>userQuotaadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userQuotas.aspx.cs">
+      <DependentUpon>userQuotas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userQuotasEdit.aspx.cs">
+      <DependentUpon>userQuotasEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userTrueNameEdit.aspx.cs">
+      <DependentUpon>userTrueNameEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userUpdateParent.aspx.cs">
+      <DependentUpon>userUpdateParent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userUpdatePoint.aspx.cs">
+      <DependentUpon>userUpdatePoint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\userUpdatePoints.aspx.cs">
+      <DependentUpon>userUpdatePoints.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="statics\plus\getcode.aspx.cs">
+      <DependentUpon>getcode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="statics\plus\getcode.aspx.designer.cs">
+      <DependentUpon>getcode.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
+      <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
+      <Name>Lottery.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
+      <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>
+      <Name>Lottery.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.Utils\Lottery.Utils.csproj">
+      <Project>{7fde2b50-2656-4ed1-8c0c-d6547fe9a21a}</Project>
+      <Name>Lottery.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="statics\Bets\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1336</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1336/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
