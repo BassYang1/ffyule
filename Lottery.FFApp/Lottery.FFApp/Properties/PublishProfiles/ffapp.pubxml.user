@@ -94,7 +94,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/08/2018 21:00:36</publishTime>
     </File>
     <File Include="aspx/page.aspx">
-      <publishTime>02/08/2018 21:00:36</publishTime>
+      <publishTime>02/09/2018 16:38:31</publishTime>
     </File>
     <File Include="bet/betInfo.html">
       <publishTime>02/08/2018 21:00:36</publishTime>
@@ -118,7 +118,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2017 03:03:16</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>02/08/2018 20:56:34</publishTime>
+      <publishTime>02/09/2018 16:57:10</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
       <publishTime>06/15/2017 00:57:59</publishTime>
@@ -127,7 +127,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/08/2018 09:59:35</publishTime>
     </File>
     <File Include="bin/Lottery.FFApp.dll">
-      <publishTime>02/08/2018 20:56:34</publishTime>
+      <publishTime>02/09/2018 16:57:11</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
       <publishTime>02/08/2018 20:56:33</publishTime>
@@ -193,7 +193,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="contract/Contractfh.aspx">
-      <publishTime>02/08/2018 21:00:39</publishTime>
+      <publishTime>02/08/2018 22:03:20</publishTime>
     </File>
     <File Include="contract/ContractfhOper.aspx">
       <publishTime>02/08/2018 21:00:39</publishTime>
@@ -211,16 +211,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/08/2018 21:00:39</publishTime>
     </File>
     <File Include="contract/index.aspx">
-      <publishTime>02/08/2018 21:00:39</publishTime>
+      <publishTime>02/09/2018 14:18:47</publishTime>
     </File>
     <File Include="contract/index2.aspx">
-      <publishTime>02/08/2018 21:00:39</publishTime>
+      <publishTime>02/09/2018 14:18:58</publishTime>
     </File>
     <File Include="contract/MyAgentfhlist.aspx">
       <publishTime>02/08/2018 21:00:36</publishTime>
     </File>
     <File Include="contract2/Contractfh.aspx">
-      <publishTime>02/08/2018 21:00:36</publishTime>
+      <publishTime>02/08/2018 22:03:57</publishTime>
     </File>
     <File Include="contract2/ContractfhOper.aspx">
       <publishTime>02/08/2018 21:00:36</publishTime>
@@ -2080,16 +2080,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="user/index.aspx">
-      <publishTime>02/08/2018 21:00:36</publishTime>
+      <publishTime>02/09/2018 16:38:08</publishTime>
     </File>
     <File Include="user/useradd.aspx">
-      <publishTime>02/08/2018 21:00:36</publishTime>
+      <publishTime>02/09/2018 14:24:25</publishTime>
     </File>
     <File Include="user/userAgentFH.aspx">
       <publishTime>02/08/2018 21:00:36</publishTime>
     </File>
     <File Include="user/userContractFH.aspx">
-      <publishTime>02/08/2018 21:00:36</publishTime>
+      <publishTime>02/08/2018 22:04:20</publishTime>
     </File>
     <File Include="user/userindex.aspx">
       <publishTime>02/08/2018 21:00:36</publishTime>
@@ -2104,7 +2104,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/08/2018 20:56:35</publishTime>
+      <publishTime>02/09/2018 14:27:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

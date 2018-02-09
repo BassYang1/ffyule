@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Contractfh.aspx.cs"
-    Inherits="Lottery.WebApp.contract2.Contractfh" %>
+    Inherits="Lottery.WebApp.contract.Contractfh" %>
 
 <!doctype html>
 <html>
@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>立博国际娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -21,6 +21,7 @@
         var userName = "<%=this.UserName%>"; //会员名称
         var userGroup = "<%=this.UserGroup%>"; //会员级别
         var userGroupName = "<%=this.UserGroupName%>"; //会员级别名称
+        var isAdminUser = "<%=this.IsAdminUser %>"; //是否是管量员账户
         var userDesc = "会员[" + userName + "]";
         userDesc = userGroupName == "会员" ? userDesc : "[" + userGroupName + "]" + userDesc;
 
@@ -35,9 +36,14 @@
             $("#btnRefuseCannel").hide();
             $("#btnAgreeCannel").hide();
 
-            getContract();
-            showContract();
-            checkContractState();
+            if (isAdminUser != "True") {
+                getContract();
+                showContract();
+                checkContractState();
+            }
+            else {
+                $i("info").innerHTML = "管理账户无需签订契约";
+            }
         });
 
         //获取契约数据
@@ -92,7 +98,7 @@
                 for (var i = 0; i < count; i++) {
                     var t = table[i];
                     html += '<tr>';
-                    html += '<td>' + (i + 1) + '</td><td><label class="lab">半月亏损金额</label><label class="lab">' + t.minmoney + '万</label></td><td><label class="lab">' + t.money + '%</label></td><td>&nbsp;</td>';
+                    html += '<td>' + (i + 1) + '</td><td><label class="lab">半月周期销量</label><label class="lab">' + t.minmoney + '万</label></td><td><label class="lab">' + t.money + '%</label></td><td>&nbsp;</td>';
                     html += '</tr>';
                 }
 
@@ -158,6 +164,10 @@
                             getContract();
                             showContract();
                             checkContractState();
+                            $("#btnAgree").hide();
+                            $("#btnRefuse").hide();
+                            $("#btnRefuseCannel").hide();
+                            $("#btnAgreeCannel").hide();
                             break;
                     }
                     closeload(index);

@@ -34,7 +34,7 @@
                      if (d.table.length > 0) {
                         for (var i = 0; i < d.table.length; i++) {
                             var t = d.table[i];
-                            html+='<div class="input-group"><label class="lab">0'+(i + 1)+'.半月亏损金额</label><label class="lab">'+t.minmoney+'万</label><label class="lab">，分红'+t.money+'%</label></div>';
+                            html+='<div class="input-group"><label class="lab">0'+(i + 1)+'.半月周期销量</label><label class="lab">'+t.minmoney+'万</label><label class="lab">，分红'+t.money+'%</label></div>';
                         }
                         if (d.table[0].groupid == 4) {
                             $i("info").innerHTML = "该会员是招商会员，直接用平台分红标准";
@@ -91,7 +91,7 @@
 
                 var label = document.createElement('label');
                 label.className = 'lab';
-                label.innerHTML = '0' + count + '.半月亏损金额';
+                label.innerHTML = '0' + count + '.半月周期销量';
 
                 var input = document.createElement('input');
                 input.className = 'ipt';

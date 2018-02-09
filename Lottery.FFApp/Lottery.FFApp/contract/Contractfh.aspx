@@ -98,7 +98,7 @@
                 for (var i = 0; i < count; i++) {
                     var t = table[i];
                     html += '<tr>';
-                    html += '<td>' + (i + 1) + '</td><td><label class="lab">半月亏损金额</label><label class="lab">' + t.minmoney + '万</label></td><td><label class="lab">' + t.money + '%</label></td><td>&nbsp;</td>';
+                    html += '<td>' + (i + 1) + '</td><td><label class="lab">半月周期销量</label><label class="lab">' + t.minmoney + '万</label></td><td><label class="lab">' + t.money + '%</label></td><td>&nbsp;</td>';
                     html += '</tr>';
                 }
 

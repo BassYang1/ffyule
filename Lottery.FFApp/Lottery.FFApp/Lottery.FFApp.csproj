@@ -192,34 +192,6 @@
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="contract2\Contractfh.aspx.cs">
-      <DependentUpon>Contractfh.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="contract2\ContractfhOper.aspx.cs">
-      <DependentUpon>ContractfhOper.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="contract2\ContractfhPop.aspx.cs">
-      <DependentUpon>ContractfhPop.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="contract2\Contractgz.aspx.cs">
-      <DependentUpon>Contractgz.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="contract2\ContractgzOper.aspx.cs">
-      <DependentUpon>ContractgzOper.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="contract2\ContractgzPop.aspx.cs">
-      <DependentUpon>ContractgzPop.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="contract2\MyAgentfhlist.aspx.cs">
-      <DependentUpon>MyAgentfhlist.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="contract\Contractfh.aspx.cs">
       <DependentUpon>Contractfh.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -403,15 +375,6 @@
     <Content Include="chart\style\jquery-1.11.1.min.js" />
     <Content Include="chart\style\line.js" />
     <Content Include="chart\style\style.css" />
-    <Content Include="contract2\Contractfh.aspx" />
-    <Content Include="contract2\ContractfhOper.aspx" />
-    <Content Include="contract2\ContractfhPop.aspx" />
-    <Content Include="contract2\Contractgz.aspx" />
-    <Content Include="contract2\ContractgzOper.aspx" />
-    <Content Include="contract2\ContractgzPop.aspx" />
-    <Content Include="contract2\index.aspx" />
-    <Content Include="contract2\index2.aspx" />
-    <Content Include="contract2\MyAgentfhlist.aspx" />
     <Content Include="contract\Contractfh.aspx" />
     <Content Include="contract\ContractfhOper.aspx" />
     <Content Include="contract\ContractfhPop.aspx" />
