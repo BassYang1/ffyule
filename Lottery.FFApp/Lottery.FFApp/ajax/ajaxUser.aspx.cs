@@ -239,31 +239,65 @@ namespace Lottery.WebApp
             dataTable.Dispose();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 如果开始时间和结束时间为空，默认查前3天的记录
+        /// </remarks>
         private void ajaxGetTeamTotalList()
         {
             this.Int_ThisPage();
             this.Str2Int(this.q("pagesize"), 20);
             this.q("flag");
-            string str1 = this.q("d1");
-            string str2 = this.q("d2");
-            string str3 = "dbo.f_GetUserCode(userId) like '%" + Strings.PadLeft(this.AdminId) + "%'";
-            if (str1.Trim().Length == 0)
+            string startTime = this.q("d1");
+            string endTime = this.q("d2");
+            string whereStr = "dbo.f_GetUserCode(userId) like '%" + Strings.PadLeft(this.AdminId) + "%'";
+
+
+            if (startTime.Trim().Length < 10)
             {
                 DateTime dateTime = DateTime.Now;
                 dateTime = dateTime.AddDays(-3.0);
-                str1 = dateTime.ToString("yyyy-MM-dd") + " 00:00:00";
+                startTime = dateTime.ToString("yyyy-MM-dd") + " 00:00:00";
             }
-            if (str2.Trim().Length == 0)
-                str2 = this.EndTime;
-            if (Convert.ToDateTime(str1) > Convert.ToDateTime(str2))
-                str1 = str2;
-            if (str1.Trim().Length > 0 && str2.Trim().Length > 0)
-                str3 = str3 + " and STime >='" + str1 + "' and STime <='" + str2 + "'";
-            string str4 = "SELECT TOP 1 isnull(sum(Charge),0) as Charge,\r\n                                    isnull(sum(getcash),0) as getcash, \r\n                                    isnull(sum(bet),0)-isnull(sum(Cancellation),0) as bet ,\r\n                                    isnull(sum(win),0) as win,\r\n                                    isnull(sum(Point),0) as Point,\r\n                                    isnull(sum(Give),0) as Give,\r\n                                    isnull(sum(other),0) as other,  \r\n                                    isnull(sum(-total),0) as total \r\n                    From N_UserMoneyStatAll with(nolock)  \r\n                    Where " + str3;
+            else
+            {
+                startTime = startTime.Substring(0, 10) + " 00:00:00";
+            }
+
+            if (endTime.Trim().Length < 10)
+            {
+                endTime = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
+            }
+            else
+            {
+                endTime = endTime.Substring(0, 10) + " 23:59:59";
+            }
+
+            if (Convert.ToDateTime(startTime) > Convert.ToDateTime(endTime))
+            {
+                startTime = Convert.ToDateTime(endTime).AddDays(-1).ToString("yy-MM-dd HH:mm:dd");
+            }
+
+            whereStr = whereStr + " and STime >='" + startTime + "' and STime <='" + endTime + "'";
+
+            string queryStr = @"SELECT TOP 1 isnull(sum(Charge),0) as Charge,
+                            isnull(sum(getcash),0) as getcash, 
+                            isnull(sum(bet),0)-isnull(sum(Cancellation),0) as bet ,
+                            isnull(sum(win),0) as win,
+                            isnull(sum(Point),0) as Point,
+                            isnull(sum(Give),0) as Give,
+                            isnull(sum(other),0) as other,
+                            isnull(sum(-total),0) as total 
+                            From N_UserMoneyStatAll with(nolock) 
+                            Where " + whereStr;
             this.doh.Reset();
-            this.doh.SqlCmd = str4;
+            this.doh.SqlCmd = queryStr;
             DataTable dataTable = this.doh.GetDataTable();
+
             this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\"," + dtHelp.DT2JSON(dataTable) + "}";
+
             dataTable.Clear();
             dataTable.Dispose();
         }

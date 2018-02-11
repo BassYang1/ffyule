@@ -1,0 +1,11 @@
+用户登录
+	Lottery.DAL.UserDAL.cs
+
+代理首页
+	aspx/page.aspx
+	statics/base/logMenu.js
+	user/userindex.aspx
+	ajax/ajaxUser.aspx?oper=ajaxGetTeamTotalList
+	
+资金流水
+	ajax/ajaxHistory.aspx?oper=ajaxGetList

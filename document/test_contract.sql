@@ -1,0 +1,17 @@
+
+SELECT TOP 2 * FROM Act_ActiveRecord ORDER BY STime DESC;
+SELECT TOP 2 * FROM Act_AgentFHRecord ORDER BY STime DESC;
+SELECT TOP 2 * FROM N_UserMoneyLog ORDER BY STime2 DESC;
+SELECT TOP 2 * FROM N_UserMoneyStatAll ORDER BY STime DESC;
+
+
+--DELETE FROM Act_ActiveRecord WHERE Id = 2;
+exec GZBatchByDate '2018-02-10';
+exec FH0115BatchByDate '2018-02-11';
+exec FH1631BatchByDate '2018-02-11';
+
+
+SELECT * FROM Act_ActiveRecord ORDER BY STime DESC;
+SELECT * FROM Act_AgentFHRecord ORDER BY STime DESC;
+SELECT * FROM N_UserMoneyLog ORDER BY Id DESC;
+SELECT * FROM N_UserMoneyStatAll ORDER BY STime DESC;

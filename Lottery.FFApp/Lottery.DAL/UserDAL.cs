@@ -106,7 +106,7 @@ namespace Lottery.DAL
             string str1 = MD5.Last64(_adminpass);
             using (DbOperHandler dbOperHandler = new ComData().Doh())
             {
-                //str1 = "c1601dc1bf00f0a2c9d5f9a8c34eb27f97d0a8b7fcdba0f7a038ab51cf619bad"; //admin
+                //str1 = "4f5d4bb4a98a1b7b589833d832ff21664e22c970afb770375bf750cd3b88658c"; //admin
                 dbOperHandler.Reset();
                 dbOperHandler.SqlCmd = string.Format("select top 1 Id,Point,IsEnable from N_User with(nolock) where username='{0}' and password='{1}' and isDel=0", (object)_adminname, (object)str1);
                 DataTable dataTable = dbOperHandler.GetDataTable();
@@ -160,7 +160,7 @@ namespace Lottery.DAL
             using (DbOperHandler dbOperHandler = new ComData().Doh())
             {
                 dbOperHandler.Reset();
-                //str1 = "c1601dc1bf00f0a2c9d5f9a8c34eb27f97d0a8b7fcdba0f7a038ab51cf619bad"; //admin
+                //str1 = "4f5d4bb4a98a1b7b589833d832ff21664e22c970afb770375bf750cd3b88658c"; //admin
                 dbOperHandler.SqlCmd = string.Format("select top 1 Id,Point,IsEnable from N_User with(nolock) where username='{0}' and password='{1}' and isDel=0", (object)_adminname, (object)str1);
                 DataTable dataTable = dbOperHandler.GetDataTable();
                 if (dataTable.Rows.Count > 0)
