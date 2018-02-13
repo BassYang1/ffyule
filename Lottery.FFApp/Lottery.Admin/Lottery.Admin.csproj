@@ -42,10 +42,6 @@
     <Reference Include="Lottery.Collect">
       <HintPath>..\DLLs\Lottery.Collect.dll</HintPath>
     </Reference>
-    <Reference Include="Lottery.DBUtility, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLLs\Lottery.DBUtility.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json.Net20">
       <HintPath>..\DLLs\Newtonsoft.Json.Net20.dll</HintPath>
@@ -62,6 +58,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="statics\admin\js\adm.notify.js" />
     <Content Include="statics\app\Thumbs.db" />
     <Content Include="statics\config\site.config" />
     <Content Include="statics\config\UrlRewriter.config" />
@@ -142,6 +139,7 @@
     <Content Include="statics\log\hacker_20170428.log" />
     <Content Include="statics\log\hacker_20170429.log" />
     <Content Include="statics\log\hacker_20170531.log" />
+    <Content Include="statics\music\pay.mp3" />
     <Content Include="_libs\fckeditor\editor\css\behaviors\disablehandles.htc" />
     <Content Include="_libs\fckeditor\editor\css\behaviors\hiddenfield.gif" />
     <Content Include="_libs\fckeditor\editor\css\behaviors\hiddenfield.htc" />
@@ -796,6 +794,7 @@
     <Content Include="_libs\myjsframe0.21\welcome-bg.gif" />
     <Content Include="_libs\pinyin.js" />
     <Content Include="_libs\swfobject.js" />
+    <None Include="Properties\PublishProfiles\ffadmin.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1370,6 +1369,10 @@
     <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
       <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
       <Name>Lottery.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.DBUtility\Lottery.DBUtility.csproj">
+      <Project>{71e9ac32-7eaf-4677-9b25-9adb150f8bcf}</Project>
+      <Name>Lottery.DBUtility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
       <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>

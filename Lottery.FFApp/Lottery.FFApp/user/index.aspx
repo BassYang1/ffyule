@@ -63,7 +63,7 @@
                                <a id="ad" href="javascript:;" nmb="/user/useradd.aspx" style="display:none;">开户中心</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserList">用户管理</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserListOnline">在线会员</a>
-                               <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserProListSub">团队统计</a>
+                               <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserProListSub">团队报表</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserChargeCashHistory">充提记录</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=betlist_User">游戏记录</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserHistory_User">账变记录</a>

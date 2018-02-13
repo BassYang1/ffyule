@@ -28,26 +28,38 @@ namespace Lottery.IPhone.SBF
             try
             {
                 //用户Id
-                string adminId = SbfHelper.Trim(Request["userId"]);
-                //支付方式Id
-                string chargeSetId = SbfHelper.Trim(Request["setId"]);
+                string userId = SbfHelper.Trim(Request["userId"]);
+                //支付方式唯一识别码Code
+                string code = SbfHelper.Trim(Request["setCode"]);
+                int chargeSetId = new Lottery.DAL.Flex.UserBankDAL().GetIphoneChargeSetByCode(code);
 
                 #region 组装随笔付参数
                 //商户Id
                 string pUserId = SbfHelper.SBF_USER;
-                //订单号
+                //用户订单号
                 string pOrderId = SbfHelper.Trim(Request["orderId"]);
-                pOrderId = string.IsNullOrEmpty(pOrderId) ? SsId.Charge : pOrderId;
+                if (String.IsNullOrEmpty(pOrderId))
+                {
+                    throw new Exception("支付订单无效");
+                }
 
                 //银行卡和密码
                 string pCardId = string.Empty;
                 string pCardPass = string.Empty;
-                //支付金额
-                string pFaceValue = SbfHelper.Trim(Request["amount"]);
-                string pPrice = SbfHelper.Trim(Request["amount"]);
 
-                //支付方式
-                string bank = SbfHelper.Trim(Request["bank"]); //平台支付类型码
+                //支付金额
+                decimal amount;
+                if (Decimal.TryParse(SbfHelper.Trim(Request["amount"]), out amount) == false)
+                {
+                    throw new Exception("支付金额无效");
+                }
+
+                //amount = 0.01M;
+                string pFaceValue = amount.ToString();
+                string pPrice = amount.ToString();
+
+                //支付方式: 移动微信或支付宝
+                string bank = SbfHelper.Trim(Request["bank"]);
                 ChannelMapModel channelMap = SbfHelper.GetChannelMap(bank);
 
                 if (channelMap == null)
@@ -55,7 +67,7 @@ namespace Lottery.IPhone.SBF
                     throw new Exception("支付方式不支持");
                 }
 
-                string pChannelId = channelMap.SbfChannel; //随笔付支付类型Id
+                string pChannelId = channelMap.SbfCode; //随笔付支付类型Id
                 string pChannelCode = channelMap.SbfCode; //随笔付支付类型码
 
 
@@ -101,7 +113,7 @@ namespace Lottery.IPhone.SBF
                 Log.Debug(SbfHelper.GetRequestData());
 
                 //支付
-                int num = (new UserChargeDAL()).Save(adminId, pOrderId, chargeSetId, bank, Convert.ToDecimal(pPrice));
+                int num = (new UserChargeDAL()).Save(userId, pOrderId, chargeSetId.ToString(), bank, Convert.ToDecimal(pPrice));
 
                 //成功
                 if (num == -1)

@@ -47,17 +47,33 @@ INSERT INTO Sys_SbfChannelMap(SysCode, SbfChannel, SbfCode, [DESC]) SELECT N'WX'
 --//////2018-02-02 Start
 
 --提现历史记录
-IF NOT EXISTS(SELECT 1 FROM sysObjects WHERE xtype = N'U' AND Id = OBJECT_ID('N_UserGetCashHistory'))
-BEGIN
-CREATE TABLE N_UserGetCashHistory
-(
-	Id INT IDENTITY Primary Key,
-	SsId NVARCHAR(50) NOT NULL,
-	UserId INT NOT NULL,
-	UserName NVARCHAR(50),
-	STime DATETIME DEFAULT(GETDATE())
-);
-END;
+--IF NOT EXISTS(SELECT 1 FROM sysObjects WHERE xtype = N'U' AND Id = OBJECT_ID('N_UserGetCashHistory'))
+--BEGIN
+--CREATE TABLE N_UserGetCashHistory
+--(
+--	Id INT IDENTITY Primary Key,
+--	SsId NVARCHAR(50) NOT NULL,
+--	UserId INT NOT NULL,
+--	UserName NVARCHAR(50),
+--	STime DATETIME DEFAULT(GETDATE())
+--);
+--END;
+
+--//////2018-02-02 End
+
+--//////2018-02-09 Start
+--增加契约是否有效
+--IF EXISTS(SElECT 1 FROM dbo.SYSOBJECTS WHERE Id = OBJECT_ID(N'N_UserContractDetail') AND XType = N'U')
+--	AND NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'N_UserContractDetail') AND name = N'Effect')
+--	ALTER TABLE N_UserContractDetail ADD Effect BIT DEFAULT(0);
+--GO
+
+--更新已生效的契约Id
+--UPDATE B SET B.Effect=1 FROM N_UserContract A, N_UserContractDetail B WHERE A.Id = B.UcId AND ISNULL(A.IsUsed, 0)=1;
+--GO
+--//////2018-02-09 End
+
+--//////2018-02-12 Start
 
 --增加支付方式唯一码 UCode
 IF EXISTS(SElECT 1 FROM dbo.SYSOBJECTS WHERE Id = OBJECT_ID(N'Sys_ChargeSet') AND XType = N'U')
@@ -66,19 +82,11 @@ IF EXISTS(SElECT 1 FROM dbo.SYSOBJECTS WHERE Id = OBJECT_ID(N'Sys_ChargeSet') AN
 GO
 
 UPDATE Sys_ChargeSet SET UCode = ID WHERE UCode IS NULL;
---UPDATE Sys_ChargeSet SET UCode = N'suibipay' WHERE UCode = N'1074';
+UPDATE Sys_ChargeSet SET UCode = N'suibipay' WHERE UCode = N'1074';
 GO
 
---//////2018-02-02 End
+--增加随笔付支付方式
+INSERT INTO Sys_SbfChannelMap(SysCode, SbfChannel, SbfCode, [DESC]) SELECT N'ZFBWAP', N'2', N'alipaywap', N'支付宝移动支付' WHERE NOT EXISTS(SELECT 1 FROM Sys_SbfChannelMap WHERE SysCode = N'ZFBWAP');
+INSERT INTO Sys_SbfChannelMap(SysCode, SbfChannel, SbfCode, [DESC]) SELECT N'WXWAP', N'23', N'wxwap', N'微信移动支付' WHERE NOT EXISTS(SELECT 1 FROM Sys_SbfChannelMap WHERE SysCode = N'WXWAP');
 
---//////2018-02-09 Start
---增加契约是否有效
-IF EXISTS(SElECT 1 FROM dbo.SYSOBJECTS WHERE Id = OBJECT_ID(N'N_UserContractDetail') AND XType = N'U')
-	AND NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'N_UserContractDetail') AND name = N'Effect')
-	ALTER TABLE N_UserContractDetail ADD Effect BIT DEFAULT(0);
-GO
-
---更新已生效的契约Id
-UPDATE B SET B.Effect=1 FROM N_UserContract A, N_UserContractDetail B WHERE A.Id = B.UcId AND ISNULL(A.IsUsed, 0)=1;
-GO
---//////2018-02-09 End
+--//////2018-02-12 End

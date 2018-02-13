@@ -37,10 +37,10 @@ namespace Lottery.Admin
         }
         if (!flag)
         {
-          this.Response.Clear();
-          this.Response.Write("您的网络环境不合法，请联系管理员!");
-          this.Response.End();
-          return;
+            this.Response.Clear();
+            this.Response.Write("您的网络环境不合法，请联系管理员!");
+            this.Response.End();
+            return;
         }
       }
       if (this.IsPostBack)

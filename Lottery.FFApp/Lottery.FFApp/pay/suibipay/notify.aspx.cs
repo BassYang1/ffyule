@@ -17,7 +17,7 @@ namespace Lottery.FFApp.SBF
         /// <summary>
         /// Log instance.
         /// </summary>
-        protected static readonly ILog Log = LogManager.GetLogger(typeof(result));
+        protected static readonly ILog Log = LogManager.GetLogger(typeof(notify));
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Projects\ffyule\publish</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Projects\ffyule\publish\ffweb</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="active/actCharge.html">
@@ -118,19 +118,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2017 03:03:16</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>02/11/2018 09:35:57</publishTime>
+      <publishTime>02/13/2018 08:35:57</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
       <publishTime>06/15/2017 00:57:59</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>02/11/2018 09:35:56</publishTime>
+      <publishTime>02/13/2018 08:35:55</publishTime>
     </File>
     <File Include="bin/Lottery.FFApp.dll">
-      <publishTime>02/11/2018 09:35:57</publishTime>
+      <publishTime>02/13/2018 08:35:57</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>02/11/2018 09:35:56</publishTime>
+      <publishTime>02/13/2018 08:35:55</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -199,7 +199,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 22:29:59</publishTime>
     </File>
     <File Include="contract/ContractfhPop.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>02/12/2018 15:08:03</publishTime>
     </File>
     <File Include="contract/Contractgz.aspx">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -208,7 +208,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 22:29:59</publishTime>
     </File>
     <File Include="contract/ContractgzPop.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>02/12/2018 15:08:31</publishTime>
     </File>
     <File Include="contract/index.aspx">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -373,13 +373,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 22:29:59</publishTime>
     </File>
     <File Include="statics/base/lotData.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/11/2018 22:15:03</publishTime>
     </File>
     <File Include="statics/base/lotFun.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/base/lotMenu.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/13/2018 08:35:21</publishTime>
     </File>
     <File Include="statics/css/common.css">
       <publishTime>02/04/2018 11:25:46</publishTime>
@@ -2080,7 +2080,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="user/index.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>02/12/2018 13:55:28</publishTime>
     </File>
     <File Include="user/useradd.aspx">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -2104,7 +2104,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/11/2018 09:35:58</publishTime>
+      <publishTime>02/13/2018 08:36:22</publishTime>
     </File>
   </ItemGroup>
 </Project>

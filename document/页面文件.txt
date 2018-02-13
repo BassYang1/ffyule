@@ -9,3 +9,8 @@
 	
 资金流水
 	ajax/ajaxHistory.aspx?oper=ajaxGetList
+	
+Mobile手机充值
+	money/chargeZfb.aspx
+	mail.html
+	center.html

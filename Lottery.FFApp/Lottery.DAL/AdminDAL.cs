@@ -62,7 +62,7 @@ namespace Lottery.DAL
         }, this.site.CookieDomain, this.site.CookiePath);
         string clientIp = IPHelp.ClientIP;
         if (!true)
-          return "您的网络环境不合法，请联系管理员!";
+            return "您的网络环境不合法，请联系管理员!";
         dbOperHandler.Reset();
         dbOperHandler.ConditionExpress = "Id=@Id";
         dbOperHandler.AddConditionParameter("@Id", (object) adminid);

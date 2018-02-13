@@ -45,10 +45,6 @@
     <Reference Include="Lottery.Collect">
       <HintPath>..\DLLs\Lottery.Collect.dll</HintPath>
     </Reference>
-    <Reference Include="Lottery.DBUtility, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLLs\Lottery.DBUtility.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -59,6 +55,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="money\chargeSbf.aspx" />
     <Content Include="pay\suibipay\notify.aspx" />
     <Content Include="pay\suibipay\pay.aspx" />
@@ -87,6 +84,7 @@
     <Content Include="statics\log\hacker_20161029.log" />
     <Content Include="statics\log\hacker_20170428.log" />
     <Content Include="statics\log\hacker_20170607.log" />
+    <None Include="Properties\PublishProfiles\ffmobile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -584,6 +582,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EMWeb\ajaxuploadhandler.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="money\charge.aspx.cs">
       <DependentUpon>charge.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -680,9 +681,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="statics\temp\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
       <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
       <Name>Lottery.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.DBUtility\Lottery.DBUtility.csproj">
+      <Project>{71e9ac32-7eaf-4677-9b25-9adb150f8bcf}</Project>
+      <Name>Lottery.DBUtility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
       <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>
@@ -692,9 +700,6 @@
       <Project>{7fde2b50-2656-4ed1-8c0c-d6547fe9a21a}</Project>
       <Name>Lottery.Utils</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="statics\temp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

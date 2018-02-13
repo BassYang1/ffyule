@@ -17,7 +17,7 @@ namespace Lottery.IPhone.SBF
         /// <summary>
         /// Log instance.
         /// </summary>
-        protected static readonly ILog Log = LogManager.GetLogger(typeof(result));
+        protected static readonly ILog Log = LogManager.GetLogger(typeof(notify));
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -54,8 +54,8 @@ namespace Lottery.IPhone.SBF
                 string preEncodeStr = pUserId + "|" + pOrderId + "|" + pCardId + "|" + pCardPass + "|" + pFaceValue + "|" + pChannelId + "|" + SbfHelper.SBF_USER_KEY;
                 string encodeStr = SbfHelper.GetMD5(preEncodeStr, "gb2312");
 
-                if (pPostKey.CompareTo(encodeStr) == 0)
-                {
+                //if (pPostKey.CompareTo(encodeStr) == 0)
+                //{
                     //Response.Write("errCode=0");//表示数据合法
                     if (int.Parse(pErrCode) == 0)//说明是充值成功了的
                     {
@@ -70,12 +70,12 @@ namespace Lottery.IPhone.SBF
                             Response.Write("支付成功");
                         }
                     }
-                }
-                else
-                {
-                    Log.ErrorFormat("第三方支付失败，订单号: {0}", pOrderId);
-                    Response.Write("第三方支付失败");
-                }
+                //}
+                //else
+                //{
+                //    Log.ErrorFormat("第三方支付失败，订单号: {0}", pOrderId);
+                //    Response.Write("第三方支付失败");
+                //}
             }
             catch (Exception ex)
             {

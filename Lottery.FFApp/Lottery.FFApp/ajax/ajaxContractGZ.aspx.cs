@@ -164,11 +164,19 @@ namespace Lottery.WebApp
                     for (int index = 0; index < requestDataJsonList.Count; ++index)
                     {
                         ajaxContractGZ.RequestDataJSON requestDataJson2 = requestDataJsonList[index];
-                        userContractDetailList.Add(new UserContractDetail()
+
+                        UserContractDetail detail = new UserContractDetail()
                         {
                             MinMoney = Convert.ToDecimal(requestDataJson2.money),
                             Money = Convert.ToDecimal(requestDataJson2.per)
-                        });
+                        };
+
+                        if(detail.MinMoney <= 0 || detail.Money <= 0)
+                        {
+                            throw new Exception("输入的数值无效");
+                        }
+
+                        userContractDetailList.Add(detail);
                     }
                     list.UserContractDetails = userContractDetailList;
                     this._response = new ContractGzDAL().SaveContract(list) <= 0 ? this.JsonResult(0, "分配契约失败！") : this.JsonResult(1, "分配契约成功！");

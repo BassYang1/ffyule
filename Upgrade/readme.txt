@@ -2,10 +2,28 @@ SQLs
 	所有更新脚本汇重
 
 	
-20180210
+20180212
+1, 接入随笔付移动端支付
+
+
+20180211
 1, 修复报表[代理首页]时间设置的BUG
-2, 触发器TR_UserMoneyLog_Update，更新契约工资Code
-	函数f_GetHistoryCode, 资金明细log，增加工资Code
+2, 契约统计处理
+	2.1, 编写存付过程GZBatchByDate, GZOperByDate, GZTranByDate, FHTranByDate, FH0115BatchByDate, FH0115OperByDate, FH1631BatchByDate, FH1631OperByDate
+	2.2, 触发器TR_UserMoneyLog_Update，更新契约工资Code
+	2.3, 函数f_GetHistoryCode, 资金明细log，增加工资Code
+	
+	FHTranByDate, FH0115BatchByDate, FH0115OperByDate, FH1631BatchByDate, FH1631OperByDate
+	处理分红
+
+	GZBatchByDate, GZOperByDate, GZTranByDate
+	处理工资
+
+	TR_UserMoneyLog_Update
+	修正分红和工资的Code字段
+
+	f_GetHistoryCode
+	获取Code字段对应的描述
 
 20180210
 1, 更新分红和工资存储过程
