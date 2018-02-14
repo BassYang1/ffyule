@@ -59,6 +59,9 @@ namespace Lottery.Admin
                 case "ajaxChargeState": //支付订单状态
                     this.ajaxChargeState();
                     break;
+                case "ajaxCashState": //提现订单状态
+                    this.ajaxCashState();
+                    break;
                 default:
                     this.DefaultResponse();
                     break;
@@ -77,13 +80,13 @@ namespace Lottery.Admin
         private void ajaxChargeState()
         {
             Lottery.DAL.Flex.UserChargeDAL dal = new Lottery.DAL.Flex.UserChargeDAL();
-            DateTime ckDate;
+            string ckDate = this.q("date");
             string lastDate = string.Empty;
             int num = 0;
 
             try
             {
-                if (DateTime.TryParse(this.q("date"), out ckDate) == false)
+                if (string.IsNullOrEmpty(ckDate))
                 {
                     lastDate = dal.CheckChargeState(ref num);
                 }
@@ -97,8 +100,38 @@ namespace Lottery.Admin
             {
                 lastDate = dal.CheckChargeState(ref num);
             }
-            
-            this._response = this.JsonResult(1, lastDate);
+
+            this._response = this.JsonResult(num, lastDate);
+        }
+
+        /// <summary>
+        /// 获取提现状态
+        /// </summary>
+        private void ajaxCashState()
+        {
+            Lottery.DAL.Flex.UserGetCashDAL dal = new Lottery.DAL.Flex.UserGetCashDAL();
+            string ckDate = this.q("date");
+            string lastDate = string.Empty;
+            int num = 0;
+
+            try
+            {
+                if (string.IsNullOrEmpty(ckDate))
+                {
+                    lastDate = dal.CheckCashState(ref num);
+                }
+                else
+                {
+                    lastDate = dal.CheckCashState(ref num, ckDate);
+                }
+
+            }
+            catch
+            {
+                lastDate = dal.CheckCashState(ref num);
+            }
+
+            this._response = this.JsonResult(num, lastDate);
         }
 
         private void ajaxGetList()

@@ -24,6 +24,40 @@ namespace Lottery.DAL.Flex
             this.site = new conSite().GetSite();
         }
 
+        /// <summary>
+        /// 检查支付状态
+        /// </summary>
+        /// <param name="num">最新支付数量</param>
+        /// <param name="lastCkDate">上一次检查时间</param>
+        /// <returns></returns>
+        public String CheckCashState(ref int num, string lastCkDate = null)
+        {
+            using (DbOperHandler dbOperHandler = new ComData().Doh())
+            {
+                lastCkDate = string.IsNullOrEmpty(lastCkDate) ? "1900-01-01" : lastCkDate;
+
+                String date = string.Empty;
+                dbOperHandler.Reset();
+                dbOperHandler.SqlCmd = "SELECT COUNT(1) AS Num, MAX(STime) AS STime FROM N_UserGetCash WHERE ISNULL(State, 0) = 0 AND STime > '" + lastCkDate + "' ORDER BY STime DESC";
+                DataTable dataTable = dbOperHandler.GetDataTable();
+
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    num = Int32.Parse(dataTable.Rows[0]["Num"].ToString());
+
+                    if (!Convert.IsDBNull(dataTable.Rows[0]["STime"]))
+                    {
+                        date = dataTable.Rows[0]["STime"].ToString();
+                    }
+                }
+
+                dataTable.Clear();
+                dataTable.Dispose();
+
+                return date;
+            }
+        }
+
         public void GetListJSON(int _thispage, int _pagesize, string _wherestr1, ref string _jsonstr)
         {
             using (DbOperHandler dbOperHandler = new ComData().Doh())

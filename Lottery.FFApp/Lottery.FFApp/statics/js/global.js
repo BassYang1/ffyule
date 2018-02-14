@@ -14,6 +14,8 @@ Util.countdown = function(ms,isH,isM,isS,fn){
 	var fn = typeof fn === "function" ? fn : function(){};
 	var end = false;
 	
+	console.info(fn);
+	
 	var format = function(ms){
 		var hour = Math.floor(ms / h);
 		var minute = Math.floor(ms % h / m);

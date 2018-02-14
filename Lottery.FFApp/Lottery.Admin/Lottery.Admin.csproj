@@ -140,6 +140,7 @@
     <Content Include="statics\log\hacker_20170429.log" />
     <Content Include="statics\log\hacker_20170531.log" />
     <Content Include="statics\music\pay.mp3" />
+    <Content Include="statics\music\withdraw.mp3" />
     <Content Include="_libs\fckeditor\editor\css\behaviors\disablehandles.htc" />
     <Content Include="_libs\fckeditor\editor\css\behaviors\hiddenfield.gif" />
     <Content Include="_libs\fckeditor\editor\css\behaviors\hiddenfield.htc" />
