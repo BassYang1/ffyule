@@ -55,10 +55,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLLs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Lottery.Collect, Version=7.0.1.203, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLLs\Lottery.Collect.dll</HintPath>
-    </Reference>
     <Reference Include="Lottery.DBUtility">
       <HintPath>..\DLLs\Lottery.DBUtility.dll</HintPath>
     </Reference>
@@ -1018,6 +1014,10 @@
     <Folder Include="statics\Bets\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lottery.Collect\Lottery.Collect.csproj">
+      <Project>{8db8a3f8-22f8-49a3-8271-adec06af09f1}</Project>
+      <Name>Lottery.Collect</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
       <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
       <Name>Lottery.DAL</Name>

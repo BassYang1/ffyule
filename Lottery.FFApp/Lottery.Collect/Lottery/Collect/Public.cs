@@ -1,216 +1,459 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Lottery.Collect.Public
-// Assembly: Lottery.Collect, Version=7.0.1.203, Culture=neutral, PublicKeyToken=null
-// MVID: 916E4E87-E8A0-4A21-8438-E89468303682
-// Assembly location: F:\pros\tianheng\bf\WebAppOld\bin\Lottery.Collect.dll
-
-using Lottery.DAL;
-using Lottery.Utils;
-using System;
+﻿using System;
 using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Xml;
+using Lottery.DAL;
+using Lottery.Utils;
+using log4net;
 
 namespace Lottery.Collect
 {
-  public class Public
-  {
-    public static string GetJson(string loid)
+    public class Public
     {
-      string shtml = HtmlOperate.GetHtml(ConfigurationManager.AppSettings["CollectUrl"].ToString() + "/Data/hisStory.xml?" + (object) new Random().Next(1, 1000));
-      if (!string.IsNullOrEmpty(shtml))
-      {
-        foreach (XmlNode xmlNode in Public.GetXmlNode(shtml, "row"))
+        /// <summary>
+        /// Log instance.
+        /// </summary>
+        protected static readonly ILog Log = LogManager.GetLogger(typeof(Public));
+
+		public static string GetJson(string loid)
+		{
+			Random random = new Random();
+			string arg = ConfigurationManager.AppSettings["CollectUrl"].ToString();
+			string text = HtmlOperate.GetHtml(arg + "/Data/hisStory.xml?" + random.Next(1, 1000));
+			if (!string.IsNullOrEmpty(text))
+			{
+				XmlNodeList xmlNode = Public.GetXmlNode(text, "row");
+				foreach (XmlNode xmlNode2 in xmlNode)
+				{
+					string innerText = xmlNode2.Attributes["code"].InnerText;
+					string text2 = xmlNode2.Attributes["expect"].InnerText;
+					string text3 = xmlNode2.Attributes["opencode"].InnerText.Replace("+", ",");
+					switch (loid)
+					{
+					case "1001":
+						if ("cqssc".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(8);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					case "1003":
+						if ("xjssc".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(9);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					case "1007":
+						if ("tjssc".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(8);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					case "1008":
+						if ("ynssc".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(8);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					case "2001":
+						if ("sd11x5".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(8);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					case "2002":
+						if ("gd11x5".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(8);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					case "2003":
+						if ("sh11x5".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(8);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					case "2004":
+						if ("jx11x5".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(8);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					case "1010":
+						if ("krkeno".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							string[] array = text3.Split(new char[]
+							{
+								','
+							});
+							int num2 = (Convert.ToInt32(array[0]) + Convert.ToInt32(array[1]) + Convert.ToInt32(array[2]) + Convert.ToInt32(array[3])) % 10;
+							int num3 = (Convert.ToInt32(array[4]) + Convert.ToInt32(array[5]) + Convert.ToInt32(array[6]) + Convert.ToInt32(array[7])) % 10;
+							int num4 = (Convert.ToInt32(array[8]) + Convert.ToInt32(array[9]) + Convert.ToInt32(array[10]) + Convert.ToInt32(array[11])) % 10;
+							int num5 = (Convert.ToInt32(array[12]) + Convert.ToInt32(array[13]) + Convert.ToInt32(array[14]) + Convert.ToInt32(array[15])) % 10;
+							int num6 = (Convert.ToInt32(array[16]) + Convert.ToInt32(array[17]) + Convert.ToInt32(array[18]) + Convert.ToInt32(array[19])) % 10;
+							string text4 = string.Concat(new object[]
+							{
+								num2,
+								",",
+								num3,
+								",",
+								num4,
+								",",
+								num5,
+								",",
+								num6
+							});
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text4,
+								"\"}]"
+							});
+						}
+						break;
+					case "1012":
+						if ("sgkeno".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							string[] array = text3.Split(new char[]
+							{
+								','
+							});
+							int num2 = (Convert.ToInt32(array[0]) + Convert.ToInt32(array[1]) + Convert.ToInt32(array[2]) + Convert.ToInt32(array[3])) % 10;
+							int num3 = (Convert.ToInt32(array[4]) + Convert.ToInt32(array[5]) + Convert.ToInt32(array[6]) + Convert.ToInt32(array[7])) % 10;
+							int num4 = (Convert.ToInt32(array[8]) + Convert.ToInt32(array[9]) + Convert.ToInt32(array[10]) + Convert.ToInt32(array[11])) % 10;
+							int num5 = (Convert.ToInt32(array[12]) + Convert.ToInt32(array[13]) + Convert.ToInt32(array[14]) + Convert.ToInt32(array[15])) % 10;
+							int num6 = (Convert.ToInt32(array[16]) + Convert.ToInt32(array[17]) + Convert.ToInt32(array[18]) + Convert.ToInt32(array[19])) % 10;
+							string text4 = string.Concat(new object[]
+							{
+								num2,
+								",",
+								num3,
+								",",
+								num4,
+								",",
+								num5,
+								",",
+								num6
+							});
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text4,
+								"\"}]"
+							});
+						}
+						break;
+					case "1013":
+						if ("twbingo".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							string[] array = text3.Split(new char[]
+							{
+								','
+							});
+							int num2 = (Convert.ToInt32(array[0]) + Convert.ToInt32(array[1]) + Convert.ToInt32(array[2]) + Convert.ToInt32(array[3])) % 10;
+							int num3 = (Convert.ToInt32(array[4]) + Convert.ToInt32(array[5]) + Convert.ToInt32(array[6]) + Convert.ToInt32(array[7])) % 10;
+							int num4 = (Convert.ToInt32(array[8]) + Convert.ToInt32(array[9]) + Convert.ToInt32(array[10]) + Convert.ToInt32(array[11])) % 10;
+							int num5 = (Convert.ToInt32(array[12]) + Convert.ToInt32(array[13]) + Convert.ToInt32(array[14]) + Convert.ToInt32(array[15])) % 10;
+							int num6 = (Convert.ToInt32(array[16]) + Convert.ToInt32(array[17]) + Convert.ToInt32(array[18]) + Convert.ToInt32(array[19])) % 10;
+							string text4 = string.Concat(new object[]
+							{
+								num2,
+								",",
+								num3,
+								",",
+								num4,
+								",",
+								num5,
+								",",
+								num6
+							});
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text4,
+								"\"}]"
+							});
+						}
+						break;
+					case "3004":
+						if ("krkeno".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							string[] array = text3.Split(new char[]
+							{
+								','
+							});
+							int num2 = (Convert.ToInt32(array[0]) + Convert.ToInt32(array[1]) + Convert.ToInt32(array[2]) + Convert.ToInt32(array[3]) + Convert.ToInt32(array[4]) + Convert.ToInt32(array[5]) + Convert.ToInt32(array[6])) % 10;
+							int num3 = (Convert.ToInt32(array[7]) + Convert.ToInt32(array[8]) + Convert.ToInt32(array[9]) + Convert.ToInt32(array[10]) + Convert.ToInt32(array[11]) + Convert.ToInt32(array[12]) + Convert.ToInt32(array[13])) % 10;
+							int num4 = (Convert.ToInt32(array[14]) + Convert.ToInt32(array[15]) + Convert.ToInt32(array[16]) + Convert.ToInt32(array[17]) + Convert.ToInt32(array[18]) + Convert.ToInt32(array[19])) % 10;
+							string text4 = string.Concat(new object[]
+							{
+								num2,
+								",",
+								num3,
+								",",
+								num4
+							});
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text4,
+								"\"}]"
+							});
+						}
+						break;
+					case "3001":
+						if ("shssl".Equals(xmlNode2.Attributes["code"].InnerText))
+						{
+							text2 = text2.Substring(0, 8) + "-" + text2.Substring(8);
+							text = string.Concat(new string[]
+							{
+								"[{\"title\": \"",
+								text2,
+								"\",\"number\": \"",
+								text3,
+								"\"}]"
+							});
+						}
+						break;
+					}
+				}
+			}
+			return text;
+		}
+
+		public static string GetBetRankJson()
+		{
+			Random random = new Random();
+			string arg = ConfigurationManager.AppSettings["CollectUrl"].ToString();
+			return HtmlOperate.GetHtml(arg + "/Data/BetRank.xml?" + random.Next(1, 1000));
+		}
+
+		public static void SetOpenListJson(int lotteryId)
+		{
+            
+            try
+            {
+                //LogHelp.Debug("SetOpenListJson", "1[" + lotteryId + "]");
+                string value = "";
+                string value2 = "";
+                new LotteryDataDAL().GetListJSON(lotteryId, ref value2, ref value);
+                string path = ConfigurationManager.AppSettings["DataUrl"].ToString();
+                string openListFile = string.Format("{0}OpenList{1}.xml", path, lotteryId);
+
+                //LogHelp.Debug("SetOpenListJson", "text2[" + text2 + "]");
+                DirFile.CreateFolder(DirFile.GetFolderPath(false, openListFile));
+                StreamWriter streamWriter = new StreamWriter(openListFile, false, Encoding.UTF8);
+                streamWriter.Write(value2);
+                streamWriter.Close();
+                string lotteryFile = string.Format("{0}lottery{1}.xml", path, lotteryId);
+
+                //LogHelp.Debug("SetOpenListJson", "text3[" + text3 + "]");
+                DirFile.CreateFolder(DirFile.GetFolderPath(false, lotteryFile));
+                StreamWriter streamWriter2 = new StreamWriter(lotteryFile, false, Encoding.UTF8);
+                streamWriter2.Write(value);
+                streamWriter2.Close();
+                //LogHelp.Debug("SetOpenListJson", "完成[" + lotteryId + "]");
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorFormat("采集异常 {0}", ex);
+            }
+		}
+
+        /// <summary>
+        /// 存储彩票数据到磁盘
+        /// </summary>
+        /// <param name="lotteryId">彩票类型Id</param>
+        public static void SaveLotteryData2File(int lotteryId)
         {
-          string innerText1 = xmlNode.Attributes["code"].InnerText;
-          string innerText2 = xmlNode.Attributes["expect"].InnerText;
-          string str1 = xmlNode.Attributes["opencode"].InnerText.Replace("+", ",");
-          switch (loid)
-          {
-            case "1001":
-              if ("cqssc".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(8)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-            case "1003":
-              if ("xjssc".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(9)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-            case "1007":
-              if ("tjssc".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(8)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-            case "1008":
-              if ("ynssc".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(8)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-            case "2001":
-              if ("sd11x5".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(8)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-            case "2002":
-              if ("gd11x5".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(8)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-            case "2003":
-              if ("sh11x5".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(8)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-            case "2004":
-              if ("jx11x5".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(8)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-            case "1010":
-              if ("krkeno".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                string[] strArray = str1.Split(',');
-                string str2 = ((Convert.ToInt32(strArray[0]) + Convert.ToInt32(strArray[1]) + Convert.ToInt32(strArray[2]) + Convert.ToInt32(strArray[3])) % 10).ToString() + "," + (object) ((Convert.ToInt32(strArray[4]) + Convert.ToInt32(strArray[5]) + Convert.ToInt32(strArray[6]) + Convert.ToInt32(strArray[7])) % 10) + "," + (object) ((Convert.ToInt32(strArray[8]) + Convert.ToInt32(strArray[9]) + Convert.ToInt32(strArray[10]) + Convert.ToInt32(strArray[11])) % 10) + "," + (object) ((Convert.ToInt32(strArray[12]) + Convert.ToInt32(strArray[13]) + Convert.ToInt32(strArray[14]) + Convert.ToInt32(strArray[15])) % 10) + "," + (object) ((Convert.ToInt32(strArray[16]) + Convert.ToInt32(strArray[17]) + Convert.ToInt32(strArray[18]) + Convert.ToInt32(strArray[19])) % 10);
-                shtml = "[{\"title\": \"" + innerText2 + "\",\"number\": \"" + str2 + "\"}]";
-                break;
-              }
-              break;
-            case "1012":
-              if ("sgkeno".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                string[] strArray = str1.Split(',');
-                string str2 = ((Convert.ToInt32(strArray[0]) + Convert.ToInt32(strArray[1]) + Convert.ToInt32(strArray[2]) + Convert.ToInt32(strArray[3])) % 10).ToString() + "," + (object) ((Convert.ToInt32(strArray[4]) + Convert.ToInt32(strArray[5]) + Convert.ToInt32(strArray[6]) + Convert.ToInt32(strArray[7])) % 10) + "," + (object) ((Convert.ToInt32(strArray[8]) + Convert.ToInt32(strArray[9]) + Convert.ToInt32(strArray[10]) + Convert.ToInt32(strArray[11])) % 10) + "," + (object) ((Convert.ToInt32(strArray[12]) + Convert.ToInt32(strArray[13]) + Convert.ToInt32(strArray[14]) + Convert.ToInt32(strArray[15])) % 10) + "," + (object) ((Convert.ToInt32(strArray[16]) + Convert.ToInt32(strArray[17]) + Convert.ToInt32(strArray[18]) + Convert.ToInt32(strArray[19])) % 10);
-                shtml = "[{\"title\": \"" + innerText2 + "\",\"number\": \"" + str2 + "\"}]";
-                break;
-              }
-              break;
-            case "1013":
-              if ("twbingo".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                string[] strArray = str1.Split(',');
-                string str2 = ((Convert.ToInt32(strArray[0]) + Convert.ToInt32(strArray[1]) + Convert.ToInt32(strArray[2]) + Convert.ToInt32(strArray[3])) % 10).ToString() + "," + (object) ((Convert.ToInt32(strArray[4]) + Convert.ToInt32(strArray[5]) + Convert.ToInt32(strArray[6]) + Convert.ToInt32(strArray[7])) % 10) + "," + (object) ((Convert.ToInt32(strArray[8]) + Convert.ToInt32(strArray[9]) + Convert.ToInt32(strArray[10]) + Convert.ToInt32(strArray[11])) % 10) + "," + (object) ((Convert.ToInt32(strArray[12]) + Convert.ToInt32(strArray[13]) + Convert.ToInt32(strArray[14]) + Convert.ToInt32(strArray[15])) % 10) + "," + (object) ((Convert.ToInt32(strArray[16]) + Convert.ToInt32(strArray[17]) + Convert.ToInt32(strArray[18]) + Convert.ToInt32(strArray[19])) % 10);
-                shtml = "[{\"title\": \"" + innerText2 + "\",\"number\": \"" + str2 + "\"}]";
-                break;
-              }
-              break;
-            case "3004":
-              if ("krkeno".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                string[] strArray = str1.Split(',');
-                string str2 = ((Convert.ToInt32(strArray[0]) + Convert.ToInt32(strArray[1]) + Convert.ToInt32(strArray[2]) + Convert.ToInt32(strArray[3]) + Convert.ToInt32(strArray[4]) + Convert.ToInt32(strArray[5]) + Convert.ToInt32(strArray[6])) % 10).ToString() + "," + (object) ((Convert.ToInt32(strArray[7]) + Convert.ToInt32(strArray[8]) + Convert.ToInt32(strArray[9]) + Convert.ToInt32(strArray[10]) + Convert.ToInt32(strArray[11]) + Convert.ToInt32(strArray[12]) + Convert.ToInt32(strArray[13])) % 10) + "," + (object) ((Convert.ToInt32(strArray[14]) + Convert.ToInt32(strArray[15]) + Convert.ToInt32(strArray[16]) + Convert.ToInt32(strArray[17]) + Convert.ToInt32(strArray[18]) + Convert.ToInt32(strArray[19])) % 10);
-                shtml = "[{\"title\": \"" + innerText2 + "\",\"number\": \"" + str2 + "\"}]";
-                break;
-              }
-              break;
-            case "3001":
-              if ("shssl".Equals(xmlNode.Attributes["code"].InnerText))
-              {
-                shtml = "[{\"title\": \"" + (innerText2.Substring(0, 8) + "-" + innerText2.Substring(8)) + "\",\"number\": \"" + str1 + "\"}]";
-                break;
-              }
-              break;
-          }
+            try
+            {
+                //获取json和xml字符串
+                string xmlData = "";
+                string jsonData = "";
+                new LotteryDataDAL().ConvertLotteryDataToStr(lotteryId, ref jsonData, ref xmlData);
+
+                //保存json字符串到文件
+                string path = ConfigurationManager.AppSettings["DataUrl"].ToString();
+                string openListFile = string.Format("{0}OpenList{1}.xml", path, lotteryId);
+                DirFile.CreateFolder(DirFile.GetFolderPath(false, openListFile));
+                StreamWriter streamWriter = new StreamWriter(openListFile, false, Encoding.UTF8);
+                streamWriter.Write(jsonData);
+                streamWriter.Close();
+
+                //保存xml字符串到文件
+                string lotteryFile = string.Format("{0}lottery{1}.xml", path, lotteryId);
+                DirFile.CreateFolder(DirFile.GetFolderPath(false, lotteryFile));
+                StreamWriter streamWriter2 = new StreamWriter(lotteryFile, false, Encoding.UTF8);
+                streamWriter2.Write(xmlData);
+                streamWriter2.Close();
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorFormat("采集异常 {0}", ex);
+            }
         }
-      }
-      return shtml;
-    }
 
-    public static string GetBetRankJson()
-    {
-      return HtmlOperate.GetHtml(ConfigurationManager.AppSettings["CollectUrl"].ToString() + "/Data/BetRank.xml?" + (object) new Random().Next(1, 1000));
-    }
+        public static string GetOpenListJson(int lotteryId)
+        {
+            string host = ConfigurationManager.AppSettings["CollectUrl"].ToString();
+            string url = string.Format("{0}/Data/OpenList{1}.xml", host, lotteryId);
 
-    public static void SetOpenListJson(int lotteryId)
-    {
-      string _xml = "";
-      string _jsonstr = "";
-      new LotteryDataDAL().GetListJSON(lotteryId, ref _jsonstr, ref _xml);
-      string str1 = ConfigurationManager.AppSettings["DataUrl"].ToString();
-      string str2 = str1 + "OpenList" + (object) lotteryId + ".xml";
-      DirFile.CreateFolder(DirFile.GetFolderPath(false, str2));
-      StreamWriter streamWriter1 = new StreamWriter(str2, false, Encoding.UTF8);
-      streamWriter1.Write(_jsonstr);
-      streamWriter1.Close();
-      string str3 = str1 + "lottery" + (object) lotteryId + ".xml";
-      DirFile.CreateFolder(DirFile.GetFolderPath(false, str3));
-      StreamWriter streamWriter2 = new StreamWriter(str3, false, Encoding.UTF8);
-      streamWriter2.Write(_xml);
-      streamWriter2.Close();
-    }
+            string result = string.Empty;
 
-    public static string GetOpenListJson(int lotteryId)
-    {
-      string str = ConfigurationManager.AppSettings["CollectUrl"].ToString() + "/Data/OpenList" + (object) lotteryId + ".xml";
-      if (Public.RemoteFileExists(str))
-        return HtmlOperate.GetHtml(str);
-      return "";
-    }
+            try
+            {
+                result = HtmlOperate.GetHtml(url);
+            }
+            catch { }
 
-    public static string GetUserJson(int UserId)
-    {
-      string str = ConfigurationManager.AppSettings["CollectUrl"].ToString() + "/Data/User/User" + (object) UserId + ".xml";
-      if (Public.RemoteFileExists(str))
-        return HtmlOperate.GetHtml(str);
-      return "";
-    }
+            return result;
+        }
 
-    public static XmlNodeList GetXmlNode(string shtml, string rootElm)
-    {
-      XmlNodeList xmlNodeList = (XmlNodeList) null;
-      try
-      {
-        XmlDocument xmlDocument = new XmlDocument();
-        xmlDocument.LoadXml(shtml);
-        xmlNodeList = xmlDocument.ChildNodes.Item(1).SelectNodes(rootElm);
-      }
-      catch
-      {
-      }
-      return xmlNodeList;
-    }
+		public static string GetUserJson(int UserId)
+		{
+			string text = ConfigurationManager.AppSettings["CollectUrl"].ToString();
+			text = string.Concat(new object[]
+			{
+				text,
+				"/Data/User/User",
+				UserId,
+				".xml"
+			});
+			string result;
+			if (Public.RemoteFileExists(text))
+			{
+				string html = HtmlOperate.GetHtml(text);
+				result = html;
+			}
+			else
+			{
+				result = "";
+			}
+			return result;
+		}
 
-    public static bool RemoteFileExists(string fileUrl)
-    {
-      HttpWebRequest httpWebRequest = (HttpWebRequest) null;
-      HttpWebResponse httpWebResponse = (HttpWebResponse) null;
-      try
-      {
-        httpWebRequest = (HttpWebRequest) WebRequest.Create(fileUrl);
-        httpWebResponse = (HttpWebResponse) httpWebRequest.GetResponse();
-        if (httpWebResponse.ContentLength != 0L)
-          return true;
-      }
-      catch (Exception ex)
-      {
-        return false;
-      }
-      finally
-      {
-        if (httpWebRequest != null)
-          httpWebRequest.Abort();
-        if (httpWebResponse != null)
-          httpWebResponse.Close();
-      }
-      return false;
-    }
-  }
+		public static XmlNodeList GetXmlNode(string shtml, string rootElm)
+		{
+			XmlNodeList result = null;
+			try
+			{
+				XmlDocument xmlDocument = new XmlDocument();
+				xmlDocument.LoadXml(shtml);
+				result = xmlDocument.ChildNodes.Item(1).SelectNodes(rootElm);
+			}
+			catch
+			{
+			}
+			return result;
+		}
+
+		public static bool RemoteFileExists(string fileUrl)
+		{
+			HttpWebRequest httpWebRequest = null;
+			HttpWebResponse httpWebResponse = null;
+			bool result;
+			try
+			{
+				httpWebRequest = (HttpWebRequest)WebRequest.Create(fileUrl);
+				httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+				if (httpWebResponse.ContentLength != 0L)
+				{
+					result = true;
+					return result;
+				}
+			}
+			catch (Exception)
+			{
+				result = false;
+				return result;
+			}
+			finally
+			{
+				if (httpWebRequest != null)
+				{
+					httpWebRequest.Abort();
+				}
+				if (httpWebResponse != null)
+				{
+					httpWebResponse.Close();
+				}
+			}
+			result = false;
+			return result;
+		}
+	}
 }

@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\DLLs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Net20">
+      <HintPath>..\DLLs\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -42,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComData.cs" />
+    <Compile Include="List.cs" />
     <Compile Include="LotteryDataDAL.cs" />
     <Compile Include="SiteDAL.cs" />
     <Compile Include="Flex\SbfDAL.cs" />
@@ -137,6 +144,10 @@
     <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
       <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>
       <Name>Lottery.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.FFCache\Lottery.FFCache.csproj">
+      <Project>{13e68fae-a641-4e95-b08a-a6614bf530c8}</Project>
+      <Name>Lottery.FFCache</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lottery.Utils\Lottery.Utils.csproj">
       <Project>{7fde2b50-2656-4ed1-8c0c-d6547fe9a21a}</Project>

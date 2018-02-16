@@ -1,68 +1,95 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Lottery.Collect.QqSscData
-// Assembly: Lottery.Collect, Version=7.0.1.203, Culture=neutral, PublicKeyToken=null
-// MVID: 916E4E87-E8A0-4A21-8438-E89468303682
-// Assembly location: F:\pros\tianheng\bf\WebAppOld\bin\Lottery.Collect.dll
-
-using LitJson;
-using Lottery.DAL;
-using System;
+﻿using System;
 using System.Collections;
 using System.Text;
+using LitJson;
+using Lottery.DAL;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using log4net;
+using System.Configuration;
 
 namespace Lottery.Collect
 {
-  public class QqSscData
-  {
-    public static void QqSsc()
+    public class JsonDataModel
     {
-      try
-      {
-        foreach (JsonData jsonData in (IEnumerable) JsonMapper.ToObject("{\"rows\":10,\"data\":" + HtmlOperate2.HttpGet("http://www.77tj.org/api/tencent/onlineim", Encoding.UTF8) + "}")["data"])
-        {
-          string opentime = jsonData["onlinetime"].ToString();
-          string _number = jsonData["onlinenumber"].ToString();
-          DateTime dateTime1 = Convert.ToDateTime(opentime);
-          DateTime now = DateTime.Now;
-          DateTime dateTime2 = Convert.ToDateTime(now.ToString("yyyy-MM-dd") + " 00:00:00");
-          TimeSpan timeSpan = dateTime1 - dateTime2;
-          int num1 = timeSpan.Hours * 60 + timeSpan.Minutes + 1;
-          string str1 = string.Concat((object) num1);
-          if (num1.ToString().Length == 1)
-            str1 = "000" + (object) num1;
-          if (num1.ToString().Length == 2)
-            str1 = "00" + (object) num1;
-          if (num1.ToString().Length == 3)
-            str1 = "0" + (object) num1;
-          now = DateTime.Now;
-          string str2 = now.ToString("yyyyMMdd") + "-" + str1;
-          if (string.IsNullOrEmpty(opentime) || string.IsNullOrEmpty(str2) || string.IsNullOrEmpty(_number))
-          {
-            new LogExceptionDAL().Save("采集异常", "腾讯分分彩找不到开奖数据的关键字符");
-            break;
-          }
-          string str3 = str2;
-          if (!new LotteryDataDAL().Exists(1005, str3) && !new LotteryDataDAL().Exists(1005, str3, _number))
-          {
-            int num2 = 0;
-            int int32 = Convert.ToInt32(_number);
-            while (int32 > 0)
-            {
-              num2 += int32 % 10;
-              int32 /= 10;
-            }
-            string[] strArray = _number.Split(',');
-            string Number = (num2 % 10).ToString() + "," + (object) Convert.ToInt32(_number.Substring(_number.Length - 4, 1)) + "," + (object) Convert.ToInt32(_number.Substring(_number.Length - 3, 1)) + "," + (object) Convert.ToInt32(_number.Substring(_number.Length - 2, 1)) + "," + (object) Convert.ToInt32(_number.Substring(_number.Length - 1, 1));
-            new LotteryDataDAL().Add(1005, str3, Number, opentime, string.Join(",", strArray));
-            Public.SetOpenListJson(1005);
-            LotteryCheck.RunOfIssueNum(1005, str3);
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        new LogExceptionDAL().Save("采集异常", "腾讯分分彩获取开奖数据出错，错误代码：" + ex.Message);
-      }
+        public string Number { get; set; }
+        public string DateLine { get; set; }
+        public string DataQs { get; set; }
     }
-  }
+
+    public class QqSscData
+    {
+        /// <summary>
+        /// Log instance.
+        /// </summary>
+        protected static readonly ILog Log = LogManager.GetLogger(typeof(QqSscData));
+
+        private static LotteryDataDAL _dal = new LotteryDataDAL();
+
+        private static string TxffcAPI = "";
+
+        static QqSscData()
+        {
+            if (ConfigurationManager.AppSettings["TxffcAPI"] != null)
+            {
+                TxffcAPI = ConfigurationManager.AppSettings["TxffcAPI"].ToString();
+            }
+        }
+
+
+        public static void QqSsc()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(TxffcAPI))
+                {
+                    Log.Debug("未配腾迅分分彩API");
+                    return;
+                }
+
+                //http://api.b1cp.com/t?p=json&t=qqffc&token=FF446B723EB25993
+                //http://www.b1cp.com/api?p=json&t=txffc&limit=1&token=00fb782bad8e5241
+                //Log.Debug("开始QqSsc...");
+                string text = HtmlOperate2.HttpGet(TxffcAPI, Encoding.UTF8);
+
+                if (text.IndexOf("opentime") < 0 && text.IndexOf("expect") < 0 && text.IndexOf("opencode") < 0)
+                {
+                    Log.DebugFormat("开奖数据无效: {0}", text);
+                    return;
+                }
+
+                text = text.Substring(8, text.Length - 9);
+                text = "{\"rows\":5,\"data\":" + text + "}";
+                JsonData jsonData = JsonMapper.ToObject(text);
+                foreach (JsonData jsonData2 in ((IEnumerable)jsonData["data"]))
+                {
+                    string openTime = jsonData2["opentime"].ToString();
+                    string openCode = jsonData2["opencode"].ToString();
+                    string expect = jsonData2["expect"].ToString(); //期号
+
+                    if (string.IsNullOrEmpty(openTime) || string.IsNullOrEmpty(openCode) || string.IsNullOrEmpty(expect))
+                    {
+                        Log.ErrorFormat("腾讯分分彩找不到开奖数据的关键字符: {0}", text);
+                        //Dal.Save("采集异常", "腾讯分分彩找不到开奖数据的关键字符");
+                        break;
+                    }
+
+                    expect = expect.Substring(0, 8) + "-" + expect.Substring(8);
+
+                    if (_dal.Update(1005, expect, openCode, openTime, openCode))
+                    {
+                        Log.DebugFormat("腾迅分分彩新一期开奖信息: {0}", text);
+                        Public.SaveLotteryData2File(1005);
+                        LotteryCheck.RunOfIssueNum(1005, expect);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorFormat("腾讯分分彩异常: {0}", ex);
+                //new LogExceptionDAL().Save("采集异常", "腾讯分分彩获取开奖数据出错，错误代码：" + ex.Message);
+            }
+        }
+    }
 }

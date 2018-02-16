@@ -12,6 +12,16 @@ namespace Lottery.Utils
 {
     public class Const
     {
+        /// <summary>
+        /// 彩种配置Cache键值
+        /// </summary>
+        public const string CACHE_KEY_SYS_LOTTERY = "SYS_LOTTERY_CONFIG";
+
+        /// <summary>
+        /// 彩票历史开奖数据缓存
+        /// </summary>
+        public const string CACHE_KEY_LOTTERY_HISTORY = "LOTTERY{0}HISTORY";
+
         public static string RootUserId
         {
             get

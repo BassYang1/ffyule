@@ -115,28 +115,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>12/20/2017 03:03:16</publishTime>
+      <publishTime>02/14/2018 22:07:44</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>02/13/2018 08:35:57</publishTime>
+      <publishTime>02/14/2018 22:07:43</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
       <publishTime>06/15/2017 00:57:59</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>02/13/2018 08:35:55</publishTime>
+      <publishTime>02/14/2018 22:07:42</publishTime>
     </File>
     <File Include="bin/Lottery.FFApp.dll">
-      <publishTime>02/13/2018 08:35:57</publishTime>
+      <publishTime>02/14/2018 22:07:45</publishTime>
+    </File>
+    <File Include="bin/Lottery.FFCache.dll">
+      <publishTime>02/14/2018 22:07:42</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>02/13/2018 08:35:55</publishTime>
+      <publishTime>02/14/2018 22:07:42</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>02/09/2012 17:01:08</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.Net20.dll">
+      <publishTime>05/27/2011 11:39:10</publishTime>
     </File>
     <File Include="bin/StriveEngine.dll">
       <publishTime>07/06/2016 10:07:58</publishTime>
@@ -1615,7 +1621,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/EM.lotTime.js">
-      <publishTime>02/07/2018 19:33:14</publishTime>
+      <publishTime>02/13/2018 14:51:36</publishTime>
     </File>
     <File Include="statics/js/EM.nav.js">
       <publishTime>02/07/2018 19:32:33</publishTime>
@@ -1624,7 +1630,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/global.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/09/2018 10:53:07</publishTime>
     </File>
     <File Include="statics/js/jquery-ui.min.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -2079,6 +2085,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="temp/WebSite.aspx">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
+    <File Include="Test.aspx">
+      <publishTime>02/14/2018 20:31:04</publishTime>
+    </File>
     <File Include="user/index.aspx">
       <publishTime>02/12/2018 13:55:28</publishTime>
     </File>
@@ -2104,7 +2113,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/13/2018 08:36:22</publishTime>
+      <publishTime>02/14/2018 22:08:00</publishTime>
     </File>
   </ItemGroup>
 </Project>
