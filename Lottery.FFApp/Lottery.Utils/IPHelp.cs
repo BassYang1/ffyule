@@ -41,32 +41,35 @@ namespace Lottery.Utils
 
     public static string ClientIP
     {
-      get
-      {
-        bool flag = false;
-        string str = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null ? HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString() : HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
-        if (str.Length > 15)
+        get
         {
-          flag = true;
-        }
-        else
-        {
-          string[] strArray = str.Split('.');
-          if (strArray.Length == 4)
-          {
-            for (int index = 0; index < strArray.Length; ++index)
+            bool flag = false;
+            string str = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null ? HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString() : HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
+            
+            if (str.Length > 15)
             {
-              if (strArray[index].Length > 3)
                 flag = true;
             }
-          }
-          else
-            flag = true;
+            else
+            {
+                string[] strArray = str.Split('.');
+                if (strArray.Length == 4)
+                {
+                    for (int index = 0; index < strArray.Length; ++index)
+                    {
+                        if (strArray[index].Length > 3)
+                            flag = true;
+                    }
+                }
+                else
+                    flag = true;
+            }
+
+            if (flag)
+                return "1.1.1.1";
+
+            return str;
         }
-        if (flag)
-          return "1.1.1.1";
-        return str;
-      }
     }
 
     public static string GetMac()

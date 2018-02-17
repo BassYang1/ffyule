@@ -6,6 +6,7 @@
 
 using Lottery.Collect;
 using Lottery.DAL;
+using Lottery.Entity;
 using Lottery.Utils;
 using System;
 using System.Configuration;
@@ -90,7 +91,7 @@ namespace Lottery.IPhone
 
     public void GetLotteryNumber()
     {
-      this._response = "{\"result\":\"1\",\"table\": [" + Public.GetOpenListJson(Convert.ToInt32(this.q("lid"))).Replace("[", "").Replace("]", "") + "]}";
+        this._response = "{\"result\":\"1\",\"table\": [" + Public.GetOpenListJson(Convert.ToInt32(this.q("lid"))).Replace("[", "").Replace("]", "").ToLower() + "]}";
     }
 
     private void ajaxCheckLogin()
@@ -263,127 +264,144 @@ namespace Lottery.IPhone
 
     private void ajaxLotteryTime()
     {
-      string str1 = this.q("lid");
-      string str2 = "{\"name\": \"名称\",\"lotteryid\": \"彩种类别\",\"ordertime\": \"倒计时\",\"closetime\": \"封单时间\",\"nestsn\": \"下期期号\",\"cursn\": \"当前期号\"}".Replace("名称", LotteryUtils.LotteryTitle(Convert.ToInt32(str1))).Replace("彩种类别", str1);
-      DateTime dateTime1 = DateTime.Now;
-      DateTime dateTime2 = this.GetDateTime();
-      string str3 = dateTime2.ToString("yyyyMMdd");
-      string str4 = dateTime2.ToString("HH:mm:ss");
-      dateTime2.ToString("yyyy-MM-dd");
-      this.doh.Reset();
-      this.doh.SqlCmd = "select dbo.f_GetCloseTime(" + str1 + ") as closetime";
-      DataTable dataTable = this.doh.GetDataTable();
-      string str5 = str2.Replace("封单时间", dataTable.Rows[0]["closetime"].ToString());
-      string newValue1;
-      string newValue2;
-      TimeSpan timeSpan;
-      if (str1 == "3002" || str1 == "3003")
-      {
-        int year = dateTime2.Year;
-        DateTime dateTime3 = Convert.ToDateTime(year.ToString() + "-01-01 20:30:00");
-        this.doh.Reset();
-        this.doh.SqlCmd = "select datediff(d,'" + dateTime3.ToString("yyyy-MM-dd HH:mm:ss") + "','" + dateTime2.ToString("yyyy-MM-dd HH:mm:ss") + "') as d";
-        int Num = Convert.ToInt32(this.doh.GetDataTable().Rows[0]["d"]) - 7 + 1;
-        DateTime dateTime4 = dateTime2.AddDays(-1.0);
-        string str6 = dateTime4.ToString("yyyy-MM-dd") + " 20:30:00";
-        string str7 = dateTime2.ToString("yyyy-MM-dd") + " 20:30:00";
-        if (dateTime2 > Convert.ToDateTime(dateTime2.ToString(" 20:30:00")))
+        LotteryDAL dal = new LotteryDAL();
+
+        string ltId = this.q("lid");//彩种Id
+        int id;
+
+        if (Int32.TryParse(ltId, out id) == false)
         {
-          dateTime4 = dateTime2.AddDays(1.0);
-          str7 = dateTime4.ToString("yyyy-MM-dd") + " 20:30:00";
+            this._response = "{}";
+            return;
+        }
+
+        SysLotteryModel lottery = dal.GetSysLotteryById(id);
+
+        if (lottery == null)
+        {
+            this._response = "{}";
+            return;
+        }
+
+        string str2 = "0";
+        //名称
+        //彩种类别
+        //倒计时
+        //封单时间
+        //下期期号
+        //已开期数
+        //当前期号
+        string ltInfo = "{\"name\": \"名称\",\"lotteryid\": \"彩种类别\",\"ordertime\": \"倒计时\",\"closetime\": \"封单时间\",\"nestsn\": \"下期期号\",\"opennum\": \"已开期数\",\"cursn\": \"当前期号\"}";
+        ltInfo = ltInfo.Replace("名称", lottery.Title);
+        ltInfo = ltInfo.Replace("彩种类别", ltId);
+        ltInfo = ltInfo.Replace("封单时间", lottery.CloseTime.ToString());
+
+        DateTime dateTime1 = DateTime.Now;
+        //DateTime curDateTime = this.GetDateTime(); //当前日期时间
+        DateTime curDateTime = this.GetDateTime(); //当前日期时间
+        string curDate = curDateTime.ToString("yyyyMMdd"); //当前日期
+        string curTime = curDateTime.ToString("HH:mm:ss"); //当前时间
+
+        int num;
+        string newValue1;
+        string newValue2;
+        TimeSpan timeSpan;
+        if (ltId == "3002" || ltId == "3003")
+        {
+            num = curDateTime.Year;
+            DateTime dateTime3 = Convert.ToDateTime(num.ToString() + "-01-01 20:30:00");
+            this.doh.Reset();
+            this.doh.SqlCmd = "select datediff(d,'" + dateTime3.ToString("yyyy-MM-dd HH:mm:ss") + "','" + curDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "') as d";
+            int Num = Convert.ToInt32(this.doh.GetDataTable().Rows[0]["d"]) - 7 + 1;
+            string str7 = curDateTime.AddDays(-1.0).ToString("yyyy-MM-dd") + " 20:30:00";
+            string str8 = curDateTime.ToString("yyyy-MM-dd") + " 20:30:00";
+            if (curDateTime > Convert.ToDateTime(curDateTime.ToString(" 20:30:00")))
+                str8 = curDateTime.AddDays(1.0).ToString("yyyy-MM-dd") + " 20:30:00";
+            else
+                --Num;
+            num = curDateTime.Year;
+            newValue1 = num.ToString() + Func.AddZero(Num, 3);
+            num = curDateTime.Year;
+            newValue2 = num.ToString() + Func.AddZero(Num + 1, 3);
+            timeSpan = Convert.ToDateTime(str8) - Convert.ToDateTime(curTime);
         }
         else
-          --Num;
-        year = dateTime2.Year;
-        newValue1 = year.ToString() + Func.AddZero(Num, 3);
-        year = dateTime2.Year;
-        newValue2 = year.ToString() + Func.AddZero(Num + 1, 3);
-        timeSpan = Convert.ToDateTime(str7) - Convert.ToDateTime(str4);
-      }
-      else
-      {
-        if (UserCenterSession.LotteryTime == null)
-          UserCenterSession.LotteryTime = new LotteryTimeDAL().GetTable();
-        DataRow[] dataRowArray1 = UserCenterSession.LotteryTime.Select("Time >'" + str4 + "' and LotteryId=" + str1, "Time asc");
-        if (dataRowArray1.Length == 0)
         {
-          dataRowArray1 = UserCenterSession.LotteryTime.Select("Time <='" + str4 + "' and LotteryId=" + str1, "Time asc");
-          newValue2 = dateTime2.AddDays(1.0).ToString("yyyyMMdd") + "-" + dataRowArray1[0]["Sn"].ToString();
+            if (UserCenterSession.LotteryTime == null)
+                UserCenterSession.LotteryTime = new LotteryTimeDAL().GetTable();
+            DataRow[] dataRowArray1 = UserCenterSession.LotteryTime.Select("Time >'" + curTime + "' and LotteryId=" + ltId, "Time asc");
+            if (dataRowArray1.Length == 0)
+            {
+                dataRowArray1 = UserCenterSession.LotteryTime.Select("Time <='" + curTime + "' and LotteryId=" + ltId, "Time asc");
+                newValue2 = curDateTime.AddDays(1.0).ToString("yyyyMMdd") + "-" + dataRowArray1[0]["Sn"].ToString();
+            }
+            else
+            {
+                newValue2 = curDate + "-" + dataRowArray1[0]["Sn"].ToString();
+                dateTime1 = Convert.ToDateTime(dataRowArray1[0]["Time"].ToString());
+                if (curDateTime > Convert.ToDateTime(curDateTime.ToString("yyyy-MM-dd") + " 00:00:00") && curDateTime < Convert.ToDateTime(curDateTime.ToString("yyyy-MM-dd") + " 10:00:01") && ltId == "1003")
+                    newValue2 = curDateTime.AddDays(-1.0).ToString("yyyyMMdd") + "-" + dataRowArray1[0]["Sn"].ToString();
+                if (curDateTime > Convert.ToDateTime(curDateTime.ToString("yyyy-MM-dd") + " 23:00:00") && curDateTime < Convert.ToDateTime(curDateTime.ToString("yyyy-MM-dd") + " 23:59:59") && (ltId == "1014" || ltId == "1016"))
+                    newValue2 = curDateTime.AddDays(1.0).ToString("yyyyMMdd") + "-" + dataRowArray1[0]["Sn"].ToString();
+            }
+            if (Convert.ToDateTime(dataRowArray1[0]["Time"].ToString()) < Convert.ToDateTime(curTime))
+                dateTime1 = Convert.ToDateTime(curDateTime.AddDays(1.0).ToString("yyyy-MM-dd") + " " + dataRowArray1[0]["Time"].ToString());
+            timeSpan = dateTime1 - Convert.ToDateTime(curTime);
+            DataRow[] dataRowArray2 = UserCenterSession.LotteryTime.Select("Time <'" + curTime + "' and LotteryId=" + ltId, "Time desc");
+            if (dataRowArray2.Length == 0)
+            {
+                dataRowArray2 = UserCenterSession.LotteryTime.Select("LotteryId=" + ltId, "Time desc");
+                newValue1 = curDateTime.AddDays(-1.0).ToString("yyyyMMdd") + "-" + dataRowArray2[0]["Sn"].ToString();
+                str2 = dataRowArray2[0]["Sn"].ToString();
+            }
+            else
+            {
+                newValue1 = curDate + "-" + dataRowArray2[0]["Sn"].ToString();
+                str2 = dataRowArray2[0]["Sn"].ToString();
+                if (curDateTime > Convert.ToDateTime(curDateTime.ToString("yyyy-MM-dd") + " 00:00:00") && curDateTime < Convert.ToDateTime(curDateTime.ToString("yyyy-MM-dd") + " 10:00:01") && ltId == "1003")
+                {
+                    newValue1 = curDateTime.AddDays(-1.0).ToString("yyyyMMdd") + "-" + dataRowArray2[0]["Sn"].ToString();
+                    str2 = dataRowArray2[0]["Sn"].ToString();
+                }
+                if (curDateTime > Convert.ToDateTime(curDateTime.ToString("yyyy-MM-dd") + " 23:00:00") && curDateTime < Convert.ToDateTime(curDateTime.ToString("yyyy-MM-dd") + " 23:59:59") && (ltId == "1014" || ltId == "1016"))
+                    newValue1 = curDateTime.AddDays(1.0).ToString("yyyyMMdd") + "-" + dataRowArray2[0]["Sn"].ToString();
+            }
+            if (ltId == "1010" || ltId == "1017" || ltId == "3004")
+            {
+                newValue1 = string.Concat((object)(new LotteryTimeDAL().GetTsIssueNum(ltId) + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
+                str2 = dataRowArray2[0]["Sn"].ToString();
+                newValue2 = string.Concat((object)(Convert.ToInt32(newValue1) + 1));
+            }
+            if (ltId == "1012")
+            {
+                newValue1 = string.Concat((object)(new LotteryTimeDAL().GetTsIssueNum("1012") + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
+                str2 = dataRowArray2[0]["Sn"].ToString();
+                newValue2 = string.Concat((object)(Convert.ToInt32(newValue1) + 1));
+            }
+            if (ltId == "1013")
+            {
+                newValue1 = string.Concat((object)(new LotteryTimeDAL().GetTsIssueNum("1013") + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
+                str2 = dataRowArray2[0]["Sn"].ToString();
+                newValue2 = string.Concat((object)(Convert.ToInt32(newValue1) + 1));
+            }
+            if (ltId == "1014" || ltId == "1015" || ltId == "1016")
+            {
+                newValue1 = newValue1.Replace("-", "");
+                newValue2 = newValue2.Replace("-", "");
+            }
+            if (ltId == "4001")
+            {
+                newValue1 = string.Concat((object)(new LotteryTimeDAL().GetTsIssueNum("4001") + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
+                str2 = dataRowArray2[0]["Sn"].ToString();
+                newValue2 = string.Concat((object)(Convert.ToInt32(newValue1) + 1));
+            }
         }
-        else
-        {
-          newValue2 = str3 + "-" + dataRowArray1[0]["Sn"].ToString();
-          dateTime1 = Convert.ToDateTime(dataRowArray1[0]["Time"].ToString());
-          if (dateTime2 > Convert.ToDateTime(dateTime2.ToString("yyyy-MM-dd") + " 00:00:00") && dateTime2 < Convert.ToDateTime(dateTime2.ToString("yyyy-MM-dd") + " 10:00:01") && str1 == "1003")
-            newValue2 = dateTime2.AddDays(-1.0).ToString("yyyyMMdd") + "-" + dataRowArray1[0]["Sn"].ToString();
-        }
-        if (Convert.ToDateTime(dataRowArray1[0]["Time"].ToString()) < Convert.ToDateTime(str4))
-          dateTime1 = Convert.ToDateTime(dateTime2.AddDays(1.0).ToString("yyyy-MM-dd") + " " + dataRowArray1[0]["Time"].ToString());
-        timeSpan = dateTime1 - Convert.ToDateTime(str4);
-        DataRow[] dataRowArray2 = UserCenterSession.LotteryTime.Select("Time <'" + str4 + "' and LotteryId=" + str1, "Time desc");
-        if (dataRowArray2.Length == 0)
-        {
-          dataRowArray2 = UserCenterSession.LotteryTime.Select("LotteryId=" + str1, "Time desc");
-          newValue1 = dateTime2.AddDays(-1.0).ToString("yyyyMMdd") + "-" + dataRowArray2[0]["Sn"].ToString();
-        }
-        else
-        {
-          newValue1 = str3 + "-" + dataRowArray2[0]["Sn"].ToString();
-          if (dateTime2 > Convert.ToDateTime(dateTime2.ToString("yyyy-MM-dd") + " 00:00:00") && dateTime2 < Convert.ToDateTime(dateTime2.ToString("yyyy-MM-dd") + " 10:00:01") && str1 == "1003")
-            newValue1 = dateTime2.AddDays(-1.0).ToString("yyyyMMdd") + "-" + dataRowArray2[0]["Sn"].ToString();
-        }
-        if (str1 == "1010" || str1 == "1017" || str1 == "3004")
-        {
-          newValue1 = string.Concat((object) (new LotteryTimeDAL().GetTsIssueNum(str1) + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
-          newValue2 = string.Concat((object) (Convert.ToInt32(newValue1) + 1));
-        }
-        if (str1 == "1012")
-        {
-          newValue1 = string.Concat((object) (new LotteryTimeDAL().GetTsIssueNum("1012") + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
-          newValue2 = string.Concat((object) (Convert.ToInt32(newValue1) + 1));
-        }
-        if (str1 == "1013")
-        {
-          newValue1 = string.Concat((object) (new LotteryTimeDAL().GetTsIssueNum("1013") + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
-          newValue2 = string.Concat((object) (Convert.ToInt32(newValue1) + 1));
-        }
-        if (str1 == "1014" || str1 == "1015" || str1 == "1016")
-        {
-          newValue1 = newValue1.Replace("-", "");
-          newValue2 = newValue2.Replace("-", "");
-        }
-        if (str1 == "1011" || str1 == "3005")
-        {
-          newValue1 = string.Concat((object) (new LotteryTimeDAL().GetTsIssueNum("1011") + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
-          newValue2 = string.Concat((object) (Convert.ToInt32(newValue1) + 1));
-        }
-        if (str1 == "4001")
-        {
-          newValue1 = string.Concat((object) (new LotteryTimeDAL().GetTsIssueNum("4001") + Convert.ToInt32(dataRowArray2[0]["Sn"].ToString())));
-          newValue2 = string.Concat((object) (Convert.ToInt32(newValue1) + 1));
-        }
-        if (str1 == "1005")
-        {
-          string str6 = string.Concat((object) (Convert.ToInt32(dataRowArray2[0]["Sn"].ToString()) - 1));
-          if (str6.Length == 1)
-            str6 = "000" + str6;
-          if (str6.Length == 2)
-            str6 = "00" + str6;
-          if (str6.Length == 3)
-            str6 = "0" + str6;
-          string str7 = string.Concat((object) Convert.ToInt32(dataRowArray2[0]["Sn"].ToString()));
-          if (str7.Length == 1)
-            str7 = "000" + str7;
-          if (str7.Length == 2)
-            str7 = "00" + str7;
-          if (str7.Length == 3)
-            str7 = "0" + str7;
-          newValue1 = dateTime2.ToString("yyyyMMdd") + "-" + str6;
-          newValue2 = dateTime2.ToString("yyyyMMdd") + "-" + str7;
-        }
-      }
-      string newValue3 = string.Concat((object) (timeSpan.Days * 24 * 60 * 60 + timeSpan.Hours * 60 * 60 + timeSpan.Minutes * 60 + timeSpan.Seconds));
-      this._response = str5.Replace("下期期号", newValue2).Replace("当前期号", newValue1).Replace("倒计时", newValue3);
+        string newValue3 = string.Concat((object)(timeSpan.Days * 24 * 60 * 60 + timeSpan.Hours * 60 * 60 + timeSpan.Minutes * 60 + timeSpan.Seconds));
+        string str9 = ltInfo.Replace("下期期号", newValue2).Replace("当前期号", newValue1).Replace("倒计时", newValue3);
+        string oldValue = "已开期数";
+        num = Convert.ToInt32(str2);
+        string newValue4 = num.ToString();
+        this._response = str9.Replace(oldValue, newValue4);
     }
 
     private void ajaxUserInfo()

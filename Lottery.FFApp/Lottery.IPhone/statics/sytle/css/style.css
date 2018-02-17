@@ -1,4 +1,4 @@
-.user-login .avatar{padding:24px 0;text-align:center;}
+﻿.user-login .avatar{padding:24px 0;text-align:center;}
 .login-form .form-item .item-title,.change-password-form .form-item .item-title{width:100px;}
 .login-form .lab{padding-left:32px;}
 .login-form .icon-user,.login-form .icon-lock{position:absolute;left:0;top:50%;width:20px;height:20px;margin-top:-10px;background-position:center;background-repeat:no-repeat;}
@@ -201,10 +201,10 @@
 .my-account .account-info .refresh{bottom:0;right:15px;}
 
 .slide-container,.slide-wrapper{position:relative;overflow:hidden;}
-.slide-wrapper .slide{float:left;width:100%;}
+/*.slide-wrapper .slide{float:left;width:100%;height:420px;}*/
 
-.banner-slide{height:120px;overflow:hidden;}
-.banner-slide img{width:100%;height:120px;}
+.banner-slide{height:170px;overflow:hidden;}
+.banner-slide img{width:100%;height:170px;}
 .banner-slide .pagination{position:absolute;z-index:19;left:0;bottom:6px;width:100%;height:6px;overflow:hidden;text-align:center;}
 .banner-slide .pagination li{display:inline-block;width:6px;height:6px;margin:0 3px;border-radius:50%;background-color:rgba(255,255,255,0.3);vertical-align:top;}
 .banner-slide .pagination .active{background-color:rgba(255,255,255,1);}

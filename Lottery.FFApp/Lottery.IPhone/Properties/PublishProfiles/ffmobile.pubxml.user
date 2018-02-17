@@ -139,25 +139,31 @@
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>12/20/2017 03:03:16</publishTime>
+      <publishTime>02/17/2018 18:18:47</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>02/13/2018 08:43:43</publishTime>
+      <publishTime>02/17/2018 18:18:47</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
-      <publishTime>02/13/2018 08:43:42</publishTime>
+      <publishTime>02/17/2018 18:18:46</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>02/13/2018 08:43:42</publishTime>
+      <publishTime>02/17/2018 18:18:46</publishTime>
+    </File>
+    <File Include="bin/Lottery.FFCache.dll">
+      <publishTime>02/17/2018 18:18:46</publishTime>
     </File>
     <File Include="bin/Lottery.IPhone.dll">
-      <publishTime>02/13/2018 08:43:43</publishTime>
+      <publishTime>02/17/2018 18:18:47</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>02/13/2018 08:43:42</publishTime>
+      <publishTime>02/17/2018 18:18:46</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.Net20.dll">
+      <publishTime>05/27/2011 11:39:10</publishTime>
     </File>
     <File Include="bin/StriveEngine.dll">
       <publishTime>07/06/2016 10:07:58</publishTime>
@@ -1414,7 +1420,7 @@
       <publishTime>02/02/2018 21:12:15</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/13/2018 08:43:49</publishTime>
+      <publishTime>02/17/2018 18:18:56</publishTime>
     </File>
   </ItemGroup>
 </Project>
