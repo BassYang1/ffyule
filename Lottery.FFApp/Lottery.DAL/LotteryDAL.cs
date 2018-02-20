@@ -510,6 +510,24 @@ namespace Lottery.DAL
         /// <summary>
         /// 获取彩票系统配置
         /// </summary>
+        /// <param name="code">彩票code</param>
+        /// <returns>彩票详细</returns>
+        public SysLotteryModel GetSysLotteryByCode(string code)
+        {
+            IList<SysLotteryModel> lotteries = GetSysLotteries();
+            SysLotteryModel lottery = null;
+
+            if (lotteries != null && lotteries.Count > 0)
+            {
+                lottery = (from lt in lotteries where lt.Code.Equals(code, StringComparison.OrdinalIgnoreCase) select lt).FirstOrDefault();
+            }
+
+            return lottery;
+        }
+
+        /// <summary>
+        /// 获取彩票系统配置
+        /// </summary>
         /// <returns>彩票详细</returns>
         public SysLotteryModel GetSysLotteryById(int id)
         {
@@ -551,7 +569,8 @@ namespace Lottery.DAL
                                 Title = Convert.ToString(dataTable.Rows[i]["Title"]),
                                 Code = Convert.ToString(dataTable.Rows[i]["Code"]),
                                 CloseTime = Convert.ToInt32(dataTable.Rows[i]["CloseTime"]),
-                                IsOpen = Convert.ToBoolean(dataTable.Rows[i]["CloseTime"])
+                                IsOpen = Convert.ToBoolean(dataTable.Rows[i]["CloseTime"]),
+                                ApiUrl = Convert.ToString(dataTable.Rows[i]["ApiUrl"])
                             };
 
                             lotteries.Add(lot);

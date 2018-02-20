@@ -45,13 +45,15 @@
     <Reference Include="log4net">
       <HintPath>..\DLLs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\DLLs\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json.Net20, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLLs\Newtonsoft.Json.Net20.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -88,6 +90,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Lottery\Boyi\ByHelper.cs" />
     <Compile Include="Lottery\Collect\AsyncHelper.cs" />
     <Compile Include="Lottery\Collect\Config.cs" />
     <Compile Include="Lottery\Collect\DefaultToOther.cs" />
@@ -97,6 +100,7 @@
     <Compile Include="Lottery\Collect\HtmlOperate2.cs" />
     <Compile Include="Lottery\Collect\LogHelp.cs" />
     <Compile Include="Lottery\Collect\Public.cs" />
+    <Compile Include="Lottery\Collect\OfficialLotteryData.cs" />
     <Compile Include="Lottery\Collect\QqSscData.cs" />
     <Compile Include="Lottery\Collect\TaskData.cs" />
     <Compile Include="Lottery\Collect\Tcp3Data.cs" />
@@ -104,6 +108,27 @@
     <Compile Include="Lottery\Collect\YouleToOther.cs" />
     <Compile Include="Lottery\Collect\YouleToOther11x5.cs" />
     <Compile Include="Lottery\Collect\YouleToOther3d.cs" />
+    <Compile Include="Lottery\Boyi\ByResponse.cs" />
+    <Compile Include="Lottery\Sys\SysDj15Data.cs" />
+    <Compile Include="Lottery\Sys\SysXjp2fcData.cs" />
+    <Compile Include="Lottery\Sys\SysHg90mData.cs" />
+    <Compile Include="Lottery\Sys\SysFlb90mData.cs" />
+    <Compile Include="Lottery\Sys\SysYg120scData.cs" />
+    <Compile Include="Lottery\Sys\SysYg60scData.cs" />
+    <Compile Include="Lottery\Sys\SysYfpk10Data.cs" />
+    <Compile Include="Lottery\Sys\SysHg11x5Data.cs" />
+    <Compile Include="Lottery\Sys\SysHg90sdData.cs" />
+    <Compile Include="Lottery\Sys\SysSe60sdData.cs" />
+    <Compile Include="Lottery\Sys\SysBjpk10Data.cs" />
+    <Compile Include="Lottery\Sys\SysYf11x5Data.cs" />
+    <Compile Include="Lottery\Collect\SystemLotteryData.cs" />
+    <Compile Include="Lottery\Sys\SysBase.cs" />
+    <Compile Include="Lottery\Sys\SysSe60mData.cs" />
+    <Compile Include="Lottery\Sys\SysTw45mData.cs" />
+    <Compile Include="Lottery\Sys\SysTw5fcData.cs" />
+    <Compile Include="Lottery\Sys\SysNy30mData.cs" />
+    <Compile Include="Lottery\Sys\SysXjp30mData.cs" />
+    <Compile Include="Lottery\Sys\SysXdl90mData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\MIL\Html\HtmlAttribute.cs" />
     <Compile Include="Web\MIL\Html\HtmlAttributeCollection.cs" />
@@ -119,6 +144,14 @@
     <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
       <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
       <Name>Lottery.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.DBUtility\Lottery.DBUtility.csproj">
+      <Project>{71e9ac32-7eaf-4677-9b25-9adb150f8bcf}</Project>
+      <Name>Lottery.DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
+      <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>
+      <Name>Lottery.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lottery.FFCache\Lottery.FFCache.csproj">
       <Project>{13e68fae-a641-4e95-b08a-a6614bf530c8}</Project>

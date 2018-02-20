@@ -22,28 +22,28 @@ namespace Lottery.Admin
             this.Admin_Load("", "html");
             if (!"woshishui".Equals(Cookie.GetValue(this.site.CookiePrev + "admin", "name").Trim()))
             {
-                string clientIp = IPHelp.ClientIP;
-                this.doh.Reset();
-                this.doh.SqlCmd = "select * from Sys_LoginCheck where CheckType=0 and IsUsed=1";
-                DataTable dataTable = this.doh.GetDataTable();
-                bool flag = false;
+                //string clientIp = IPHelp.ClientIP;
+                //this.doh.Reset();
+                //this.doh.SqlCmd = "select * from Sys_LoginCheck where CheckType=0 and IsUsed=1";
+                //DataTable dataTable = this.doh.GetDataTable();
+                //bool flag = false;
 
-                if (dataTable.Rows.Count > 0)
-                {
-                    for (int index = 0; index < dataTable.Rows.Count; ++index)
-                    {
-                        if (IPHelp.domain2ip(string.Concat(dataTable.Rows[index]["CheckTitle"])).Equals(clientIp))
-                            flag = true;
-                    }
-                }
+                //if (dataTable.Rows.Count > 0)
+                //{
+                //    for (int index = 0; index < dataTable.Rows.Count; ++index)
+                //    {
+                //        if (IPHelp.domain2ip(string.Concat(dataTable.Rows[index]["CheckTitle"])).Equals(clientIp))
+                //            flag = true;
+                //    }
+                //}
 
-                if (!flag)
-                {
-                    this.Response.Clear();
-                    this.Response.Write("您的网络环境不合法，请联系管理员!");
-                    this.Response.End();
-                    return;
-                }
+                //if (!flag)
+                //{
+                //    this.Response.Clear();
+                //    this.Response.Write("您的网络环境不合法，请联系管理员!");
+                //    this.Response.End();
+                //    return;
+                //}
             }
             if (this.IsPostBack)
                 return;

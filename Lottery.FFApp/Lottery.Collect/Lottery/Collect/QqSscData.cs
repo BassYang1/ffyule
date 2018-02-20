@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using log4net;
 using System.Configuration;
+using Lottery.Collect.Boyi;
+using Lottery.Entity;
 
 namespace Lottery.Collect
 {
@@ -26,60 +28,35 @@ namespace Lottery.Collect
         protected static readonly ILog Log = LogManager.GetLogger(typeof(QqSscData));
 
         private static LotteryDataDAL _dal = new LotteryDataDAL();
-
-        private static string TxffcAPI = "";
-
-        static QqSscData()
-        {
-            if (ConfigurationManager.AppSettings["TxffcAPI"] != null)
-            {
-                TxffcAPI = ConfigurationManager.AppSettings["TxffcAPI"].ToString();
-            }
-        }
-
+        private static LotteryDAL _lotteryDal = new LotteryDAL();
 
         public static void QqSsc()
         {
             try
             {
-                if (string.IsNullOrEmpty(TxffcAPI))
-                {
-                    Log.Debug("未配腾迅分分彩API");
-                    return;
-                }
-
                 //http://api.b1cp.com/t?p=json&t=qqffc&token=FF446B723EB25993
                 //http://www.b1cp.com/api?p=json&t=txffc&limit=1&token=00fb782bad8e5241
                 //Log.Debug("开始QqSsc...");
-                string text = HtmlOperate2.HttpGet(TxffcAPI, Encoding.UTF8);
+                
+                SysLotteryModel sysLottery = _lotteryDal.GetSysLotteryByCode("qqffc");
 
-                if (text.IndexOf("opentime") < 0 && text.IndexOf("expect") < 0 && text.IndexOf("opencode") < 0)
+                if (sysLottery == null || string.IsNullOrEmpty(sysLottery.ApiUrl))
                 {
-                    Log.DebugFormat("开奖数据无效: {0}", text);
-                    return;
+                    throw new Exception("无效的API配置");
                 }
 
-                text = text.Substring(8, text.Length - 9);
-                text = "{\"rows\":5,\"data\":" + text + "}";
-                JsonData jsonData = JsonMapper.ToObject(text);
-                foreach (JsonData jsonData2 in ((IEnumerable)jsonData["data"]))
-                {
-                    string openTime = jsonData2["opentime"].ToString();
-                    string openCode = jsonData2["opencode"].ToString();
-                    string expect = jsonData2["expect"].ToString(); //期号
+                IList<ByLottery> data = ByHelper.GetLotteryData(sysLottery.ApiUrl);
 
-                    if (string.IsNullOrEmpty(openTime) || string.IsNullOrEmpty(openCode) || string.IsNullOrEmpty(expect))
-                    {
-                        Log.ErrorFormat("腾讯分分彩找不到开奖数据的关键字符: {0}", text);
-                        //Dal.Save("采集异常", "腾讯分分彩找不到开奖数据的关键字符");
-                        break;
-                    }
+                foreach (ByLottery lot in data)
+                {
+                    string openTime = lot.opentime;
+                    string openCode = lot.opencode;
+                    string expect = lot.expect; //期号
 
                     expect = expect.Substring(0, 8) + "-" + expect.Substring(8);
 
                     if (_dal.Update(1005, expect, openCode, openTime, openCode))
                     {
-                        Log.DebugFormat("腾迅分分彩新一期开奖信息: {0}", text);
                         Public.SaveLotteryData2File(1005);
                         LotteryCheck.RunOfIssueNum(1005, expect);
                     }

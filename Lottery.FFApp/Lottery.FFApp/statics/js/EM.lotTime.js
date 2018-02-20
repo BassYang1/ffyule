@@ -32,7 +32,7 @@ function ajaxLotteryTime() {
 }
 
 var bettingCountdown = function () {
-    console.log("===倒计时时间=== : " + lotTimes);
+    ///console.log("===倒计时时间=== : " + lotTimes);
     bettingConfirmCountdown();
     var $countdown = $("#betting-countdown");
     var ms = parseInt(lotTimes);
@@ -144,7 +144,6 @@ function timer() {
                                 }
                                 IsKaijiang = true;
                                 audioPlay('kaijiang');
-                                ajaxLotteryDataList(data);
                                 ajaxList();
                                 ajaxUserTotalList();
                             }
@@ -154,6 +153,8 @@ function timer() {
                                 $('#kjLoading').show();
                                 $('#lottery-numbers').hide();
                             }
+
+                            ajaxLotteryDataList(data);
                         }
                         else {
                             $('#numberstate').html("等待开奖");
@@ -162,7 +163,6 @@ function timer() {
                             $('#lottery-numbers').hide();
                         }
                     }
-
                 });
             }
         }

@@ -204,10 +204,14 @@ namespace Lottery.DAL
                         object id = com.ExecuteScalar(); //插入数据
 
                         //插入成功
-                        if (id != null)
+                        if (!Convert.IsDBNull(id))
                         {
                             //更新缓存
-                            history.RemoveAt(history.Count - 1); //移除最后一条
+                            if (history.Count > 0)
+                            {
+                                history.RemoveAt(history.Count - 1); //移除最后一条
+                            }
+
                             history.Insert(0, new LotteryDataModel()
                             {
                                 Id = Convert.ToInt32(id),
@@ -228,6 +232,10 @@ namespace Lottery.DAL
 
                             return true;
                         }
+                        else
+                        {
+                            Log.ErrorFormat("彩票已开奖, 彩种: {0}, 期号: {1}", type, title);
+                        }
                     }
                 }
             }
@@ -237,6 +245,23 @@ namespace Lottery.DAL
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// 获取最新一期开奖信息
+        /// </summary>
+        /// <param name="ltId"></param>
+        /// <returns></returns>
+        public LotteryDataModel GetLatestLottery(int ltId)
+        {
+            IList<LotteryDataModel> lotteries = GetLotteryHistory(ltId);
+
+            if (lotteries != null && lotteries.Count > 0)
+            {
+                return lotteries.First(); 
+            }
+
+            return null;
         }
 
         public IList<LotteryDataModel> GetLotteryHistory(int ltId)
@@ -280,7 +305,10 @@ namespace Lottery.DAL
                     }
 
                     //排序
-                    history = (from it in history orderby it.Title descending select it).ToList();
+                    if (history.Count > 0)
+                    {
+                        history = (from it in history orderby it.Title descending select it).ToList();
+                    }
 
                     dataTable.Clear();
                     dataTable.Dispose();

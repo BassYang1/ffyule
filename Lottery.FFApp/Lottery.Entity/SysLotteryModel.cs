@@ -35,5 +35,10 @@ namespace Lottery.Entity
         /// 封单时间
         /// </summary>
         public int CloseTime { get; set; }
+
+        /// <summary>
+        /// API
+        /// </summary>
+        public string ApiUrl { get; set; }
     }
 }

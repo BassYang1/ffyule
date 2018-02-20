@@ -1,3 +1,0 @@
-
-SELECT * FROM Sys_LotteryData WHERE Id > 459513 ORDER BY STime DESC;
-SELECT * FROM Sys_LotteryData ORDER BY STime DESC;
