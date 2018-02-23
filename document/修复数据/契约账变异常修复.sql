@@ -1,0 +1,9 @@
+
+--2318 11.1265
+SELECT * FROM N_User WHERE Money < 0 OR Id IN (2318, 2317, 1966);
+
+SELECT * FROM N_UserMoneyLog WHERE UserId = 1966 AND Remark LIKE 'ÆõÔ¼%' ORDER BY STime2 DESC;
+
+SELECT * FROM N_UserMoneyStatAll WHERE UserId = 2318 ORDER BY STime DESC;
+
+UPDATE N_User SET Money = Money + 1.7955 WHERE Id = 1966;

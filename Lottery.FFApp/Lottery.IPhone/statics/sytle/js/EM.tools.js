@@ -104,7 +104,7 @@ function emAlert(strtitle) {
 
 function emAlert2(strtitle) {
     var index = layer.open({
-        title: '美金娱乐提示您',
+        title: '立博国际娱乐提示您',
         content: strtitle
     });
     setTimeout(function () {

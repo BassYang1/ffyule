@@ -1,6 +1,7 @@
 ﻿using log4net;
 using Lottery.Collect.Sys;
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Timers;
 
@@ -132,7 +133,7 @@ namespace Lottery.Collect
         /// <summary>
         /// 腾迅分分彩
         /// </summary>
-        private static System.Timers.Timer timerQQ60 = new System.Timers.Timer(5000.0);
+        private static System.Timers.Timer timerQQ60 = new System.Timers.Timer(3000.0);
 
         /// <summary>
         /// 腾迅分分彩, 锁
@@ -157,10 +158,11 @@ namespace Lottery.Collect
                     int minute = now.Minute;
                     int second = now.Second;
                     int num = minute % 2;
-                    if (second > 0 && second <= 15)
-                    {
-                        QqSscData.QqSsc();
-                    }
+                    //if (second > 0 && second <= 15)
+                    //{
+
+                    QqSscData.QqSsc();
+                    //}
                 }
             }
             catch (Exception ex)

@@ -121,13 +121,15 @@ namespace Lottery.Collect
         {
             switch (code)
             {
-                case "cqssc":
-                case "xjssc":
                 case "tjssc":
+                case "cqssc":
+                    return expect.Substring(0, 8) + "-" + expect.Substring(8);
+                case "xjssc":
+                case "ssl":
+                    return expect.Substring(0, 8) + "-" + expect.Substring(9);
                 case "gd11x5":
                 case "sh11x5":
                 case "jx11x5":
-                case "ssl":
                     return expect.Substring(0, 8) + "-" + expect.Substring(9);
                 case "p3":
                 case "3d":

@@ -10,6 +10,7 @@ using log4net;
 using System.Configuration;
 using Lottery.Collect.Boyi;
 using Lottery.Entity;
+using System.Diagnostics;
 
 namespace Lottery.Collect
 {
@@ -36,7 +37,7 @@ namespace Lottery.Collect
             {
                 //http://api.b1cp.com/t?p=json&t=qqffc&token=FF446B723EB25993
                 //http://www.b1cp.com/api?p=json&t=txffc&limit=1&token=00fb782bad8e5241
-                //Log.Debug("开始QqSsc...");
+                Log.Debug("开始腾迅分分彩...");
                 
                 SysLotteryModel sysLottery = _lotteryDal.GetSysLotteryByCode("qqffc");
 
@@ -45,7 +46,13 @@ namespace Lottery.Collect
                     throw new Exception("无效的API配置");
                 }
 
+                Stopwatch sw = new Stopwatch();
+                sw.Start(); //  开始监视代码运行时间    
+
                 IList<ByLottery> data = ByHelper.GetLotteryData(sysLottery.ApiUrl);
+
+                sw.Stop(); //  停止监视
+                Log.DebugFormat("获取腾迅分分彩花费时间: {0}毫秒", sw.Elapsed.Milliseconds);
 
                 foreach (ByLottery lot in data)
                 {

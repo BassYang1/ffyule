@@ -12,35 +12,23 @@ SELECT * FROM Sys_LotteryData ORDER BY STime DESC;
 
 --奖种配置
 SELECT * FROM Sys_Lottery;
-SELECT * FROM Sys_Lottery WHERE 1 > 0 AND Id = 4004;
+SELECT * FROM Sys_Lottery WHERE 1 > 0 AND Id = 1018;
+SELECT * FROM Sys_LotteryTime WHERE 1 > 0 AND LotteryId = 1018;
 
 --系统开奖时间
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 4004 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 4004 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 4003 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 4002 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 4001 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 3004 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 3005 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 2006 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 2005 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 1020 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 1011 ORDER BY STime DESC;
-
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 1013 ORDER BY STime DESC;
-
 SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 1018 ORDER BY STime DESC;
 
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 1004 ORDER BY STime DESC;
 
-SELECT * FROM Sys_LotteryData WHERE 1 > 0 AND Type = 1019 ORDER BY STime DESC;
+
+SELECT * FROM Sys_Lottery;
+SELECT * FROM Sys_Lottery WHERE Id = '1015';
+SELECT * FROM Sys_LotteryTime WHERE LotteryId = '1015' AND Sn IN ('629', '628', '627', '626') ORDER BY Id DESC;
+SELECT * FROM Sys_LotteryData WHERE Type = '1015' AND Title IN ('20180222629', '20180222627', '20180222626') ORdER BY OpenTime DESC;
+SELECT * FROM Sys_LotteryData WHERE Type = '1015' ORdER BY OpenTime DESC;
+SELECT * FROM Sys_LotteryTime WHERE LotteryId = '1015' ORDER BY Id DESC;
+
+SELECT * FROM Sys_LotteryTime WHERE LotteryId = '1015' AND Time > '16:58:34' ORDER BY Time ASC;
+SELECT * FROM Sys_LotteryTime WHERE LotteryId = '1015' AND Time > '17:51:51' ORDER BY Time ASC;
+
+--OpenTime: 16:42:01
+--CurrentTime: 16:42:00

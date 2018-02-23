@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>美金娱乐账户充值</title>
+    <title>立博国际账户充值</title>
 </head>
 <body>
     <h1>正在支付...</h1>

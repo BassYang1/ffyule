@@ -56,3 +56,26 @@ SELECT * FROM V_AgentFHRecord ORDER BY STime DESC;
 SELECT top 1 UserGroup from N_User where Id=1770
 
 SELECT * FROM Act_AgentFHRecord;
+
+
+---契约存储过程分析
+
+/*
+
+DELETE FROM Act_AgentFHRecord;
+DELETE FROM Log_Sys WHERE Id > 254;
+DELETE FROM Act_ActiveRecord WHERE ActiveType='ActGongziContract';
+
+exec FH0115BatchByDate '2018-01-31';
+
+*/
+
+SELECT * FROM Act_ActiveRecord WHERE ActiveType='ActGongziContract';
+SELECT * FROM Act_AgentFHRecord;
+
+
+SELECT * FROM N_User WHERE Id IN (1961, 1966, 1988, 2317, 2318, 2322);
+SELECT * FROM N_User WHERE Id IN (1963);
+SELECT * FROM Log_Sys WHERE UserId != 0 ORDER BY STime DESC;
+SELECT * FROM Log_Sys WHERE UserId != 0 AND UserID IN (1961, 1966, 1988, 2317, 2318, 2322) ORDER BY STime DESC;
+

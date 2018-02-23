@@ -4,6 +4,7 @@
 // MVID: 7C79BA5B-21B3-40F1-B96A-84E656E22E29
 // Assembly location: F:\pros\tianheng\bf\WebAppOld\bin\Lottery.DAL.dll
 
+using log4net;
 using Lottery.DBUtility;
 using Lottery.Utils;
 using System;
@@ -14,6 +15,8 @@ namespace Lottery.DAL.Flex
 {
     public class UserChargeDAL : ComData
     {
+        private static readonly ILog Log = log4net.LogManager.GetLogger(typeof(UserChargeDAL));
+
         /// <summary>
         /// 检查支付状态
         /// </summary>
@@ -177,45 +180,35 @@ namespace Lottery.DAL.Flex
         /// <returns></returns>
         public bool Update(string orderId)
         {
-            using (DbOperHandler dbOperHandler = new ComData().Doh())
+            using (SqlConnection conn = new SqlConnection(Const.ConnectionString))
             {
-                dbOperHandler.Reset();
-                dbOperHandler.ConditionExpress = "SsId=@orderId";
-                dbOperHandler.AddConditionParameter("@orderId", orderId);
-                object[] fields = dbOperHandler.GetFields("N_UserCharge", "UserId, State, InMoney");
-
-                if (fields == null || fields.Length != 3)
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    return false;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "fCompleteRecharge";
+
+                    SqlParameter parm1 = new SqlParameter("@orderId", SqlDbType.NVarChar, 50);
+                    parm1.Value = orderId;
+                    parm1.Direction = ParameterDirection.Input;
+                    cmd.Parameters.Add(parm1);
+
+                    SqlParameter parm2 = new SqlParameter("@result", SqlDbType.NVarChar, 100);
+                    parm2.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm2);
+
+                    SqlParameter parm3 = new SqlParameter("@RETURN", SqlDbType.Bit);
+                    parm3.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm3);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    conn.Close();
+
+                    Log.Debug(parm2.Value.ToString());
+                    Console.WriteLine(parm2.Value.ToString());
+                    return Convert.ToBoolean(parm3.Value);
                 }
-
-                if (fields[1].ToString() == "1")
-                {
-                    return true;
-                }
-
-                //充值金额
-                decimal money;
-                Decimal.TryParse(fields[2].ToString(), out money);
-
-                //用户Id
-                int userId;
-                Int32.TryParse(fields[0].ToString(), out userId);
-
-                dbOperHandler.Reset();
-                dbOperHandler.ConditionExpress = "SsId=@orderId";
-                dbOperHandler.AddConditionParameter("@orderId", orderId);
-                dbOperHandler.AddFieldItem("State", "1");
-                dbOperHandler.AddFieldItem("DzMoney", money);
-
-                if (dbOperHandler.Update("N_UserCharge") == 1)
-                {
-                    dbOperHandler.Reset();
-                    dbOperHandler.ExecuteSql("UPDATE N_USER SET Money = ISNULL(Money, 0) + " + money + " WHERE Id = " + userId);
-                    return true;
-                }
-
-                return false;
             }
         }
 

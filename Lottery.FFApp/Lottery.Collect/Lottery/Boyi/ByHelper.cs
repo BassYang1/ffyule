@@ -33,7 +33,7 @@ namespace Lottery.Collect.Boyi
 
             if (response.IndexOf("data") < 0 && response.IndexOf("opentime") < 0 && response.IndexOf("expect") < 0 && response.IndexOf("opencode") < 0)
             {
-                throw new Exception("无效的开奖数据");
+                throw new Exception("无效的开奖数据:" + response);
             }
 
             ByResponse obj = JsonDeserialize<ByResponse>(response);

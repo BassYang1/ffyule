@@ -200,24 +200,29 @@ function ajaxPopInfo() {
         url: "/ajax/ajaxUser.aspx?oper=GetUserJson",
         error: function (XmlHttpRequest, textStatus, errorThrown) { if (XmlHttpRequest.responseText != "") { } },
         success: function (d) {
+            //d = {
+            //    result: "1", table: [
+            //    { userid: "1937", title: "4001668748", content: "投注彩种 北京PK10<br/>投注期号 668748<br/>投注金额 100.0000元<br/>中奖金额 0.0000元<br/>本次盈亏 -100.0000元" }]
+            //};
+
             if (d.result == "1") {
                 if (d.table.length > 0) {
                     var t = d.table[0];
                     if (getCookie("pop") != null) {
-                        if (getCookie("pop") != t.title + "") {
+                        if (1 > 0 || getCookie("pop") != t.title + "") {
                             setCookie("pop", t.title);
                             PopInfo(t.content.replace(/,/g, "<br/>").replace(/ /g, "："));
-                            setTimeout(function () {
-                                $('#pop').hide();
-                            }, 3000);
+                            //setTimeout(function () {
+                            //    $('#pop').hide();
+                            //}, 3000);
                         }
                     }
                     else {
                         setCookie("pop", t.title);
                         PopInfo(t.content.replace(/,/g, "<br/>").replace(/ /g, "："));
-                        setTimeout(function () {
-                            $('#pop').hide();
-                        }, 3000);
+                        //setTimeout(function () {
+                        //    $('#pop').hide();
+                        //}, 3000);
                     }
                 }
             }

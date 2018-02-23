@@ -58,9 +58,11 @@ namespace Lottery.Collect.Sys
             {
                 //更新开奖期号
                 Lottery.UpdateExpect();
+                //Console.WriteLine("期号: {0}, {1}, 开奖时间: {2}, 时间间隔: {3}", Lottery.ExpectNo, Lottery.Expect, Lottery.OpenTime, Lottery.TimeSpan);
 
                 if (string.IsNullOrEmpty(Lottery.LastExpect) || !Lottery.LastExpect.Equals(Lottery.ExpectNo))
                 {
+                    Console.WriteLine("更新期号: {0}", Lottery.ExpectNo);
                     Lottery.LastExpect = Lottery.ExpectNo;
                     Lottery.UpdateLottery();
                 }

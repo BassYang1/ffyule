@@ -14,3 +14,11 @@ Mobile手机充值
 	money/chargeZfb.aspx
 	mail.html
 	center.html
+	
+移动端账变记录
+	report/history.html
+	ajax/ajaxHistory.aspx?oper=ajaxGetList
+	
+移动端团队报表总计
+	user/userteamtotal.html
+	ajax/ajaxUser.aspx?oper=ajaxGetTeamTotalList&flag=6

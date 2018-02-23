@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>美金娱乐</title>
+    <title>立博国际</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta name="format-detection" content="telephone=no,email=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -241,7 +241,7 @@
                     </div>
                     <div class="item-content">
                         <div class="item-content-text">
-                            <%--<label><input type="radio" value="ZFBWAP" title="支付宝移动支付" class="radio bank" name="bank" checked/>支付宝</label>--%>
+                            <label><input type="radio" value="ZFBWAP" title="支付宝移动支付" class="radio bank" name="bank" checked/>支付宝</label>
                             <label><input type="radio" value="WXWAP" title="微信移动支付" class="radio bank" name="bank" checked />微信</label>
                             <input type="hidden" id="orderId" />
                         </div>

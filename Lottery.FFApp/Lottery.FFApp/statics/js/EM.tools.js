@@ -573,8 +573,13 @@ var PopInfo = function (str) {
     audioPlay('paijiang');
     var pop = new Pop("", "#", str);
     setTimeout(function () {
-        $('#pop').hide();
+        $("#pop").remove();
+        //$('#pop').hide();
     }, 3000);
+
+    $("#pop").find(".icon-close").click(function () {
+        $("#pop").remove();
+    });
 }
 
 

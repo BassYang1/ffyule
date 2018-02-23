@@ -115,25 +115,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>02/14/2018 22:07:44</publishTime>
+      <publishTime>02/22/2018 23:45:17</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>02/14/2018 22:07:43</publishTime>
+      <publishTime>02/22/2018 23:45:17</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
       <publishTime>06/15/2017 00:57:59</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>02/14/2018 22:07:42</publishTime>
+      <publishTime>02/22/2018 23:45:16</publishTime>
     </File>
     <File Include="bin/Lottery.FFApp.dll">
-      <publishTime>02/14/2018 22:07:45</publishTime>
+      <publishTime>02/22/2018 23:45:18</publishTime>
     </File>
     <File Include="bin/Lottery.FFCache.dll">
-      <publishTime>02/14/2018 22:07:42</publishTime>
+      <publishTime>02/22/2018 23:45:16</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>02/14/2018 22:07:42</publishTime>
+      <publishTime>02/22/2018 23:45:16</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -1621,7 +1621,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/EM.lotTime.js">
-      <publishTime>02/13/2018 14:51:36</publishTime>
+      <publishTime>02/19/2018 08:06:59</publishTime>
     </File>
     <File Include="statics/js/EM.nav.js">
       <publishTime>02/07/2018 19:32:33</publishTime>
@@ -1630,7 +1630,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/global.js">
-      <publishTime>02/09/2018 10:53:07</publishTime>
+      <publishTime>02/19/2018 08:02:46</publishTime>
     </File>
     <File Include="statics/js/jquery-ui.min.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -2113,7 +2113,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/14/2018 22:08:00</publishTime>
+      <publishTime>02/22/2018 23:45:24</publishTime>
     </File>
   </ItemGroup>
 </Project>

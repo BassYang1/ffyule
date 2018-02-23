@@ -49,7 +49,7 @@ namespace Lottery.Collect
 								{
 									if (!innerText2.Contains("255"))
 									{
-										new LotteryDataDAL().Add(3003, text2, innerText2, DateTime.Now.ToString("yyyy-MM-dd") + " 20:30:00", "");
+                                        new LotteryDataDAL().Add(3003, text2, innerText2, DateTime.Now.ToString("yyyy-MM-dd") + " 20:30:00", innerText2);
 										Public.SetOpenListJson(3003);
 										LotteryCheck.RunOfIssueNum(3003, text2);
 									}
