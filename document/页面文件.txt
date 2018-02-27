@@ -1,24 +1,60 @@
-用户登录
-	Lottery.DAL.UserDAL.cs
+PC端
+	用户登录
+		Lottery.DAL.UserDAL.cs
 
-代理首页
-	aspx/page.aspx
-	statics/base/logMenu.js
-	user/userindex.aspx
-	ajax/ajaxUser.aspx?oper=ajaxGetTeamTotalList
+	代理首页
+		aspx/page.aspx
+		statics/base/logMenu.js
+		user/userindex.aspx
+		ajax/ajaxUser.aspx?oper=ajaxGetTeamTotalList
+		
+	资金流水
+		ajax/ajaxHistory.aspx?oper=ajaxGetList
+		
+	团队报表
+		vip.u
+		aspx/page.aspx?k=u
+		statics/base/lotMenu.js
+		aspx/list.aspx?nav=UserProListSub
+		statics/base/lotBase.js
+		ajax/ajaxUser.aspx?oper=ajaxGetFKProListSub
+		
+	下级工资派发记录
+		aspx/List.aspx?nav=ContractGZRecord
+		ajax/ajaxContractGZ.aspx?oper=ajaxGetContractGZRecord
+		
+	纽约30秒
+		aspx/nav.aspx?tid=1&id=1004
+		
+	菜单导航样加载
+		aspx\page.aspx
+		ajax/ajaxActive.aspx?oper=ajaxGetList
+		statics/base/lotMenu.js
+		
+		
+Admin端
+	活动补发
+		admin/activeOpers.aspx
+		
+移动端
+	Mobile手机充值
+		money/chargeZfb.aspx
+		mail.html
+		center.html
+		
+	账变记录
+		report/history.html
+		ajax/ajaxHistory.aspx?oper=ajaxGetList
+		
+	团队报表总计
+		user/userteamtotal.html
+		ajax/ajaxUser.aspx?oper=ajaxGetTeamTotalList&flag=6
+		
+	团队管理
+		user/userlist.html
+		ajax/ajaxUser.aspx?oper=ajaxGetList&page=1&pagesize=10
+		
 	
-资金流水
-	ajax/ajaxHistory.aspx?oper=ajaxGetList
-	
-Mobile手机充值
-	money/chargeZfb.aspx
-	mail.html
-	center.html
-	
-移动端账变记录
-	report/history.html
-	ajax/ajaxHistory.aspx?oper=ajaxGetList
-	
-移动端团队报表总计
-	user/userteamtotal.html
-	ajax/ajaxUser.aspx?oper=ajaxGetTeamTotalList&flag=6
+	新加坡30秒
+		aspx/nav.aspx?tid=1&id=1004
+		

@@ -1,16 +1,29 @@
-1, 完成pc端随笔付接口接
-2, 完成契约表单添加功能
-
-
-Lottery.FFApp
-	相关工程源码
+readme.txt
+	目录结构说明
 
 information.txt
-	相关信息
-
-publish
-	发布目录
+	开发相关信息
 	
+部署文档.txt
+	站点部署注意事项
+	
+需求变更说明.txt
+	需求变更说明文档，完成进度记录文档
+
+页面文件.txt
+	页面信息说明
+	
+Lottery.FFApp
+	相关工程源码
+	
+database/Function
+database/Procedure
+database/Trigger
+	数据原始脚本
+	
+database/Upgrade
+	数据升级脚本
+
 document
 	相关文档
 	
@@ -20,11 +33,17 @@ document/SuiBiPay
 document/Contract
 	契约相关文档
 	
-Upgrade/20180131
-	随笔付升级
+document/DebugSql
+	调试用SQL语句
 	
-Upgrade/20180202
-	契约升级
+document/KaiJiang
+	开奖相关文档
+	
+document/修复数据
+	数据修复文档
+	
+publish
+	发布目录
 
 Upgrade/SQLs
 	升级数据库脚本

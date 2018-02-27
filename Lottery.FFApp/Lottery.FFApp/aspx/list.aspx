@@ -85,8 +85,19 @@
             s += '</div>';
             $("#ajaxInput").html(s);
 
-            if (nav == "ContractUserList" || nav == "ContractUserListFH" || nav == "ContractUserListGZ") { //加载契约会员
-                ajaxSearch();
+            switch (nav) {
+                case "ContractUserList":
+                case "ContractUserListFH":
+                case "ContractUserListGZ":
+                case "UserProListSub":
+                case "ContractGZRecord":
+                case "ContractFHRecord":
+                case "ContractFHLog":
+                case "ContractGZLog":
+                    ajaxSearch();
+                    break;
+                default:
+                    break;
             }
         });
 
@@ -264,7 +275,20 @@
                                             }
                                         }
                                         else {
-                                            s += '<a href="' + fo[k].Function.replace("@@", t.id).replace("@url@", t.url).replace("@Code@", t.code).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+
+                                            if (nav == "ContractGZLog" || nav == "ContractFHLog") {
+                                                if (t.allowed == "True") {
+                                                    s += '<a href="' + fo[k].Function.replace("@@", t.id).replace("@url@", t.url).replace("@Code@", t.code).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+                                                }
+                                            }
+                                            else if (nav == "UserProListSub") {
+                                                if (t.subcount != "0") {
+                                                    s += '<a href="' + fo[k].Function.replace("@@", t.id).replace("@url@", t.url).replace("@Code@", t.code).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+                                                }
+                                            }
+                                            else {
+                                                s += '<a href="' + fo[k].Function.replace("@@", t.id).replace("@url@", t.url).replace("@Code@", t.code).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+                                            }
                                         }
                                     }
                                 }
@@ -354,6 +378,14 @@
             }
             itemid = s;
             ajaxList(1);
+
+            //if (nav == "UserProListSub") {
+            //    var $table = $("#ajaxList>.query-table>");
+
+            //    if ($table.find("tr").size() == 2) {
+            //        $table.find("tr:first").hide();
+            //    }
+            //}
         }
 
         function ajaxSearchById(obj) {
@@ -424,6 +456,42 @@
                 success: function (data) {
                     if (data.result == "1") {
                         ajaxList(page);
+                        emAlert(data.returnval);
+                    }
+                }
+            });
+        }
+
+        function ajaxGZReissue(id) {
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                data: "",
+                url: "/ajax/ajaxContractGZ.aspx?oper=ajaxGZReissue&id=" + id + "&clienttime=" + Math.random(),
+                success: function (data) {
+                    if (data.result == "0") {
+                        ajaxList(page);
+                        emAlert(data.returnval);
+                    }
+                    else {
+                        emAlert(data.returnval);
+                    }
+                }
+            });
+        }
+
+        function ajaxFHReissue(id) {
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                data: "",
+                url: "/ajax/ajaxContractFH.aspx?oper=ajaxFHReissue&id=" + id + "&clienttime=" + Math.random(),
+                success: function (data) {
+                    if (data.result == "0") {
+                        ajaxList(page);
+                        emAlert(data.returnval);
+                    }
+                    else {
                         emAlert(data.returnval);
                     }
                 }

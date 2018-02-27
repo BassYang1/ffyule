@@ -157,6 +157,8 @@ function timer() {
                             ajaxLotteryDataList(data);
                         }
                         else {
+                            ajaxLotteryTime();
+                            console.log("更新期号");
                             $('#numberstate').html("等待开奖");
                             $('#kjLoading').html(GetNoOpenInfo("正", "在", "开", "奖", "中"));
                             $('#kjLoading').show();

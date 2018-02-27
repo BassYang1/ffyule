@@ -51,11 +51,14 @@
     });
     ajaxAddAfterClear();
     ajaxBetAfterClear();
+
+    //设置彩种投注倍数
+    setBetTimes(false);
 });
 
 function ajaxListNav() {
     var u = "/ajax/ajax.aspx?oper=GetKaiJiangInfoTop10";
-    var index = emLoading();
+    //var index = emLoading();
     $.ajax({
         type: "get",
         dataType: "json",

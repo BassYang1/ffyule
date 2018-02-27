@@ -170,6 +170,61 @@ namespace Lottery.DAL
         /// </summary>
         /// <param name="type"></param>
         /// <param name="title"></param>
+        /// <returns></returns>
+        public bool Update(int type, string title)
+        {
+            string cacheKey = string.Format(Const.CACHE_KEY_LOTTERY_HISTORY, type);
+            IList<LotteryDataModel> history = GetLotteryHistory(type);
+
+            //获取缓存数据
+            LotteryDataModel lottery = (from it in history where it.Type == type && it.Title == title select it).FirstOrDefault();
+            if (lottery == null)
+            {
+                return false;
+            }
+
+            string number = lottery.Number;
+            string numberAll = lottery.NumberAll;
+            int num = lottery.Total;
+            string openTime = lottery.OpenTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ComData.connectionString))
+                {
+                    using (SqlCommand com = new SqlCommand())
+                    {
+                        conn.Open();
+                        com.Connection = conn;
+                        com.CommandText = string.Format(@"INSERT INTO Sys_LotteryData(Type, Title, Number, NumberAll, Total, OpenTime, IsFill)
+                                                    SELECT {0}, '{1}', '{2}', '{3}', {4}, '{5}', 1 
+                                                    WHERE NOT EXISTS(SELECT 1 FROM Sys_LotteryData WHERE Type={0} and Title='{1}'); 
+                                                    select @@identity as id; ", type, title, number, numberAll, num, openTime);
+
+                        object id = com.ExecuteScalar(); //插入数据
+
+                        //插入成功
+                        if (!Convert.IsDBNull(id))
+                        {
+                            lottery.Id = Convert.ToInt32(id);
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorFormat("开奖入库异常 {0}", ex);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 更新彩票开奖信息
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="title"></param>
         /// <param name="number"></param>
         /// <param name="opentime"></param>
         /// <param name="numberAll"></param>

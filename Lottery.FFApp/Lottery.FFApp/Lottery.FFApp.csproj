@@ -407,6 +407,7 @@
     <Content Include="Login.aspx" />
     <Content Include="money\charge.aspx" />
     <Content Include="money\getcash.aspx" />
+    <Content Include="money\specialcharge.html" />
     <Content Include="money\trueName.html" />
     <Content Include="news\index.aspx" />
     <Content Include="news\info.aspx" />
@@ -809,6 +810,7 @@
     <Content Include="statics\img\slider_handle.png" />
     <Content Include="statics\img\slogan.png" />
     <Content Include="statics\img\slogan2.png" />
+    <Content Include="statics\img\specialcharge.png" />
     <Content Include="statics\img\sports_game_bg.jpg" />
     <Content Include="statics\img\sports_match1.jpg" />
     <Content Include="statics\img\sports_match2.jpg" />

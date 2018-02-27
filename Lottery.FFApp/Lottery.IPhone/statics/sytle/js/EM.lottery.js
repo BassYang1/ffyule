@@ -75,8 +75,6 @@ function ajaxBigType() {
     });
 }
 
-
-
 //加载小类玩法
 function ajaxSmallType(bigid) {
     var str = "";

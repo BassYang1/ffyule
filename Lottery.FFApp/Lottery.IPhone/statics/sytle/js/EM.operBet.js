@@ -100,6 +100,41 @@ function AddRow() {
     ArrayOrder.push(json);
     CreateList();
     ajaxAddAfterClear();
+    //设置彩种投注倍数
+    setBetTimes(true);
+}
+
+//设置彩种投注倍数
+function setBetTimes(updated) {
+    var lotId = LotteryId;
+    var times = $("#fromTimes").val();
+    times = times != undefined && times != null && times != "" && !isNaN(times) ? times : "1";
+
+    var cookieId, cookieTimes;
+    var cookieVal = getCookie("mbLotFromTimes");
+    if (cookieVal != undefined && cookieVal != null && cookieVal != "") {
+        var arr = cookieVal.split(":");
+        cookieId = arr.length > 0 ? arr[0] : "";
+        cookieTimes = arr.length > 1 ? arr[1] : "1";
+
+        if (cookieId != lotId) { //更新彩种
+            cookieId = lotId;
+            cookieTimes = "1";
+        }
+        else if(updated == true){
+            cookieTimes = times;
+        }
+    }
+    else {
+        cookieId = lotId;
+        cookieTimes = "1";
+    }
+
+    $("#fromTimes").val(cookieTimes);
+
+    //记录投注倍数
+    delCookie("mbLotFromTimes");
+    setCookie("mbLotFromTimes", cookieId + ":" + cookieTimes);
 }
 
 function DelRow(i, number, total) {

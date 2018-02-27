@@ -209,7 +209,7 @@ function ajaxPopInfo() {
                 if (d.table.length > 0) {
                     var t = d.table[0];
                     if (getCookie("pop") != null) {
-                        if (1 > 0 || getCookie("pop") != t.title + "") {
+                        if (getCookie("pop") != t.title + "") {
                             setCookie("pop", t.title);
                             PopInfo(t.content.replace(/,/g, "<br/>").replace(/ /g, "："));
                             //setTimeout(function () {

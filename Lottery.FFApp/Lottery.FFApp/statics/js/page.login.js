@@ -42,7 +42,7 @@ function ajaxLogin() {
     var index = emLoading();
 
     uPass = Lottery.MD5(oPass);
-    $('#txtUserPass').val(uPass);
+    //$('#txtUserPass').val(uPass);
     $.ajax({
         type: "post",
         dataType: "json",

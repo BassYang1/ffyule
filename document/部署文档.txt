@@ -1,0 +1,45 @@
+WebApp/web.config
+	修改为采集程序地址
+	<add key="CollectUrl" value="http://172.31.109.218" />
+	
+	采集程序开奖数据存储目录，与采集程序目录一致
+	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>
+	
+Iphone/web.config
+	修改为采集程序地址
+	<add key="CollectUrl" value="http://172.31.109.218" />
+	
+	采集程序开奖数据存储目录，与采集程序目录一致
+	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>
+	
+Collect/web.config
+	修改为采集程序地址
+	<add key="RootUrl" value="172.31.109.218"/>	
+	
+	修改为采集程序地址(不再通过站点采集，不再使用)
+	<add key="CollectUrl" value="http://172.31.109.218" />
+	
+	采集程序开奖数据存储目录(不再通过站点采集，不再使用)
+	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>
+	
+Collect/center.html
+	采集进程(不再通过站点采集，不再使用)
+    <iframe width="500" height="500" name="frame1" frameborder="0" src="http://172.31.109.218/Default.aspx" />
+	
+Lottery Windows Service/app.config
+	修改为采集程序地址
+	<add key="RootUrl" value="172.31.109.218"/>	
+	
+	修改为采集程序地址
+	<add key="CollectUrl" value="http://172.31.109.218" />
+	
+	采集程序开奖数据存储目录
+	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>
+	
+	注意不要删除以下文件
+	InstallUtil.exe 安装命令
+	Readme.txt 注意事项
+
+Admin/web.config	
+	采集程序开奖数据存储目录(不再通过站点采集，不再使用)
+	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>

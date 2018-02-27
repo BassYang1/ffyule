@@ -13,7 +13,7 @@ namespace Lottery.Collect
         protected void Application_Start(object sender, EventArgs e)
         {
             log4net.Config.XmlConfigurator.Configure();
-            TimeData.Run();
+            //TimeData.Run();
         }
 
         protected void Session_Start(object sender, EventArgs e)

@@ -86,6 +86,7 @@
                             <a id="g1" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractUserListFH">分配契约</a>
                             <a id="g2" href="javascript:;" nmb="/aspx/List.aspx?nav=UserContractList">已分配契约</a>
                             <a id="g3" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractFHRecord">下级分红记录</a>
+                            <a id="g4" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractFHLog">日志记录</a>
                         </div>
 						<div class="block-panel">
                         <iframe id="workspace" name="workspace" src="/contract/contractfh.aspx" scrolling="no"

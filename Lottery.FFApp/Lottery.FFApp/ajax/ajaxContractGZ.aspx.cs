@@ -4,6 +4,7 @@
 // MVID: CD5F1C7F-2EB9-4806-9452-C9F3634A8986
 // Assembly location: F:\pros\tianheng\bf\WebAppOld\bin\Lottery.FFApp.dll
 
+using log4net;
 using Lottery.DAL;
 using Lottery.DAL.Flex;
 using Lottery.Entity;
@@ -11,7 +12,9 @@ using Lottery.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
+using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
 
@@ -19,6 +22,8 @@ namespace Lottery.WebApp
 {
     public partial class ajaxContractGZ : UserCenterSession
     {
+        private static readonly ILog Log = log4net.LogManager.GetLogger(typeof(ajaxContractGZ));
+
         private string _operType = string.Empty;
         private string _response = string.Empty;
 
@@ -65,6 +70,12 @@ namespace Lottery.WebApp
                     break;
                 case "ajaxGetAgentGZRecord":
                     this.ajaxGetAgentGZRecord();
+                    break;
+                case "ajaxGetContractGZLog":
+                    this.ajaxGetContractGZLog();
+                    break;
+                case "ajaxGZReissue":
+                    this.ajaxGZReissue();
                     break;
                 case "ajaxGetContractGZRecord":
                     this.ajaxGetContractGZRecord();
@@ -306,13 +317,95 @@ namespace Lottery.WebApp
             this.doh.Reset();
             this.doh.ConditionExpress = whereStr;
             int totalCount = this.doh.Count("Act_ActiveRecord");
-            string sql0 = SqlHelp.GetSql0("*,dbo.f_GetUserName(UserId) as UserName,(select count(*) from N_UserContract where ParentId=a.userId and Type=1) as contractcount", "Act_ActiveRecord a", "id", num2, num1, "desc", whereStr);
+            string sql0 = SqlHelp.GetSql0("a.SsId, a.Bet, a.InMoney, a.STime, a.CheckIp AS Remark, dbo.f_GetUserName(UserId) as UserName", "Act_ActiveRecord a", "id", num2, num1, "desc", whereStr);
             this.doh.Reset();
             this.doh.SqlCmd = sql0;
             DataTable dataTable = this.doh.GetDataTable();
             this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\",\"pagebar\" :\"" + PageBar.GetPageBar(80, "js", 2, totalCount, num2, num1, "javascript:ajaxList(<#page#>);") + "\"," + dtHelp.DT2JSON(dataTable) + "}";
             dataTable.Clear();
             dataTable.Dispose();
+        }
+
+        private void ajaxGetContractGZLog()
+        {
+            string state = this.q("state"); //发放状态
+            string str1 = this.q("d1");
+            string str2 = this.q("d2");
+            int num1 = this.Int_ThisPage();
+            int num2 = this.Str2Int(this.q("pagesize"), 20);
+            this.Str2Int(this.q("flag"), 0);
+            if (str1.Trim().Length == 0)
+                str1 = this.StartTime;
+            if (str2.Trim().Length == 0)
+                str2 = this.EndTime;
+            if (Convert.ToDateTime(str1) > Convert.ToDateTime(str2))
+                str1 = str2;
+            string whereStr = "dbo.f_GetUserCode(UserId) like '%," + this.AdminId + ",%' AND Type=2";
+
+            if (!string.IsNullOrEmpty(state) && state != "0")
+            {
+                whereStr += " AND " + (state == "2" ? "Allowed=1" : "Allowed=0");
+            }
+
+            if (str1.Trim().Length > 0 && str2.Trim().Length > 0)
+                whereStr = whereStr + " and OperTime >='" + str1 + "' and OperTime <='" + str2 + "'";
+            this.doh.Reset();
+            this.doh.ConditionExpress = whereStr;
+            int totalCount = this.doh.Count("Log_ContractOper");
+            string sql0 = SqlHelp.GetSql0("Id, Bet, Money, Convert(NVARCHAR(10), OperTime, 120) AS OperTime, Remark, dbo.f_GetUserName(UserId) as UserName, Allowed", "Log_ContractOper", "id", num2, num1, "desc", whereStr);
+            this.doh.Reset();
+            this.doh.SqlCmd = sql0;
+            DataTable dataTable = this.doh.GetDataTable();
+            this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\",\"pagebar\" :\"" + PageBar.GetPageBar(80, "js", 2, totalCount, num2, num1, "javascript:ajaxList(<#page#>);") + "\"," + dtHelp.DT2JSON(dataTable) + "}";
+            dataTable.Clear();
+            dataTable.Dispose();
+        }
+
+        /// <summary>
+        /// 手动派发工资
+        /// </summary>
+        private void ajaxGZReissue()
+        {
+            string logId = this.q("id");
+            if (string.IsNullOrEmpty(logId))
+            {
+                this._response = "{\"result\" :\"0\",\"returnval\" :\"无效数据\"}";
+            }
+
+            using (SqlConnection conn = new SqlConnection(Const.ConnectionString))
+            {
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "GZReissue";
+
+                    SqlParameter parm1 = new SqlParameter("@logId", SqlDbType.Int);
+                    parm1.Value = logId;
+                    parm1.Direction = ParameterDirection.Input;
+                    cmd.Parameters.Add(parm1);
+                    
+                    SqlParameter parm2 = new SqlParameter("@result", SqlDbType.NVarChar, 100);
+                    parm2.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm2);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    conn.Close();
+
+                    string result = parm2.Value.ToString();
+                    Log.Debug(result);
+
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        this._response = "{\"result\" :\"1\",\"returnval\" :\"工资发放成功\"}";
+                    }
+                    else
+                    {
+                        this._response = "{\"result\" :\"0\",\"returnval\" :\"" + result + "\"}";
+                    }
+                }
+            }
         }
 
         public static T JSONToObject<T>(string jsonText)

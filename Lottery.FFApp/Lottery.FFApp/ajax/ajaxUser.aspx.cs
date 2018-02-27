@@ -530,8 +530,8 @@ namespace Lottery.WebApp
         {
             string str1 = this.q("d1") + " 00:00:00";
             string str2 = this.q("d2") + " 23:59:59";
-            string inputString = this.q("id");
-            string str3 = this.q("u");
+            string userId = this.q("id"); //父级代理用户Id
+            string userName = this.q("u"); //用户名
             string str4 = this.q("tid");
             int num1 = this.Int_ThisPage();
             int num2 = this.Str2Int(this.q("pagesize"), 20);
@@ -543,23 +543,24 @@ namespace Lottery.WebApp
             if (Convert.ToDateTime(str1) > Convert.ToDateTime(str2))
                 str1 = str2;
             string str5 = " STime >='" + str1 + "' and STime <='" + str2 + "'";
+
             bool flag = true;
-            if (string.IsNullOrEmpty(inputString))
+            if (string.IsNullOrEmpty(userId))
             {
-                if (!string.IsNullOrEmpty(str3.Trim()))
+                if (!string.IsNullOrEmpty(userName.Trim()))
                 {
                     this.doh.Reset();
-                    this.doh.SqlCmd = "select Id,usercode from N_User where UserName='" + str3 + "'";
+                    this.doh.SqlCmd = "select Id,usercode from N_User where UserName='" + userName + "'";
                     DataTable dataTable = this.doh.GetDataTable();
                     if (dataTable.Rows.Count > 0)
                     {
                         if (dataTable.Rows[0]["usercode"].ToString().Contains(this.AdminId))
                         {
-                            inputString = dataTable.Rows[0]["Id"].ToString();
+                            userId = dataTable.Rows[0]["Id"].ToString();
                         }
                         else
                         {
-                            inputString = "-1";
+                            userId = "-1";
                             flag = false;
                         }
                     }
@@ -568,34 +569,113 @@ namespace Lottery.WebApp
                 }
                 else
                 {
-                    inputString = this.AdminId;
+                    userId = this.AdminId;
                     flag = true;
                 }
             }
+
             if (flag)
             {
                 int num3 = 0;
-                string str6 = string.Format("select {1} as totalcount, {0} as UserID,\r\n                                            (select Convert(varchar(10),cast(round([Point]/10.0,2) as numeric(5,2))) from N_User with(nolock) where Id={0} ) as userpoint,\r\n                                            dbo.f_GetUserName({0}) as userName,\r\n                                            (select isnull(sum(money),0) from N_User with(nolock) where Id = {0}) as money,\r\n                                            isnull(sum(b.Charge),0) Charge,isnull(sum(b.GetCash),0) GetCash,isnull(sum(b.Bet),0)-isnull(sum(b.Cancellation),0) Bet,isnull(sum(b.Point),0) Point,isnull(sum(b.Win),0) Win,isnull(sum(b.Cancellation),0) Cancellation,isnull(sum(b.TranAccIn),0) TranAccIn,isnull(sum(b.TranAccOut),0) TranAccOut,isnull(sum(b.Give),0) Give,isnull(sum(b.Other),0) Other,isnull(sum(b.Change),0) Change,\r\n                                            (isnull(sum(Win),0)+isnull(sum(Point),0)+isnull(sum(Change),0)+isnull(sum(Give),0)+isnull(sum(Cancellation),0))-isnull(sum(Bet),0) as total,\r\n                                            (isnull(sum(Charge),0)-isnull(sum(getcash),0)) as moneytotal\r\n                                            from Flex_UserMoneyStatAll b with(nolock)\r\n                                            where {2} and UserId={0}", (object)inputString, (object)num3, (object)str5) + " union all ";
+                //查询用户的信息
+                string str6 = string.Format(@"select {1} as totalcount, {0} as UserID,
+                                (select Convert(varchar(10),cast(round([Point]/10.0,2) as numeric(5,2))) from N_User with(nolock) where Id={0} ) as userpoint,
+                                dbo.f_GetUserName({0}) as userName,
+                                (select isnull(sum(money),0) from N_User with(nolock) where Id = {0}) as money,
+                                isnull(sum(b.Charge),0) Charge,isnull(sum(b.GetCash),0) GetCash,
+                                isnull(sum(b.Bet),0)-isnull(sum(b.Cancellation),0) Bet,
+                                isnull(sum(b.Point),0) Point,isnull(sum(b.Win),0) Win,
+                                isnull(sum(b.Cancellation),0) Cancellation,
+                                isnull(sum(b.TranAccIn),0) TranAccIn,isnull(sum(b.TranAccOut),0) TranAccOut,
+                                isnull(sum(b.Give),0) Give,isnull(sum(b.Other),0) Other,isnull(sum(b.Change),0) Change,
+                                (isnull(sum(Win),0)+isnull(sum(Point),0)+isnull(sum(Change),0)+isnull(sum(Give),0)+isnull(sum(Cancellation),0))-isnull(sum(Bet),0) as total,
+                                (isnull(sum(Charge),0)-isnull(sum(getcash),0)) as moneytotal,
+                                0 AS SubCount
+                                from Flex_UserMoneyStatAll b with(nolock)
+                                where {2} and UserId={0}", (object)userId, (object)num3, (object)str5) + " union all ";
+
+                //会员总数
                 this.doh.Reset();
-                this.doh.ConditionExpress = " ParentId = " + inputString;
+                this.doh.ConditionExpress = " ParentId = " + userId;
                 int totalCount = this.doh.Count("N_User");
+
+                //遍历会员
                 this.doh.Reset();
-                this.doh.SqlCmd = SqlHelp.GetSql0("Id,UserName,Money,Point", "N_User", "ID", num2, num1, "asc", " ParentId = " + inputString);
+                this.doh.SqlCmd = SqlHelp.GetSql0("Id, UserName, Money, Point, (SELECT COUNT(1) FROM N_User WHERE ParentId=Id) AS SubCount", "N_User", "ID", num2, num1, "asc", " ParentId = " + userId);
                 DataTable dataTable1 = this.doh.GetDataTable();
+
                 for (int index = 0; index < dataTable1.Rows.Count; ++index)
                 {
                     string str7 = str5 + " and UserCode like '%" + Strings.PadLeft(dataTable1.Rows[index]["Id"].ToString()) + "%'";
+                    string subCount = dataTable1.Rows[index]["SubCount"].ToString();
+
                     if (!string.IsNullOrEmpty(str4))
                     {
                         this.doh.Reset();
-                        this.doh.ConditionExpress = "STime >='" + str1 + "' and STime <='" + str2 + "' and UserId=" + dataTable1.Rows[index]["Id"] + " and (Charge<>0 or GetCash<>0 or Bet<>0 or win<>0 or point<>0 or give<>0)";
+                        this.doh.ConditionExpress = @"STime >='" + str1 + "' and STime <='" + str2 + "' and UserId=" + dataTable1.Rows[index]["Id"] + " and (Charge<>0 or GetCash<>0 or Bet<>0 or win<>0 or point<>0 or give<>0)";
                         if (this.doh.Count("Flex_UserMoneyStatAll") > 0)
-                            str6 = str6 + string.Format("select {0} as totalcount, {1} as UserID,\r\n                                            Convert(varchar(10),cast(round({2}/10.0,2) as numeric(5,2))) as userpoint,\r\n                                            '{3}' as userName,\r\n                                            isnull(sum({4}),0)  as money,\r\n                                            isnull(sum(b.Charge),0) Charge,isnull(sum(b.GetCash),0) GetCash,isnull(sum(b.Bet),0)-isnull(sum(b.Cancellation),0)  Bet,isnull(sum(b.Point),0) Point,isnull(sum(b.Win),0) Win,isnull(sum(b.Cancellation),0) Cancellation,isnull(sum(b.TranAccIn),0) TranAccIn,isnull(sum(b.TranAccOut),0) TranAccOut,isnull(sum(b.Give),0) Give,isnull(sum(b.Other),0) Other,isnull(sum(b.Change),0) Change,\r\n                                            (isnull(sum(Win),0)+isnull(sum(Point),0)+isnull(sum(Change),0)+isnull(sum(Give),0)+isnull(sum(Cancellation),0))-isnull(sum(Bet),0) as total,\r\n                                            (isnull(sum(Charge),0)-isnull(sum(getcash),0)) as moneytotal\r\n                                            from Flex_UserMoneyStatAll b with(nolock)\r\n                                            where {5}", (object)totalCount, (object)dataTable1.Rows[index]["Id"].ToString(), (object)dataTable1.Rows[index]["Point"].ToString(), (object)dataTable1.Rows[index]["UserName"].ToString(), (object)dataTable1.Rows[index]["Money"].ToString(), (object)str7) + " union all ";
+                            str6 = str6 + string.Format(@"select {0} as totalcount, {1} as UserID,
+                                Convert(varchar(10),cast(round({2}/10.0,2) as numeric(5,2))) as userpoint,
+                                '{3}' as userName,
+                                isnull(sum({4}),0)  as money,
+                                isnull(sum(b.Charge),0) Charge,isnull(sum(b.GetCash),0) GetCash,
+                                isnull(sum(b.Bet),0)-isnull(sum(b.Cancellation),0)  Bet,
+                                isnull(sum(b.Point),0) Point,isnull(sum(b.Win),0) Win,
+                                isnull(sum(b.Cancellation),0) Cancellation,isnull(sum(b.TranAccIn),0) TranAccIn,
+                                isnull(sum(b.TranAccOut),0) TranAccOut,isnull(sum(b.Give),0) Give,isnull(sum(b.Other),0) Other,
+                                isnull(sum(b.Change),0) Change,
+                                (isnull(sum(Win),0)+isnull(sum(Point),0)+isnull(sum(Change),0)+isnull(sum(Give),0)+isnull(sum(Cancellation),0))-isnull(sum(Bet),0) as total,
+                                (isnull(sum(Charge),0)-isnull(sum(getcash),0)) as moneytotal,
+                                (SELECT COUNT(1) FROM N_User WHERE ParentId = {1}) AS SubCount
+                                from Flex_UserMoneyStatAll b with(nolock)
+                                where {5}",
+                                          (object)totalCount,
+                                          (object)dataTable1.Rows[index]["Id"].ToString(),
+                                          (object)dataTable1.Rows[index]["Point"].ToString(),
+                                          (object)dataTable1.Rows[index]["UserName"].ToString(),
+                                          (object)dataTable1.Rows[index]["Money"].ToString(), 
+                                          (object)str7) + " union all ";
                     }
                     else
-                        str6 = str6 + string.Format("select {0} as totalcount, {1} as UserID,\r\n                                            Convert(varchar(10),cast(round({2}/10.0,2) as numeric(5,2))) as userpoint,\r\n                                            '{3}' as userName,\r\n                                                                                        (select isnull(sum(money),0) from N_User with(nolock) where UserCode like '%,{1},%') as money,\r\n                                            isnull(sum(b.Charge),0) Charge,isnull(sum(b.GetCash),0) GetCash,isnull(sum(b.Bet),0)-isnull(sum(b.Cancellation),0)  Bet,isnull(sum(b.Point),0) Point,isnull(sum(b.Win),0) Win,isnull(sum(b.Cancellation),0) Cancellation,isnull(sum(b.TranAccIn),0) TranAccIn,isnull(sum(b.TranAccOut),0) TranAccOut,isnull(sum(b.Give),0) Give,isnull(sum(b.Other),0) Other,isnull(sum(b.Change),0) Change,\r\n                                            (isnull(sum(Win),0)+isnull(sum(Point),0)+isnull(sum(Change),0)+isnull(sum(Give),0)+isnull(sum(Cancellation),0))-isnull(sum(Bet),0) as total,\r\n                                            (isnull(sum(Charge),0)-isnull(sum(getcash),0)) as moneytotal\r\n                                            from Flex_UserMoneyStatAll b with(nolock)\r\n                                            where {5}", (object)totalCount, (object)dataTable1.Rows[index]["Id"].ToString(), (object)dataTable1.Rows[index]["Point"].ToString(), (object)dataTable1.Rows[index]["UserName"].ToString(), (object)dataTable1.Rows[index]["Money"].ToString(), (object)str7) + " union all ";
+                        str6 = str6 + string.Format(@"select {0} as totalcount, {1} as UserID,
+                                Convert(varchar(10),cast(round({2}/10.0,2) as numeric(5,2))) as userpoint,
+                                '{3}' as userName,
+                                (select isnull(sum(money),0) from N_User with(nolock) where UserCode like '%,{1},%') as money,
+                                isnull(sum(b.Charge),0) Charge,isnull(sum(b.GetCash),0) GetCash,
+                                isnull(sum(b.Bet),0)-isnull(sum(b.Cancellation),0)  Bet,
+                                isnull(sum(b.Point),0) Point,isnull(sum(b.Win),0) Win,
+                                isnull(sum(b.Cancellation),0) Cancellation,isnull(sum(b.TranAccIn),0) TranAccIn,
+                                isnull(sum(b.TranAccOut),0) TranAccOut,isnull(sum(b.Give),0) Give,
+                                isnull(sum(b.Other),0) Other,isnull(sum(b.Change),0) Change,
+                                (isnull(sum(Win),0)+isnull(sum(Point),0)+isnull(sum(Change),0)+isnull(sum(Give),0)+isnull(sum(Cancellation),0))-isnull(sum(Bet),0) as total,
+                                (isnull(sum(Charge),0)-isnull(sum(getcash),0)) as moneytotal,
+                                (SELECT COUNT(1) FROM N_User WHERE ParentId = {1}) AS SubCount
+                                from Flex_UserMoneyStatAll b with(nolock)
+                                where {5}",
+                                          (object)totalCount,
+                                          (object)dataTable1.Rows[index]["Id"].ToString(),
+                                          (object)dataTable1.Rows[index]["Point"].ToString(),
+                                          (object)dataTable1.Rows[index]["UserName"].ToString(),
+                                          (object)dataTable1.Rows[index]["Money"].ToString(),
+                                          (object)str7,
+                                          subCount) + " union all ";
                 }
-                string str8 = str6 + string.Format("select {2} as totalcount, '-1' as UserID,'合计' as userpoint,'' as userName,\r\n                                            (select isnull(sum(money),0) from N_User with(nolock) where UserCode like '%,{0},%') as money,\r\n                                            isnull(sum(b.Charge),0) Charge,isnull(sum(b.GetCash),0) GetCash,isnull(sum(b.Bet),0)-isnull(sum(b.Cancellation),0)  Bet,isnull(sum(b.Point),0) Point,isnull(sum(b.Win),0) Win,isnull(sum(b.Cancellation),0) Cancellation,isnull(sum(b.TranAccIn),0) TranAccIn,isnull(sum(b.TranAccOut),0) TranAccOut,isnull(sum(b.Give),0) Give,isnull(sum(b.Other),0) Other,isnull(sum(b.Change),0) Change,\r\n                                            (isnull(sum(Win),0)+isnull(sum(Point),0)+isnull(sum(Change),0)+isnull(sum(Give),0)+isnull(sum(Cancellation),0))-isnull(sum(Bet),0) as total,\r\n                                            (isnull(sum(Charge),0)-isnull(sum(getcash),0)) as moneytotal\r\n                                            FROM Flex_UserMoneyStatAll b with(nolock) where {1}", (object)inputString, (object)(str5 + " and UserCode like '%" + Strings.PadLeft(inputString) + "%'"), (object)totalCount);
+
+                string str8 = str6 + string.Format(@"select {2} as totalcount, '-1' as UserID,'合计' as userpoint,'' as userName,
+                                (select isnull(sum(money),0) from N_User with(nolock) where UserCode like '%,{0},%') as money,
+                                isnull(sum(b.Charge),0) Charge,isnull(sum(b.GetCash),0) GetCash,
+                                isnull(sum(b.Bet),0)-isnull(sum(b.Cancellation),0)  Bet,
+                                isnull(sum(b.Point),0) Point,isnull(sum(b.Win),0) Win,
+                                isnull(sum(b.Cancellation),0) Cancellation,isnull(sum(b.TranAccIn),0) TranAccIn,
+                                isnull(sum(b.TranAccOut),0) TranAccOut,isnull(sum(b.Give),0) Give,
+                                isnull(sum(b.Other),0) Other,isnull(sum(b.Change),0) Change,
+                                (isnull(sum(Win),0)+isnull(sum(Point),0)+isnull(sum(Change),0)+isnull(sum(Give),0)+isnull(sum(Cancellation),0))-isnull(sum(Bet),0) as total,
+                                (isnull(sum(Charge),0)-isnull(sum(getcash),0)) as moneytotal,
+                                0 AS SubCount
+                                FROM Flex_UserMoneyStatAll b with(nolock) where {1}",
+                                                                                    (object)userId,
+                                                                                    (object)(str5 + " and UserCode like '%" + Strings.PadLeft(userId) + "%'"),
+                                                                                    (object)totalCount);
                 this.doh.Reset();
                 this.doh.SqlCmd = str8;
                 DataTable dataTable2 = this.doh.GetDataTable();

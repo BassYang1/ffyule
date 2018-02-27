@@ -17,7 +17,7 @@ namespace Lottery.Collect.Sys
     /// </summary>
     public abstract class SysBase
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(SysFlb90mData));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(SysBase));
         protected static LotteryDataDAL _lotteryDataDal = new LotteryDataDAL();
         protected static LotteryDAL _sysLotteryDal = new LotteryDAL();
 

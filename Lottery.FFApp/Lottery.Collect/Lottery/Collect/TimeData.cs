@@ -128,12 +128,84 @@ namespace Lottery.Collect
             //TimeData.timerYg120Pk10.Elapsed += new ElapsedEventHandler(TimeData.timerYg120Pk10_Elapsed);
             //ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThYg120Pk10_Fun));
         }
+        
+        public static void Stop()
+        {
+            //腾迅分分彩
+            TimeData.timerQQ60.Enabled = false;
+
+            //官方时时彩
+            TimeData.timerOfficLot.Enabled = false;
+
+            //福彩3D
+            TimeData.timer3d.Enabled = false;
+
+            //体彩P3
+            TimeData.timerP3.Enabled = false;
+
+            //系统彩
+            //TimeData.timerSystemLot.Enabled = false;
+
+            //新德里1.5分彩
+            TimeData.timerXdl90.Enabled = false;
+
+            //菲律宾1.5分
+            TimeData.timerFlb90m.Enabled = false;
+
+            //韩国1.5分彩
+            TimeData.timerHg90m.Enabled = false;
+
+            //东京1.5分彩
+            TimeData.timerDj15.Enabled = false;
+
+            //新加坡2分彩
+            TimeData.timerXjp2fc.Enabled = false;
+
+            //台湾5分彩
+            TimeData.timerTw5fc.Enabled = false;
+
+            //新加坡30秒
+            TimeData.timerXjp30m.Enabled = false;
+
+            //纽约30秒彩
+            TimeData.timerNy30m.Enabled = false;
+
+            //台湾45秒彩
+            TimeData.timerTw45m.Enabled = false;
+
+            //首尔60秒
+            TimeData.timerSe60m.Enabled = false;
+
+            //纽约30秒11选5
+            TimeData.timerYf11x5.Enabled = false;
+
+            //韩国1.5分11选5
+            TimeData.timerHg11x5.Enabled = false;
+
+            //纽约30秒3D
+            TimeData.timerSe60sd.Enabled = false;
+
+            //韩国1.5分3D
+            TimeData.timerHg90sd.Enabled = false;
+
+            //北京PK10
+            TimeData.timerBjpk10.Enabled = false;
+
+            //英国30秒赛车
+            TimeData.timerYfpk10.Enabled = false;
+
+            //英国60秒赛车
+            TimeData.timerYg60sc.Enabled = false;
+
+            //英国120秒赛车
+            TimeData.timerYg120sc.Enabled = false;
+        }
 
         #region 腾迅分分彩
         /// <summary>
         /// 腾迅分分彩
         /// </summary>
-        private static System.Timers.Timer timerQQ60 = new System.Timers.Timer(3000.0);
+        private static System.Timers.Timer timerQQ60 = new System.Timers.Timer(4000.0);
 
         /// <summary>
         /// 腾迅分分彩, 锁
