@@ -32,3 +32,6 @@ SELECT * FROM Sys_LotteryTime WHERE LotteryId = '1015' AND Time > '17:51:51' ORD
 
 --OpenTime: 16:42:01
 --CurrentTime: 16:42:00
+
+
+--UPDATE Sys_Lottery SET ApiUrl = 'http://baidu.com?url' + ApiUrl WHERE ApiUrl IS NOT NULL;

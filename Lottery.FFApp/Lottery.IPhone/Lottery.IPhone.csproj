@@ -519,7 +519,9 @@
     <Content Include="user\userteamtotal.html" />
     <Content Include="user\userupdate.aspx" />
     <Content Include="WEB-INF\site.xml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ajax\ajax.aspx.cs">

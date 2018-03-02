@@ -89,7 +89,7 @@ function ajaxListNav() {
                     }
                     break;
             }
-            closeload(index);
+            //closeload(index);
         }
     });
 }

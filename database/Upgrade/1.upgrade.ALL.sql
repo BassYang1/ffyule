@@ -115,7 +115,6 @@ CREATE TABLE Log_ContractOper(
 );
 END;
 
-ALTER TABLE Log_ContractOper ADD
 --ÐÞ¸ÄAct_ActiveRecord.InMoney×Ö¶ÎÀàÐÍ
 --IF EXISTS(SElECT 1 FROM dbo.SYSOBJECTS WHERE Id = OBJECT_ID(N'Act_ActiveRecord') AND XType = N'U')
 --	AND EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'Act_ActiveRecord') AND name = N'InMoney')

@@ -30,11 +30,32 @@ namespace Lottery.Utils
             }
         }
 
+        /// <summary>
+        /// 数据库连接信息
+        /// </summary>
         public static string ConnectionString
         {
             get
             {
                 return ConfigurationManager.ConnectionStrings["ConnStr"].ToString();
+            }
+        }
+
+        /// <summary>
+        /// 数据库连接信息
+        /// </summary>
+        public static string BetUrl
+        {
+            get
+            {
+                object betUrl = ConfigurationManager.AppSettings["BetUrl"];
+
+                if (betUrl == null)
+                {
+                    return "C:\\Bets\\";
+                }
+
+                return betUrl.ToString();
             }
         }
 

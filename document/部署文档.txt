@@ -5,12 +5,18 @@ WebApp/web.config
 	采集程序开奖数据存储目录，与采集程序目录一致
 	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>
 	
+	会员投注信息存储目录(目前写死在Lottery.DAL.Flex.BetDetailDAL.Folder)
+	<add key="BetUrl" value="C:\\Bets\\"/>
+	
 Iphone/web.config
 	修改为采集程序地址
 	<add key="CollectUrl" value="http://172.31.109.218" />
 	
 	采集程序开奖数据存储目录，与采集程序目录一致
 	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>
+	
+	会员投注信息存储目录(目前写死在Lottery.DAL.Flex.BetDetailDAL.Folder)
+	<add key="BetUrl" value="C:\\Bets\\"/>
 	
 Collect/web.config
 	修改为采集程序地址
@@ -21,6 +27,9 @@ Collect/web.config
 	
 	采集程序开奖数据存储目录(不再通过站点采集，不再使用)
 	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>
+	
+	会员投注信息存储目录(目前写死在Lottery.DAL.Flex.BetDetailDAL.Folder)
+	<add key="BetUrl" value="C:\\Bets\\"/>
 	
 Collect/center.html
 	采集进程(不再通过站点采集，不再使用)
@@ -40,6 +49,16 @@ Lottery Windows Service/app.config
 	InstallUtil.exe 安装命令
 	Readme.txt 注意事项
 
+	会员投注信息存储目录(目前写死在Lottery.DAL.Flex.BetDetailDAL.Folder)
+	<add key="BetUrl" value="C:\\Bets\\"/>
+	
 Admin/web.config	
 	采集程序开奖数据存储目录(不再通过站点采集，不再使用)
 	<add key="DataUrl" value="C:\\FeiFan\\Collect\\Data\\"/>
+	
+	会员投注信息存储目录(目前写死在Lottery.DAL.Flex.BetDetailDAL.Folder)
+	<add key="BetUrl" value="C:\\Bets\\"/>
+	
+注意事项:
+	1, 采集站点Collect如果和IIS默认站点端口相同，会引起系统宕机，解决办法去掉Default站点，或Collect不要使用80端口
+	2, 采集存储目录Data一定要部署在采集站点根目录

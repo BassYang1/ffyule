@@ -31,6 +31,10 @@ PC端
 		ajax/ajaxActive.aspx?oper=ajaxGetList
 		statics/base/lotMenu.js
 		
+	投注
+		statics/js/Em.betoper.js
+		ajax/ajaxBetting.aspx?oper=ajaxBetting
+		
 		
 Admin端
 	活动补发
@@ -55,6 +59,12 @@ Admin端
 		ajax/ajaxUser.aspx?oper=ajaxGetList&page=1&pagesize=10
 		
 	
-	新加坡30秒
+	投注页面/新加坡30秒
 		aspx/nav.aspx?tid=1&id=1004
+		statics/json/BigAndSmalldata.js //奖种配置
+			lotteryData
+		statics/style/js/Em.lottery.js
+			ajaxBigType() //加载玩法大类
+		
+		
 		

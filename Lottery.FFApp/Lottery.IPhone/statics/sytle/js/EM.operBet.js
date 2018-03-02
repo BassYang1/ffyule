@@ -4,7 +4,39 @@
     $("#zhuihao").hide();
 }
 
+function checkBetTime() {
+    if (LotteryId != "1001") { //只处理重庆时时彩
+        return true;
+    }
+
+    var allowBet = true;
+
+    $.ajax({
+        type: "get",
+        dataType: "json",
+        async: false,
+        url: "/ajax/ajaxBetting.aspx?oper=ajaxCheckBetTime&id=" + LotteryId + "&clienttime=" + Math.random(),
+        error: function (XmlHttpRequest, textStatus, errorThrown) { emAlert("亲！页面过期,请刷新页面!"); },
+        success: function (d) {
+            switch (d.result) {
+                case '0':
+                    emAlert(d.returnval);
+                    allowBet = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+
+    return allowBet;
+}
+
 function AddRow() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     if (site.BetIsOpen == "1") {
         emAlert('系统正在维护不能投注！');
         return false;
@@ -629,6 +661,10 @@ function GetRandomNumRemove(Min, Max, removeArr) {
 
 //投注预览
 function ajaxBetView() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     if (site.BetIsOpen == "1") {
         emAlert('系统正在维护不能投注！');
         return false;
