@@ -18,6 +18,11 @@ namespace Lottery.DAL
 {
     public class LotteryCheck : ComData
     {
+        /// <summary>
+        /// 开奖
+        /// </summary>
+        /// <param name="Type">彩种Id</param>
+        /// <param name="Title">期号</param>
         public static void RunOfIssueNum(int LotteryId, string IssueNum)
         {
             LotteryCheck.DoWord doWord = new LotteryCheck.DoWord(LotteryCheck.RunOper);
@@ -52,7 +57,7 @@ namespace Lottery.DAL
                     sqlDataAdapter.SelectCommand.CommandText = string.Format("select top 1 Type,Title,Number from Sys_LotteryData where Type={0} and Title='{1}'", (object)Type, (object)Title);
                     DataTable dataTable1 = new DataTable();
                     sqlDataAdapter.Fill(dataTable1);
-                    
+
                     if (dataTable1.Rows.Count > 0)
                     {
                         //投注信息

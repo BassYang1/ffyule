@@ -81,6 +81,7 @@ namespace Lottery.Collect
 
                 SysLotteryModel sysLottery = _lotteryDal.GetSysLotteryByCode(code.ToString());
 
+                Log.DebugFormat("获取开奖信息: {0} {1}", sysLottery.Title, sysLottery.Code);
                 if (sysLottery == null || string.IsNullOrEmpty(sysLottery.ApiUrl))
                 {
                     throw new Exception("无效的API配置");
@@ -101,12 +102,15 @@ namespace Lottery.Collect
                     {
                         Public.SaveLotteryData2File(lotId);
                         LotteryCheck.RunOfIssueNum(lotId, expect);
+                        Log.DebugFormat("发布开奖信息: {0} {1}", sysLottery.Title, openCode);
                     }
+
+                    Log.DebugFormat("开奖信息详细: {0} {1} {2}", sysLottery.Title, expect, openCode);
                 }
             }
             catch (Exception ex)
-            {
-                Log.ErrorFormat("官方彩票异常: {0}", ex);
+            {                
+                Log.ErrorFormat("官方彩票异常: {0} {1}", code != null ? code.ToString() : "奖种无效", ex);
                 //new LogExceptionDAL().Save("采集异常", "腾讯分分彩获取开奖数据出错，错误代码：" + ex.Message);
             }
         }

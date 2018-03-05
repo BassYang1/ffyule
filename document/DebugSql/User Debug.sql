@@ -4,9 +4,14 @@ SELECT * FROM N_USER WHERE UserGroup IN (0);
 SELECT * FROM N_USER WHERE ParentId IN (0);
 SELECT * FROM N_USER WHERE Id=1963;
 
-/*
+SELECT * FROM N_UserGroup;
+SELECT * FROM N_User WHERE UserName IN ('test001', 'Zhang1212');
 
-UPDATE N_USER SET Password='c1601dc1bf00f0a2c9d5f9a8c34eb27f97d0a8b7fcdba0f7a038ab51cf619bad' 
-WHERE UserName IN ('yzz1230','hao1699','azf223366', 'admin', 'taiyi', 'lululu', 'l11111111', 'qqq111', 'ceshi008');
+/*
+--123456
+UPDATE N_USER SET Password='cdd7e692858094371afa6affc351d71030aa93a45a1ffe132b3b97282b6a49b8' 
+WHERE UserName IN ('Zhang1212','hao1699','azf223366', 'admin', 'taiyi', 'lululu', 'l11111111', 'qqq111', 'ceshi008');
+
+UPDATE N_User SET UserGroup=0 WHERE UserName IN ('test001');
 
 */

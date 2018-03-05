@@ -35,6 +35,13 @@ PC端
 		statics/js/Em.betoper.js
 		ajax/ajaxBetting.aspx?oper=ajaxBetting
 		
+	游戏记录
+		statics/base/lotBase.js
+		aspx/list.aspx?nav=betlist
+		ajax/ajaxBet.aspx?oper=ajaxGetList&type=1
+		
+		aspx/list.aspx?nav=betlist_User
+		ajax/ajaxBet.aspx?oper=ajaxGetList"
 		
 Admin端
 	活动补发

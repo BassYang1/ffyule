@@ -39,6 +39,11 @@ namespace Lottery.Collect.Sys
         }
 
         /// <summary>
+        /// 彩票名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// 奖种编号
         /// </summary>
         public string Code { get; set; }
@@ -99,10 +104,12 @@ namespace Lottery.Collect.Sys
         /// <summary>
         /// 彩种编码
         /// </summary>
-        /// <param name="code"></param>
-        public SysBase(string code)
+        /// <param name="code">彩种编码</param>
+        /// <param name="name">彩种名称</param>
+        public SysBase(string code, string name)
         {
             this.Code = code;
+            this.Name = name;
 
             if (!string.IsNullOrEmpty(this.Code))
             {
@@ -117,11 +124,16 @@ namespace Lottery.Collect.Sys
         {
             try
             {
+                // DateTime.Now = 2018-03-05 00:00:03
+                //this.OpenTime = "2018-03-03 23:59:59.000";
+
                 //上一期开奖时间已结束，才生成本期号码
                 if (!string.IsNullOrEmpty(this.OpenTime) && Convert.ToDateTime(this.OpenTime) >= DateTime.Now)
                 {
                     return;
                 }
+
+                Log.DebugFormat("更新开奖期号：{0} {1}", this.Name, this.Code);
 
                 if (this.SysLottery == null)
                 {
@@ -132,6 +144,7 @@ namespace Lottery.Collect.Sys
                 {
                     using (DbOperHandler doh = new SqlDbOperHandler(conn))
                     {
+                        DateTime lastTime = Convert.ToDateTime(this.OpenTime);
                         string ltId = this.SysLottery.Id.ToString();
                         //DateTime curDateTime = GetDateTime(); //当前日期时间
                         DateTime curDateTime = DateTime.Now; //当前日期时间
@@ -147,14 +160,16 @@ namespace Lottery.Collect.Sys
                             UserCenterSession.LotteryTime = new LotteryTimeDAL().GetTable(); //开奖时间
                         }
 
+                        //SELECT * FROM Sys_LotteryTime WHERE Time <'00:00:03' and LotteryId= 1011 ORDER BY Time DESC;
                         DataRow[] dataRowArray2 = UserCenterSession.LotteryTime.Select("Time <'" + curTime + "' and LotteryId=" + ltId, "Time desc");
 
                         if (dataRowArray2.Length == 0)
                         {
+                            //开当日最后一期奖的时候，如新德里1.5分彩，可能当前时间已经是第二天0点
                             dataRowArray2 = UserCenterSession.LotteryTime.Select("LotteryId=" + ltId, "Time desc");
-                            curExpect = curDateTime.AddDays(-1.0).ToString("yyyyMMdd") + "-" + dataRowArray2[0]["Sn"].ToString();
+                            curExpect = curDateTime.AddDays(-1).ToString("yyyyMMdd") + "-" + dataRowArray2[0]["Sn"].ToString();
                             curNum = dataRowArray2[0]["Sn"].ToString();
-                            openTime = Convert.ToDateTime(dataRowArray2[0]["Time"].ToString()); //本期开奖时间
+                            openTime = Convert.ToDateTime(curDateTime.AddDays(-1).ToString("yyyyMMdd") + " " + dataRowArray2[0]["Time"].ToString()); //本期开奖时间
                         }
                         else
                         {
@@ -219,14 +234,14 @@ namespace Lottery.Collect.Sys
 
                         //Console.WriteLine("彩种: {0}, 开奖时间: {1}, 期号: {2}, {3}", this.Code, this.OpenTime, this.ExpectNo, this.Expect);
                         //Console.WriteLine("当前时间: {0}", curDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                        Log.DebugFormat("彩种: {0}, 开奖时间: {1}, 期号: {2}, {3}", this.Code, this.OpenTime, this.ExpectNo, this.Expect);
+                        Log.DebugFormat("彩种: {0}, 开奖时间: {1}, 期号: {2}, {3}", this.Name, this.OpenTime, this.ExpectNo, this.Expect);
                         //Log.DebugFormat("当前时间: {0}", curDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                Log.ErrorFormat("更新期号发生异常: {0} {1}", this.Name, ex);
             }
         }
 
@@ -252,6 +267,8 @@ namespace Lottery.Collect.Sys
                 //生成开奖号码
                 this.Generate();
 
+                Log.DebugFormat("保存开奖期号：{0} {1} {2}", this.Name, this.ExpectNo, this.Number);
+
                 //开奖信息入库
                 if (_lotteryDataDal.Update(this.SysLottery.Id, this.ExpectNo, this.Number, this.OpenTime, this.NumberAll))
                 {
@@ -261,7 +278,7 @@ namespace Lottery.Collect.Sys
             }
             catch (Exception ex)
             {
-                throw ex;
+                Log.ErrorFormat("开奖发生异常: {0} {1}", this.Name, ex);
             }
         }
 

@@ -21,6 +21,7 @@ function ajaxUserInfo() {
             }
         }
     });
+
     setTimeout('ajaxUserInfo()', 60000);
 }
 
