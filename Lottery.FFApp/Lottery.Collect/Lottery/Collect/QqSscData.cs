@@ -78,7 +78,7 @@ namespace Lottery.Collect
                     {
                         OpenTime = Convert.ToDateTime(openTime); //开奖时间
                         Public.SaveLotteryData2File(1005);
-                        LotteryCheck.RunOfIssueNum(1005, expect);
+                        LotteryCheck.RunOfIssueNum(1005, expect); //开奖
                     }
                 }
             }

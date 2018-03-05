@@ -159,6 +159,14 @@ function InItInfo(typeId, setId) {
         bankHtml += "<li class='cashier-bank'><label><input type='radio' value='WX' title='微信扫码支付' class='radio' name='bank'/><span class='icon-bank bank-WX'></span></label></li>";
         //bankHtml += "<li class='cashier-bank'><label><input type='radio' value='QQ' title='QQ钱包扫码支付' class='radio' name='bank'/><span class='icon-bank bank-QQ'></span></label></li>";
         //bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CFT' title='财付通即时倒账' class='radio' name='bank'/><span class='icon-bank bank-CFT'></span></label></li>";
+        bank = "ZDBBILL"; 
+    }
+    if (typeId == "9") { //智得宝
+        $("#divName").hide();
+        bankHtml += "<li class='cashier-bank selected'><label><input type='radio' value='alipay_scan' title='支付宝即时到账' class='radio' name='bank' checked/><span class='icon-bank bank-ZFB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='weixin_scan' title='微信扫码支付' class='radio' name='bank'/><span class='icon-bank bank-WX'></span></label></li>";
+        //bankHtml += "<li class='cashier-bank'><label><input type='radio' value='QQ' title='QQ钱包扫码支付' class='radio' name='bank'/><span class='icon-bank bank-QQ'></span></label></li>";
+        //bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CFT' title='财付通即时倒账' class='radio' name='bank'/><span class='icon-bank bank-CFT'></span></label></li>";
         bank = "SUIBIPAY";
     }
     bankHtml += "</ul>";
@@ -278,6 +286,14 @@ function step2Post() {
                 info += '<li><span class="si-name">大写金额：</span> <span class="si-con"><em>' + chrDxMoney + '</em>元</span></li>';
                 $("#chargeInfo").html(info);
             }
+            if (typeId == 9) {
+                var info = '<li><span class="si-name">充值银行：</span> <span class="si-con"><i class="icon-bank ' + bankCss + '"></i></span></li>';
+                info += '<li><span class="si-name">需用银行卡：</span> <span class="si-con">请使用支付宝扫描付款</span></li>';
+                info += '<li><span class="si-name">会员账号：</span> <span class="si-con">' + username + '</span></li>';
+                info += '<li><span class="si-name">充值金额：</span> <span class="si-con"><em>' + chrMoney + '</em>元</span></li>';
+                info += '<li><span class="si-name">大写金额：</span> <span class="si-con"><em>' + chrDxMoney + '</em>元</span></li>';
+                $("#chargeInfo").html(info);
+            }
             $("#s1class").removeClass();
             $("#s2class").removeClass().addClass("current");
             $("#s3class").removeClass();
@@ -361,6 +377,30 @@ function step3Post() {
                 if (orderId) {
                     url = getHost() + "/pay/suibipay/pay.aspx?bank=" + bank + "&setId=" + line + "&amount=" + chrMoney + "&userId=" + adminId + "&orderId=" + orderId;
                     //LayerPop('随笔付支付', '1200px', '550px', url);
+                    window.open(url);
+                    checkState(orderId);
+                }
+            }
+            else if (typeId == 9) { //智得宝
+                var orderId = "";
+
+                //获取订单号
+                $.ajax({
+                    type: "get",
+                    dataType: "json",
+                    async: false,
+                    url: "/ajax/ajaxMoney.aspx?oper=ajaxChargeOrderId&clienttime=" + Math.random(),
+                    error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
+                    success: function (d) {
+                        if (d.result == "1") {
+                            orderId = d.returnval;
+                        }
+                    }
+                });
+
+                if (orderId) {
+                    url = getHost() + "/pay/zdbbill/pay.aspx?bank=" + bank + "&setId=" + line + "&amount=" + chrMoney + "&userId=" + adminId + "&orderId=" + orderId;
+                    //LayerPop('智得宝支付', '1200px', '550px', url);
                     window.open(url);
                     checkState(orderId);
                 }

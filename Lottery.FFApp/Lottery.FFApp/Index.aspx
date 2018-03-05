@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>立博国际娱乐</title>
+    <title>宏盛娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script type="text/javascript" src="/statics/jquery-1.11.3.min.js"></script>
@@ -34,13 +34,13 @@
                                 <div class="slide-content">
                                     <div class="slide-panel">
                                         <a href="#">
-                                            <img src="/statics/img/focus_banner1.png" alt=""></a></div>
+                                            <img src="/statics/img/focus_banner1.jpg" alt=""></a></div>
                                     <div class="slide-panel">
                                         <a href="#">
                                             <img src="/statics/img/focus_banner2.png" alt=""></a></div>
                                     <div class="slide-panel">
                                         <a href="#">
-                                            <img src="/statics/img/focus_banner3.png" alt=""></a></div>
+                                            <img src="/statics/img/focus_banner3.jpg" alt=""></a></div>
                                     <div class="slide-panel">
                                         <a href="#">
                                             <img src="/statics/img/focus_banner4.png" alt=""></a></div>
@@ -49,7 +49,7 @@
                                             <img src="/statics/img/focus_banner5.png" alt=""></a></div>
                                     <div class="slide-panel">
                                         <a href="#">
-                                            <img src="/statics/img/focus_banner6.png" alt=""></a></div>
+                                            <img src="/statics/img/focus_banner6.jpg" alt=""></a></div>
                                     <div class="slide-panel">
                                         <a href="#">
                                             <img src="/statics/img/focus_banner7.png" alt=""></a></div>

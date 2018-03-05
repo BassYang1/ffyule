@@ -9,7 +9,7 @@ using System;
 
 namespace Lottery.Web.money
 {
-  public partial class chargeSbf : UserCenterSession
+  public partial class chargeZdb : UserCenterSession
   {
     protected void Page_Load(object sender, EventArgs e)
     {

@@ -18,6 +18,11 @@ namespace Lottery.DAL
 {
     public class LotteryCheck : ComData
     {
+        /// <summary>
+        /// 开奖
+        /// </summary>
+        /// <param name="LotteryId">彩种id</param>
+        /// <param name="IssueNum">期号</param>
         public static void RunOfIssueNum(int LotteryId, string IssueNum)
         {
             LotteryCheck.DoWord doWord = new LotteryCheck.DoWord(LotteryCheck.RunOper);

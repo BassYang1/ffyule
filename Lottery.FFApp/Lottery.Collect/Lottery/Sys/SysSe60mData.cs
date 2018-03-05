@@ -17,11 +17,12 @@ namespace Lottery.Collect.Sys
         private static SysBase Lottery = new SysSe60mData();
 
         public SysSe60mData()
-            : base("se60m")
+            : base("se60m", "首尔60秒")
         {
             base.NumberCount = 5;
             base.NumberAllCount = 20;
             base.NumberAllSize = 2;
+            Log.DebugFormat("彩种: {0}, {1}", base.Name, base.Code);
         }
 
         /// <summary>
@@ -47,6 +48,7 @@ namespace Lottery.Collect.Sys
 
             base.NumberAll = string.Join(",", numAllArr);
             base.Number = string.Join(",", numArr);
+            Log.DebugFormat("生成开奖号码: {0} {1}", base.Name, base.Number);
         }
 
         /// <summary>
@@ -63,11 +65,12 @@ namespace Lottery.Collect.Sys
                 {
                     Lottery.LastExpect = Lottery.ExpectNo;
                     Lottery.UpdateLottery();
+                    Log.DebugFormat("开奖期数: {0} {1}", Lottery.Name, Lottery.ExpectNo);
                 }
             }
             catch (Exception ex)
             {
-                Log.ErrorFormat("首尔60秒: {0}", ex);
+                Log.ErrorFormat("开奖发生异常: {0} {1}", Lottery.Name, ex);
                 //new LogExceptionDAL().Save("采集异常", "腾讯分分彩获取开奖数据出错，错误代码：" + ex.Message);
             }
         }

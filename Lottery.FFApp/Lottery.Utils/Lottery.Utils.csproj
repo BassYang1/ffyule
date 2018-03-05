@@ -79,6 +79,7 @@
     <Compile Include="LotterySum.cs" />
     <Compile Include="CheckPK10_DXDS.cs" />
     <Compile Include="csvHelp.cs" />
+    <Compile Include="Win32.cs" />
     <Compile Include="YouLeTcpServerEngine.cs" />
     <Compile Include="CheckSSC_DN.cs" />
     <Compile Include="CheckPK10_DDBDD.cs" />

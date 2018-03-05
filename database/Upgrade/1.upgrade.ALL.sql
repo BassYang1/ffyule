@@ -121,3 +121,21 @@ END;
 --	ALTER TABLE Act_ActiveRecord ALTER COLUMN InMoney DECIMAL(18, 4);
 --GO
 --/////2018-02-28 End
+
+
+--增加支付方式唯一码 UCode
+IF EXISTS(SElECT 1 FROM dbo.SYSOBJECTS WHERE Id = OBJECT_ID(N'Sys_ChargeSet') AND XType = N'U')
+	AND NOT EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'Sys_ChargeSet') AND name = N'UCode')
+	ALTER TABLE Sys_ChargeSet ADD UCode NVARCHAR(20);
+GO
+
+--增加智得宝支付方式
+DECLARE @maxCsId INT, @maxMerCode INT;
+SELECT @maxCsId = MAX(id), @maxMerCode = MAX(MerCode) FROM Sys_ChargeSet;
+
+INSERT INTO Sys_ChargeSet(Id, [Type], Name, MerName, MerCode, MerKey, MerCard, MinCharge, MaxCharge, StartTime, EndTime, Total, IsUsed, Sort, STime, UCode)
+SELECT @maxCsId + 1, 9, N'智得宝', N'智得宝', @maxMerCode + 1, N'Zdbbill','https://merchants.zdbbill.com', 50, 
+3000, '00:00:00', '23:59:59', 1000000, 0, 3, GETDATE(), N'zdbbill'
+WHERE NOT EXISTS(SELECT 1 FROM Sys_ChargeSet WHERE MerKey = N'Zdbbill');
+
+SELECT * FROM Sys_ChargeSet;

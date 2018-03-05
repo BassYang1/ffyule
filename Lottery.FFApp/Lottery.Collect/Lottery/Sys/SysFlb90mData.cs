@@ -17,11 +17,12 @@ namespace Lottery.Collect.Sys
         private static SysBase Lottery = new SysFlb90mData();
 
         public SysFlb90mData()
-            : base("flb90m")
+            : base("flb90m", "菲律宾1.5分")
         {
             base.NumberCount = 5;
             base.NumberAllCount = 20;
             base.NumberAllSize = 2;
+            Log.DebugFormat("彩种: {0}, {1}", base.Name, base.Code);
         }
 
         /// <summary>
@@ -47,6 +48,7 @@ namespace Lottery.Collect.Sys
 
             base.NumberAll = string.Join(",", numAllArr);
             base.Number = string.Join(",", numArr);
+            Log.DebugFormat("生成开奖号码: {0} {1}", base.Name, base.Number);
         }
 
         /// <summary>
@@ -62,14 +64,14 @@ namespace Lottery.Collect.Sys
 
                 if (string.IsNullOrEmpty(Lottery.LastExpect) || !Lottery.LastExpect.Equals(Lottery.ExpectNo))
                 {
-                    Console.WriteLine("更新期号: {0}", Lottery.ExpectNo);
                     Lottery.LastExpect = Lottery.ExpectNo;
                     Lottery.UpdateLottery();
+                    Log.DebugFormat("开奖期数: {0} {1}", Lottery.Name, Lottery.ExpectNo);
                 }
             }
             catch (Exception ex)
             {
-                Log.ErrorFormat("菲律宾1.5分: {0}", ex);
+                Log.ErrorFormat("开奖发生异常: {0} {1}", Lottery.Name, ex);
                 //new LogExceptionDAL().Save("采集异常", "腾讯分分彩获取开奖数据出错，错误代码：" + ex.Message);
             }
         }

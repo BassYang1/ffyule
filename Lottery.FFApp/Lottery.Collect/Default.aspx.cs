@@ -1,4 +1,5 @@
 ﻿using Lottery.Collect.Sys;
+using Lottery.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace Lottery.Collect
     {
 		protected void Page_Load(object sender, EventArgs e)
 		{
+            //Win32.SetSystemTime();
             //SysFlb90mData.UpdateData();   
+            //SysXdl90mData.UpdateData();
 			base.Response.Write("程序已经启动，开奖进行中。" + DateTime.Now.ToString());
 			base.Response.End();
 		}

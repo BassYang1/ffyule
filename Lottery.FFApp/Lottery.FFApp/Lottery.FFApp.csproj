@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\DLLs\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="FusionCharts">
       <HintPath>..\DLLs\FusionCharts.dll</HintPath>
     </Reference>
@@ -274,6 +277,21 @@
       <DependentUpon>result.aspx</DependentUpon>
     </Compile>
     <Compile Include="pay\suibipay\SbfHelper.cs" />
+    <Compile Include="pay\zdbbill\notify.aspx.cs">
+      <DependentUpon>notify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\zdbbill\notify.aspx.designer.cs">
+      <DependentUpon>notify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pay\zdbbill\pay.aspx.cs">
+      <DependentUpon>pay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\zdbbill\pay.aspx.designer.cs">
+      <DependentUpon>pay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pay\zdbbill\ZdbHelper.cs" />
     <Compile Include="plus\auto.aspx.cs">
       <DependentUpon>auto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -416,6 +434,8 @@
     <Content Include="pay\suibipay\notify.aspx" />
     <Content Include="pay\suibipay\pay.aspx" />
     <Content Include="pay\suibipay\result.aspx" />
+    <Content Include="pay\zdbbill\notify.aspx" />
+    <Content Include="pay\zdbbill\pay.aspx" />
     <Content Include="plus\auto.aspx" />
     <Content Include="plus\getcode.aspx" />
     <Content Include="plus\GetNumber.aspx" />
@@ -492,6 +512,7 @@
     <Content Include="statics\img\app_image_ios.png" />
     <Content Include="statics\img\app_ios.png" />
     <Content Include="statics\img\bank-ABC.png" />
+    <Content Include="statics\img\bank-alipay_scan.png" />
     <Content Include="statics\img\bank-BHB.png" />
     <Content Include="statics\img\bank-BJB.png" />
     <Content Include="statics\img\bank-BJRCB.png" />
@@ -515,6 +536,7 @@
     <Content Include="statics\img\bank-SHB.png" />
     <Content Include="statics\img\bank-SPDB.png" />
     <Content Include="statics\img\bank-SZDB.png" />
+    <Content Include="statics\img\bank-weixin_scan.png" />
     <Content Include="statics\img\bank-WX.png" />
     <Content Include="statics\img\bank-ZFB.png" />
     <Content Include="statics\img\bank_36_abc.png" />
@@ -964,6 +986,9 @@
     <Content Include="statics\My97DatePicker\skin\whyGreen\datepicker.css" />
     <Content Include="statics\My97DatePicker\skin\whyGreen\img.gif" />
     <Content Include="statics\My97DatePicker\WdatePicker.js" />
+    <Content Include="statics\qrcode\jquery.qrcode.js" />
+    <Content Include="statics\qrcode\qrcode.js" />
+    <Content Include="statics\qrcode\utf.js" />
     <Content Include="statics\sharedata.js" />
     <Content Include="statics\yanue.pop.js" />
     <Content Include="temp\WebLot.aspx" />

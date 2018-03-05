@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\DLLs\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\DLLs\log4net.dll</HintPath>
     </Reference>
@@ -50,13 +53,17 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="money\chargeZdb.aspx" />
     <Content Include="money\chargeSbf.aspx" />
     <Content Include="pay\suibipay\notify.aspx" />
     <Content Include="pay\suibipay\pay.aspx" />
     <Content Include="pay\suibipay\result.aspx" />
+    <Content Include="pay\zdbbill\notify.aspx" />
+    <Content Include="pay\zdbbill\pay.aspx" />
     <Content Include="plus\ajaxuploadhandler.ashx" />
     <Content Include="statics\data\qqwry.dat" />
     <Content Include="statics\layer\layer.rar" />
@@ -588,6 +595,10 @@
       <DependentUpon>charge.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="money\chargeZdb.aspx.cs">
+      <DependentUpon>chargeZdb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="money\chargeSbf.aspx.cs">
       <DependentUpon>chargeSbf.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -608,7 +619,7 @@
       <DependentUpon>newsinfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pay\SbfHelper.cs" />
+    <Compile Include="pay\suibipay\SbfHelper.cs" />
     <Compile Include="pay\suibipay\notify.aspx.cs">
       <DependentUpon>notify.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -621,6 +632,15 @@
       <DependentUpon>result.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="pay\zdbbill\notify.aspx.cs">
+      <DependentUpon>notify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\zdbbill\pay.aspx.cs">
+      <DependentUpon>pay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\zdbbill\ZdbHelper.cs" />
     <Compile Include="plus\getcode.aspx.cs">
       <DependentUpon>getcode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

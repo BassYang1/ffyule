@@ -13,8 +13,8 @@
             TableTemplate = {
                 Title: "财务中心",
                 ListCount: 5,
-                ListName: [{ key: "专线充值" }, { key: "存款" }, { key: "取款" }, { key: "存款记录" }, { key: "取款记录" }, { key: "转账记录"}],
-                ListUrl: [{ key: "/money/specialcharge.html" }, { key: "/money/charge.aspx" }, { key: "/money/getcash.aspx" }, { key: "/aspx/list.aspx?nav=ChargeList" }, { key: "/aspx/list.aspx?nav=GetCashList" }, { key: "/aspx/list.aspx?nav=GetTranAccList" }]
+                ListName: [{ key: "取款" }, { key: "存款记录" }, { key: "取款记录" }, { key: "转账记录"}],
+                ListUrl: [ { key: "/money/charge.aspx" }, { key: "/money/getcash.aspx" }, { key: "/aspx/list.aspx?nav=ChargeList" }, { key: "/aspx/list.aspx?nav=GetCashList" }, { key: "/aspx/list.aspx?nav=GetTranAccList" }]
             };
             break;
         case "u":

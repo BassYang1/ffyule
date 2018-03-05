@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>立博国际娱乐</title>
+    <title>宏盛娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -45,7 +45,7 @@
                             placeholder="请输入取款金额" />
                         <span class="unit">元</span>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group hide">
                         <label class="lab">
                             金额大写：</label>
                         <input id="moneyUpper" type="text" value="" class="ipt" />

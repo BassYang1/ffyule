@@ -5,7 +5,7 @@ body{background:url(../img/login_bg.jpg) no-repeat center top;}
 .login-center{width:400px;overflow:hidden;margin-left:auto;margin-right:auto;}
 .login-center .slogan{margin-top:55px;margin-bottom:40px;text-align:center;}
 
-.login-form{overflow:hidden;padding:220px 50px 40px;border-radius:10px;background:url(../img/ff_logo2.png) no-repeat center 30px;background-color:#1d1e25;background-color:rgba(29,30,37,.9);}
+.login-form{overflow:hidden;padding:220px 50px 40px;border-radius:10px;background:url(../img/ff_logo.png) no-repeat center 30px; background-color:#1d1e25;background-color:rgba(29,30,37,.9);}
 .login-form .form-group{position:relative;overflow:hidden;margin-bottom:15px;}
 .login-form .control-label{display:block;}
 .login-form .control-label i,.login-form .code{position:absolute;z-index:9;}

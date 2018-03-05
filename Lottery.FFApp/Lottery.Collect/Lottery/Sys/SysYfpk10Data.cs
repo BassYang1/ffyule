@@ -17,11 +17,12 @@ namespace Lottery.Collect.Sys
         private static SysBase Lottery = new SysYfpk10Data();
 
         public SysYfpk10Data()
-            : base("yfpk10")
+            : base("yfpk10", "英国30秒赛车")
         {
             base.NumberCount = 10;
             base.NumberAllCount = 10;
             base.NumberAllSize = 2;
+            Log.DebugFormat("彩种: {0}, {1}", base.Name, base.Code);
         }
 
         /// <summary>
@@ -35,6 +36,7 @@ namespace Lottery.Collect.Sys
 
             base.NumberAll = string.Join(",", numAllArr);
             base.Number = base.NumberAll;
+            Log.DebugFormat("生成开奖号码: {0} {1}", base.Name, base.Number);
         }
 
         /// <summary>
@@ -51,11 +53,12 @@ namespace Lottery.Collect.Sys
                 {
                     Lottery.LastExpect = Lottery.ExpectNo;
                     Lottery.UpdateLottery();
+                    Log.DebugFormat("开奖期数: {0} {1}", Lottery.Name, Lottery.ExpectNo);
                 }
             }
             catch (Exception ex)
             {
-                Log.ErrorFormat("英国30秒赛车: {0}", ex);
+                Log.ErrorFormat("开奖发生异常: {0} {1}", Lottery.Name, ex);
                 //new LogExceptionDAL().Save("采集异常", "腾讯分分彩获取开奖数据出错，错误代码：" + ex.Message);
             }
         }
