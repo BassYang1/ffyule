@@ -6,23 +6,23 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Projects\ffyule\publish\ffmobile</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Projects\hongsheng\publish\ffmobile</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="active/active1.html">
-      <publishTime>01/25/2018 15:23:22</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="active/active2.html">
-      <publishTime>01/25/2018 15:23:34</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="active/active3.html">
-      <publishTime>01/25/2018 15:24:16</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="active/active4.html">
-      <publishTime>01/25/2018 15:23:56</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="active/active5.html">
-      <publishTime>01/25/2018 15:24:51</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="active/css/activity.css">
       <publishTime>11/16/2016 22:14:39</publishTime>
@@ -79,7 +79,7 @@
       <publishTime>11/16/2016 20:24:41</publishTime>
     </File>
     <File Include="active/index.html">
-      <publishTime>01/25/2018 15:25:11</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="ajax/ajax.aspx">
       <publishTime>10/23/2016 17:01:32</publishTime>
@@ -115,22 +115,25 @@
       <publishTime>10/23/2016 17:01:31</publishTime>
     </File>
     <File Include="bet/betInfo.html">
-      <publishTime>01/25/2018 15:28:44</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="bet/betlist.html">
-      <publishTime>01/25/2018 15:26:26</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="bet/betzhdetils.html">
-      <publishTime>01/25/2018 15:26:45</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="bet/betzhInfo.html">
-      <publishTime>01/25/2018 15:26:54</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="bet/betzhlist.html">
-      <publishTime>01/25/2018 15:27:07</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="bet/index.html">
-      <publishTime>01/25/2018 15:27:18</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
+    </File>
+    <File Include="bin/BouncyCastle.Crypto.dll">
+      <publishTime>10/24/2013 11:57:18</publishTime>
     </File>
     <File Include="bin/LitJSON.dll">
       <publishTime>06/19/2014 20:15:47</publishTime>
@@ -139,25 +142,25 @@
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>03/02/2018 22:19:32</publishTime>
+      <publishTime>03/07/2018 17:25:24</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>03/02/2018 22:19:31</publishTime>
+      <publishTime>03/07/2018 17:25:23</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/07/2018 17:25:22</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/07/2018 17:25:16</publishTime>
     </File>
     <File Include="bin/Lottery.FFCache.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/07/2018 17:25:17</publishTime>
     </File>
     <File Include="bin/Lottery.IPhone.dll">
-      <publishTime>03/02/2018 22:19:34</publishTime>
+      <publishTime>03/07/2018 17:25:26</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/07/2018 17:25:17</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -169,106 +172,112 @@
       <publishTime>07/06/2016 10:07:58</publishTime>
     </File>
     <File Include="center.html">
-      <publishTime>02/21/2018 10:03:41</publishTime>
+      <publishTime>03/07/2018 09:52:54</publishTime>
     </File>
     <File Include="center/bankInfo.aspx">
-      <publishTime>01/25/2018 15:27:42</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="center/bankpwd.html">
-      <publishTime>01/25/2018 15:27:56</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="center/index.html">
-      <publishTime>01/25/2018 15:28:09</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="center/userpwd.html">
-      <publishTime>01/25/2018 15:28:24</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="center/userverify.html">
-      <publishTime>01/25/2018 15:28:36</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="email/add.html">
-      <publishTime>01/25/2018 15:28:57</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="email/Info.aspx">
-      <publishTime>01/25/2018 15:29:15</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="email/Info2.aspx">
-      <publishTime>01/25/2018 15:29:26</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="email/Receivelist.html">
-      <publishTime>01/25/2018 15:29:36</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="email/Sendlist.html">
-      <publishTime>01/25/2018 15:29:47</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="game.html">
-      <publishTime>01/25/2018 15:19:09</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>02/12/2018 00:04:50</publishTime>
     </File>
     <File Include="help/11x5.html">
-      <publishTime>01/25/2018 15:30:32</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="help/index.html">
-      <publishTime>01/25/2018 15:30:42</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="help/p3.html">
-      <publishTime>01/25/2018 15:30:52</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="help/sd.html">
-      <publishTime>01/25/2018 15:31:04</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="help/ssc.html">
-      <publishTime>01/25/2018 15:31:16</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>01/25/2018 15:19:25</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="login.html">
-      <publishTime>03/02/2018 21:41:53</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="lottery.html">
-      <publishTime>03/02/2018 09:00:35</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="lotterylist.html">
-      <publishTime>02/07/2018 11:10:31</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="main.html">
-      <publishTime>02/21/2018 10:03:41</publishTime>
+      <publishTime>03/07/2018 09:52:36</publishTime>
     </File>
     <File Include="money/charge.aspx">
-      <publishTime>01/25/2018 15:31:59</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="money/chargelist.html">
-      <publishTime>01/25/2018 15:32:47</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="money/chargeSbf.aspx">
-      <publishTime>02/21/2018 10:08:31</publishTime>
+      <publishTime>03/07/2018 10:08:31</publishTime>
+    </File>
+    <File Include="money/chargeWfp.aspx">
+      <publishTime>03/07/2018 15:22:13</publishTime>
+    </File>
+    <File Include="money/chargeZdb.aspx">
+      <publishTime>03/07/2018 10:08:31</publishTime>
     </File>
     <File Include="money/chargeZfb.aspx">
-      <publishTime>01/25/2018 15:33:32</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="money/getcash.aspx">
-      <publishTime>01/25/2018 15:33:32</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="money/getcashlist.html">
-      <publishTime>01/25/2018 15:32:44</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="money/index.html">
-      <publishTime>01/25/2018 15:32:58</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="nav.aspx">
-      <publishTime>03/02/2018 21:46:49</publishTime>
+      <publishTime>03/07/2018 11:29:31</publishTime>
     </File>
     <File Include="news/index.html">
-      <publishTime>01/25/2018 15:33:10</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="news/newsinfo.aspx">
-      <publishTime>01/25/2018 15:33:30</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="password.html">
-      <publishTime>01/25/2018 15:22:12</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="pay/suibipay/notify.aspx">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -278,6 +287,18 @@
     </File>
     <File Include="pay/suibipay/result.aspx">
       <publishTime>02/12/2018 09:32:38</publishTime>
+    </File>
+    <File Include="pay/weifupay/notify.aspx">
+      <publishTime>03/07/2018 14:51:09</publishTime>
+    </File>
+    <File Include="pay/weifupay/pay.aspx">
+      <publishTime>03/07/2018 14:40:12</publishTime>
+    </File>
+    <File Include="pay/zdbbill/notify.aspx">
+      <publishTime>03/03/2018 01:53:26</publishTime>
+    </File>
+    <File Include="pay/zdbbill/pay.aspx">
+      <publishTime>03/03/2018 01:50:57</publishTime>
     </File>
     <File Include="plus/ajaxuploadhandler.ashx">
       <publishTime>05/21/2015 19:52:48</publishTime>
@@ -289,25 +310,25 @@
       <publishTime>05/28/2015 10:12:32</publishTime>
     </File>
     <File Include="report/activelist.aspx">
-      <publishTime>01/25/2018 15:35:01</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="report/chargecash.aspx">
-      <publishTime>01/25/2018 15:35:01</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="report/history.html">
-      <publishTime>01/25/2018 15:34:09</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="report/index.aspx">
-      <publishTime>01/25/2018 15:35:01</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="report/pointreport.aspx">
-      <publishTime>01/25/2018 15:35:01</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="report/profitloss.aspx">
-      <publishTime>01/25/2018 15:35:01</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="report/profitlosssub.aspx">
-      <publishTime>01/25/2018 15:35:01</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="statics/data/qqwry.dat">
       <publishTime>01/22/2017 18:26:05</publishTime>
@@ -319,16 +340,16 @@
       <publishTime>02/03/2018 11:52:07</publishTime>
     </File>
     <File Include="statics/html/betSuccess.html">
-      <publishTime>02/21/2018 10:03:41</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="statics/html/close.htm">
       <publishTime>10/23/2016 16:06:44</publishTime>
     </File>
     <File Include="statics/html/pop.html">
-      <publishTime>02/21/2018 10:03:41</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="statics/html/zhSuccess.html">
-      <publishTime>02/21/2018 10:03:41</publishTime>
+      <publishTime>03/03/2018 11:48:02</publishTime>
     </File>
     <File Include="statics/jquery-1.11.3.min.js">
       <publishTime>06/03/2017 19:49:06</publishTime>
@@ -628,7 +649,7 @@
       <publishTime>01/02/2016 22:33:53</publishTime>
     </File>
     <File Include="statics/sytle/css/style.css">
-      <publishTime>01/30/2018 11:54:07</publishTime>
+      <publishTime>03/07/2018 11:32:43</publishTime>
     </File>
     <File Include="statics/sytle/images/account.png">
       <publishTime>09/05/2016 16:00:06</publishTime>
@@ -1324,7 +1345,7 @@
       <publishTime>03/07/2017 01:54:08</publishTime>
     </File>
     <File Include="statics/sytle/js/EM.header.js">
-      <publishTime>02/21/2018 10:03:42</publishTime>
+      <publishTime>03/03/2018 11:48:03</publishTime>
     </File>
     <File Include="statics/sytle/js/EM.index.js">
       <publishTime>06/03/2017 19:25:13</publishTime>
@@ -1351,19 +1372,19 @@
       <publishTime>02/17/2018 21:50:29</publishTime>
     </File>
     <File Include="statics/sytle/js/EM.nav.js">
-      <publishTime>03/02/2018 07:52:18</publishTime>
+      <publishTime>03/06/2018 12:39:14</publishTime>
     </File>
     <File Include="statics/sytle/js/EM.navinit.js">
       <publishTime>06/02/2017 19:23:55</publishTime>
     </File>
     <File Include="statics/sytle/js/EM.operBet.js">
-      <publishTime>03/02/2018 08:32:22</publishTime>
+      <publishTime>03/06/2018 12:38:43</publishTime>
     </File>
     <File Include="statics/sytle/js/EM.page.js">
       <publishTime>09/28/2016 20:33:23</publishTime>
     </File>
     <File Include="statics/sytle/js/EM.tools.js">
-      <publishTime>02/21/2018 10:03:42</publishTime>
+      <publishTime>03/03/2018 11:48:03</publishTime>
     </File>
     <File Include="statics/sytle/js/flipclock.min.js">
       <publishTime>06/03/2017 19:43:59</publishTime>
@@ -1399,19 +1420,19 @@
       <publishTime>03/12/2015 22:49:02</publishTime>
     </File>
     <File Include="user/index.html">
-      <publishTime>02/21/2018 10:03:42</publishTime>
+      <publishTime>03/03/2018 11:48:03</publishTime>
     </File>
     <File Include="user/useradd.aspx">
-      <publishTime>01/25/2018 11:22:15</publishTime>
+      <publishTime>03/03/2018 11:48:03</publishTime>
     </File>
     <File Include="user/userlinklist.html">
-      <publishTime>02/21/2018 10:03:42</publishTime>
+      <publishTime>03/03/2018 11:48:03</publishTime>
     </File>
     <File Include="user/userlist.html">
-      <publishTime>02/24/2018 21:54:28</publishTime>
+      <publishTime>03/03/2018 11:48:03</publishTime>
     </File>
     <File Include="user/userteamtotal.html">
-      <publishTime>02/21/2018 10:08:31</publishTime>
+      <publishTime>03/07/2018 10:08:31</publishTime>
     </File>
     <File Include="user/userupdate.aspx">
       <publishTime>10/23/2016 17:01:31</publishTime>
@@ -1420,7 +1441,7 @@
       <publishTime>01/27/2018 16:39:18</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/02/2018 22:19:43</publishTime>
+      <publishTime>03/07/2018 17:26:13</publishTime>
     </File>
   </ItemGroup>
 </Project>

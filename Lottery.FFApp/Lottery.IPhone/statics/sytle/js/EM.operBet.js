@@ -669,14 +669,17 @@ function ajaxBetView() {
         emAlert('系统正在维护不能投注！');
         return false;
     }
+
     if (SumCount == 0) {
         emAlert('注数错误，请重新选择号码！');
         return false;
     }
+
     if (parseFloat(UserMoney) < parseFloat(SumTotal)) {
         emAlert('金额不足，不能投注！');
         return false;
     }
+
     var str = "";
     var strArray = PlayPos.split(',');
     for (var i = 0; i < strArray.length; i++) {
@@ -728,4 +731,182 @@ function ajaxBetView() {
             }
         }
     });
+}
+
+//一键投注
+function ajaxQuickBetView() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
+    if (site.BetIsOpen == "1") {
+        emAlert('系统正在维护不能投注！');
+        return false;
+    }
+    switch (PlayCode) {
+        case "R_4DS":
+        case "R_3DS":
+        case "R_2DS":
+        case "R_3HX":
+        case "P_5DS":
+        case "P_4DS_L":
+        case "P_4DS_R":
+        case "P_3DS_L":
+        case "P_3DS_C":
+        case "P_3DS_R":
+        case "P_2DS_L":
+        case "P_2DS_R":
+        case "P_3HX_L":
+        case "P_3HX_C":
+        case "P_3HX_R":
+            //ReplaceNum();
+            break;
+        case "P11_RXDS_1":
+        case "P11_RXDS_2":
+        case "P11_RXDS_3":
+        case "P11_RXDS_4":
+        case "P11_RXDS_5":
+        case "P11_RXDS_6":
+        case "P11_RXDS_7":
+        case "P11_RXDS_8":
+        case "P11_3DS_L":
+        case "P11_3ZDS_L":
+        case "P11_2DS_L":
+        case "P11_2ZDS_L":
+            //ReplaceNum2();
+            break;
+    }
+    if (eval($("#txtUserPoint").val()) >= eval(site.MaxLevel) * 10) {
+        emAlert('系统设定，返点大于 ' + site.MaxLevel + ' 的会员不能投注！');
+        return false;
+    }
+    if (Betpoint == 0) {
+        emAlert('返点错误，请重新选择！');
+        return false;
+    }
+    if ($("#fromTimes").attr("value") == "" || $("#fromTimes").attr("value") == "0" || PriceTimes == 0) {
+        emAlert('请输入倍数！');
+        return false;
+    }
+    if (parseFloat(PriceTimes) < parseFloat(LotteryMinTimes) || parseFloat(PriceTimes) > parseFloat(LotteryMaxTimes)) {
+        emAlert('倍数必须大于' + parseInt(LotteryMinTimes) + '，且小于' + parseInt(LotteryMaxTimes));
+        $('#fromTimes').val(parseInt(LotteryMinTimes));
+        PriceTimes = parseInt(LotteryMinTimes);
+        fromTimesChange();
+        return false;
+    }
+    if (SingleTotal == 0) {
+        emAlert('请选择投注号码!');
+        return false;
+    }
+    if (Price == "" || Price == "0") {
+        emAlert('圆角分错误，请从新选择圆角分！');
+        return false;
+    }
+    if (SingleOrderItem == "") {
+        emAlert('投注号码有错或为空！');
+        return false;
+    }
+    if (PlayCode != "PK10_DD1_5" && PlayCode != "PK10_DD6_10" && PlayCode != "P_DD" && PlayCode != "P11_DD") {
+        if (parseFloat(PlayMaxNum) < parseFloat(SingleCount)) {
+            emAlert('注数不能大于' + PlayMaxNum + '注');
+            return false;
+        } 
+    }
+
+    //组装下注数据
+    var bonus = Betpoint.split('/');
+    var json = {
+        "LotteryId": LotteryId,
+        "PlayId": PlayId,
+        "Price": Price * 1,
+        "times": PriceTimes,
+        "Num": SingleCount,
+        "singelBouns": bonus[1],
+        "Point": bonus[0],
+        "balls": SingleOrderItem,
+        "strPos": PlayPos,
+        "PlayName": PlayName,
+        "alltotal": Price * SingleCount * PriceTimes * 2 * parseFloat(PricePos)
+    };
+
+    ArrayOrder.push(json);
+    CreateList();
+
+    if (checkBetTime() == false) {
+        return false;
+    }
+
+    if (site.BetIsOpen == "1") {
+        emAlert('系统正在维护不能投注！');
+        return false;
+    }
+
+    if (SumCount == 0) {
+        emAlert('注数错误，请重新选择号码！');
+        return false;
+    }
+
+    if (parseFloat(UserMoney) < parseFloat(SumTotal)) {
+        emAlert('金额不足，不能投注！');
+        return false;
+    }
+
+    var str = "";
+    var strArray = PlayPos.split(',');
+    for (var i = 0; i < strArray.length; i++) {
+        if (strArray[i] == 1) {
+            str = str + " " + i;
+        }
+    }
+    var ws = str.replace("0", "万位").replace("1", "千位").replace("2", "百位").replace("3", "十位").replace("4", "个位");
+    if (ws != "") {
+        ws = "，任选位数：" + ws;
+    }
+    var strjson = "";
+    var tzorderItems = "";
+    for (var index in ArrayOrder) {
+        if (ArrayOrder[index].PlayName != "undefined" && ArrayOrder[index].balls != "undefined") {
+            tzorderItems += ArrayOrder[index].PlayName + ":" + ArrayOrder[index].balls + "\n";
+            strjson += JSON.stringify(ArrayOrder[index]) + ",";
+        }
+    }
+
+    strjson = stringformat("[" + strjson.substr(0, strjson.length - 1) + "]");
+
+    var index = emLoading();
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        data: strjson,
+        async: false,
+        url: "/ajax/ajaxBetting.aspx?oper=ajaxBetting&clienttime=" + Math.random(),
+        error: function (XmlHttpRequest, textStatus, errorThrown) { emAlert("亲！页面过期,请刷新页面!"); },
+        success: function (d) {
+            switch (d.result) {
+                case '-1':
+                    emAlert(d.returnval);
+                    top.window.location = '/login.html';
+                    break;
+                case '0':
+                    emAlert(d.returnval);
+                    closeload(index);
+                    break;
+                case '1':
+                    var tzmoney = $("#fromBuyPriceSumTotal").html();
+                    ajaxAddAfterClear();
+                    ajaxBetAfterClear();
+                    PlayPos = "";
+                    closeload(index);
+                    emAlert('<font color="white">一键下注成功，请继续下注！</fond>');
+                    break;
+            }
+        }
+    });
+
+    ajaxAddAfterClear();
+    $(".numbers .lottery-balls").find("span.selected").removeClass("selected");
+
+    //设置彩种投注倍数
+    setBetTimes(true);
 }

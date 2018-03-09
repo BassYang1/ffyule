@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="userContractFH.aspx.cs"
-    Inherits="Lottery.WebApp.user.userContractFH" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"%>
 
 <!doctype html>
 <html>

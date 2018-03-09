@@ -177,8 +177,10 @@ namespace Lottery.DAL.Flex
         /// 更新成功的订单状态
         /// </summary>
         /// <param name="orderId">订单号</param>
+        /// <param name="wfpNo">微付支付订单号</param>
+        /// <param name="bankNo">银行流水号</param>
         /// <returns></returns>
-        public bool Update(string orderId)
+        public bool Update(string orderId, string wfpNo, string bankNo)
         {
             using (SqlConnection conn = new SqlConnection(Const.ConnectionString))
             {
@@ -199,6 +201,16 @@ namespace Lottery.DAL.Flex
                     SqlParameter parm3 = new SqlParameter("@RETURN", SqlDbType.Bit);
                     parm3.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm3);
+
+                    SqlParameter parm4 = new SqlParameter("@wfpNo", SqlDbType.NVarChar, 50);
+                    parm4.Value = wfpNo;
+                    parm4.Direction = ParameterDirection.Input;
+                    cmd.Parameters.Add(parm4);
+
+                    SqlParameter parm5 = new SqlParameter("@bankNo", SqlDbType.NVarChar, 50);
+                    parm5.Value = bankNo;
+                    parm5.Direction = ParameterDirection.Input;
+                    cmd.Parameters.Add(parm5);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();

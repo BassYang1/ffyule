@@ -29,28 +29,50 @@
         var count = 0; //签订契约个数，最大10个
         var contracts = null; //签订的契约
         var state = 0;　//契约状态，默认[0-未使用]
+        var maxPer = 0; //分红比例
+        var hasAccess = false; //是否有权限
+        var canSign = false; //是否可以签订契约
 
         $(function () {
             $("#btnAdd").hide();
             $("#btnSave").hide();
             $("#btnCannel").hide();
+            hasAccess = checkCanEdit();
 
-            if (checkUser()) {
+            if (userGroup == "6" || userGroup == "4") {
+                $i("info").innerHTML = "主管和代理无需与上级签订契约";
+                $("#perLimit").hide();
+
+            }
+            else if (userGroup == "2") {
+                $i("info").innerHTML = "直属会员使用系统默认契约";
                 getContract();
                 showContract();
-                checkContractState();
-
-                if (count == 0) {
-                    addContract(); //增加一条契约
-                }
+                $("#perLimit").hide();
+                $("#add").find("input").prop("readonly", true);
+                $("#add").find("img").hide();
             }
-            else {
-                $i("info").innerHTML = "暂时不能与下级签订契约，请联系上级";
+            else { //与普通会员和代理签订契约
+                if (hasAccess && canSign) {
+                    $("#perLimit").show();
+                    getContract();
+                    showContract();
+                    checkContractState();
+                    $("#maxPer").html(maxPer);
+
+                    if (count == 0) {
+                        addContract(); //增加一条契约
+                    }
+                }
+                else {
+                    $("#perLimit").hide();
+                    $i("info").innerHTML = "暂时不能与下级签订契约，请联系上级";
+                }
             }
         });
 
         //检查是否有权限分配契约
-        function checkUser() {
+        function checkCanEdit() {
             var can = false;
 
             $.ajax({
@@ -61,7 +83,15 @@
                 url: "/ajax/ajaxContractFH.aspx?oper=CanContract",
                 error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
                 success: function (d) {
-                    can = d.result == "1";
+                    if (d.result == "0" || d.returnval == "0") {
+                        can = false;
+                        canSign = false;
+                    }
+                    else {
+                        can = true;
+                        maxPer = parseFloat(d.returnval);
+                        canSign = maxPer > 0 ? true : false;
+                    }
                 }
             });
 
@@ -234,6 +264,11 @@
                         emAlert("输入的数值无效!");
                         return;
                     }
+
+                    if (per > maxPer) {
+                        emAlert("分红比例大于可分配的最大值" + maxPer + "");
+                        return;
+                    }
                 }
                 catch (e) {
                     emAlert("输入的数值无效!");
@@ -289,6 +324,7 @@
             <form id="form1" class="tto-form2">
                 <div class="input-group">
                     <span id="info" class="info"></span>
+                    <h6 id="perLimit" style="display:none;">(周期分红比例范围大于0小于等于<span id="maxPer"></span>)</h6>
                 </div>
                 <div id="add" style="height: 350px;">
                 </div>

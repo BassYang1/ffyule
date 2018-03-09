@@ -27,6 +27,7 @@ namespace Lottery.DAL
         protected string AdminScore = "0";
         protected string AdminPic = "1";
         protected string AdminPoint = "1";
+        protected string UserGroup = "";
         public string loStr = "";
         public string StartTime = DateTime.Now.AddDays(-10.0).ToString("yyyy-MM-dd") + " 00:00:00";
         public string EndTime = DateTime.Now.AddDays(1.0).ToString("yyyy-MM-dd") + " 00:00:00";
@@ -216,36 +217,28 @@ namespace Lottery.DAL
                 return;
             }
 
-            this.doh.Reset();
-            this.doh.SqlCmd = string.Format("select UserGroup,Point from N_User where Id={0}", this.AdminId);
-            DataTable dataTable1 = this.doh.GetDataTable();
-            if (dataTable1.Rows.Count <= 0)
-            {
-                return;
-            }
+            GetUserInfo();
+            int userGroup = Convert.ToInt32(this.UserGroup);
 
-            this.doh.Reset();
-            if (Convert.ToDouble(dataTable1.Rows[0]["Point"]) > 130.0)
+            if (userGroup == 0) //会员可为会员开户
             {
-                if (dataTable1.Rows[0]["UserGroup"].ToString() == "1")
-                {
-                    this.doh.SqlCmd = string.Format("SELECT [Id],[Name] FROM N_UserGroup where Id<={0} ORDER BY Id desc", dataTable1.Rows[0]["UserGroup"]);
-                }
-                else
-                {
-                    this.doh.SqlCmd = string.Format("SELECT [Id],[Name] FROM N_UserGroup where Id<{0} ORDER BY Id desc", dataTable1.Rows[0]["UserGroup"]);
-                }
+                this.doh.SqlCmd = string.Format("SELECT [Id],[Name] FROM N_UserGroup where Id={0} ORDER BY Id desc", userGroup);
             }
-            else
+            else if (userGroup == 1) //代理可以开户代理和会员
             {
-                if (dataTable1.Rows[0]["UserGroup"].ToString() == "1")
-                {
-                    this.doh.SqlCmd = string.Format("SELECT [Id],[Name] FROM N_UserGroup where Id<={0} ORDER BY Id desc", dataTable1.Rows[0]["UserGroup"]);
-                }
-                else
-                {
-                    this.doh.SqlCmd = string.Format("SELECT [Id],[Name] FROM N_UserGroup where Id<{0} ORDER BY Id desc", dataTable1.Rows[0]["UserGroup"]);
-                }
+                this.doh.SqlCmd = string.Format("SELECT [Id],[Name] FROM N_UserGroup where Id<={0} ORDER BY Id desc", userGroup);
+            }
+            else if (userGroup == 2) //直属可以开户代理和会员
+            {
+                this.doh.SqlCmd = string.Format("SELECT [Id],[Name] FROM N_UserGroup where Id<{0} ORDER BY Id desc", userGroup);
+            }
+            else if (userGroup == 4) //招商只能开户直属
+            {
+                this.doh.SqlCmd = "SELECT [Id],[Name] FROM N_UserGroup where Id=2 ORDER BY Id desc";
+            }
+            else if (userGroup == 6) //主管只能开户招商
+            {
+                this.doh.SqlCmd = "SELECT [Id],[Name] FROM N_UserGroup where Id=4 ORDER BY Id desc";
             }
 
             DataTable dataTable2 = this.doh.GetDataTable();
@@ -265,6 +258,27 @@ namespace Lottery.DAL
 
                 dataTable2.Clear();
                 dataTable2.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        protected void GetUserInfo()
+        {
+            if (String.IsNullOrEmpty(this.UserGroup))
+            {
+                this.doh.Reset();
+                this.doh.SqlCmd = string.Format("select UserGroup,Point from N_User where Id={0}", this.AdminId);
+                DataTable dataTable1 = this.doh.GetDataTable();
+                if (dataTable1.Rows.Count <= 0)
+                {
+                    return;
+                }
+
+                this.doh.Reset();
+
+                this.UserGroup = dataTable1.Rows[0]["UserGroup"].ToString();
             }
         }
 

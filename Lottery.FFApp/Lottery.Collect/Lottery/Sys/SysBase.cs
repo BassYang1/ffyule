@@ -1,5 +1,6 @@
 ﻿using log4net;
 using Lottery.DAL;
+using FlexDal = Lottery.DAL.Flex;
 using Lottery.DBUtility;
 using Lottery.Entity;
 using Lottery.Utils;
@@ -21,7 +22,12 @@ namespace Lottery.Collect.Sys
         protected static LotteryDataDAL _lotteryDataDal = new LotteryDataDAL();
         protected static LotteryDAL _sysLotteryDal = new LotteryDAL();
 
-        #region 
+        #region
+        /// <summary>
+        /// 开奖杀率列表
+        /// </summary>
+        public IList<CheckLotteryModel> CheckList { get; set; }
+
         /// <summary>
         /// 奖种Ids
         /// </summary>
@@ -252,6 +258,98 @@ namespace Lottery.Collect.Sys
         public abstract void Generate();
 
         /// <summary>
+        /// 生成并检查杀中率
+        /// </summary>
+        public void GenerateCheck()
+        {
+            //本期下注数据
+            DataTable dataTable = LotteryDAL.GetDataTable(this.Id.ToString(), this.ExpectNo);
+            this.CheckList = new List<CheckLotteryModel>();
+
+            if (dataTable.Rows.Count > 0)
+            {
+                //奖种中奖率
+                DataTable lotteryCheck = LotteryDAL.GetLotteryCheck(this.Id);
+
+                //CheckPer: 杀数比
+                decimal checkPer = Convert.ToDecimal(lotteryCheck.Rows[0]["CheckPer"]);
+                if (LotteryDAL.GetCurRealGet(this.Id) < checkPer)
+                {
+                    int num1 = 0;
+                    //杀数个数
+                    int checkNum = Convert.ToInt32(lotteryCheck.Rows[0]["CheckNum"]);
+
+                    Log.DebugFormat("控制杀数比{0}: {1}, {2}", this.Name, checkPer, checkNum);
+
+                    do
+                    {
+                        Decimal num2 = new Decimal(0);
+                        Decimal num3 = new Decimal(0);
+                        Decimal num4 = new Decimal(0);
+
+                        Generate(); //生成开奖号码
+
+                        for (int index = 0; index < dataTable.Rows.Count; ++index)
+                        {
+                            DataRow row = dataTable.Rows[index];
+                            int betId = Convert.ToInt32(row["Id"]); //下注Id
+                            int userId = Convert.ToInt32(row["UserId"]); //用户Id
+                            string playCode = row["PlayCode"].ToString(); //玩法
+                            string betDate = Convert.ToDateTime(row["STime2"]).ToString("yyyyMMdd");
+
+                            //下注号码
+                            string betNumber = FlexDal.BetDetailDAL.GetBetDetail2(betDate, userId.ToString(), betId.ToString());
+                            if (string.IsNullOrEmpty(betNumber))
+                                betNumber = "";
+
+                            string Pos = row["Pos"].ToString();
+                            Decimal num5 = Convert.ToDecimal(row["SingleMoney"]);
+                            Decimal num6 = Convert.ToDecimal(row["Bonus"]);
+                            Decimal num7 = Convert.ToDecimal(row["PointMoney"]);
+                            Decimal num8 = Convert.ToDecimal(row["Times"]);
+                            Decimal num9 = Convert.ToDecimal(row["Total"]);
+                            num3 += num9 * num8; //本期下注总金额
+
+                            int num10 = CheckPlay.Check(this.Number, betNumber, Pos, playCode);
+
+                            num4 += num6 * num8 * num5 * (Decimal)num10 / new Decimal(2) + num7; //本期中奖总金额
+                        }
+                        Decimal num11 = num3 - num4;
+
+                        if (num11 > new Decimal(0))
+                            num1 = checkNum; //杀数个数
+
+                        //中奖号码
+                        this.CheckList.Add(new CheckLotteryModel()
+                        {
+                            Number = this.Number,
+                            NumberAll = this.NumberAll,
+                            Income = num11
+                        });
+
+                        ++num1;
+                    } while (num1 < checkNum); //中奖数大于杀数个数，重新开奖
+
+                    CheckLotteryModel lottery = this.CheckList.OrderByDescending(i => i.Income).First();
+                    this.Number = lottery.Number;
+                    this.NumberAll = lottery.NumberAll;
+                }
+                else
+                {
+                    Log.DebugFormat("正常开奖{0}}", this.Name);
+                    Generate(); //生成开奖号码
+                }
+            }
+            else
+            {
+                Log.DebugFormat("正常开奖{0}}", this.Name);
+                Generate(); //生成开奖号码
+            }
+
+            Log.DebugFormat("开奖号码{0}: {1}, {2}", this.Name, this.Number, this.NumberAll);
+        }
+
+        /// <summary>
         /// 更新彩票开奖信息
         /// </summary>
         /// <param name="type"></param>
@@ -265,7 +363,7 @@ namespace Lottery.Collect.Sys
             try
             {
                 //生成开奖号码
-                this.Generate();
+                this.GenerateCheck();
 
                 Log.DebugFormat("保存开奖期号：{0} {1} {2}", this.Name, this.ExpectNo, this.Number);
 

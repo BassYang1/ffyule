@@ -161,13 +161,30 @@ function InItInfo(typeId, setId) {
         //bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CFT' title='财付通即时倒账' class='radio' name='bank'/><span class='icon-bank bank-CFT'></span></label></li>";
         bank = "ZDBBILL"; 
     }
-    if (typeId == "9") { //智得宝
+    if (typeId == "9") { //网银微付
         $("#divName").hide();
-        bankHtml += "<li class='cashier-bank selected'><label><input type='radio' value='alipay_scan' title='支付宝即时到账' class='radio' name='bank' checked/><span class='icon-bank bank-ZFB'></span></label></li>";
-        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='weixin_scan' title='微信扫码支付' class='radio' name='bank'/><span class='icon-bank bank-WX'></span></label></li>";
-        //bankHtml += "<li class='cashier-bank'><label><input type='radio' value='QQ' title='QQ钱包扫码支付' class='radio' name='bank'/><span class='icon-bank bank-QQ'></span></label></li>";
-        //bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CFT' title='财付通即时倒账' class='radio' name='bank'/><span class='icon-bank bank-CFT'></span></label></li>";
-        bank = "SUIBIPAY";
+        bankHtml += "<li class='cashier-bank selected'><label><input type='radio' value='ICBC' title='中国工商银行' class='radio' name='bank' checked/><span class='icon-bank bank-ICBC'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='ABC' title='中国农业银行' class='radio' name='bank'/><span class='icon-bank bank-ABC'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CMBC' title='中国民生银行' class='radio' name='bank'/><span class='icon-bank bank-CMBC'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CCB' title='中国建设银行' class='radio' name='bank'/><span class='icon-bank bank-CCB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CMB' title='招商银行' class='radio' name='bank'/><span class='icon-bank bank-CMB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='BOCOM' title='中国交通银行' class='radio' name='bank'/><span class='icon-bank bank-BOCOM'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='BOC' title='中国银行' class='radio' name='bank'/><span class='icon-bank bank-BOC'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='PSBC' title='中国邮政储蓄银行' class='radio' name='bank'/><span class='icon-bank bank-PSBC'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='GDB' title='广发银行' class='radio' name='bank'/><span class='icon-bank bank-GDB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CIB' title='兴业银行' class='radio' name='bank'/><span class='icon-bank bank-CIB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CEB' title='中国光大银行' class='radio' name='bank'/><span class='icon-bank bank-CEB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='SPDB' title='上海浦东发展银行' class='radio' name='bank'/><span class='icon-bank bank-SPDB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CITIC' title='中信银行' class='radio' name='bank'/><span class='icon-bank bank-CITIC'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='BOS' title='上海银行' class='radio' name='bank'/><span class='icon-bank bank-SHB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='PAB' title='平安银行' class='radio' name='bank'/><span class='icon-bank bank-PAB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='HXBC' title='华夏银行' class='radio' name='bank'/><span class='icon-bank bank-HXB'></span></label></li>";
+        //bank = "WEIFUPAY";
+    }
+    if (typeId == "10") { //QQ扫码微付
+        $("#divName").hide();
+        bankHtml += "<li class='cashier-bank selected'><label><input type='radio' value='QQ' title='QQ扫码微付' class='radio' name='bank' checked/><span class='icon-bank bank-QQ'></span></label></li>";
+        bank = "WEIFUPAYQQ";
     }
     bankHtml += "</ul>";
     $("#choose-bank").html(bankHtml);
@@ -288,7 +305,15 @@ function step2Post() {
             }
             if (typeId == 9) {
                 var info = '<li><span class="si-name">充值银行：</span> <span class="si-con"><i class="icon-bank ' + bankCss + '"></i></span></li>';
-                info += '<li><span class="si-name">需用银行卡：</span> <span class="si-con">请使用支付宝扫描付款</span></li>';
+                info += '<li><span class="si-name">需用银行卡：</span> <span class="si-con">可使用任意一张[' + bankName + ']进行汇款</span></li>';
+                info += '<li><span class="si-name">会员账号：</span> <span class="si-con">' + username + '</span></li>';
+                info += '<li><span class="si-name">充值金额：</span> <span class="si-con"><em>' + chrMoney + '</em>元</span></li>';
+                info += '<li><span class="si-name">大写金额：</span> <span class="si-con"><em>' + chrDxMoney + '</em>元</span></li>';
+                $("#chargeInfo").html(info);
+            }
+            if (typeId == 10) {
+                var info = '<li><span class="si-name">充值银行：</span> <span class="si-con"><i class="icon-bank ' + bankCss + '"></i></span></li>';
+                info += '<li><span class="si-name">需用银行卡：</span> <span class="si-con">可使用任意一张[' + bankName + ']进行汇款</span></li>';
                 info += '<li><span class="si-name">会员账号：</span> <span class="si-con">' + username + '</span></li>';
                 info += '<li><span class="si-name">充值金额：</span> <span class="si-con"><em>' + chrMoney + '</em>元</span></li>';
                 info += '<li><span class="si-name">大写金额：</span> <span class="si-con"><em>' + chrDxMoney + '</em>元</span></li>';
@@ -381,7 +406,7 @@ function step3Post() {
                     checkState(orderId);
                 }
             }
-            else if (typeId == 9) { //智得宝
+            else if (typeId == 9 || typeId == 10) { //网银微付和QQ扫码微付
                 var orderId = "";
 
                 //获取订单号
@@ -399,7 +424,7 @@ function step3Post() {
                 });
 
                 if (orderId) {
-                    url = getHost() + "/pay/zdbbill/pay.aspx?bank=" + bank + "&setId=" + line + "&amount=" + chrMoney + "&userId=" + adminId + "&orderId=" + orderId;
+                    url = getHost() + "/pay/weifupay/pay.aspx?bank=" + bank + "&setId=" + line + "&amount=" + chrMoney + "&userId=" + adminId + "&orderId=" + orderId;
                     //LayerPop('智得宝支付', '1200px', '550px', url);
                     window.open(url);
                     checkState(orderId);

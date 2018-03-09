@@ -109,6 +109,7 @@
     <Compile Include="Lottery\Collect\YouleToOther11x5.cs" />
     <Compile Include="Lottery\Collect\YouleToOther3d.cs" />
     <Compile Include="Lottery\Boyi\ByResponse.cs" />
+    <Compile Include="Lottery\Sys\CheckLotteryModel.cs" />
     <Compile Include="Lottery\Sys\SysDj15Data.cs" />
     <Compile Include="Lottery\Sys\SysXjp2fcData.cs" />
     <Compile Include="Lottery\Sys\SysHg90mData.cs" />

@@ -8,33 +8,33 @@ using System;
 
 namespace Lottery.Entity
 {
-  public class KeyValue
-  {
-    private string m_Key;
-    private Decimal m_Value;
-
-    public string tKey
+    public class KeyValue
     {
-      set
-      {
-        this.m_Key = value;
-      }
-      get
-      {
-        return this.m_Key;
-      }
-    }
+        private string m_Key;
+        private Decimal m_Value;
 
-    public Decimal tValue
-    {
-      set
-      {
-        this.m_Value = value;
-      }
-      get
-      {
-        return this.m_Value;
-      }
+        public string tKey
+        {
+            set
+            {
+                this.m_Key = value;
+            }
+            get
+            {
+                return this.m_Key;
+            }
+        }
+
+        public Decimal tValue
+        {
+            set
+            {
+                this.m_Value = value;
+            }
+            get
+            {
+                return this.m_Value;
+            }
+        }
     }
-  }
 }

@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <!-- #include file="/statics/include/footer.html" -->
+        <!-- include file="/statics/include/footer.html"  -->
     </div>
 </body>
 </html>

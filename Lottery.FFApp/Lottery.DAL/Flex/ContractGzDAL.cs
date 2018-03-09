@@ -116,7 +116,7 @@ namespace Lottery.DAL.Flex
                 DataTable dataTable = dbOperHandler.GetDataTable();
                 if (dataTable.Rows.Count > 0)
                 {
-                    if (Convert.ToInt32(dataTable.Rows[0]["UserGroup"]) < 5) //代理,会员,直属,特权直属,招商
+                    if (Convert.ToInt32(dataTable.Rows[0]["UserGroup"]) <= 1) //代理,会员
                     {
                         dbOperHandler.Reset();
                         dbOperHandler.SqlCmd = @"SELECT 0 as groupId,[Type],[ParentId],[UserId],[IsUsed],[STime],b.*
@@ -124,6 +124,14 @@ namespace Lottery.DAL.Flex
                         dataTable = dbOperHandler.GetDataTable();
                         _jsonstr = "{\"result\" :\"1\",\"returnval\" :\"操作成功\"," + dtHelp.DT2JSONNOHTML(dataTable, 0, "recordcount", "table", true) + "}";
                     }
+                    else  if (Convert.ToInt32(dataTable.Rows[0]["UserGroup"]) == 2) //直属
+                        {
+                            dbOperHandler.Reset();
+                            dbOperHandler.SqlCmd = string.Format(@"SELECT 2 as [GroupId], 2 as Type, (SELECT DISTINCT ParentId FROM N_User WHERE id={0}) AS ParentId, {0} AS UserId,
+                                [MinMoney],[Money] as money, 1 AS IsUsed FROM [Act_DayGzSet] Where GroupId=2 and IsUsed=0 ORDER BY Soft ASC", UserId);
+                            dataTable = dbOperHandler.GetDataTable();
+                            _jsonstr = "{\"result\" :\"1\",\"returnval\" :\"操作成功\"," + dtHelp.DT2JSONNOHTML(dataTable, 0, "recordcount", "table", true) + "}";
+                        }
                 }
                 dataTable.Clear();
                 dataTable.Dispose();

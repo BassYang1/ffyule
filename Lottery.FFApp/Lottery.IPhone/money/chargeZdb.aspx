@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="chargeSbf.aspx.cs" Inherits="Lottery.Web.money.chargeSbf" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="chargeSbf.aspx.cs" Inherits="Lottery.Web.money.chargeZdb" %>
 
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>立博国际</title>
+    <title>宏盛娱乐</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta name="format-detection" content="telephone=no,email=no">
     <meta name="apple-mobile-web-app-capable" content="yes">

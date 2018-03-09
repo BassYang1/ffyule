@@ -4,6 +4,7 @@
 // MVID: 7C79BA5B-21B3-40F1-B96A-84E656E22E29
 // Assembly location: F:\pros\tianheng\bf\WebAppOld\bin\Lottery.DAL.dll
 
+using log4net;
 using Lottery.DAL.Flex;
 using Lottery.Utils;
 using System;
@@ -14,6 +15,9 @@ namespace Lottery.DAL
 {
     public class CheckOperation
     {
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof(CheckOperation));
+
         /// <summary>
         /// 
         /// </summary>
@@ -550,6 +554,7 @@ namespace Lottery.DAL
             catch (Exception ex)
             {
                 new LogExceptionDAL().Save("程序异常", "派奖过程中出现异常：" + ex.Message);
+                Log.ErrorFormat("开奖异常, 奖种期数: {0}, 异常信息: {1}", LotteryNumber, ex.Message);
                 return false;
             }
         }

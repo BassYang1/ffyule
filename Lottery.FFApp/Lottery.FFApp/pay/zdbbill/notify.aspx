@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="notify.aspx.cs" Inherits="Lottery.FFApp.SBF.notify" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="notify.aspx.cs" Inherits="Lottery.FFApp.ZDB.notify" %>
 
 <!DOCTYPE html>
 

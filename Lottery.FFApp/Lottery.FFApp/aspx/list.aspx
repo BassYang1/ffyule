@@ -250,9 +250,11 @@
                                                 //3-契约撤销，等待会员同意！
                                                 //4-会员同意撤销，请您修改契约！
                                                 var title = fo[k].Title;
-                                                if (t.contractfh && t.contractfh == "0") title = "<font color='red'>等待确认</fond>";
-                                                if (t.contractfh && t.contractfh == "1") title = "<font color='red'>查看契约</fond>";
-                                                if (t.contractfh && t.contractfh == "3") title = "<font color='red'>等待确认</fond>";
+                                                if (t.usergroup && (t.usergroup == "6" || t.usergroup == "4")) title = "";
+                                                else if (t.usergroup && (t.usergroup == "2")) title = "<font color='red'>默认契约</fond>";
+                                                else if (t.contractfh && t.contractfh == "0") title = "<font color='red'>等待确认</fond>";
+                                                else if (t.contractfh && t.contractfh == "1") title = "<font color='red'>查看契约</fond>";
+                                                else if (t.contractfh && t.contractfh == "3") title = "<font color='red'>等待确认</fond>";
 
                                                 s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + title + '</a>';
                                             }
@@ -264,9 +266,11 @@
                                                 //3-契约撤销，等待会员同意！
                                                 //4-会员同意撤销，请您修改契约！
                                                 var title = fo[k].Title;
-                                                if (t.contractgz && t.contractgz == "0") title = "<font color='red'>等待确认</fond>";
-                                                if (t.contractgz && t.contractgz == "1") title = "<font color='red'>查看契约</fond>";
-                                                if (t.contractgz && t.contractgz == "3") title = "<font color='red'>等待确认</fond>";
+                                                if (t.usergroup && (t.usergroup == "6" || t.usergroup == "4")) title = "";
+                                                else if (t.usergroup && (t.usergroup == "2")) title = "<font color='red'>默认契约</fond>";
+                                                else if (t.contractgz && t.contractgz == "0") title = "<font color='red'>等待确认</fond>";
+                                                else if (t.contractgz && t.contractgz == "1") title = "<font color='red'>查看契约</fond>";
+                                                else if (t.contractgz && t.contractgz == "3") title = "<font color='red'>等待确认</fond>";
 
                                                 s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + title + '</a>';
                                             }

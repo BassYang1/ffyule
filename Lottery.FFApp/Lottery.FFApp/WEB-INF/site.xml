@@ -7,7 +7,7 @@
   <ZHIsOpen>0</ZHIsOpen>
   <RegIsOpen>0</RegIsOpen>
   <BetIsOpen>0</BetIsOpen>
-  <CSUrl>http://www.hao123.com</CSUrl>
+  <CSUrl>http://www.hao12.com</CSUrl>
   <SignMinTotal>1</SignMinTotal>
   <SignMaxTotal>5</SignMaxTotal>
   <SignNum>100</SignNum>
@@ -15,8 +15,8 @@
   <MaxBet>1000000.00</MaxBet>
   <MaxWin>200000.00</MaxWin>
   <MaxWinFK>18000.00</MaxWinFK>
-  <MaxLevel>13.10</MaxLevel>
-  <MinCharge>50.00</MinCharge>
+  <MaxLevel>13.60</MaxLevel>
+  <MinCharge>0.01</MinCharge>
   <Points>500</Points>
   <PriceOutCheck>30.00</PriceOutCheck>
   <PriceOut>100.00</PriceOut>

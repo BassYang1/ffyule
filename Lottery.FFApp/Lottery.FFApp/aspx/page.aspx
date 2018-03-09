@@ -42,15 +42,11 @@
                     var s = "";
                     for (var i = 0, len = TableTemplate.ListCount; i < len; i++) {
                         var listName = TableTemplate.ListName[i]["key"];
-                        var visable = listName != "开户中心" || userGroup != "0" ? true : false;
-
-                        if (visable) {
-                            if (i == TableValue) {
-                                s += '<a href="javascript:;" nmb="' + TableTemplate.ListUrl[i]["key"] + '" class="current">' + TableTemplate.ListName[i]["key"] + '</a>';
-                                ajaxInit(TableTemplate.ListUrl[i]["key"]);
-                            } else {
-                                s += '<a href="javascript:;" nmb="' + TableTemplate.ListUrl[i]["key"] + '">' + TableTemplate.ListName[i]["key"] + '</a>';
-                            }
+                        if (i == TableValue) {
+                            s += '<a href="javascript:;" nmb="' + TableTemplate.ListUrl[i]["key"] + '" class="current">' + TableTemplate.ListName[i]["key"] + '</a>';
+                            ajaxInit(TableTemplate.ListUrl[i]["key"]);
+                        } else {
+                            s += '<a href="javascript:;" nmb="' + TableTemplate.ListUrl[i]["key"] + '">' + TableTemplate.ListName[i]["key"] + '</a>';
                         }
                     }
                     $("#menulist").html(s);

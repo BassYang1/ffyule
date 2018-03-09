@@ -222,6 +222,7 @@
     <Compile Include="core\Common.cs" />
     <Compile Include="email\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="email\Info.aspx.cs">
       <DependentUpon>Info.aspx</DependentUpon>
@@ -255,28 +256,28 @@
       <DependentUpon>info.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pay\suibipay\notify.aspx.cs">
+    <Compile Include="pay\weifupay\notify.aspx.cs">
       <DependentUpon>notify.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pay\suibipay\notify.aspx.designer.cs">
+    <Compile Include="pay\weifupay\notify.aspx.designer.cs">
       <DependentUpon>notify.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pay\suibipay\pay.aspx.cs">
+    <Compile Include="pay\weifupay\pay.aspx.cs">
       <DependentUpon>pay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pay\suibipay\pay.aspx.designer.cs">
+    <Compile Include="pay\weifupay\pay.aspx.designer.cs">
       <DependentUpon>pay.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pay\suibipay\result.aspx.cs">
+    <Compile Include="pay\weifupay\result.aspx.cs">
       <DependentUpon>result.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pay\suibipay\result.aspx.designer.cs">
+    <Compile Include="pay\weifupay\result.aspx.designer.cs">
       <DependentUpon>result.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pay\suibipay\SbfHelper.cs" />
+    <Compile Include="pay\weifupay\WfpHelper.cs" />
     <Compile Include="pay\zdbbill\notify.aspx.cs">
       <DependentUpon>notify.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -431,9 +432,9 @@
     <Content Include="news\info.aspx" />
     <Content Include="news\newsindex.html" />
     <Content Include="news\newslist.html" />
-    <Content Include="pay\suibipay\notify.aspx" />
-    <Content Include="pay\suibipay\pay.aspx" />
-    <Content Include="pay\suibipay\result.aspx" />
+    <Content Include="pay\weifupay\notify.aspx" />
+    <Content Include="pay\weifupay\pay.aspx" />
+    <Content Include="pay\weifupay\result.aspx" />
     <Content Include="pay\zdbbill\notify.aspx" />
     <Content Include="pay\zdbbill\pay.aspx" />
     <Content Include="plus\auto.aspx" />
@@ -533,6 +534,7 @@
     <Content Include="statics\img\bank-NJB.png" />
     <Content Include="statics\img\bank-PAB.png" />
     <Content Include="statics\img\bank-PSBC.png" />
+    <Content Include="statics\img\bank-QQ.png" />
     <Content Include="statics\img\bank-SHB.png" />
     <Content Include="statics\img\bank-SPDB.png" />
     <Content Include="statics\img\bank-SZDB.png" />

@@ -402,7 +402,7 @@ namespace Lottery.DAL.Flex
                 bool isAdminUser = false;
                 UserModel user = null;
                 dbOperHandler.Reset();
-                dbOperHandler.SqlCmd = "select 1 from N_User where IsNull(ParentId, 0)=0 AND UserGroup in (5,6) AND Id=" + userId;
+                dbOperHandler.SqlCmd = "select 1 from N_User where IsNull(ParentId, 0)=0 AND UserGroup > 0 AND Id=" + userId;
                 DataTable table = dbOperHandler.GetDataTable();
 
                 if (table != null && table.Rows.Count > 0)

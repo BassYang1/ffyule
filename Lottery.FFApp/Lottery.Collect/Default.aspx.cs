@@ -1,4 +1,5 @@
 ﻿using Lottery.Collect.Sys;
+using Lottery.DAL;
 using Lottery.Utils;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Lottery.Collect
             //Win32.SetSystemTime();
             //SysFlb90mData.UpdateData();   
             //SysXdl90mData.UpdateData();
+            YouleCheck.RunOfIssueNum(1004, "20180308-2431");
 			base.Response.Write("程序已经启动，开奖进行中。" + DateTime.Now.ToString());
 			base.Response.End();
 		}

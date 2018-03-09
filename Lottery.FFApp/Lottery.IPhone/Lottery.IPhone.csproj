@@ -57,11 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="money\chargeWfp.aspx" />
     <Content Include="money\chargeZdb.aspx" />
     <Content Include="money\chargeSbf.aspx" />
-    <Content Include="pay\suibipay\notify.aspx" />
-    <Content Include="pay\suibipay\pay.aspx" />
-    <Content Include="pay\suibipay\result.aspx" />
+    <Content Include="pay\weifupay\notify.aspx" />
+    <Content Include="pay\weifupay\pay.aspx" />
     <Content Include="pay\zdbbill\notify.aspx" />
     <Content Include="pay\zdbbill\pay.aspx" />
     <Content Include="plus\ajaxuploadhandler.ashx" />
@@ -595,6 +595,10 @@
       <DependentUpon>charge.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="money\chargeWfp.aspx.cs">
+      <DependentUpon>chargeWfp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="money\chargeZdb.aspx.cs">
       <DependentUpon>chargeZdb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -619,19 +623,15 @@
       <DependentUpon>newsinfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pay\suibipay\SbfHelper.cs" />
-    <Compile Include="pay\suibipay\notify.aspx.cs">
+    <Compile Include="pay\weifupay\notify.aspx.cs">
       <DependentUpon>notify.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pay\suibipay\pay.aspx.cs">
+    <Compile Include="pay\weifupay\pay.aspx.cs">
       <DependentUpon>pay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pay\suibipay\result.aspx.cs">
-      <DependentUpon>result.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="pay\weifupay\WfpHelper.cs" />
     <Compile Include="pay\zdbbill\notify.aspx.cs">
       <DependentUpon>notify.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

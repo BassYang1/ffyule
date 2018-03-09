@@ -57,7 +57,10 @@ namespace Lottery.DAL
                         dbOperHandler.Reset();
                         dbOperHandler.SqlCmd = "select datediff(d,'2017-02-10',Convert(varchar(10),getdate(),120)) as d";
                         DataTable dataTable3 = dbOperHandler.GetDataTable();
-                        num = !(DateTime.Now > Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00")) || !(DateTime.Now < Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 09:07:01")) ? 601048 + Convert.ToInt32(dataTable3.Rows[0]["d"]) * 179 : 601048 + (Convert.ToInt32(dataTable3.Rows[0]["d"]) - 1) * 179;
+                        num = !(DateTime.Now > Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00")) ||
+                            !(DateTime.Now < Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 09:07:01")) ?
+                            599795 + Convert.ToInt32(dataTable3.Rows[0]["d"]) * 179 :
+                            599795 + (Convert.ToInt32(dataTable3.Rows[0]["d"]) - 1) * 179;
                         break;
                 }
             }

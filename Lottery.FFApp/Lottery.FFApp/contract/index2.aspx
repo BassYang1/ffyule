@@ -47,20 +47,19 @@
 
                             userGroup = parseInt(userGroup);
 
-                            //20180207只有[会员]和[代理]两个级别
-                            //到[会员]不能签约下级
-                            //20180209所有会员都能分配置契约
-                            //if (userGroup <= 0) {
-                            //    $("#g1").hide();
-                            //    $("#g2").hide();
-                            //    $("#g3").hide();
-                            //}
-                            //else {
-                            //    $("#g1").show();
-                            //    $("#g2").show();
-                            //    $("#g3").show();
-                            //}
-                            //break;
+                            if (userGroup <= 0) {
+                                $("#g1").hide();
+                                $("#g2").hide();
+                                $("#g3").hide();
+                                $("#g4").hide();
+                            }
+                            else {
+                                $("#g1").show();
+                                $("#g2").show();
+                                $("#g3").show();
+                                $("#g4").show();
+                            }
+                            break;
                     }
                 }
             });

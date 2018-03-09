@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="result.aspx.cs" Inherits="Lottery.FFApp.SBF.result" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="result.aspx.cs" Inherits="Lottery.FFApp.WFP.result" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>随笔付支付结果</title>
+    <title>微付支付结果</title>
     <script src="../../statics/js/jquery.min.js"></script>
 </head>
 <body>

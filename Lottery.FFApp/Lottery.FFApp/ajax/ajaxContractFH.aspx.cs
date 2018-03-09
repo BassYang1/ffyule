@@ -171,37 +171,53 @@ namespace Lottery.WebApp
             {
                 int adminId = Int32.Parse(this.AdminId);
 
-                if ((new Lottery.DAL.Flex.UserDAL()).IsAdminUser(adminId) || (new UserContractDAL()).HasUsedContract(Int32.Parse(this.AdminId), 1))
+                UserContract list = new UserContract();
+                list.Type = 1;
+                list.ParentId = Convert.ToInt32(this.AdminId);
+                list.UserId = Convert.ToInt32(requestDataJsonList[0].userId);
+
+                this.doh.Reset();
+                this.doh.SqlCmd = string.Format("select UserGroup,Point from N_User where Id={0}", list.UserId);
+                DataTable dataTable1 = this.doh.GetDataTable();
+                if (dataTable1.Rows.Count <= 0)
                 {
-                    UserContract list = new UserContract();
-                    list.Type = 1;
-                    list.ParentId = Convert.ToInt32(this.AdminId);
-                    list.UserId = Convert.ToInt32(requestDataJsonList[0].userId);
-                    List<UserContractDetail> userContractDetailList = new List<UserContractDetail>();
-                    for (int index = 0; index < requestDataJsonList.Count; ++index)
+                    this._response = this.JsonResult(0, "契约数据异常");
+                    return;
+                }
+                
+                int userGroup = Convert.ToInt32(dataTable1.Rows[0]["UserGroup"]);
+
+                if (userGroup == 6 || userGroup == 4)
+                {
+                    this._response = this.JsonResult(0, "主管和代理无需与上级签订契约");
+                    return;
+                }
+                else if (userGroup == 2)
+                {
+                    this._response = this.JsonResult(0, "直属会员使用系统默认契约");
+                    return;
+                }
+
+                List<UserContractDetail> userContractDetailList = new List<UserContractDetail>();
+                for (int index = 0; index < requestDataJsonList.Count; ++index)
+                {
+                    ajaxContractFH.RequestDataJSON requestDataJson2 = requestDataJsonList[index];
+
+                    UserContractDetail detail = new UserContractDetail()
                     {
-                        ajaxContractFH.RequestDataJSON requestDataJson2 = requestDataJsonList[index];
+                        MinMoney = Convert.ToDecimal(requestDataJson2.money),
+                        Money = Convert.ToDecimal(requestDataJson2.per)
+                    };
 
-                        UserContractDetail detail = new UserContractDetail()
-                        {
-                            MinMoney = Convert.ToDecimal(requestDataJson2.money),
-                            Money = Convert.ToDecimal(requestDataJson2.per)
-                        };
-
-                        if (detail.MinMoney <= 0 || detail.Money <= 0)
-                        {
-                            throw new Exception("输入的数值无效");
-                        }
-
-                        userContractDetailList.Add(detail);
+                    if (detail.MinMoney <= 0 || detail.Money <= 0)
+                    {
+                        throw new Exception("输入的数值无效");
                     }
-                    list.UserContractDetails = userContractDetailList;
-                    this._response = new ContractDAL().SaveContract(list) <= 0 ? this.JsonResult(0, "分配契约失败！") : this.JsonResult(1, "分配契约成功！");
+
+                    userContractDetailList.Add(detail);
                 }
-                else
-                {
-                    this._response = this.JsonResult(0, "会员暂无权限分配契约！");
-                }
+                list.UserContractDetails = userContractDetailList;
+                this._response = new ContractDAL().SaveContract(list) <= 0 ? this.JsonResult(0, "分配契约失败！") : this.JsonResult(1, "分配契约成功！");
             }
             catch (Exception ex)
             {
@@ -213,13 +229,39 @@ namespace Lottery.WebApp
         {
             int adminId = Int32.Parse(this.AdminId);
 
-            if ((new Lottery.DAL.Flex.UserDAL()).IsAdminUser(adminId) || (new UserContractDAL()).HasUsedContract(adminId, 1))
-            {
-                this._response = this.JsonResult(1, "可以分配契约！");
-            }
-            else
+            this.doh.Reset();
+            this.doh.SqlCmd = string.Format("select UserGroup,Point from N_User where Id={0}", this.AdminId);
+            DataTable dataTable1 = this.doh.GetDataTable();
+            if (dataTable1.Rows.Count <= 0)
             {
                 this._response = this.JsonResult(0, "会员暂无权限分配契约！");
+            }
+            
+            int userGroup = Convert.ToInt32(dataTable1.Rows[0]["UserGroup"]);
+
+            if (userGroup == 0 || userGroup == 4 || userGroup == 6) //会员，招商，主管
+            {
+                this._response = this.JsonResult(0, "会员暂无权限分配契约！");
+            }
+            else if(userGroup == 2)
+            {
+                this._response = this.JsonResult(1, "20"); //分配20%的分红
+            }
+            else if (userGroup == 1)
+            {
+                this.doh.Reset();
+                this.doh.SqlCmd = string.Format(@"SELECT ISNULL(MIN(D.Money), 0) AS Money FROM N_UserContract C, N_UserContractDetail D 
+                                        WHERE C.Id=D.UcId AND C.UserId={0} AND ISNULL(C.IsUsed, 0)=1 AND C.Type=1", this.AdminId);
+
+                DataTable dataTable2 = this.doh.GetDataTable();
+                if (dataTable2.Rows.Count <= 0)
+                {
+                    this._response = this.JsonResult(1, "0");
+                }
+                else
+                {
+                    this._response = this.JsonResult(1, dataTable2.Rows[0]["Money"].ToString()); //下级待遇小于自己的分红
+                }
             }
         }
 

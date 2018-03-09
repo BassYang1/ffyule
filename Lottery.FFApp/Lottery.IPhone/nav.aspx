@@ -109,7 +109,8 @@
                     <span class="money">已选<em id="fromBuyNumberCount">0</em>注 共<em id="fromBuyPriceTotal">0.00</em>元</span>
                     <span class="tip">添加到投注单</span>
                 </span>
-                <a href="javascript:;" onclick="AddRow()" class="btn primary-btn betting-btn"><i class="icon-doc"></i>添加</a>
+                <a href="javascript:;" onclick="ajaxQuickBetView()" class="btn primary-btn betting-btn" style="width: 90px; padding: 0 3px; margin: 0 1px;"><i class="icon-doc" style="margin-right:1px;"></i>一键下注</a>
+                <a href="javascript:;" onclick="AddRow()" class="btn primary-btn betting-btn" style="width: 60px; padding: 0 2px; margin: 0 1px;"><i class="icon-doc" style="margin-right:1px;"></i>添加</a>
                 <input type="hidden" id="txtLoid" value="<%=loId %>" />
                 <input type="hidden" id="txtTid" value="<%=tId %>" />
                 <input type="hidden" id="MinTimes" value="<%=MinTimes %>" />

@@ -6,7 +6,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Projects\ffyule\publish\ffadmin</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Projects\hongsheng\publish\ffadmin</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="admin/activeNewsEdit.aspx">
@@ -253,25 +253,25 @@
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Admin.dll">
-      <publishTime>03/02/2018 21:40:10</publishTime>
+      <publishTime>03/07/2018 17:25:24</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
       <publishTime>12/20/2017 03:03:16</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>03/02/2018 21:40:10</publishTime>
+      <publishTime>03/07/2018 17:25:23</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
-      <publishTime>03/02/2018 21:40:09</publishTime>
+      <publishTime>03/07/2018 17:25:22</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>03/02/2018 21:40:08</publishTime>
+      <publishTime>03/07/2018 17:25:16</publishTime>
     </File>
     <File Include="bin/Lottery.FFCache.dll">
-      <publishTime>03/02/2018 21:40:09</publishTime>
+      <publishTime>03/07/2018 17:25:17</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>03/02/2018 21:40:09</publishTime>
+      <publishTime>03/07/2018 17:25:17</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -1048,7 +1048,7 @@
       <publishTime>02/02/2018 21:07:31</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/02/2018 21:55:00</publishTime>
+      <publishTime>03/07/2018 17:25:50</publishTime>
     </File>
     <File Include="_libs/fckeditor/editor/css/behaviors/disablehandles.htc">
       <publishTime>02/09/2018 22:29:59</publishTime>

@@ -6,32 +6,32 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Projects\ffyule\publish\ffweb</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Projects\hongsheng\publish\ffweb</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="active/actCharge.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="active/actGroup2.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="active/actGroup3.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="active/actGroup4.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="active/active1.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="active/actReg.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/05/2018 14:31:06</publishTime>
     </File>
     <File Include="active/actYongjin.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="active/index.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/07/2018 22:10:36</publishTime>
     </File>
     <File Include="ajax/ajax.aspx">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -82,22 +82,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="ajax/ajaxUserContractFH.aspx">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/09/2018 08:17:20</publishTime>
     </File>
     <File Include="aspx/adminTologin.aspx">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="aspx/list.aspx">
-      <publishTime>02/27/2018 22:20:23</publishTime>
+      <publishTime>03/09/2018 09:00:06</publishTime>
     </File>
     <File Include="aspx/nav.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="aspx/page.aspx">
-      <publishTime>02/27/2018 13:25:23</publishTime>
+      <publishTime>03/08/2018 23:25:58</publishTime>
     </File>
     <File Include="bet/betInfo.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>03/09/2018 08:24:38</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>03/09/2018 08:24:38</publishTime>
+    </File>
+    <File Include="bin/BouncyCastle.Crypto.dll">
+      <publishTime>10/24/2013 11:57:18</publishTime>
     </File>
     <File Include="bin/FusionCharts.dll">
       <publishTime>08/27/2009 20:32:40</publishTime>
@@ -115,25 +124,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>03/02/2018 22:19:32</publishTime>
+      <publishTime>03/09/2018 11:58:39</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>03/02/2018 22:19:31</publishTime>
+      <publishTime>03/09/2018 11:58:39</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
       <publishTime>06/15/2017 00:57:59</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/09/2018 10:51:01</publishTime>
     </File>
     <File Include="bin/Lottery.FFApp.dll">
-      <publishTime>03/02/2018 22:19:34</publishTime>
+      <publishTime>03/09/2018 11:58:40</publishTime>
     </File>
     <File Include="bin/Lottery.FFCache.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/09/2018 10:51:02</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/09/2018 10:51:02</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -154,34 +163,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/28/2015 17:27:52</publishTime>
     </File>
     <File Include="center/bankInfo.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="center/bankpwd.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="center/email.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="center/index.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="center/mobile.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="center/trueName.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="center/trueNameEdit.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="center/userpwd.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="center/userverify.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="chart/index.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="chart/style/ball.png">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -199,31 +208,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="contract/Contractfh.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/09/2018 08:13:32</publishTime>
     </File>
     <File Include="contract/ContractfhOper.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="contract/ContractfhPop.aspx">
-      <publishTime>02/12/2018 15:08:03</publishTime>
+      <publishTime>03/09/2018 11:48:10</publishTime>
     </File>
     <File Include="contract/Contractgz.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/09/2018 08:13:29</publishTime>
     </File>
     <File Include="contract/ContractgzOper.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="contract/ContractgzPop.aspx">
-      <publishTime>02/12/2018 15:08:31</publishTime>
+      <publishTime>03/09/2018 11:47:41</publishTime>
     </File>
     <File Include="contract/index.aspx">
-      <publishTime>02/27/2018 10:07:07</publishTime>
+      <publishTime>03/09/2018 11:58:09</publishTime>
     </File>
     <File Include="contract/index2.aspx">
-      <publishTime>02/27/2018 10:06:42</publishTime>
+      <publishTime>03/08/2018 23:27:48</publishTime>
     </File>
     <File Include="contract/MyAgentfhlist.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="contract2/Contractfh.aspx">
       <publishTime>02/08/2018 22:03:57</publishTime>
@@ -253,16 +262,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/08/2018 21:00:36</publishTime>
     </File>
     <File Include="email/add.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="email/index.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/09/2018 08:20:29</publishTime>
     </File>
     <File Include="email/Info.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="email/Info2.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:47:59</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -280,25 +289,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="html/download.html">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/07/2018 19:50:03</publishTime>
     </File>
     <File Include="html/duty.aspx">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="html/ele.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="html/index.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="html/license.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="html/line.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 22:40:31</publishTime>
     </File>
     <File Include="html/live.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="html/policy.aspx">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -313,43 +322,43 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="html/sound.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="html/temp.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="Index.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 22:41:16</publishTime>
     </File>
     <File Include="Index2.aspx">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="Login.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 22:40:01</publishTime>
     </File>
     <File Include="money/charge.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="money/getcash.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/05/2018 14:31:46</publishTime>
     </File>
     <File Include="money/specialcharge.html">
-      <publishTime>02/27/2018 17:56:33</publishTime>
+      <publishTime>03/07/2018 10:08:30</publishTime>
     </File>
     <File Include="money/trueName.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="news/index.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="news/info.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="news/newsindex.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="news/newslist.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:00</publishTime>
     </File>
     <File Include="pay/suibipay/notify.aspx">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -359,6 +368,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="pay/suibipay/result.aspx">
       <publishTime>02/09/2018 22:29:59</publishTime>
+    </File>
+    <File Include="pay/weifupay/notify.aspx">
+      <publishTime>03/07/2018 06:00:23</publishTime>
+    </File>
+    <File Include="pay/weifupay/pay.aspx">
+      <publishTime>03/07/2018 06:20:25</publishTime>
+    </File>
+    <File Include="pay/weifupay/result.aspx">
+      <publishTime>03/07/2018 05:59:40</publishTime>
+    </File>
+    <File Include="pay/zdbbill/notify.aspx">
+      <publishTime>03/09/2018 08:23:01</publishTime>
+    </File>
+    <File Include="pay/zdbbill/pay.aspx">
+      <publishTime>03/09/2018 08:23:13</publishTime>
     </File>
     <File Include="plus/ajaxuploadhandler.ashx">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -372,8 +396,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="plus/GetNumber.aspx">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>03/09/2018 08:24:35</publishTime>
+    </File>
     <File Include="Register.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 22:39:34</publishTime>
     </File>
     <File Include="statics/ajaxrequest.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -388,7 +415,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/base/lotMenu.js">
-      <publishTime>02/27/2018 13:32:16</publishTime>
+      <publishTime>03/05/2018 15:38:38</publishTime>
     </File>
     <File Include="statics/css/common.css">
       <publishTime>02/04/2018 11:25:46</publishTime>
@@ -400,13 +427,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/css/login.css">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/03/2018 22:38:07</publishTime>
     </File>
     <File Include="statics/css/lottery.css">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/css/member.css">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 02:50:32</publishTime>
     </File>
     <File Include="statics/css/test.css">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -436,1159 +463,1168 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/global.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/07/2018 16:35:24</publishTime>
     </File>
     <File Include="statics/img/1001.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1001_hot.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1003.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1004.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1004_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1005.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1005_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1007.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1009.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1009_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1010.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1010_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1011.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1012.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1013.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1014.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1015.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1015_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1016.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1016_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1017.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1018.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1019.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/1020.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/2001.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/2001_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/2002.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/2002_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/2003.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/2004.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/2005.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/2006.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/3001.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/3002.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/3002_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/3003.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/3004.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/3005.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/3006.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/4001.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/4001_70.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/4002.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/4003.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/4004.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/acc_avatar.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/acc_default.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/acc_logo.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/acc_photo.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/acc_photo_sm.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/add_fav.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/agent_chart.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/Android.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/app_android.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/app_image_android.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/app_image_ios.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/app_ios.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-ABC.png">
+      <publishTime>02/02/2018 21:45:39</publishTime>
+    </File>
+    <File Include="statics/img/bank-alipay_scan.png">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/img/bank-BHB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-BJB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-BJRCB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-BOC.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-CCB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-CEB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-CIB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-CITIC.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-CMB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-CMBC.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-COMM.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-CZB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-GDB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-HXB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-HZB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-ICBC.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-NBB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-NJB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-PAB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-PSBC.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
+    </File>
+    <File Include="statics/img/bank-QQ.png">
+      <publishTime>02/09/2018 22:29:59</publishTime>
     </File>
     <File Include="statics/img/bank-SHB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-SPDB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-SZDB.png">
+      <publishTime>02/02/2018 21:45:39</publishTime>
+    </File>
+    <File Include="statics/img/bank-weixin_scan.png">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/img/bank-WX.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank-ZFB.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank_36_abc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank_36_cmbc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bank_36_icbc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/betting_countdown.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bg.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_agency.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_briefcase.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_clause.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_declare.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_duty.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_guide.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_policy.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_report.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_security.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bn_user.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/browser_360.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/browser_ch.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/browser_ff.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/browser_ie.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_acc_recharge.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_acc_withdraw.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_dl_android.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_dl_ios.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_dl_pc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_lot.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_lot_sm.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_lt_android.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_lt_cs.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_lt_ios.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_lt_pc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/btn_myacc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_clause.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_declare.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_duty.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_game.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_gift.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_license.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_live.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_notice.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_policy.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_safety.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/bt_security.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/client_image_pc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/client_pc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/code.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/ff_license.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/ff_logo.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/03/2018 22:12:25</publishTime>
     </File>
     <File Include="statics/img/ff_logo2.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/float_mem.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/float_register.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/focus_banner1.png">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/img/focus_banner2.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/03/2018 21:26:37</publishTime>
     </File>
     <File Include="statics/img/focus_banner3.png">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/img/focus_banner4.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/03/2018 21:26:42</publishTime>
     </File>
     <File Include="statics/img/focus_banner5.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/03/2018 21:26:40</publishTime>
     </File>
     <File Include="statics/img/focus_banner6.png">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/img/focus_banner7.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/03/2018 21:26:49</publishTime>
     </File>
     <File Include="statics/img/game_banner.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_next.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_p1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_p2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_p3.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_p4.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_p5.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_p6.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_p7.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_p8.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/game_prev.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/hot.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/hot_rec.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_acc_card.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_acc_game.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_acc_out.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_acc_refresh.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_acc_tri.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_acc_wallet.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_act_doc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_act_lock.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_act_msg.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_act_user.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_add.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_add_g.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_agent_rebate.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_code_20.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_email.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_email_authed.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_key_20.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_phone.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_phone_authed.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_user.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_user_20.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_auth_user_authed.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_bank_card.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_bet_more.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_bn_dl.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_bn_home.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_bn_link.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_code.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_correct.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_cup.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_dl_one.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_dl_two.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_email.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_faq_a.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_faq_q.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_game_q.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_h.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_key.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lic_q.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_loc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_8.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_add.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_append.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_bet.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_clear.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_clock.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_cny.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_del.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_history.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_i.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_minus.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_plus.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lot_trend.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lt_dl.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_lt_link.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_mini_android.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_mini_ios.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_mini_link.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_mini_pc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_n.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_nav_game.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_nav_gift.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_nav_home.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_nav_live.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_nav_lot.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_nav_poker.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_nav_prom.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_nav_sports.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_not_author.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_not_clock.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_not_view.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_no_n1.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_no_n2.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_no_n3.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_page_first.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_page_first_hover.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_page_last.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_page_last_hover.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_page_next.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_page_next_hover.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_page_prev.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_page_prev_hover.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_phone.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_poker_cup.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_poker_rule.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_card.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_close.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_dl.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_doc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_email.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_lock.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_phone.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_question.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_shield.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_popup_user.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_prom_back.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_prom_clock.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_prom_con.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_prom_rule.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_prom_time.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_prom_view.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_qq.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_query_date.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_sec_email.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_sec_lock.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_sec_phone.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_sec_question.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_sec_shield.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_sec_user.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_side_list.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_sound_close.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_sound_open.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_step_done.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_top_exit.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_top_refresh.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_tutorial_course.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_tutorial_game.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_tutorial_one.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_tutorial_two.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_tutorial_user.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_user.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_warn.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/icon_wrong.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/index_member.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/input_bg.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/Ios.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/level_shield.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/line_test.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/live_ag.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/live_banner.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/live_bbin.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/live_og.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/login_bg.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/logo_ag.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/logo_bbin.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/logo_og.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_11x5.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_big.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_fc3d.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_klc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_klc_big.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_pk10.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_ssc.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_ssl.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_ball_tcp3.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_dice_1.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_dice_2.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_dice_3.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_dice_4.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_dice_5.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_dice_6.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_number_ball.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_oper.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/lottery_oper_hover.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/mem_bg.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/new.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/operate_doubt.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/operate_fail.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/operate_lot.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/operate_success.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/operate_warn.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/payment_card.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/payment_countdown.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/payment_platform.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_bg.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_discount.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_flow_game_1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_flow_game_2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_flow_mahjong_1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_flow_mahjong_2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_flow_mahjong_3.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_flow_mahjong_4.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_flow_mahjong_5.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_game_bg.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_10.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_11.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_12.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_3.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_4.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_5.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_6.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_7.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_8.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_game_9.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_3_1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_3_2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_4.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_5.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_6.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_7.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_guide_mahjong_8.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_play.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_rule_dz.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/poker_rule_qs.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/process_steps_bg.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_banner.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_banner1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/07/2018 21:26:58</publishTime>
     </File>
     <File Include="statics/img/prom_banner2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_banner3.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_banner4.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_banner5.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/05/2018 09:57:15</publishTime>
     </File>
     <File Include="statics/img/prom_p.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_p1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_p2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_p3.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_p4.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/prom_part_tbg.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/qrcode_130.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/regulatory_authority.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/retrieve_completed.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/retrieve_problem.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/scan_code.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/security_bar.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/security_line.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/sent_email.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/slider_handle.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/slogan.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/04/2018 14:06:39</publishTime>
     </File>
     <File Include="statics/img/slogan2.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/specialcharge.png">
-      <publishTime>02/27/2018 13:21:28</publishTime>
+      <publishTime>02/27/2018 13:21:29</publishTime>
     </File>
     <File Include="statics/img/sports_game_bg.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/sports_match1.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/sports_match2.jpg">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/super_prize.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/img/user_code.png">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>02/02/2018 21:45:39</publishTime>
     </File>
     <File Include="statics/include/close.htm">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/include/header.html">
-      <publishTime>02/08/2018 20:54:45</publishTime>
+      <publishTime>03/09/2018 10:48:15</publishTime>
     </File>
     <File Include="statics/include/lefter.html">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/07/2018 19:51:08</publishTime>
     </File>
     <File Include="statics/include/nav.html">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -1657,7 +1693,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/page.charge.js">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/07/2018 06:34:21</publishTime>
     </File>
     <File Include="statics/js/page.contract.js">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -1666,7 +1702,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/page.header.js">
-      <publishTime>02/24/2018 17:31:24</publishTime>
+      <publishTime>03/09/2018 10:48:44</publishTime>
     </File>
     <File Include="statics/js/page.index.js">
       <publishTime>02/07/2018 21:29:23</publishTime>
@@ -2073,6 +2109,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="statics/My97DatePicker/WdatePicker.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
+    <File Include="statics/qrcode/jquery.qrcode.js">
+      <publishTime>03/03/2018 01:00:03</publishTime>
+    </File>
+    <File Include="statics/qrcode/qrcode.js">
+      <publishTime>03/03/2018 01:00:03</publishTime>
+    </File>
+    <File Include="statics/qrcode/utf.js">
+      <publishTime>03/03/2018 01:00:03</publishTime>
+    </File>
     <File Include="statics/sharedata.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
@@ -2095,31 +2140,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/14/2018 20:31:04</publishTime>
     </File>
     <File Include="user/index.aspx">
-      <publishTime>02/12/2018 13:55:28</publishTime>
+      <publishTime>03/08/2018 23:26:02</publishTime>
     </File>
     <File Include="user/useradd.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/09/2018 10:41:37</publishTime>
     </File>
     <File Include="user/userAgentFH.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/09/2018 08:24:10</publishTime>
     </File>
     <File Include="user/userContractFH.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/09/2018 08:24:18</publishTime>
     </File>
     <File Include="user/userindex.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="user/usertranacc.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="user/userupdate.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/03/2018 11:48:01</publishTime>
     </File>
     <File Include="WEB-INF/site.xml">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/07/2018 16:35:24</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/02/2018 22:19:54</publishTime>
+      <publishTime>03/09/2018 11:58:41</publishTime>
     </File>
   </ItemGroup>
 </Project>

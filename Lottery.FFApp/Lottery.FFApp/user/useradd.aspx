@@ -16,6 +16,7 @@
     <script src="/statics/layer/layer.js" type="text/javascript"></script>
     <script src="/statics/js/EM.tools.js" type="text/javascript"></script>
     <script type="text/javascript">
+        var userGroup = "<%=this.UserGroup%>";
         var pagesize = 12;
         var page = thispage();
         $(document).ready(function () {
@@ -26,6 +27,12 @@
             });
             $("#txtUserName").formValidator({ tipid: "tipUserName", onshow: "请输入会员账号", onfocus: "由0-9，z-a,A-Z组成的6-16位的字符" }).InputValidator({ min: 5, max: 20, onerror: "会员账号为5-20个字符" }).RegexValidator({ regexp: "username", datatype: "enum", onerror: "汉字或字母开头,不支持符号" });
             $("#txtPoint").formValidator({ tipid: "tipPoint", onshow: "请输入返点", onfocus: "请输入返点" }).InputValidator({ min: 1, max: 5, onerror: "请输入返点" });
+
+            if (userGroup == "6" || userGroup == "4") {
+                $("#txtPoint, #txtPoint2").val("<%=(Convert.ToDecimal(AdminPoint) / 10 - 0.1m) %>");
+                $("#txtPoint, #txtPoint2").prop("readonly", true);
+            }
+
             $(".tto-tabs .tabs-nav").delegate('li', 'click', function (event) {
                 var nmb = $(this).attr("nmb");
                 $(this).parents().find("li").removeClass("ui-state-active");
@@ -204,18 +211,19 @@
             var yxtime = $("#yxtime").val();
             var times = $("#txtTimes").val();
             if (/^\d+(\.\d{1,1})?$/.test(point)) {
-                if (parseFloat($("#txtUserPoint").val()) < 13.1) {
-                    if (parseFloat(point) <= 0 || parseFloat(point) > parseFloat($("#txtUserPoint2").val())) {
-                        emAlert("返点不能小于0且不能大于您的返点！");
+                if (userGroup == "6" || userGroup == "4") {
+                    if (parseFloat(point) != parseFloat($("#txtUserPoint2").val())) {
+                        emAlert("返点必须是" + $("#txtUserPoint2").val());
                         return false;
                     }
                 }
                 else {
-                    if (parseFloat(point) <= 10 || parseFloat(point) >= parseFloat($("#txtUserPoint2").val())) {
-                        emAlert("返点不能小于0且不能大于等于您的返点！");
+                    if (parseFloat(point) <= 0 || parseFloat(point) > parseFloat($("#txtUserPoint2").val())) {
+                        emAlert("返点不能小于0且不能大于" + $("#txtUserPoint2").val());
                         return false;
                     }
                 }
+
                 $.ajax({
                     type: "post",
                     dataType: "json",
@@ -264,18 +272,19 @@
                 var oPass = "a123456";
                 var point = $("#txtPoint").val();
                 if (/^\d+(\.\d{1,1})?$/.test(point)) {
-                    if (parseFloat($("#txtUserPoint").val()) < 13.1) {
-                        if (parseFloat(point) <= 0 || parseFloat(point) > parseFloat($("#txtUserPoint").val())) {
-                            emAlert("返点不能小于0且不能大于您的返点！");
+                    if (userGroup == "6" || userGroup == "4") {
+                        if (parseFloat(point) != parseFloat($("#txtUserPoint").val())) {
+                            emAlert("返点必须是" + $("#txtUserPoint").val());
                             return false;
                         }
                     }
                     else {
-                        if (parseFloat(point) <= 0 || parseFloat(point) >= parseFloat($("#txtUserPoint").val())) {
-                            emAlert("返点不能小于0且不能大于等于您的返点！");
+                        if (parseFloat(point) <= 0 || parseFloat(point) > parseFloat($("#txtUserPoint").val())) {
+                            emAlert("返点不能小于0且不能大于" + $("#txtUserPoint").val());
                             return false;
                         }
                     }
+
                     var index = emLoading();
                     $.ajax({
                         type: "post",
@@ -333,7 +342,7 @@
             </div>
             <div class="btn-group">
                 <input type="button" value="添加账户" class="btn btn-primary" onclick="ajaxRegsiter()" />
-                <input type="hidden" id="txtUserPoint" value="<%=Convert.ToDecimal(AdminPoint) / 10 %>" />
+                <input type="hidden" id="txtUserPoint" value="<%=(Convert.ToDecimal(AdminPoint) / 10 - 0.1m) %>" />
             </div>
             </form>
                         <div class="kindly-reminder mt10">
@@ -378,7 +387,7 @@
             </div>
             <div class="btn-group">
                 <input type="button" value="生成链接" class="btn btn-primary" onclick="ajaxRegStr()" />
-                <input type="hidden" id="txtUserPoint2" value="<%=Convert.ToDecimal(AdminPoint) / 10 %>" />
+                <input type="hidden" id="txtUserPoint2" value="<%=(Convert.ToDecimal(AdminPoint) / 10 - 0.1m) %>" />
             </div>
 			<div class="input-group mt30">
                 <label class="lab"></label>

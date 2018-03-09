@@ -36,14 +36,14 @@
             $("#btnRefuse").hide();
             $("#btnRefuseCannel").hide();
             $("#btnAgreeCannel").hide();
-            
-            if (isAdminUser != "True") {
+
+            if (userGroup == "0" || userGroup == "1" || userGroup == "2") {
                 getContract();
                 showContract();
                 checkContractState();
             }
             else {
-                $i("info").innerHTML = "管理账户无需签订契约";
+                $i("info").innerHTML = "账户无需签订契约";
             }
         });
 

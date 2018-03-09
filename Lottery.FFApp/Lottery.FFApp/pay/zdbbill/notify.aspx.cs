@@ -116,7 +116,7 @@ namespace Lottery.FFApp.ZDB
 
                 if (result == true)
                 {
-                    if (new UserChargeDAL().Update(order_no) == false)
+                    if (new UserChargeDAL().Update(order_no, trade_no, bank_seq_no) == false)
                     {
                         Log.ErrorFormat("更新系统支付订单失败，订单号: {0}", order_no);
                         Response.Write("更新系统支付订单失败");

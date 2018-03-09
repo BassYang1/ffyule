@@ -39,6 +39,7 @@
                             top.window.location = '/login.aspx';
                             break;
                         case '1':
+							/*
                             if (d.table[0].usergroup == "2") {
                                 $("#g2").show();
 							}
@@ -48,6 +49,7 @@
                             else if (d.table[0].usergroup == "4") {
                                 $("#g4").show();
                             }
+							*/
                             break;
                     }
                 }
@@ -73,7 +75,7 @@
                             <a id="g2" href="javascript:;" nmb="/active/actGroup2.html" nmb2="1090" style="display:none;">日奖励活动</a>
 							<a id="g3" href="javascript:;" nmb="/active/actGroup3.html" nmb2="950" style="display:none;">日奖励活动</a>
                             <a id="g4" href="javascript:;" nmb="/active/actGroup4.html" nmb2="900" style="display:none;">日奖励活动</a>
-							<a href="javascript:;" nmb="/active/actYongjin.html" nmb2="900">亏损佣金</a>
+							<a href="javascript:;" nmb="/active/actYongjin.html" nmb2="900" style="display:none;">亏损佣金</a>
                         </div>
 						<div class="block-panel">
                         <iframe id="workspace" name="workspace" src="/active/actReg.html" scrolling="no"

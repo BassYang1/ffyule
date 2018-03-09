@@ -146,56 +146,77 @@ namespace Lottery.WebApp
             string _UserName = this.f("name");
             string _Password = this.f("pwd");
             string _Point = this.f("point");
-            if (Convert.ToInt32(_UserGroup) == 2 && Convert.ToDouble(_Point) != 130.0)
-                this._response = this.GetJsonResult2(0, "直属只能开13.0的账号！");
-            else if (Convert.ToInt32(_UserGroup) == 3 && Convert.ToDouble(_Point) != 130.0)
-                this._response = this.GetJsonResult2(0, "特权直属只能开13.0的账号！");
-            else if (Convert.ToInt32(_UserGroup) == 4 && Convert.ToDouble(_Point) != 130.0)
+
+            this.doh.Reset();
+            this.doh.SqlCmd = "select UserGroup,Point as Upoint from N_User with(nolock) where Id=" + this.AdminId;
+            DataTable dataTable1 = this.doh.GetDataTable();
+
+            if (dataTable1 == null || dataTable1.Rows.Count <= 0)
             {
-                this._response = this.GetJsonResult2(0, "招商只能开13.0的账号！");
+                this._response = this.GetJsonResult2(0, "会员不存在！");
+                return;
             }
+
+            int userGroup = Convert.ToInt32(dataTable1.Rows[0]["UserGroup"].ToString());
+            if (userGroup == 0 || userGroup == 1) //代理和会员
+            {
+                if (Convert.ToDouble(_Point) > Convert.ToDouble(dataTable1.Rows[0]["Upoint"]))
+                {
+                    this._response = this.GetJsonResult2(0, "返点不能大于您的返点" + dataTable1.Rows[0]["Upoint"].ToString());
+                    return;
+                }
+            }
+            else if (userGroup == 2) //直属可以开户代理和会员
+            {
+                if (Convert.ToDouble(_Point) > 131)
+                {
+                    this._response = this.GetJsonResult2(0, "返点不能大于13.1");
+                    return;
+                }
+            }
+            else if (userGroup == 4) //直属固定返点13.1
+            {
+                if (Convert.ToDouble(_Point) != 131)
+                {
+                    this._response = this.GetJsonResult2(0, "必须固定返点13.1");
+                    return;
+                }
+            }
+            else if (userGroup == 6) //招商固定返点13.2
+            {
+                if (Convert.ToDouble(_Point) != 132 )
+                {
+                    this._response = this.GetJsonResult2(0, "必须固定返点13.2");
+                    return;
+                }
+            }
+
+            if (Convert.ToInt32(_UserGroup) < 2) //会员||代理级别
+            {
+                string str = string.Format(@"SELECT *,(select count(*) from N_User where ParentID={0} AND UserGroup<2 and Point=a.Point*10) as regNums
+                                            From [N_UserPointQuota] a with(nolock)
+                                            Where [Point]={1}", (object)this.AdminId, (object)dataTable1.Rows[0]["Upoint"].ToString());
+                this.doh.Reset();
+                this.doh.SqlCmd = str;
+                DataTable dataTable2 = this.doh.GetDataTable();
+                if (dataTable2.Rows.Count > 0 && Convert.ToDouble(dataTable2.Rows[0]["ChildNums"]) <= Convert.ToDouble(dataTable2.Rows[0]["RegNums"]))
+                {
+                    this._response = this.GetJsonResult2(0, "您选择的返点平级配额不足！");
+                    return;
+                }
+            }
+
+            string str1 = string.Format(@"SELECT *,(select count(*) from N_User where ParentID={0} AND UserGroup=a.[toGroup]) as regNums
+                                            From [N_UserGroupQuota] a with(nolock)
+                                            Where [Group]={1} and [ToGroup]={2}", (object)this.AdminId, (object)dataTable1.Rows[0]["UserGroup"].ToString(), (object)_UserGroup);
+            this.doh.Reset();
+            this.doh.SqlCmd = str1;
+            DataTable dataTable3 = this.doh.GetDataTable();
+
+            if (dataTable3.Rows.Count > 0 && Convert.ToDouble(dataTable3.Rows[0]["ChildNums"]) <= Convert.ToDouble(dataTable3.Rows[0]["RegNums"]))
+                this._response = this.GetJsonResult2(0, "您选择的开户类型配额不足！");
             else
-            {
-                this.doh.Reset();
-                this.doh.SqlCmd = "select UserGroup,Point as Upoint from N_User with(nolock) where Id=" + this.AdminId;
-                DataTable dataTable1 = this.doh.GetDataTable();
-                if (Convert.ToDouble(dataTable1.Rows[0]["Upoint"]) > 130.0)
-                {
-                    if (Convert.ToDouble(_Point) >= Convert.ToDouble(dataTable1.Rows[0]["Upoint"]))
-                    {
-                        this._response = this.GetJsonResult2(0, "您的账号不能开平级账号！");
-                        return;
-                    }
-                }
-                else
-                {
-                    if (Convert.ToDouble(_Point) > Convert.ToDouble(dataTable1.Rows[0]["Upoint"]))
-                    {
-                        this._response = this.GetJsonResult2(0, "返点不能大于您的返点！");
-                        return;
-                    }
-                    if (Convert.ToInt32(_UserGroup) < 2)
-                    {
-                        string str = string.Format("SELECT *,(select count(*) from N_User where ParentID={0} AND UserGroup<2 and Point=a.Point*10) as regNums \r\n                            From [N_UserPointQuota] a with(nolock)  \r\n                            Where [Point]={1}", (object)this.AdminId, (object)dataTable1.Rows[0]["Upoint"].ToString());
-                        this.doh.Reset();
-                        this.doh.SqlCmd = str;
-                        DataTable dataTable2 = this.doh.GetDataTable();
-                        if (dataTable2.Rows.Count > 0 && Convert.ToDouble(dataTable2.Rows[0]["ChildNums"]) <= Convert.ToDouble(dataTable2.Rows[0]["RegNums"]))
-                        {
-                            this._response = this.GetJsonResult2(0, "您选择的返点平级配额不足！");
-                            return;
-                        }
-                    }
-                }
-                string str1 = string.Format("SELECT *,(select count(*) from N_User where ParentID={0} AND UserGroup=a.[toGroup]) as regNums \r\n                            From [N_UserGroupQuota] a with(nolock)  \r\n                            Where [Group]={1} and [ToGroup]={2}", (object)this.AdminId, (object)dataTable1.Rows[0]["UserGroup"].ToString(), (object)_UserGroup);
-                this.doh.Reset();
-                this.doh.SqlCmd = str1;
-                DataTable dataTable3 = this.doh.GetDataTable();
-                if (dataTable3.Rows.Count > 0 && Convert.ToDouble(dataTable3.Rows[0]["ChildNums"]) <= Convert.ToDouble(dataTable3.Rows[0]["RegNums"]))
-                    this._response = this.GetJsonResult2(0, "您选择的开户类型配额不足！");
-                else
-                    this._response = new Lottery.DAL.Flex.UserDAL().Register(this.AdminId, _UserGroup, _UserName, _Password, _Point);
-            }
+                this._response = new Lottery.DAL.Flex.UserDAL().Register(this.AdminId, _UserGroup, _UserName, _Password, _Point);
         }
 
         private void ajaxGetList()
@@ -633,7 +654,7 @@ namespace Lottery.WebApp
                                           (object)dataTable1.Rows[index]["Id"].ToString(),
                                           (object)dataTable1.Rows[index]["Point"].ToString(),
                                           (object)dataTable1.Rows[index]["UserName"].ToString(),
-                                          (object)dataTable1.Rows[index]["Money"].ToString(), 
+                                          (object)dataTable1.Rows[index]["Money"].ToString(),
                                           (object)str7) + " union all ";
                     }
                     else

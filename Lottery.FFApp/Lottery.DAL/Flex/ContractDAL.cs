@@ -77,19 +77,9 @@ namespace Lottery.DAL.Flex
             using (DbOperHandler dbOperHandler = new ComData().Doh())
             {
                 dbOperHandler.Reset();
-                dbOperHandler.SqlCmd = string.Format("SELECT top 1 Id from N_UserContract where UserId=" + UserId);
+                dbOperHandler.SqlCmd = string.Format("SELECT top 1 UserGroup from N_User where UserGroup <= 2 AND Id=" + UserId);
                 DataTable dataTable = dbOperHandler.GetDataTable();
-                if (dataTable.Rows.Count > 0)
-                {
-                    _jsonstr = "{\"result\" :\"1\", \"returnval\" :\"操作成功\"}";
-                }
-                else
-                {
-                    dbOperHandler.Reset();
-                    dbOperHandler.SqlCmd = string.Format("SELECT top 1 UserGroup from N_User where UserGroup < 5 AND Id=" + UserId);
-                    dataTable = dbOperHandler.GetDataTable();
-                    _jsonstr = dataTable.Rows.Count <= 0 ? "{\"result\" :\"0\", \"returnval\" :\"操作成功\"}" : "{\"result\" :\"1\", \"returnval\" :\"操作成功\"}";
-                }
+                _jsonstr = dataTable.Rows.Count <= 0 ? "{\"result\" :\"0\", \"returnval\" :\"操作成功\"}" : "{\"result\" :\"1\", \"returnval\" :\"操作成功\"}";
 
                 dataTable.Clear();
                 dataTable.Dispose();
@@ -133,11 +123,19 @@ namespace Lottery.DAL.Flex
                 DataTable dataTable = dbOperHandler.GetDataTable();
                 if (dataTable.Rows.Count > 0)
                 {
-                    if (Convert.ToInt32(dataTable.Rows[0]["UserGroup"]) < 5) //代理,会员,直属,特权直属,招商
+                    if (Convert.ToInt32(dataTable.Rows[0]["UserGroup"]) <= 1) //代理,会员
                     {
                         dbOperHandler.Reset();
                         dbOperHandler.SqlCmd = @"SELECT 0 as groupId,[Type],[ParentId],[UserId],[IsUsed],[STime],b.*
                                                     FROM [N_UserContract] a left join [N_UserContractDetail] b on a.Id=b.UcId where Type=1 and UserId=" + UserId;
+                        dataTable = dbOperHandler.GetDataTable();
+                        _jsonstr = "{\"result\" :\"1\",\"returnval\" :\"操作成功\"," + dtHelp.DT2JSONNOHTML(dataTable, 0, "recordcount", "table", true) + "}";
+                    }
+                    else if (Convert.ToInt32(dataTable.Rows[0]["UserGroup"]) == 2) //直属
+                    {
+                        dbOperHandler.Reset();
+                        dbOperHandler.SqlCmd = string.Format(@"SELECT 2 as [GroupId], 1 as Type, (SELECT DISTINCT ParentId FROM N_User WHERE id={0}) AS ParentId, {0} AS UserId,
+                                [MinMoney],[Group3] as money, 1 AS IsUsed FROM [Act_Day15FHSet] Where GroupId=2 and IsUsed=0 ORDER BY Soft ASC", UserId);
                         dataTable = dbOperHandler.GetDataTable();
                         _jsonstr = "{\"result\" :\"1\",\"returnval\" :\"操作成功\"," + dtHelp.DT2JSONNOHTML(dataTable, 0, "recordcount", "table", true) + "}";
                     }

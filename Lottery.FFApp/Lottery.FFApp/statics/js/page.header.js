@@ -43,25 +43,23 @@ var lookLot = function () {
         $lotNav.hide();
     });
 
-    //平台管理员直接单线往下分配置
-    //到[会员]不能签约下级
-    //$.ajax({
-    //    type: "get",
-    //    dataType: "json",
-    //    data: "clienttime=" + Math.random(),
-    //    url: "/ajax/ajaxContractFH.aspx?oper=IsContract3",
-    //    error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
-    //    success: function (d) {
-    //        if (d.result == 1) {
-    //            $("#qy").show();
-    //            $("#gz").show();
-    //        }
-    //        else {
-    //            $("#qy").hide();
-    //            $("#gz").hide();
-    //        }
-    //    }
-    //});
+    $.ajax({
+        type: "get",
+        dataType: "json",
+        data: "clienttime=" + Math.random(),
+        url: "/ajax/ajaxContractFH.aspx?oper=IsContract3",
+        error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
+        success: function (d) {
+            if (d.result == 1) {
+                $("#qy").show();
+                $("#gz").show();
+            }
+            else {
+                $("#qy").hide();
+                $("#gz").hide();
+            }
+        }
+    });
 };
 
 //加载采种

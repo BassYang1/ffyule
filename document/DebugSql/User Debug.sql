@@ -6,7 +6,21 @@ SELECT * FROM N_USER WHERE Id=1963;
 
 /*
 
-UPDATE N_USER SET Password='c1601dc1bf00f0a2c9d5f9a8c34eb27f97d0a8b7fcdba0f7a038ab51cf619bad' 
+UPDATE N_USER SET Password='cdd7e692858094371afa6affc351d71030aa93a45a1ffe132b3b97282b6a49b8' 
 WHERE UserName IN ('yzz1230','hao1699','azf223366', 'admin', 'taiyi', 'lululu', 'l11111111', 'qqq111', 'ceshi008');
 
 */
+
+
+
+--SELECT * INTO N_User_20180305 FROM N_USER;
+--SELECT * INTO N_UserGroup_20180305 FROM N_UserGroup;
+
+--DELETE FROM N_UserGroup WHERE Id IN (2, 3, 4, 5);
+--UPDATE N_User SET UserGroup = 1 WHERE UserGroup IN (2, 3, 4, 5);
+
+SELECT * FROM N_UserGroup;
+SELECT * FROM N_USER;
+
+--会员注册人数限制
+SELECT * FROM N_UserGroupQuota;

@@ -316,29 +316,29 @@
         //#endregion                  
         //活动管理                 
         //#region                 
-        case "ActiveSet":
-            TableTemplate = {
-                Title: "活动配置",
-                PageSize: 16,
-                Url: "/admin/ajaxActive.aspx?oper=ajaxGetList",
-                StateUrl: "/admin/ajaxActive.aspx?oper=ajaxStates",
-                Query: [],
-                Botton: [],
-                List: [
-                        { Header: "活动名称", Filed: "name", Width: "*", Align: "center" },
-                        { Header: "开始时间", Filed: "starttime", Width: "*", Align: "center" },
-                        { Header: "截止时间", Filed: "endtime", Width: "*", Align: "center" },
-                        { Header: "派发方式", Filed: "typecode", Width: "*", Align: "center" },
-                        { Header: "是否启用", Filed: "isuse", Width: "*", Align: "center", Default: [{ 0: "启用", 1: "关闭"}], Function: "ajaxStates" },
-                        { Header: "", Width: "*", Align: "center"
-                        , Info: [
-                                    { Type: "Popup", Title: "编辑属性", Function: "PagePop('/admin/PageEditPop.aspx?page=ActiveSetSave&id=@@')" },
-                                     { Type: "Link", Title: "设置规则", Function: "/admin/conList.aspx?page=@Code@" },
-                                    { Type: "Popup", Title: "设置公告", Function: "PagePop('/admin/ActiveNewsedit.aspx?id=@@')" }
-                                ]
-                        }]
-            };
-            break;
+        //case "ActiveSet":
+        //    TableTemplate = {
+        //        Title: "活动配置",
+        //        PageSize: 16,
+        //        Url: "/admin/ajaxActive.aspx?oper=ajaxGetList",
+        //        StateUrl: "/admin/ajaxActive.aspx?oper=ajaxStates",
+        //        Query: [],
+        //        Botton: [],
+        //        List: [
+        //                { Header: "活动名称", Filed: "name", Width: "*", Align: "center" },
+        //                { Header: "开始时间", Filed: "starttime", Width: "*", Align: "center" },
+        //                { Header: "截止时间", Filed: "endtime", Width: "*", Align: "center" },
+        //                { Header: "派发方式", Filed: "typecode", Width: "*", Align: "center" },
+        //                { Header: "是否启用", Filed: "isuse", Width: "*", Align: "center", Default: [{ 0: "启用", 1: "关闭"}], Function: "ajaxStates" },
+        //                { Header: "", Width: "*", Align: "center"
+        //                , Info: [
+        //                            { Type: "Popup", Title: "编辑属性", Function: "PagePop('/admin/PageEditPop.aspx?page=ActiveSetSave&id=@@')" },
+        //                             { Type: "Link", Title: "设置规则", Function: "/admin/conList.aspx?page=@Code@" },
+        //                            { Type: "Popup", Title: "设置公告", Function: "PagePop('/admin/ActiveNewsedit.aspx?id=@@')" }
+        //                        ]
+        //                }]
+        //    };
+        //    break;
          case "ActDay15Fenhong":
             TableTemplate = {
                 Title: "直属分红",

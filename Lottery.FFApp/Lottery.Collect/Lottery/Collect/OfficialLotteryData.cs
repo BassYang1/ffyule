@@ -60,6 +60,9 @@ namespace Lottery.Collect
 
             //上海时时乐
             ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateData), "ssl");
+
+            //北京PK10 bjpk10
+            ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateData), "bjpk10");
         }
 
         /// <summary>
@@ -137,6 +140,8 @@ namespace Lottery.Collect
                     return expect.Substring(0, 8) + "-" + expect.Substring(9);
                 case "p3":
                 case "3d":
+                    return expect;
+                case "bjpk10": //北京PK10
                     return expect;
                 default:
                     return expect;

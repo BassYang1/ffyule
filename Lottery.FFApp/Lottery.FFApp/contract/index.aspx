@@ -47,19 +47,18 @@
                             
                             userGroup = parseInt(userGroup);
 
-                            //20180207只有[会员]和[代理]两个级别
-                            //到[会员]不能签约下级
-                            //20180209所有会员都能分配置契约
-                            //if (userGroup <= 0) {
-                            //    $("#g1").hide();
-                            //    $("#g2").hide();
-                            //    $("#g3").hide();
-                            //}
-                            //else {
-                            //    $("#g1").show();
-                            //    $("#g2").show();
-                            //    $("#g3").show();
-                            //}
+                            if (userGroup <= 0) {
+                                $("#g1").hide();
+                                $("#g2").hide();
+                                $("#g3").hide();
+                                $("#g4").hide();
+                            }
+                            else {
+                                $("#g1").show();
+                                $("#g2").show();
+                                $("#g3").show();
+                                $("#g4").show();
+                            }
                             break;
                     }
                 }
@@ -83,10 +82,10 @@
                        <div class="block-subnav">
                             <a href="javascript:;" nmb="/contract/contractfh.aspx" class="current">我的分红契约</a>
                             <a href="javascript:;" nmb="/contract/MyAgentfhlist.aspx">我的分红记录</a>
-                            <a id="g1" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractUserListFH">分配契约</a>
-                            <a id="g2" href="javascript:;" nmb="/aspx/List.aspx?nav=UserContractList">已分配契约</a>
-                            <a id="g3" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractFHRecord">下级分红记录</a>
-                            <a id="g4" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractFHLog">日志记录</a>
+                            <a id="g1" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractUserListFH" style="display:none">分配契约</a>
+                            <a id="g2" href="javascript:;" nmb="/aspx/List.aspx?nav=UserContractList" style="display:none">已分配契约</a>
+                            <a id="g3" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractFHRecord" style="display:none">下级分红记录</a>
+                            <a id="g4" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractFHLog" style="display:none">日志记录</a>
                         </div>
 						<div class="block-panel">
                         <iframe id="workspace" name="workspace" src="/contract/contractfh.aspx" scrolling="no"
