@@ -12,6 +12,8 @@ GO
 */
 CREATE PROCEDURE fCompleteRecharge    
 	@orderId NVARCHAR(50), --订单Id
+	@wfpNo NVARCHAR(50), --微付订单号
+	@bankNo NVARCHAR(50), --银行流水号
 	@result NVARCHAR(100) OUTPUT
 AS
 BEGIN
@@ -63,6 +65,8 @@ BEGIN
 			INSERT INTO N_UserMoneyStatAll(UserId, Charge, STime) VALUES (@userId, @money, @stime)
 		END
 
+		--微付订单与平台订单映射
+		INSERT INTO N_UserWfpOrder(UserId, SsId, WfpNo, BankNo) SELECT @userId, @orderId, @wfpNo, @bankNo WHERE NOT EXISTS (SELECT 1 FROM N_UserWfpOrder WHERE WfpNo=@wfpNo AND SsId=@orderId)
 		COMMIT TRAN
 		
 		SET @result = N'支付成功'
