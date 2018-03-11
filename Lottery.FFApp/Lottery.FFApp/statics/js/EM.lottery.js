@@ -31,10 +31,13 @@ function ajaxBigType() {
         playBouns = 0;
         Betpoint = 0;
         PlayPos = "";
+
+        //加载玩法小类
         ajaxSmallType(PlayBigId);
     });
 }
 
+//加载玩法小类
 function ajaxSmallType(bigid) {
     var zhix = "";
         zux = "";

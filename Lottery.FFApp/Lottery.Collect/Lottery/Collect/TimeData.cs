@@ -92,9 +92,9 @@ namespace Lottery.Collect
             TimeData.timerHg90sd.Elapsed += new ElapsedEventHandler(TimeData.timerHg90sd_Elapsed);
             ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThHg90sd_Fun));
 
-            //北京PK10
-            TimeData.timerBjpk10.Elapsed += new ElapsedEventHandler(TimeData.timerBjpk10_Elapsed);
-            ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThBjpk10_Fun));
+            //北京PK10 改为官方彩
+            //TimeData.timerBjpk10.Elapsed += new ElapsedEventHandler(TimeData.timerBjpk10_Elapsed);
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThBjpk10_Fun));
 
             //英国30秒赛车
             TimeData.timerYfpk10.Elapsed += new ElapsedEventHandler(TimeData.timerYfpk10_Elapsed);
@@ -189,7 +189,7 @@ namespace Lottery.Collect
             TimeData.timerHg90sd.Enabled = false;
 
             //北京PK10
-            TimeData.timerBjpk10.Enabled = false;
+            //TimeData.timerBjpk10.Enabled = false;
 
             //英国30秒赛车
             TimeData.timerYfpk10.Enabled = false;

@@ -115,25 +115,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>03/02/2018 22:19:32</publishTime>
+      <publishTime>03/07/2018 17:12:48</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>03/02/2018 22:19:31</publishTime>
+      <publishTime>03/07/2018 17:12:46</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
       <publishTime>06/15/2017 00:57:59</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/07/2018 17:12:44</publishTime>
     </File>
     <File Include="bin/Lottery.FFApp.dll">
-      <publishTime>03/02/2018 22:19:34</publishTime>
+      <publishTime>03/07/2018 17:12:49</publishTime>
     </File>
     <File Include="bin/Lottery.FFCache.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/07/2018 17:12:45</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>03/02/2018 22:19:30</publishTime>
+      <publishTime>03/07/2018 17:12:45</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -1624,7 +1624,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2018 22:19:27</publishTime>
     </File>
     <File Include="statics/js/EM.lottery.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/06/2018 10:41:19</publishTime>
     </File>
     <File Include="statics/js/EM.lotTime.js">
       <publishTime>02/25/2018 19:01:39</publishTime>
@@ -2119,7 +2119,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/02/2018 22:19:54</publishTime>
+      <publishTime>03/07/2018 17:13:00</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -16,22 +16,22 @@
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>03/02/2018 21:40:11</publishTime>
+      <publishTime>03/07/2018 17:10:59</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>03/02/2018 21:40:10</publishTime>
+      <publishTime>03/07/2018 17:10:58</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
-      <publishTime>03/02/2018 21:40:09</publishTime>
+      <publishTime>03/07/2018 17:10:57</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>03/02/2018 21:40:08</publishTime>
+      <publishTime>03/07/2018 17:10:55</publishTime>
     </File>
     <File Include="bin/Lottery.FFCache.dll">
-      <publishTime>03/02/2018 21:40:09</publishTime>
+      <publishTime>03/07/2018 17:10:56</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>03/02/2018 21:40:09</publishTime>
+      <publishTime>03/07/2018 17:10:56</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -52,10 +52,10 @@
       <publishTime>02/14/2018 13:59:34</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>02/24/2018 11:00:10</publishTime>
+      <publishTime>03/07/2018 16:47:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/02/2018 21:42:10</publishTime>
+      <publishTime>03/07/2018 17:11:38</publishTime>
     </File>
   </ItemGroup>
 </Project>

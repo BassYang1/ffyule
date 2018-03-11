@@ -1054,7 +1054,9 @@
     <Content Include="statics\tips\0.gif" />
     <Content Include="statics\tips\1.gif" />
     <Content Include="WEB-INF\site.xml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\activeNewsEdit.aspx.cs">

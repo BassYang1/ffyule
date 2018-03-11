@@ -74,11 +74,12 @@ namespace Lottery.Collect
 
                     expect = expect.Substring(0, 8) + "-" + expect.Substring(8);
 
+                    //存储开奖号码
                     if (_dal.Update(1005, expect, openCode, openTime, openCode))
                     {
                         OpenTime = Convert.ToDateTime(openTime); //开奖时间
-                        Public.SaveLotteryData2File(1005);
-                        LotteryCheck.RunOfIssueNum(1005, expect);
+                        Public.SaveLotteryData2File(1005); //存储开奖号码到JSON/XML文件
+                        LotteryCheck.RunOfIssueNum(1005, expect); //处理开奖信息
                     }
                 }
             }

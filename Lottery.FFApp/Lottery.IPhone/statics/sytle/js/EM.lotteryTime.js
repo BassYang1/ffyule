@@ -21,9 +21,11 @@ function ajaxLotteryTime() {
             timer();
         }
     });
+    
+    //加载前10期开奖信息
     ajaxListNav();
-
 }
+
 var ordertime = 0
 var IsKaijiang = false;
 var currsn;

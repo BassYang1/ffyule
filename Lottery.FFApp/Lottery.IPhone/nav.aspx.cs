@@ -10,28 +10,37 @@ using System.Data;
 
 namespace Lottery.Web
 {
-  public partial class nav : UserCenterSession
-  {
-    public string tId = "1";
-    public string loId = "1001";
-    public string display = "";
-    public string MinTimes = "1";
-    public string MaxTimes = "1000";
-
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class nav : UserCenterSession
     {
-      this.Admin_Load("", "html");
-      if (!string.IsNullOrEmpty(this.Request.QueryString["id"] ?? ""))
-        this.loId = this.Request.QueryString["id"];
-      if (!string.IsNullOrEmpty(this.Request.QueryString["tid"] ?? ""))
-        this.tId = this.Request.QueryString["tid"];
-      this.doh.Reset();
-      this.doh.SqlCmd = "select MinTimes,MaxTimes from Sys_Lottery with(nolock) where Id=" + this.loId;
-      DataTable dataTable = this.doh.GetDataTable();
-      if (dataTable.Rows.Count <= 0)
-        return;
-      this.MinTimes = string.Concat(dataTable.Rows[0]["MinTimes"]);
-      this.MaxTimes = string.Concat(dataTable.Rows[0]["MaxTimes"]);
+        public string tId = "1";
+        public string loId = "1001";
+        public string display = "";
+        public string MinTimes = "1";
+        public string MaxTimes = "1000";
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            this.Admin_Load("", "html");
+
+            //彩种Id
+            if (!string.IsNullOrEmpty(this.Request.QueryString["id"] ?? ""))
+                this.loId = this.Request.QueryString["id"];
+
+            //彩种分类Id
+            if (!string.IsNullOrEmpty(this.Request.QueryString["tid"] ?? ""))
+                this.tId = this.Request.QueryString["tid"];
+
+            this.doh.Reset();
+            this.doh.SqlCmd = "select MinTimes,MaxTimes from Sys_Lottery with(nolock) where Id=" + this.loId;
+            DataTable dataTable = this.doh.GetDataTable();
+
+            if (dataTable != null && dataTable.Rows.Count > 0)
+            {
+                this.MinTimes = string.Concat(dataTable.Rows[0]["MinTimes"]);
+                this.MaxTimes = string.Concat(dataTable.Rows[0]["MaxTimes"]);
+                dataTable.Dispose();
+                dataTable = null;
+            }
+        }
     }
-  }
 }

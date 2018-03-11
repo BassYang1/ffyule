@@ -13,7 +13,7 @@ namespace Lottery.Collect
     public partial class Default : System.Web.UI.Page
     {
 		protected void Page_Load(object sender, EventArgs e)
-		{
+        {
             //Win32.SetSystemTime();
             //SysFlb90mData.UpdateData();   
             //SysXdl90mData.UpdateData();

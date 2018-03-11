@@ -264,8 +264,8 @@ namespace Lottery.IPhone
                 HttpContext.Current.Response.ContentType = "application/json";
                 List<ajaxBetting.RequestDataJSON> requestDataJsonList = ajaxBetting.JSONToObject<List<ajaxBetting.RequestDataJSON>>(HttpUtility.UrlDecode(new StreamReader(HttpContext.Current.Request.InputStream).ReadToEnd()));
                 ajaxBetting.RequestDataJSON requestDataJson1 = new ajaxBetting.RequestDataJSON();
-                int lotteryId1 = requestDataJsonList[0].lotteryId;
-                int int32_1 = Convert.ToInt32(this.AdminId);
+                int lotteryId1 = requestDataJsonList[0].lotteryId;　//投注信息
+                int int32_1 = Convert.ToInt32(this.AdminId); //会员Id
 
                 LotteryDAL lotDal = new LotteryDAL();
                 FlexDAL.UserBetDAL betDal = new FlexDAL.UserBetDAL();
@@ -281,10 +281,11 @@ namespace Lottery.IPhone
                 Decimal num1 = new Decimal(0);
                 try
                 {
+                    //获取当前一期时间和期号
                     string[] issueTimeAndSn = betDal.GetIssueTimeAndSN(lotteryId1);
-                    string str1 = issueTimeAndSn[0];
-                    DateTime dateTime = Convert.ToDateTime(issueTimeAndSn[1]);
-                    DateTime serverTime = FlexDAL.PublicDAL.GetServerTime();
+                    string str1 = issueTimeAndSn[0]; //期号
+                    DateTime dateTime = Convert.ToDateTime(issueTimeAndSn[1]); //开奖时间
+                    DateTime serverTime = FlexDAL.PublicDAL.GetServerTime(); //系统时间
                     for (int index = 0; index < requestDataJsonList.Count; ++index)
                     {
                         ajaxBetting.RequestDataJSON requestDataJson2 = requestDataJsonList[index];

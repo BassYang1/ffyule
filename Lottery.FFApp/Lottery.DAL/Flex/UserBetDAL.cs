@@ -1036,6 +1036,11 @@ namespace Lottery.DAL.Flex
             }
         }
 
+        /// <summary>
+        /// 获取下一期开奖信息
+        /// </summary>
+        /// <param name="lotteryId"></param>
+        /// <returns></returns>
         public string[] GetIssueTimeAndSN(int lotteryId)
         {
             string[] strArray = new string[2];

@@ -31,3 +31,6 @@ UPDATE Sys_Lottery SET ApiUrl=N'http://api.b1cp.com/api?p=json&t=shssl&limit=1&t
 
 --天津时时彩 ssl
 UPDATE Sys_Lottery SET ApiUrl=N'http://api.b1cp.com/api?p=json&t=tjssc&limit=1&token=00fb782bad8e5241' WHERE Code = 'tjssc';
+
+--北京PK10 bjpk10
+UPDATE Sys_Lottery SET ApiUrl=N'http://api.b1cp.com/api?p=json&t=bjpk10&limit=1&token=00fb782bad8e5241' WHERE Code = 'bjpk10';

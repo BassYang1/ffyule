@@ -121,3 +121,6 @@ END;
 --	ALTER TABLE Act_ActiveRecord ALTER COLUMN InMoney DECIMAL(18, 4);
 --GO
 --/////2018-02-28 End
+
+--关才后台活动配置页面
+UPDATE Sys_Menu SET IsUsed=1 WHERE Name='活动配置'; 
