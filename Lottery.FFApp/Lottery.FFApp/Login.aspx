@@ -53,7 +53,7 @@
             <div class="other-acts">
                 <a href="javascript:;" onclick="ajaxPagePop('服务条款','1000px','600px','/html/service.html')"
                     class="btn"><i class="icon icon-doc"></i>用户协议</a> <a href="http://www16.53kf.com/webCompany.php?arg=10155057" class="btn"><i class="icon icon-lock">
-                    </i>忘记密码</a> <a href="http://www16.53kf.com/webCompany.php?arg=10155057" class="btn"><i class="icon icon-msg"></i>联系客服</a>
+                    </i>忘记密码</a>
             </div>
             <div class="copyright">
                 Copyright © 2017 非凡娱乐 版权所有 All Rights Reserved.</div>

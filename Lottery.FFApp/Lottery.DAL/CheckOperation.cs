@@ -661,21 +661,25 @@ namespace Lottery.DAL
         {
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select ParentId from N_User with(nolock) where Id=" + UserId.ToString();
-            int int32_1 = Convert.ToInt32(cmd.ExecuteScalar());
-            if (int32_1 == 0)
+            int parentId = Convert.ToInt32(cmd.ExecuteScalar()); //父级Id
+            if (parentId == 0)
                 return;
+
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select Point from N_User with(nolock) where Id=" + int32_1.ToString();
+            cmd.CommandText = "select Point from N_User with(nolock) where Id=" + parentId.ToString();
             object obj = cmd.ExecuteScalar();
             if (string.IsNullOrEmpty(string.Concat(obj)))
                 return;
-            int int32_2 = Convert.ToInt32(obj);
-            if (int32_2 >= 133 || int32_2 < UserPoint)
+            int parentPoint = Convert.ToInt32(obj); //父级返点
+            if (parentPoint >= 133 || parentPoint < UserPoint)
                 return;
-            Decimal Money = BetMoney * Convert.ToDecimal(int32_2 - UserPoint) / new Decimal(1000);
-            if (Convert.ToDecimal(Money.ToString("0.0000")) > new Decimal(0))
-                new UserTotalTran().MoneyOpers(ssId, int32_1.ToString(), Money, LotteryId, PlayId, BetId, 4, 99, "", "", UserName + " 游戏返点", "");
-            CheckOperation.AgencyPoint(ssId, int32_1, UserName, int32_2, LotteryId, PlayId, BetId, BetMoney, cmd);
+
+            //下注金额
+            Decimal pointMoney = BetMoney * Convert.ToDecimal(parentPoint - UserPoint) / new Decimal(1000);
+            if (Convert.ToDecimal(pointMoney.ToString("0.0000")) > new Decimal(0))
+                new UserTotalTran().MoneyOpers(ssId, parentId.ToString(), pointMoney, LotteryId, PlayId, BetId, 4, 99, "", "", UserName + " 游戏返点", "");
+
+            CheckOperation.AgencyPoint(ssId, parentId, UserName, parentPoint, LotteryId, PlayId, BetId, BetMoney, cmd);
         }
 
         public static int UserMoneyStatTran(int UserId, string StatType, Decimal StatValue, SqlCommand cmd)

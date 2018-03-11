@@ -315,6 +315,9 @@ namespace Lottery.WebApp
             string newValue3 = "0";
             string newValue4 = "0";
             string newValue5 = "0";
+
+
+
             if (now.Day >= 1 && now.Day <= 15)
             {
                 newValue1 = now.ToString("yyyy-MM") + "-01 00:00:00";
@@ -325,8 +328,16 @@ namespace Lottery.WebApp
                 newValue1 = now.ToString("yyyy-MM") + "-16 00:00:00";
                 newValue2 = now.AddMonths(1).ToString("yyyy-MM") + "-01 00:00:00";
             }
+
             this.doh.Reset();
-            this.doh.SqlCmd = string.Format("SELECT \r\n                    (isnull(sum(Bet),0)-isnull(sum(Cancellation),0)) as Bet,\r\n                    isnull(sum(Bet),0)-(isnull(sum(Win),0)+isnull(sum(Give),0)+isnull(sum(Change),0)+isnull(sum(Cancellation),0)+isnull(sum(Point),0)) as Loss\r\n                    FROM [N_UserMoneyStatAll] with(nolock)\r\n                    where (STime>='{0}' and STime<'{1}') and dbo.f_GetUserCode(UserId) like '%'+dbo.f_User8Code({2})+'%'", (object)newValue1, (object)newValue2, (object)str);
+            this.doh.SqlCmd = string.Format(@"SELECT
+                        (isnull(sum(Bet),0)-isnull(sum(Cancellation),0)) as Bet,
+                        isnull(sum(Bet),0)-(isnull(sum(Win),0)+isnull(sum(Give),0)+isnull(sum(Change),0)+isnull(sum(Cancellation),0)+isnull(sum(Point),0)) as Loss
+                        FROM [N_UserMoneyStatAll] with(nolock)
+                        where (STime>='{0}' and STime<'{1}') 
+                        and dbo.f_GetUserCode(UserId) like '%'+dbo.f_User8Code({2})+'%'",
+                                                                                        (object)newValue1,
+                                                                                        (object)newValue2, (object)str);
             DataTable dataTable1 = this.doh.GetDataTable();
             if (dataTable1.Rows.Count > 0)
             {
@@ -334,7 +345,13 @@ namespace Lottery.WebApp
                 newValue4 = dataTable1.Rows[0]["Loss"].ToString();
             }
             this.doh.Reset();
-            this.doh.SqlCmd = string.Format("SELECT [Type],[ParentId],[UserId],[IsUsed],[STime],b.* FROM [N_UserContract] a left join [N_UserContractDetail] b on a.Id=b.UcId where Type=1 and userId={0} and {1}>=MinMoney*150000 order by MinMoney desc", (object)str, (object)newValue3);
+            this.doh.SqlCmd = this.UserGroup == "2"?
+                string.Format(@"SELECT Money FROM [Act_Day15FHSet] 
+                        WHERE GroupId=2 AND IsUsed = 0 AND {0}>=MinMoney*150000 
+                        order by MinMoney desc", (object)newValue3) :
+                string.Format(@"SELECT [Type],[ParentId],[UserId],[IsUsed],[STime],b.* FROM [N_UserContract] a 
+                        left join [N_UserContractDetail] b on a.Id=b.UcId 
+                        where Type=1 and userId={0} and {1}>=MinMoney*150000 order by MinMoney desc", (object)str, (object)newValue3);
             DataTable dataTable2 = this.doh.GetDataTable();
             if (dataTable2.Rows.Count > 0)
                 newValue5 = dataTable2.Rows[0]["Money"].ToString();

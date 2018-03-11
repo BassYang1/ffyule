@@ -129,13 +129,84 @@ IF EXISTS(SElECT 1 FROM dbo.SYSOBJECTS WHERE Id = OBJECT_ID(N'Sys_ChargeSet') AN
 	ALTER TABLE Sys_ChargeSet ADD UCode NVARCHAR(20);
 GO
 
---增加智得宝支付方式
+--增加网银微付支付方式
 DECLARE @maxCsId INT, @maxMerCode INT;
 SELECT @maxCsId = MAX(id), @maxMerCode = MAX(MerCode) FROM Sys_ChargeSet;
 
 INSERT INTO Sys_ChargeSet(Id, [Type], Name, MerName, MerCode, MerKey, MerCard, MinCharge, MaxCharge, StartTime, EndTime, Total, IsUsed, Sort, STime, UCode)
-SELECT @maxCsId + 1, 9, N'智得宝', N'智得宝', @maxMerCode + 1, N'Zdbbill','https://merchants.zdbbill.com', 50, 
-3000, '00:00:00', '23:59:59', 1000000, 0, 3, GETDATE(), N'zdbbill'
-WHERE NOT EXISTS(SELECT 1 FROM Sys_ChargeSet WHERE MerKey = N'Zdbbill');
+SELECT @maxCsId + 1, 9, N'网银微付', N'网银微付', @maxMerCode + 1, N'weifupay','https://merchants.wefupay.com', 50, 
+3000, '00:00:00', '23:59:59', 1000000, 0, 3, GETDATE(), N'weifupay'
+WHERE NOT EXISTS(SELECT 1 FROM Sys_ChargeSet WHERE MerKey = N'weifupay');
 
-SELECT * FROM Sys_ChargeSet;
+
+--增加QQ扫码微付
+SELECT @maxCsId = MAX(id), @maxMerCode = MAX(MerCode) FROM Sys_ChargeSet;
+
+INSERT INTO Sys_ChargeSet(Id, [Type], Name, MerName, MerCode, MerKey, MerCard, MinCharge, MaxCharge, StartTime, EndTime, Total, IsUsed, Sort, STime, UCode)
+SELECT @maxCsId + 1, 10, N'QQ扫码微付', N'QQ扫码微付', @maxMerCode + 1, N'weifupay','https://merchants.wefupay.com', 50, 
+3000, '00:00:00', '23:59:59', 1000000, 0, 3, GETDATE(), N'weifupayqq'
+WHERE NOT EXISTS(SELECT 1 FROM Sys_ChargeSet WHERE MerKey = N'weifupayqq');
+
+UPDATE Sys_ChargeSet SET IsUsed=1 WHERE UCode NOT IN ('weifupay', 'weifupayqq');
+
+--微付订单与平台订单映射
+IF NOT EXISTS(SELECT 1 FROM sysObjects WHERE xtype = N'U' AND Id = OBJECT_ID('N_UserWfpOrder'))
+BEGIN
+CREATE TABLE N_UserWfpOrder
+(
+	Id INT IDENTITY Primary Key,
+	UserId INT,
+	SsId NVARCHAR(50) NOT NULL,
+	WfpNo NVARCHAR(50) NOT NULL, --微付订单号
+	BankNo NVARCHAR(50) NOT NULL, --银行流水号
+	STime DATETIME DEFAULT(GETDATE())
+);
+END;
+
+--直属会员分红契约
+INSERT INTO Act_Day15FHSet(Groupid, Groupname, Name, MinMoney, MaxMoney, Group3, IsUsed)
+SELECT 2, N'直属', N'亏损满0.01万', 0.01, 10, 20, 0
+WHERE NOT EXISTS(SELECT 1 FROM Act_Day15FHSet WHERE GroupId=2 AND MinMoney=0.01 AND MaxMoney=10);
+
+INSERT INTO Act_Day15FHSet(Groupid, Groupname, Name, MinMoney, MaxMoney, Group3, IsUsed)
+SELECT 2, N'直属', N'亏损满10W元', 10, 20, 22, 0
+WHERE NOT EXISTS(SELECT 1 FROM Act_Day15FHSet WHERE GroupId=2 AND MinMoney=10 AND MaxMoney=20);
+
+INSERT INTO Act_Day15FHSet(Groupid, Groupname, Name, MinMoney, MaxMoney, Group3, IsUsed)
+SELECT 2, N'直属', N'亏损满20W元', 20, 50, 23, 0
+WHERE NOT EXISTS(SELECT 1 FROM Act_Day15FHSet WHERE GroupId=2 AND MinMoney=20 AND MaxMoney=50);
+
+INSERT INTO Act_Day15FHSet(Groupid, Groupname, Name, MinMoney, MaxMoney, Group3, IsUsed)
+SELECT 2, N'直属', N'亏损满50W元', 50, 100, 24, 0
+WHERE NOT EXISTS(SELECT 1 FROM Act_Day15FHSet WHERE GroupId=2 AND MinMoney=50 AND MaxMoney=100);
+
+INSERT INTO Act_Day15FHSet(Groupid, Groupname, Name, MinMoney, MaxMoney, Group3, IsUsed)
+SELECT 2, N'直属', N'亏损满100W元', 100, 150, 25, 0
+WHERE NOT EXISTS(SELECT 1 FROM Act_Day15FHSet WHERE GroupId=2 AND MinMoney=100 AND MaxMoney=150);
+
+INSERT INTO Act_Day15FHSet(Groupid, Groupname, Name, MinMoney, MaxMoney, Group3, IsUsed)
+SELECT 2, N'直属', N'亏损满150W元', 150, 300, 27, 0
+WHERE NOT EXISTS(SELECT 1 FROM Act_Day15FHSet WHERE GroupId=2 AND MinMoney=150 AND MaxMoney=300);
+
+INSERT INTO Act_Day15FHSet(Groupid, Groupname, Name, MinMoney, MaxMoney, Group3, IsUsed)
+SELECT 2, N'直属', N'亏损满300W元', 300, 600, 30, 0
+WHERE NOT EXISTS(SELECT 1 FROM Act_Day15FHSet WHERE GroupId=2 AND MinMoney=300 AND MaxMoney=600);
+
+INSERT INTO Act_Day15FHSet(Groupid, Groupname, Name, MinMoney, MaxMoney, Group3, IsUsed)
+SELECT 2, N'直属', N'亏损满600W元', 600, 0, 40, 0
+WHERE NOT EXISTS(SELECT 1 FROM Act_Day15FHSet WHERE GroupId=2 AND MinMoney=600 AND MaxMoney=0);
+
+UPDATE Act_Day15FHSet SET Soft=Id WHERE Groupid = 2;
+
+--会员分红
+--增加支付方式唯一码 UCode
+IF EXISTS(SElECT 1 FROM dbo.SYSOBJECTS WHERE Id = OBJECT_ID(N'Act_DayGzSet') AND XType = N'U')
+	AND EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'Act_DayGzSet') AND name = N'MinMoney')
+	ALTER TABLE Act_DayGzSet ALTER COLUMN MinMoney DECIMAL(18,4);
+GO
+
+UPDATE Act_DayGzSet SET MinMoney=0.0001, MaxMoney=0, Money=1.5 WHERE GroupId=2 AND Name=N'销量不限';
+DELETE FROM Act_DayGzSet WHERE GroupId=2 AND Name!=N'销量不限';
+
+--关才后台活动配置页面
+UPDATE Sys_Menu SET IsUsed=1 WHERE Name='活动配置'; 
