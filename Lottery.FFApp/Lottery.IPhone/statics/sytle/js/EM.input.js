@@ -8,8 +8,6 @@ function CreatePoints() {
             for (j = 0; j <= PointJsonData.table[i].points.length - 1; j++) {
                 var no = PointJsonData.table[i].points[j].no;
                 var bonus = PointJsonData.table[i].points[j].bonus * parseFloat(PricePos) * 2;
-                if (isNaN(bonus))
-                    bonus = MinBouns;
                 var point2 = PointJsonData.table[i].points[j].point;
                 var value2 = point2 + '/' + bonus;
                 var aa = PointJsonData.table[i].points[j].no + '/' + PointJsonData.table[i].points[j].no;

@@ -39,7 +39,6 @@ var SelectedData = [];
 var StartSn = "";
 var NmbZH = 1;
 var PricePos = 0.5;//系数，表示单倍还是双倍 
-var MinBouns = 0;
 
 $(document).ready(function () {
     if (getCookie("price") != null) {

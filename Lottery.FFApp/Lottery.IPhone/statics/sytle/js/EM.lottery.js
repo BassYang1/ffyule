@@ -29,7 +29,7 @@ function ajaxBigType() {
                 }
             }
             else {
-                if (id == 1001 || id == 2001 || id == 3001 || id == 4001 || title == "和值") {
+                if (id == 1002 || id == 2001 || id == 3001 || id == 4001 || title == "和值") {
                     PlayBigId = id;
                     PlayBigName = lotteryData.table[i].title;
                     $i("playTypeName").innerHTML = title;

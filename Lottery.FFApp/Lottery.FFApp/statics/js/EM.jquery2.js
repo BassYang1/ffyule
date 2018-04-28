@@ -2365,7 +2365,7 @@ function CreateNumber() {
     playPoints = 0;
     playBouns = (eval(PlayMinBonus) + eval(userPoint) * 20 * eval(PlayPosBonus)).toFixed(3);
     playBounsOne = playBouns * PriceModel;
-    if (PlayCode == "R_3HX" || PlayCode == "R_3ZHE") {
+    if (PlayCode == "R_3HX"|| PlayCode == "R_3ZHE") {
         PlayPosBonus = 0.333346; //(eval(PlayMinBonus) - eval(PlayMinBonus2)) / 260;
         playBouns = (eval(PlayMinBonus) + eval(userPoint) * 20 * eval(PlayPosBonus)).toFixed(3);
         playBounsOne = (playBouns * 0.5).toFixed(2);
