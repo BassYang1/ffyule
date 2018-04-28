@@ -11,27 +11,27 @@ using System.Web.UI.WebControls;
 
 namespace Lottery.WebApp.user
 {
-  public partial class useradd : UserCenterSession
-  {
-    protected HtmlForm form;
-    protected DropDownList ddlType;
-    protected Label lblPoint2;
-    protected Label lblPoint3;
-
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class useradd : UserCenterSession
     {
-      this.Admin_Load("", "html");
-      this.getUserGroupDropDownList(ref this.ddlType, 0);
-      if (Convert.ToDecimal(this.AdminPoint) < new Decimal(131))
-      {
-        this.lblPoint2.Text = "可分配范围10-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10));
-        this.lblPoint3.Text = "可分配范围10-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10));
-      }
-      else
-      {
-        this.lblPoint2.Text = "可分配范围10-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10) - Convert.ToDecimal(0.1));
-        this.lblPoint3.Text = "可分配范围10-" + (object) (Convert.ToDecimal(this.AdminPoint) / new Decimal(10) - Convert.ToDecimal(0.1));
-      }
+        protected HtmlForm form;
+        protected DropDownList ddlType;
+        protected Label lblPoint2;
+        protected Label lblPoint3;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            this.Admin_Load("", "html");
+            this.getUserGroupDropDownList(ref this.ddlType, 0);
+            //if (Convert.ToDecimal(this.AdminPoint) < new Decimal(131))
+            //{
+            //    this.lblPoint2.Text = "可分配范围0-" + (object)(Convert.ToDecimal(this.AdminPoint) / new Decimal(10));
+            //    this.lblPoint3.Text = "可分配范围0-" + (object)(Convert.ToDecimal(this.AdminPoint) / new Decimal(10));
+            //}
+            //else
+            //{
+            //    this.lblPoint2.Text = "可分配范围0-" + (object)(Convert.ToDecimal(this.AdminPoint) / new Decimal(10) - Convert.ToDecimal(0.1));
+            //    this.lblPoint3.Text = "可分配范围0-" + (object)(Convert.ToDecimal(this.AdminPoint) / new Decimal(10) - Convert.ToDecimal(0.1));
+            //}
+        }
     }
-  }
 }

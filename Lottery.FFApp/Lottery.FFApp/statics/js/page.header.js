@@ -32,7 +32,7 @@ var lookLot = function () {
         e.stopPropagation();
         var offset = $(this).offset();
         $lotNav.css({
-            left: offset.left
+            left: offset.left - 200
         });
         $lotNav.show();
     });
@@ -43,33 +43,30 @@ var lookLot = function () {
         $lotNav.hide();
     });
 
-    $.ajax({
-        type: "get",
-        dataType: "json",
-        data: "clienttime=" + Math.random(),
-        url: "/ajax/ajaxContractFH.aspx?oper=IsContract",
-        error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
-        success: function (d) {
-            if (d.result == 1) {
-                $("#qy").show();
-            }
-            else {
-                $("#qy").hide();
-            }
-
-            if (d.result2 == 1) {
-                $("#gz").show();
-            }
-            else {
-                $("#gz").hide();
-            }
-        }
-    });
+    //平台管理员直接单线往下分配置
+    //到[会员]不能签约下级
+    //$.ajax({
+    //    type: "get",
+    //    dataType: "json",
+    //    data: "clienttime=" + Math.random(),
+    //    url: "/ajax/ajaxContractFH.aspx?oper=IsContract3",
+    //    error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
+    //    success: function (d) {
+    //        if (d.result == 1) {
+    //            $("#qy").show();
+    //            $("#gz").show();
+    //        }
+    //        else {
+    //            $("#qy").hide();
+    //            $("#gz").hide();
+    //        }
+    //    }
+    //});
 };
 
 //加载采种
 function GetLottery() {
-    var str1 = "", str2 = "", str3 = "", str4 = "", str5 = "", str6 = "";
+    var str1 = "", str2 = "", str3 = "", str4 = "", str5 = "", str6 = "", str7 = "";
     for (i = 0; i < lotteryJsonData.table.length; i++) {
         var id = lotteryJsonData.table[i].id;
         var title = lotteryJsonData.table[i].title;
@@ -136,14 +133,18 @@ function GetLottery() {
             }
             str6 += "</a></li>";
         }
+        if (indextype == 7) {
+            str7 += "<li><a  href='/" + code + "'>" + title;
+            str7 += "</a></li>";
+        }
     }
 
     var gamesHtml = "";
-    if (str1 != "") {
-        gamesHtml += "<dl><dt>推荐彩种</dt><dd><ul>";
-        gamesHtml += str1;
-        gamesHtml += "</ul></dd></dl>";
-    }
+    //if (str1 != "") {
+    //    gamesHtml += "<dl><dt>推荐彩种</dt><dd><ul>";
+    //    gamesHtml += str1;
+    //    gamesHtml += "</ul></dd></dl>";
+    //}
     if (str2 != "") {
         gamesHtml += "<dl><dt>时时彩</dt><dd><ul>";
         gamesHtml += str2;
@@ -167,6 +168,11 @@ function GetLottery() {
     if (str6 != "") {
         gamesHtml += "<dl><dt>北京赛车</dt><dd><ul>";
         gamesHtml += str6;
+        gamesHtml += "</ul></dd></dl>";
+    }
+    if (str7 != "") {
+        gamesHtml += "<dl><dt>快三</dt><dd><ul>";
+        gamesHtml += str7;
         gamesHtml += "</ul></dd></dl>";
     }
     return gamesHtml;
@@ -203,6 +209,11 @@ function ajaxPopInfo() {
         url: "/ajax/ajaxUser.aspx?oper=GetUserJson",
         error: function (XmlHttpRequest, textStatus, errorThrown) { if (XmlHttpRequest.responseText != "") { } },
         success: function (d) {
+            //d = {
+            //    result: "1", table: [
+            //    { userid: "1937", title: "4001668748", content: "投注彩种 北京PK10<br/>投注期号 668748<br/>投注金额 100.0000元<br/>中奖金额 0.0000元<br/>本次盈亏 -100.0000元" }]
+            //};
+
             if (d.result == "1") {
                 if (d.table.length > 0) {
                     var t = d.table[0];
@@ -210,17 +221,17 @@ function ajaxPopInfo() {
                         if (getCookie("pop") != t.title + "") {
                             setCookie("pop", t.title);
                             PopInfo(t.content.replace(/,/g, "<br/>").replace(/ /g, "："));
-                            setTimeout(function () {
-                                $('#pop').hide();
-                            }, 3000);
+                            //setTimeout(function () {
+                            //    $('#pop').hide();
+                            //}, 3000);
                         }
                     }
                     else {
                         setCookie("pop", t.title);
                         PopInfo(t.content.replace(/,/g, "<br/>").replace(/ /g, "："));
-                        setTimeout(function () {
-                            $('#pop').hide();
-                        }, 3000);
+                        //setTimeout(function () {
+                        //    $('#pop').hide();
+                        //}, 3000);
                     }
                 }
             }

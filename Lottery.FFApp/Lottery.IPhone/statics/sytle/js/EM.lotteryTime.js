@@ -2,6 +2,7 @@
 //显示开奖信息，时间等
 function ajaxLotteryTime() {
     intDiff = 0;
+
     $.ajax({
         type: "get",
         dataType: "json",
@@ -11,17 +12,21 @@ function ajaxLotteryTime() {
             currsn = data.cursn;
             nestsn = data.nestsn;
             $('#lotteryname').html(data.name + "<i class='icon-arr'></i>");
-            $('#cursn').html(data.cursn);
+            $('#cursn').html(currsn);
             $('#nestsn').html(nestsn + '期');
             $('#nestsn2').html(nestsn + '期');
             intDiffClose = intDiffCloseWarn = parseInt(data.closetime);
             intDiff = parseInt(data.ordertime);
+			ordertime = data.ordertime;
             timer();
         }
     });
+    
+    //加载前10期开奖信息
     ajaxListNav();
 }
 
+var ordertime = 0
 var IsKaijiang = false;
 var currsn;
 var nestsn;
@@ -34,6 +39,9 @@ function timer() {
     clearInterval(timers);
     timers = window.setInterval(function () {
         if (intDiff == 0) {
+            ajaxLotteryTime();
+        }
+		if (intDiff == 0) {
             ajaxLotteryTime();
         }
         if (intDiff == intDiffClose) {
@@ -69,16 +77,19 @@ function timer() {
                         if (data.table.length > 0) {
                             var numberArr = data.table[0].number;
                             if (data.table[0].title == $('#cursn').html()) {
+								
                                 $('#strnumber').html(GetSytle(numberArr));
-                                IsKaijiang = true;
-ajaxListNav();
+								//$('#cursn').html(data.table[0].title);
+								ajaxListNav();
                             }
                             else {
+								//$('#cursn').html(nestsn);
                                 $('#strnumber').html("正在开奖中");
                                 IsKaijiang = false;
                             }
                         }
                         else {
+							//$('#cursn').html(nestsn);
                             $('#strnumber').html("正在开奖中");
                             IsKaijiang = false;
                         }

@@ -1,8 +1,8 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>美金娱乐</title>
+    <title>九州</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta name="format-detection" content="telephone=no,email=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -108,7 +108,7 @@
                 其他</td>
             <td>
                 报表盈亏</td>
-            <td>
+            <td style="display:none;">
                 实际盈亏</td>
         </tr>
         <tr>
@@ -116,8 +116,9 @@
                 {format4Currency($T.record.other)}</td>
             <td>
                {format4Currency($T.record.total)}</td>
-            <td>
-                {format4Currency($T.record.moneytotal)}</td>
+            <td style="display:none;">
+                {format4Currency($T.record.moneytotal)}
+            </td>
         </tr>
 {#/for}
 </table>

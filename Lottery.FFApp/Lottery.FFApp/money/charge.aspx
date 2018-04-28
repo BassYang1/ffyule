@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>九州娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -66,19 +66,31 @@
                 </ul>
             </div>
             <div class="btn-group">
-                <input type="button" value="下一步" onclick="step2Post()" class="btn btn-primary" />
+                <input type="button" value="下一步" onclick="step21Post()" class="btn btn-primary" />
                 <input type="hidden" id="txtAdminId" value="<%=AdminId %>" />
                 <input type="hidden" id="txtAdminName" value="<%=AdminName %>" />
             </div>
             </form>
         </div>
+		  <div id="step21" class="recharge-main" style="display: none;">
+			<div class="recharge-part">
+					<div class="part-heading">
+						<h3 class="part-title">
+							<span class="no">2</span>收款方信息</h3>
+						<span class="extra">以下信息是确保您充值到账的重要信息</span> <a href="#" class="btn payment-help">付款帮助</a>
+					</div>  
+             <div class="part-content">               
+                    <ul id="chargeInfo" class="recharge-info">
+                    </ul>
+                    
+                </div>
+					<div class="online-payment">
+					<input type="button" value="确认支付" onclick="step2Post()" class="btn btn-primary btn-lg" />	
+				    </div> 
+			</div> 
+		</div>
         <div id="step2" class="recharge-main" style="display: none;">
             <div class="recharge-part">
-                <div class="part-heading">
-                    <h3 class="part-title">
-                        <span class="no">2</span>收款方信息</h3>
-                    <span class="extra">以下信息是确保您充值到账的重要信息</span> <a href="#" class="btn payment-help">付款帮助</a>
-                </div>
                 <div class="part-content">
                     <div class="payment-tips">
                         <p>
@@ -88,12 +100,12 @@
                         <div class="payment-countdown" id="payment-countdown" data-ms="900">
                         </div>
                     </div>
-                    <ul id="chargeInfo" class="recharge-info">
-                    </ul>
-                    <div class="online-payment">
-                        <input type="button" value="确认支付" onclick="step3Post()" class="btn btn-primary btn-lg" />
+                    <div class="payment-qrcode" style="display:none">
+                    </div>
+                    <div class="online-payment1">
+                        <input type="button" value="支付成功" onclick="step3Post()" class="btn btn-primary btn-lg" />
                         <a id="link"></a>
-                        <a href="/aspx/list.aspx?nav=ChargeList" target="_parent" class="btn btn-primary btn-lg">查看充值记录</a>
+                        <a href="/aspx/list.aspx?nav=ChargeList" target="_parent" id="payHistory" class="btn btn-primary btn-lg">查看充值记录</a>
                     </div>
                 </div>
             </div>

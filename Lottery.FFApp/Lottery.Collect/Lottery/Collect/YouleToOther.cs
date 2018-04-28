@@ -1,78 +1,114 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Lottery.Collect.YouleToOther
-// Assembly: Lottery.Collect, Version=7.0.1.203, Culture=neutral, PublicKeyToken=null
-// MVID: 916E4E87-E8A0-4A21-8438-E89468303682
-// Assembly location: F:\pros\tianheng\bf\WebAppOld\bin\Lottery.Collect.dll
-
-using Lottery.DAL;
-using System;
+﻿using System;
+using System.Collections;
 using System.Configuration;
 using System.Xml;
+using Lottery.DAL;
+using log4net;
 
 namespace Lottery.Collect
 {
-  public class YouleToOther
-  {
-    public static void DataToOther(int lotteryId)
+	public class YouleToOther
     {
-      try
-      {
-        string html1 = HtmlOperate.GetHtml(string.Format(Config.DefaultUrlYoule, (object) lotteryId));
-        if (string.IsNullOrEmpty(html1))
-        {
-          new LogExceptionDAL().Save("采集异常", "采集主站找不到开奖数据的关键字符1" + (object) lotteryId);
-        }
-        else
-        {
-          XmlNodeList xmlNode1 = Public.GetXmlNode(html1, "row");
-          if (xmlNode1 == null)
-            new LogExceptionDAL().Save("采集异常", "采集主站找不到开奖数据的关键字符2" + (object) lotteryId);
-          else if (xmlNode1.Count == 0)
-          {
-            new LogExceptionDAL().Save("采集异常", "采集主站找不到开奖数据的关键字符3" + (object) lotteryId);
-          }
-          else
-          {
-            foreach (XmlNode xmlNode2 in xmlNode1)
+        /// <summary>
+        /// Log instance.
+        /// </summary>
+        protected static readonly ILog Log = LogManager.GetLogger(typeof(YouleToOther));
+
+		public static void DataToOther(int lotteryId)
+		{
+			try
             {
-              string innerText1 = xmlNode2.Attributes["opentime"].InnerText;
-              string innerText2 = xmlNode2.Attributes["expect"].InnerText;
-              string innerText3 = xmlNode2.Attributes["opencode"].InnerText;
-              if (string.IsNullOrEmpty(innerText1) || string.IsNullOrEmpty(innerText2) || string.IsNullOrEmpty(innerText3))
-              {
-                new LogExceptionDAL().Save("采集异常", "采集主站找不到开奖数据的关键字符4" + (object) lotteryId);
-                break;
-              }
-              bool flag = true;
-              string html2 = HtmlOperate.GetHtml(ConfigurationManager.AppSettings["RootUrl"].ToString() + "/Data/lottery" + (object) lotteryId + ".xml");
-              if (!string.IsNullOrEmpty(html2))
-              {
-                foreach (XmlNode xmlNode3 in Public.GetXmlNode(html2, "row"))
-                {
-                  if (xmlNode3.Attributes["expect"].InnerText.Equals(innerText2))
-                    flag = false;
-                }
-              }
-              if (flag)
-              {
-                string str = innerText2;
-                if (!new LotteryDataDAL().Exists(lotteryId, str))
-                {
-                  string[] strArray = innerText3.Split(',');
-                  string Number = ((Convert.ToInt32(strArray[0]) + Convert.ToInt32(strArray[1]) + Convert.ToInt32(strArray[2]) + Convert.ToInt32(strArray[3])) % 10).ToString() + "," + (object) ((Convert.ToInt32(strArray[4]) + Convert.ToInt32(strArray[5]) + Convert.ToInt32(strArray[6]) + Convert.ToInt32(strArray[7])) % 10) + "," + (object) ((Convert.ToInt32(strArray[8]) + Convert.ToInt32(strArray[9]) + Convert.ToInt32(strArray[10]) + Convert.ToInt32(strArray[11])) % 10) + "," + (object) ((Convert.ToInt32(strArray[12]) + Convert.ToInt32(strArray[13]) + Convert.ToInt32(strArray[14]) + Convert.ToInt32(strArray[15])) % 10) + "," + (object) ((Convert.ToInt32(strArray[16]) + Convert.ToInt32(strArray[17]) + Convert.ToInt32(strArray[18]) + Convert.ToInt32(strArray[19])) % 10);
-                  new LotteryDataDAL().Add(lotteryId, str, Number, innerText1, string.Join(",", strArray));
-                  Public.SetOpenListJson(lotteryId);
-                  LotteryCheck.RunOfIssueNum(lotteryId, str);
-                }
-              }
-            }
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        new LogExceptionDAL().Save("采集异常", "采集主站获取开奖数据出错，错误代码：" + ex.Message);
-      }
-    }
-  }
+                //Log.Debug("开始....");
+				string html = HtmlOperate.GetHtml(string.Format(Config.DefaultUrlYoule, lotteryId));
+				if (string.IsNullOrEmpty(html))
+				{
+					new LogExceptionDAL().Save("采集异常", "采集主站找不到开奖数据的关键字符1" + lotteryId);
+				}
+				else
+				{
+					XmlNodeList xmlNode = Public.GetXmlNode(html, "row");
+					if (xmlNode == null)
+					{
+						new LogExceptionDAL().Save("采集异常", "采集主站找不到开奖数据的关键字符2" + lotteryId);
+					}
+					else if (xmlNode.Count == 0)
+					{
+						new LogExceptionDAL().Save("采集异常", "采集主站找不到开奖数据的关键字符3" + lotteryId);
+					}
+					else
+					{
+						foreach (XmlNode expr_B8 in xmlNode)
+						{
+							string innerText = expr_B8.Attributes["opentime"].InnerText;
+							string innerText2 = expr_B8.Attributes["expect"].InnerText;
+							string innerText3 = expr_B8.Attributes["opencode"].InnerText;
+							if (string.IsNullOrEmpty(innerText) || string.IsNullOrEmpty(innerText2) || string.IsNullOrEmpty(innerText3))
+							{
+								new LogExceptionDAL().Save("采集异常", "采集主站找不到开奖数据的关键字符4" + lotteryId);
+								break;
+							}
+							bool flag = true;
+							string text = ConfigurationManager.AppSettings["RootUrl"].ToString();
+							string html2 = HtmlOperate.GetHtml(string.Concat(new object[]
+							{
+								text,
+								"/Data/lottery",
+								lotteryId,
+								".xml"
+							}));
+							if (!string.IsNullOrEmpty(html2))
+							{
+                                IEnumerator enumerator2 = Public.GetXmlNode(html2, "row").GetEnumerator();
+								{
+									while (enumerator2.MoveNext())
+									{
+										if (((XmlNode)enumerator2.Current).Attributes["expect"].InnerText.Equals(innerText2))
+										{
+											flag = false;
+										}
+									}
+								}
+							}
+							if (flag)
+							{
+								string text2 = innerText2;
+								if (!new LotteryDataDAL().Exists(lotteryId, text2))
+								{
+									string[] array = innerText3.Split(new char[]
+									{
+										','
+									});
+									int num = (Convert.ToInt32(array[0]) + Convert.ToInt32(array[1]) + Convert.ToInt32(array[2]) + Convert.ToInt32(array[3])) % 10;
+									int num2 = (Convert.ToInt32(array[4]) + Convert.ToInt32(array[5]) + Convert.ToInt32(array[6]) + Convert.ToInt32(array[7])) % 10;
+									int num3 = (Convert.ToInt32(array[8]) + Convert.ToInt32(array[9]) + Convert.ToInt32(array[10]) + Convert.ToInt32(array[11])) % 10;
+									int num4 = (Convert.ToInt32(array[12]) + Convert.ToInt32(array[13]) + Convert.ToInt32(array[14]) + Convert.ToInt32(array[15])) % 10;
+									int num5 = (Convert.ToInt32(array[16]) + Convert.ToInt32(array[17]) + Convert.ToInt32(array[18]) + Convert.ToInt32(array[19])) % 10;
+									string number = string.Concat(new object[]
+									{
+										num,
+										",",
+										num2,
+										",",
+										num3,
+										",",
+										num4,
+										",",
+										num5
+									});
+									new LotteryDataDAL().Add(lotteryId, text2, number, innerText, string.Join(",", array));
+									Public.SetOpenListJson(lotteryId);
+									LotteryCheck.RunOfIssueNum(lotteryId, text2);
+								}
+							}
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+            {
+                Log.ErrorFormat("采集异常 {0}", ex);
+				new LogExceptionDAL().Save("采集异常", "采集主站获取开奖数据出错，错误代码：" + ex.Message);
+			}
+		}
+	}
 }

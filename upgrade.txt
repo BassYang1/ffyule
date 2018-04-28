@@ -1,0 +1,9 @@
+20180406
+1, 北京PK10, 猜单双, 猜大小, 只可以猜前3名把1-10都加进去
+	Lottery.IPhone\statics\sytle\js\EM.operBet.js
+	Lottery.IPhone\statics\sytle\js\EM.jquery3.js
+	Lottery.IPhone\statics\sytle\js\EM.jquery2.js
+
+	Lottery.FFApp\statics\js\EM.jquery3.js
+	Lottery.FFApp\statics\js\EM.jquery2.js
+	Lottery.FFApp\statics\js\EM.betoper.js

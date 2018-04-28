@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>美金娱乐</title>
+    <title>九州娱乐</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta name="format-detection" content="telephone=no,email=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -92,10 +92,10 @@
                         <span class="s">倍</span>
                     </div>
                     <select id="model" onchange="SelectModel()" class="unit">
-                    <option value="1">元</option>
-                    <option value="0.1">角</option>
-                    <option value="0.01">分</option>
-                    <option value="0.001">厘</option>
+                    <option value="2">元</option>
+                    <!--<option value="0.2">角</option>
+                    <option value="0.02">分</option>
+                    <option value="0.002">厘</option>-->
                     </select>
                     <select id="points" onchange="SelectPoints()" class="point">
                     </select>
@@ -109,7 +109,8 @@
                     <span class="money">已选<em id="fromBuyNumberCount">0</em>注 共<em id="fromBuyPriceTotal">0.00</em>元</span>
                     <span class="tip">添加到投注单</span>
                 </span>
-                <a href="javascript:;" onclick="AddRow()" class="btn primary-btn betting-btn"><i class="icon-doc"></i>添加</a>
+                <a href="javascript:;" onclick="ajaxQuickBetView()" class="btn primary-btn betting-btn" style="width: 90px; padding: 0 3px; margin: 0 1px;"><i class="icon-doc" style="margin-right:1px;"></i>一键下注</a>
+                <a href="javascript:;" onclick="AddRow()" class="btn primary-btn betting-btn" style="width: 60px; padding: 0 2px; margin: 0 1px;"><i class="icon-doc" style="margin-right:1px;"></i>添加</a>
                 <input type="hidden" id="txtLoid" value="<%=loId %>" />
                 <input type="hidden" id="txtTid" value="<%=tId %>" />
                 <input type="hidden" id="MinTimes" value="<%=MinTimes %>" />

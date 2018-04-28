@@ -5,7 +5,7 @@ function ajaxBigType() {
         if (lotteryData.table[i].typeid == Nmbtype) {
             var id = lotteryData.table[i].id;
             var title = lotteryData.table[i].title;
-            if (id == 1001 || id == 2001 || id == 3001 || id == 4001) {
+            if (id == 1002 || id == 2001 || id == 3001 || id == 4001 || title == "和值") {
                 PlayBigId = id;
                 PlayBigName = title;
                 str += "<li class='selected' nmb='" + id + "' nmbname='" + title + "'>" + title + "</li>";
@@ -31,10 +31,13 @@ function ajaxBigType() {
         playBouns = 0;
         Betpoint = 0;
         PlayPos = "";
+
+        //加载玩法小类
         ajaxSmallType(PlayBigId);
     });
 }
 
+//加载玩法小类
 function ajaxSmallType(bigid) {
     var zhix = "";
         zux = "";
@@ -179,11 +182,11 @@ var bettingAdjust = function () {
         step: 0.1,
         slide: function (event, ui) {
             var point = (-ui.value);
-            var bonus = (eval($('#lotBonus').val()) - ((-ui.value) * 20 * eval(PlayPosBonus))).toFixed(2);
+            var bonus = (eval($('#lotBonus').val()) - ((-ui.value) * 20 * eval(PlayPosBonus))).toFixed(3);
             bonus = bonus * PriceModel * 0.5;
             if (eval($('#lotBonus2').val()) == 1) {
-                $ratio.html(point + '%&nbsp;|&nbsp;' + bonus + "/" + (bonus / 2).toFixed(2));
-                $('#bonus2').html(bonus + "/" + (bonus / 2).toFixed(2));
+                $ratio.html(point + '%&nbsp;|&nbsp;' + bonus + "/" + (bonus / 2).toFixed(3));
+                $('#bonus2').html(bonus + "/" + (bonus / 2).toFixed(3));
             }
             else if (eval($('#lotBonus2').val()) == 2) {
                 $ratio.html(point + '%');

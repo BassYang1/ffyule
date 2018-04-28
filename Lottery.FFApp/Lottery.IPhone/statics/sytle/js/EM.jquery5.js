@@ -1,4 +1,8 @@
 ﻿function OpenZhBet() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     $("#add").hide();
     $("#info").hide();
     $("#zhuihao").show();
@@ -259,6 +263,10 @@ function TimesChange(obj) {
 
 //追号投注
 function ajaxZHBetView() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     if ($i('spanSumTotal').innerHTML == "" || $i('spanSumTotal').innerHTML == "0.00") {
         emAlert('请选择追号期数，生成追号计划！');
         return false;

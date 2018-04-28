@@ -52,6 +52,7 @@
                     MaxLength="10" CssClass="ipt" Visible="false"></asp:TextBox><asp:TextBox ID="txtTime"
                         runat="server" Width="120px" MaxLength="10" CssClass="ipt" Visible="false"></asp:TextBox>
             <asp:Button ID="btnSave" runat="server" Text="确定" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+            <asp:Button ID="Button1" runat="server" Text="注销" CssClass="btn btn-primary" OnClick="btnCancel_Click" />
         </div>
         </form>
     </div>

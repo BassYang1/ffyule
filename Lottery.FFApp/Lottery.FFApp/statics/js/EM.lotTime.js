@@ -32,10 +32,12 @@ function ajaxLotteryTime() {
 }
 
 var bettingCountdown = function () {
+    ///console.log("===倒计时时间=== : " + lotTimes);
     bettingConfirmCountdown();
     var $countdown = $("#betting-countdown");
     var ms = parseInt(lotTimes);
     Util.countdown(ms, true, true, true, function (time) {
+		//console.info(time);
         time = time.split(":");
         var str = '';
         for (var i = 0; i < time.length; i++) {
@@ -76,6 +78,7 @@ var timers;
 function timer() {
     clearInterval(timers);
     timers = window.setInterval(function () {
+		//console.info("loading"+intDiff);
         if (intDiff == 0) {
             ajaxLotteryTime();
         }
@@ -141,7 +144,6 @@ function timer() {
                                 }
                                 IsKaijiang = true;
                                 audioPlay('kaijiang');
-                                ajaxLotteryDataList(data);
                                 ajaxList();
                                 ajaxUserTotalList();
                             }
@@ -151,15 +153,18 @@ function timer() {
                                 $('#kjLoading').show();
                                 $('#lottery-numbers').hide();
                             }
+
+                            ajaxLotteryDataList(data);
                         }
                         else {
+                            ajaxLotteryTime();
+                            console.log("更新期号");
                             $('#numberstate').html("等待开奖");
                             $('#kjLoading').html(GetNoOpenInfo("正", "在", "开", "奖", "中"));
                             $('#kjLoading').show();
                             $('#lottery-numbers').hide();
                         }
                     }
-
                 });
             }
         }

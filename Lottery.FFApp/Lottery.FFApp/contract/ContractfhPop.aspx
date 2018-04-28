@@ -8,306 +8,297 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>立博国际娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="/statics/global.js" type="text/javascript"></script>
     <script src="/statics/layer/layer.js" type="text/javascript"></script>
     <script src="/statics/js/EM.tools.js" type="text/javascript"></script>
+    <script src="/statics/js/page.contract.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var count = 0;
-        $(document).ready(function () {
-            ajaxGetList();
-        });
-        var DataFH="";
-        function ajaxGetList()
-        {
+        //下级会员信息
+        var subUser = "<%=this.SubUserId%>"; //签约下级Id
+        var userName = "<%=this.UserName%>"; //签约下级会员名称
+        var userGroup = "<%=this.UserGroup%>"; //签约下级用户级别
+        var userGroupName = "<%=this.UserGroupName%>"; //签约下级用户级别名称
+        var userDesc = "会员[" + userName + "]";
+        userDesc = userGroupName == "会员" ? userDesc : "[" + userGroupName + "]" + userDesc;
+
+        //契约
+        var count = 0; //签订契约个数，最大10个
+        var contracts = null; //签订的契约
+        var state = 0;　//契约状态，默认[0-未使用]
+
+        $(function () {
             $("#btnAdd").hide();
-            $("#btnEdit").hide();
-            $("#btnCannel").hide();
             $("#btnSave").hide();
-             $.ajax({
-                    type: "get",
-                    dataType: "json",
-                    data: "id=<%=userId %>&clienttime=" + Math.random(),
-                    url: "/ajax/ajaxContractFH.aspx?oper=GetContractInfo",
-                    error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
-                    success: function (d) {
+            $("#btnCannel").hide();
 
-                    var html="";
-                     if (d.table.length > 0) {
-                        DataFH=d;
-                        for (var i = 0; i < d.table.length; i++) {
-                            var t = d.table[i];
-                            html+='<div class="input-group"><label class="lab">0'+(i + 1)+'.半月平均日量</label><label class="lab">'+t.minmoney+'万</label><label class="lab">，分红'+t.money+'%</label></div>';
-                        }
-                        if (d.table[0].groupid == 4) {
-                            $i("info").innerHTML = "该会员是招商级别，直接用平台分红标准";
-							$("#add").html(html);
-                        }
-                        else if (d.table[0].groupid == 3) {
-                            $i("info").innerHTML = "该会员是特权直属级别，直接用平台分红标准";
-                            $("#add").html(html);
-                        }
-                        else {
-                            if (d.table[0].groupid >= 5) {
-                                $i("info").innerHTML="您的级别不参与契约";
-                            }
-                            else
-                            {
-                                    if(d.table[0].isused==0)
-                                    {
-                                         $i("info").innerHTML="契约待接受";
-                                         $("#add").html(html);
-                                         $("#btnEdit").show();
-                                    }
-                                    if(d.table[0].isused==1)
-                                    {
-                                         $i("info").innerHTML="契约已签订";
-                                         $("#add").html(html);
-                                         $("#btnCannel").show();
-                                    }
-                                    if(d.table[0].isused==2)
-                                    {
-                                        $i("info").innerHTML="契约已拒绝，可重新分配";
-                                        $("#add").html(html);
-                                        $("#btnEdit").show();
-                                    }
-                                    if(d.table[0].isused==3)
-                                    {
-                                        $i("info").innerHTML="契约撤销，等待会员同意！";
-                                        $("#add").html(html);
-                                    }
-                                    if(d.table[0].isused==4)
-                                    {
-                                        $i("info").innerHTML="会员同意撤销，请您修改契约！";
-                                        $("#add").html(html);
-                                        $("#btnEdit").show();
-                                    }
-                              }
-                        }
-                       }
-                       else{
-                            $i("info").innerHTML = "契约未分配，请您分配！";
-							$("#btnAdd").show();
-                       }
-                    }
-                });
-        }
+            if (checkUser()) {
+                getContract();
+                showContract();
+                checkContractState();
 
-        function UpdateFrom() {
-            $("#btnEdit").hide();
-            $("#btnAdd").show();
-            $("#btnSave").show();
-            $("#add").html("");
-            count=DataFH.table.length;
-            for (var i = 0; i < DataFH.table.length; i++) {
-                var t = DataFH.table[i];
-                var div = document.createElement('div');
-                div.className = 'input-group';
-
-                var label = document.createElement('label');
-                label.className = 'lab';
-                label.innerHTML = '0' + (i+1) + '.半月平均日量';
-
-                var input = document.createElement('input');
-                input.className = 'ipt';
-                input.id = "money_" + i;
-                input.value=t.minmoney;
-
-                var label2 = document.createElement('label');
-                label2.className = 'lab';
-                label2.innerHTML = '万，分红';
-
-                var select = document.createElement('select');
-                select.id = "per_" + i;
-                select.className = 'select';
-
-                var img = document.createElement('img');
-                img.id = "img_" + i;
-                img.src = '/statics/img/icon_lot_del.png';
-                img.className = 'img';
-                img.onclick = function () {
-                    document.getElementById("add").removeChild(div);
-                    $("#img_" + (i)).show();
-                }
-
-                div.appendChild(label);
-                div.appendChild(input);
-                div.appendChild(label2);
-                div.appendChild(select);
-                div.appendChild(img);
-                document.getElementById('add').appendChild(div);
-                PerBindUpdate("per_" + i, t.money);
-                $("#per_" + i).val(parseInt(t.money));
-                //$("#per_" + i).attr("disabled",true);
-             }
-        }
-
-        function AddFrom() {
-            $("#btnSave").show();
-             if(maxPer="undefined")
-                maxPer="0";
-            if (count < 10&&parseInt(maxPer)<19) {
-                //使用createElement创建元素
-                var div = document.createElement('div');
-                div.className = 'input-group';
-
-                var label = document.createElement('label');
-                label.className = 'lab';
-                label.innerHTML = '0' + count + '.半月平均日量';
-
-                var input = document.createElement('input');
-                input.className = 'ipt';
-                input.id = "money_" + count;
-
-                var label2 = document.createElement('label');
-                label2.className = 'lab';
-                label2.innerHTML = '万，分红';
-
-                var select = document.createElement('select');
-                select.id = "per_" + count;
-                select.className = 'select';
-                var img = document.createElement('img');
-                img.id = "img_" + count;
-                img.src = '/statics/img/icon_lot_del.png';
-                img.className = 'img';
-                img.onclick = function () {
-                    count--;
-                    document.getElementById("add").removeChild(div);
-                    $("#img_" + (count-1)).show();
-                    $("#per_" + (count-1)).attr("disabled",false);
-                    maxPer = $("#per_" + (count-1)).val();
-                }
-
-                div.appendChild(label);
-                div.appendChild(input);
-                div.appendChild(label2);
-                div.appendChild(select);
-                div.appendChild(img);
-                document.getElementById('add').appendChild(div);
-                PerBind("per_" + count);
-                for (var i = 0; i < count; i++) {
-                    $("#img_" + i).hide();
-                    $("#per_" + i).attr("disabled",true);
+                if (count == 0) {
+                    addContract(); //增加一条契约
                 }
             }
-            count++;
-        }
-
-        var SelectedData = [];
-        function ajaxView() {
-            SelectedData.splice(0, SelectedData.length);
-            for (var i = 0; i <= count; i++) {
-                var money = $("#money_" + i).val();
-                var per = $("#per_" + i).val();
-                if (money != "undefined" && parseFloat(money) >=0 && per!=null) {
-                    var json1 = {
-                        "userid": <%=userId %>,
-                        "money": money,
-                        "per": per
-                    };
-                    SelectedData.push(json1);
-                }
+            else {
+                $i("info").innerHTML = "暂时不能与下级签订契约，请联系上级";
             }
-            var arrzh = JSON.stringify(SelectedData);
+        });
+
+        //检查是否有权限分配契约
+        function checkUser() {
+            var can = false;
+
             $.ajax({
-                    type: "post",
-                    dataType: "json",
-                    data: arrzh,
-                    async: false,
-                    url: "/ajax/ajaxContractFH.aspx?oper=ajaxSaveContract&clienttime=" + Math.random(),
-                    error: function (XmlHttpRequest, textStatus, errorThrown) { emAlert("亲！页面过期,请刷新页面!"); },
-                    success: function (d) {
-                        switch (d.result) {
-                            case '0':
-                                emAlert(d.returnval);
-                                break;
-                            case '1':
-                                ajaxGetList();
-                                var index = layer.getFrameIndex(window.name);
-//                                parent.ajaxSearch();
-//                                parent.layer.close(parent.layer.getFrameIndex(window.name));
-                                break;
-                        }
+                type: "get",
+                dataType: "json",
+                async: false,
+                data: "clienttime=" + Math.random(),
+                url: "/ajax/ajaxContractFH.aspx?oper=CanContract",
+                error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
+                success: function (d) {
+                    can = d.result == "1";
+                }
+            });
+
+            return can;
+        }
+
+        //获取契约数据
+        function getContract() {
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                async: false,
+                data: "id=" + subUser + "&clienttime=" + Math.random(),
+                url: "/ajax/ajaxContractFH.aspx?oper=GetContractInfo2",
+                error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
+                success: function (d) {
+                    contracts = d; //契约
+
+                    if (contracts && contracts.table && contracts.table.length > 0) { //签订契约状态
+                        //0-契约待接受或未签定契约
+                        //1-契约已签订
+                        //2-契约已拒绝，可重新分配
+                        //3-契约撤销，等待会员同意！
+                        //4-会员同意撤销，请您修改契约！
+                        state = contracts.table[0].isused;
+
+                        //已有契约数量
+                        count = contracts.table.length;
                     }
-                });
-		}
-
-        var maxPer=0;
-        function PerBind(obj) {
-            for (var k = 0; k <= count; k++) {
-                var per = $("#per_" + k).val();
-                if (per != "undefined" && per!=null)
-                {
-                    if(parseInt(per)>parseInt(maxPer)){
-					    maxPer=per;
-					}
                 }
-            }
-            var str = '';
-            for(var i=parseInt(maxPer)+1;i<=parseInt(<%=maxAdminPer %>);i++)
-            {
-                if(i>parseInt(maxPer))
-                {
-                    str += '<option value="'+i+'">'+i+'%</option>';
-                }
-            }
-            $('#' + obj).html(str);
+            });
         }
 
-        function PerBindUpdate(obj,per) {
-            var str = '';
-            for(var i=1;i<=parseInt(<%=maxAdminPer %>);i++)
-            {
-                if(i>parseInt(maxPer))
-                {
-                    str += '<option value="'+i+'">'+i+'%</option>';
+        //显示已有契约
+        function showContract() {
+            if (count > 0) { //已签订契约
+                var table = contracts.table;
+                var html = "";
+
+                for (var i = 0; i < count; i++) {
+                    var t = table[i];
+                    var num = i + 1;
+
+                    html += "<div class='input-group' id='contract_" + num + "'>";
+                    html += "<input type='hidden' id='id_" + num + "' value='" + t.id + "' />";
+                    html += "<input type='hidden' id='state_" + num + "' value='" + t.isused + "' />";
+                    html += "<label class='lab'>0" + num + ".周期销量</label>";
+                    html += "<input class='ipt' id='money_" + num + "' value='" + t.minmoney + "' onkeypress='doubleNum(this)' onkeydown='doubleNum(this)' />";
+                    html += "<label class='lab'>万，周期分红</label>";
+                    html += "<input class='ipt' id='per_" + num + "' value='" + t.money + "' onkeypress='doubleNum(this)' onkeydown='doubleNum(this)' />";
+                    html += "<label class='lab'>%</label>";
+                    html += "<img class='img' id='img_" + num + "' src='/statics/img/icon_lot_del.png' onclick='removeContract()' />";
+                    html += "</div>";
+                }
+
+                $("#add").html(html);
+
+                $("#add").find("img").hide();
+                if (count > 1) {
+                    $("#add").find("img:last").show();
                 }
             }
-            $('#' + obj).html(str);
         }
 
-        function ajaxUpdate(state) {
-            var index = emLoading();
+        //检查契约状态
+        function checkContractState() {
+            if (count > 0) { //已签订契约                  
+                if (state == 0) {
+                    $i("info").innerHTML = "契约待接受";
+                    $("#btnAdd").show();
+                    $("#btnSave").show();
+                }
+
+                if (state == 1) {
+                    $i("info").innerHTML = "契约已签订";
+                    $("#btnCannel").show();
+                    $("#add").find("input").prop("readonly", true);
+                    $("#add").find("img").hide();
+
+                    if (count < 10) { //最多增加10条
+                        $("#btnAdd").show();
+                        $("#btnSave").show();
+                    }
+                }
+
+                if (state == 2) {
+                    $i("info").innerHTML = "契约已拒绝，可重新分配";
+                    $("#btnAdd").show();
+                    $("#btnSave").show();
+                }
+
+                if (state == 3) {
+                    $i("info").innerHTML = "契约撤销，等待会员同意！";
+                    $("#add").find("input").prop("readonly", true);
+                    $("#add").find("img").hide();
+                }
+
+                if (state == 4) {
+                    $i("info").innerHTML = "会员同意撤销，请您修改契约！";
+                    $("#btnAdd").show();
+                    $("#btnSave").show();
+                }
+            }
+            else { //未签订契约
+                $i("info").innerHTML = "正在给" + userDesc + "分配契约";
+                $("#btnAdd").show();
+                $("#btnSave").show();
+            }
+        }
+
+        //增加一条契约
+        function addContract() {
+            if (count < 10) {
+                count++; //增加一条
+
+                //使用createElement创建元素
+                var html = "";
+                html += "<div class='input-group' id='contract_" + count + "'>";
+                html += "<input type='hidden' id='id_" + count + "' value='0' />";
+                html += "<input type='hidden' id='state_" + count + "' value='0' />";
+                html += "<label class='lab'>0" + count + ".周期销量</label>";
+                html += "<input class='ipt' id='money_" + count + "' value='' onkeypress='doubleNum(this)' onkeydown='doubleNum(this)' />";
+                html += "<label class='lab'>万，周期分红</label>";
+                html += "<input class='ipt' id='per_" + count + "' value='' onkeypress='doubleNum(this)' onkeydown='doubleNum(this)' />";
+                html += "<label class='lab'>%</label>";
+                html += "<img class='img' id='img_" + count + "' src='/statics/img/icon_lot_del.png' onclick='removeContract()' />";
+                html += "</div>";
+
+                $("#add").append(html);
+
+                $("#add").find("img").hide();
+                if (count > 1) {
+                    $("#add").find("img:last").show();
+                }
+            }
+            else {
+                emAlert("最多增加10条契约!");
+            }
+        }
+
+        //删除Id
+        function removeContract() {
+            $("#contract_" + count).remove();
+
+            //第一条和已经生效的契约不允许删除
+            if (--count != 1 && $("#state_" + count) != "1") {
+                $("#add").find("img:last").show();
+            }
+        }
+
+        var saveData = []; //需要存储的契约数据
+        function saveContract() {
+            saveData.splice(0, saveData.length); //清空数据
+
+            for (var i = 0; i < count; i++) {
+                var money = $("#money_" + (i + 1)).val();
+                var per = $("#per_" + (i + 1)).val();
+                var id = $("#id_" + (i + 1)).val();
+
+                if (money == undefined || per == undefined) {
+                    emAlert("输入的数值无效!");
+                    return;
+                }
+
+                try {
+                    money = parseFloat(money);
+                    per = parseFloat(per);
+
+                    if (isNaN(money) || isNaN(per) || money <= 0 || per <= 0) {
+                        emAlert("输入的数值无效!");
+                        return;
+                    }
+                }
+                catch (e) {
+                    emAlert("输入的数值无效!");
+                    return;
+                }
+
+                if (per > 50) {
+                    emAlert("输入的比例不能超过50%!");
+                    return;
+                }
+
+                var contract = {
+                    "userid": subUser,
+                    "id": id,
+                    "money": money,
+                    "per": per
+                };
+
+                saveData.push(contract);
+            }
+
+            var jsonData = JSON.stringify(saveData);
             $.ajax({
                 type: "post",
                 dataType: "json",
-                url: "/ajax/ajaxContractFH.aspx?oper=UpdateContractStateUserId&clienttime=" + Math.random(),
-                data: "state=" + state+"&userid="+<%=userId %>,
-                error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
+                data: jsonData,
+                async: false,
+                url: "/ajax/ajaxContractFH.aspx?oper=ajaxSaveContract&clienttime=" + Math.random(),
+                error: function (XmlHttpRequest, textStatus, errorThrown) { emAlert("亲！页面过期,请刷新页面!"); },
                 success: function (d) {
                     switch (d.result) {
                         case '0':
-                            emAlert(d.message);
+                            emAlert(d.returnval);
                             break;
                         case '1':
-                            ajaxGetList();
+                            emAlert("契约分配成功");
                             break;
                     }
-                    closeload(index);
                 }
             });
+        }
+
+        //关闭弹窗
+        function closePop() {
+            var index = layer.getFrameIndex(window.name);
+            parent.layer.close(parent.layer.getFrameIndex(window.name));
         }
     </script>
 </head>
 <body>
     <div class="tto-popup">
         <div class="popup-body">
-        <form id="form1" class="tto-form2">
-        <div class="input-group">
-           <span id="info" class="info"></span>
-        </div>
-        <div id="add" style="height:350px;">
-        </div>
-         <div class="btn-group">
-            <input id="btnAdd" type="button" value="添加规则" onclick="AddFrom()" class="btn btn-bg btn-primary" />
-            <input id="btnEdit" type="button" value="编辑契约" onclick="UpdateFrom()" class="btn btn-bg btn-primary" />
-            <input id="btnCannel" type="button" value="撤销契约" onclick="ajaxUpdate(3)" class="btn btn-bg btn-primary" />
-            <input id="btnSave" type="button" value="确定提交" onclick="ajaxView()" class="btn btn-bg btn-primary" />
-        </div>
-        </form>
+            <form id="form1" class="tto-form2">
+                <div class="input-group">
+                    <span id="info" class="info"></span>
+                </div>
+                <div id="add" style="height: 350px;">
+                </div>
+                <div class="btn-group">
+                    <input id="btnAdd" type="button" value="添加规则" onclick="addContract()" class="btn btn-bg btn-primary" />
+                    <input id="btnCannel" type="button" value="撤销契约" onclick="ajaxUpdate(3)" class="btn btn-bg btn-primary" />
+                    <input id="btnSave" type="button" value="提交" onclick="saveContract()" class="btn btn-bg btn-primary" />
+                    <input type="button" value="取消" onclick="closePop()" class="btn btn-bg btn-default" />
+                </div>
+            </form>
         </div>
     </div>
 </body>

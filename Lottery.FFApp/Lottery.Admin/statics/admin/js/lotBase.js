@@ -316,29 +316,29 @@
         //#endregion                  
         //活动管理                 
         //#region                 
-        case "ActiveSet":
-            TableTemplate = {
-                Title: "活动配置",
-                PageSize: 16,
-                Url: "/admin/ajaxActive.aspx?oper=ajaxGetList",
-                StateUrl: "/admin/ajaxActive.aspx?oper=ajaxStates",
-                Query: [],
-                Botton: [],
-                List: [
-                        { Header: "活动名称", Filed: "name", Width: "*", Align: "center" },
-                        { Header: "开始时间", Filed: "starttime", Width: "*", Align: "center" },
-                        { Header: "截止时间", Filed: "endtime", Width: "*", Align: "center" },
-                        { Header: "派发方式", Filed: "typecode", Width: "*", Align: "center" },
-                        { Header: "是否启用", Filed: "isuse", Width: "*", Align: "center", Default: [{ 0: "启用", 1: "关闭"}], Function: "ajaxStates" },
-                        { Header: "", Width: "*", Align: "center"
-                        , Info: [
-                                    { Type: "Popup", Title: "编辑属性", Function: "PagePop('/admin/PageEditPop.aspx?page=ActiveSetSave&id=@@')" },
-                                     { Type: "Link", Title: "设置规则", Function: "/admin/conList.aspx?page=@Code@" },
-                                    { Type: "Popup", Title: "设置公告", Function: "PagePop('/admin/ActiveNewsedit.aspx?id=@@')" }
-                                ]
-                        }]
-            };
-            break;
+        //case "ActiveSet":
+        //    TableTemplate = {
+        //        Title: "活动配置",
+        //        PageSize: 16,
+        //        Url: "/admin/ajaxActive.aspx?oper=ajaxGetList",
+        //        StateUrl: "/admin/ajaxActive.aspx?oper=ajaxStates",
+        //        Query: [],
+        //        Botton: [],
+        //        List: [
+        //                { Header: "活动名称", Filed: "name", Width: "*", Align: "center" },
+        //                { Header: "开始时间", Filed: "starttime", Width: "*", Align: "center" },
+        //                { Header: "截止时间", Filed: "endtime", Width: "*", Align: "center" },
+        //                { Header: "派发方式", Filed: "typecode", Width: "*", Align: "center" },
+        //                { Header: "是否启用", Filed: "isuse", Width: "*", Align: "center", Default: [{ 0: "启用", 1: "关闭"}], Function: "ajaxStates" },
+        //                { Header: "", Width: "*", Align: "center"
+        //                , Info: [
+        //                            { Type: "Popup", Title: "编辑属性", Function: "PagePop('/admin/PageEditPop.aspx?page=ActiveSetSave&id=@@')" },
+        //                             { Type: "Link", Title: "设置规则", Function: "/admin/conList.aspx?page=@Code@" },
+        //                            { Type: "Popup", Title: "设置公告", Function: "PagePop('/admin/ActiveNewsedit.aspx?id=@@')" }
+        //                        ]
+        //                }]
+        //    };
+        //    break;
          case "ActDay15Fenhong":
             TableTemplate = {
                 Title: "直属分红",
@@ -914,6 +914,32 @@
                         { Header: "处理时间", Filed: "stime2", Width: "*", Align: "center" },
                         { Header: "备注", Filed: "msg", Width: "*", Align: "center" }
                        ]
+            };
+            break;
+        case "ChargeCheck":
+            TableTemplate = {
+                Title: "取款审核",
+                PageSize: 16,
+                Url: "/admin/ajaxCharge.aspx?oper=ajaxGetChargeCheck",
+                Query: [{ InputType: "DateTime", InputTitle: "开始时间", InputId: "d1", InputClass: "sel sel-md", Width: "135px", Value: GetDateStr(-7) },
+                             { InputType: "DateTime", InputTitle: "截止时间", InputId: "d2", InputClass: "sel sel-md", Width: "135px", Value: GetDateStr(1) },
+                             { InputType: "select", InputTitle: "", InputId: "sel", InputClass: "sel sel-md", Width: "80px", Options: [{ key: "username", value: "会员账号" }] },
+                             { InputType: "Input", InputTitle: "", InputId: "u", InputClass: "sel sel-md", Width: "80px" }
+                ],
+                Botton: [{ Title: "查询", Function: "ajaxSearch()", InputClass: "btn btn-primary" }],
+                List: [
+                        { Header: "订单号", Filed: "ssid", Width: "200px", Align: "center" },
+                        { Header: "用户帐号", Filed: "username", Width: "*", Align: "center" },
+                         { Header: "充值金额", Filed: "inmoney", Width: "*", Align: "center" },
+                        { Header: "充值方式", Filed: "paytype", Width: "*", Align: "center" },
+                        { Header: "申请时间", Filed: "stime", Width: "*", Align: "center" },
+                        {
+                            Header: "", Width: "*", Align: "center"
+                        , Info: [
+                                       { Type: "Popup", Title: "处理充值", Function: "top.Lottery.Popup.show('/admin/userchargeedit.aspx?id=@@',800,500,true)" }
+                        ]
+                        }
+                ]
             };
             break;
         case "IpsList":

@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>九州娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script type="text/javascript" src="/statics/jquery-1.11.3.min.js"></script>
@@ -21,29 +21,47 @@
         $(document).ready(function () {
             ajaxList();
         });
-
+        
         function ajaxList() {
-            var TableTemplate = GetMenu(request.substr(0, 1));
-            var TableValue = 0;
-            if (request.length>1)
-                TableValue = request.substr(1, 1);
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                data: "clienttime=" + Math.random(),
+                url: "/ajax/ajaxActive.aspx?oper=ajaxGetList",
+                error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
+                success: function (d) {
+                    var userGroup = d.table[0].usergroup;
+                    var TableTemplate = GetMenu(request.substr(0, 1));
+                    var TableValue = 0;
 
-            $("#menulist").html("");
-            var s = "";
-            for (var i = 0, len = TableTemplate.ListCount; i < len; i++) {
-                if (i == TableValue) {
-                    s += '<a href="javascript:;" nmb="' + TableTemplate.ListUrl[i]["key"] + '" class="current">' + TableTemplate.ListName[i]["key"] + '</a>';
-                    ajaxInit(TableTemplate.ListUrl[i]["key"]);
-                } else
-                    s += '<a href="javascript:;" nmb="' + TableTemplate.ListUrl[i]["key"] + '">' + TableTemplate.ListName[i]["key"] + '</a>';
-            }
-            $("#menulist").html(s);
+                    if (request.length > 1) {
+                        TableValue = request.substr(1, 1);
+                    }
 
-            $('.block-subnav a').click(function () {
-                $(this).parent().find('a').removeClass();
-                $(this).addClass('current');
-                var src = $(this).attr("nmb");
-                ajaxInit(src);
+                    $("#menulist").html("");
+                    var s = "";
+                    for (var i = 0, len = TableTemplate.ListCount; i < len; i++) {
+                        var listName = TableTemplate.ListName[i]["key"];
+                        var visable = listName != "开户中心" || userGroup != "0" ? true : false;
+
+                        if (visable) {
+                            if (i == TableValue) {
+                                s += '<a href="javascript:;" nmb="' + TableTemplate.ListUrl[i]["key"] + '" class="current">' + TableTemplate.ListName[i]["key"] + '</a>';
+                                ajaxInit(TableTemplate.ListUrl[i]["key"]);
+                            } else {
+                                s += '<a href="javascript:;" nmb="' + TableTemplate.ListUrl[i]["key"] + '">' + TableTemplate.ListName[i]["key"] + '</a>';
+                            }
+                        }
+                    }
+                    $("#menulist").html(s);
+
+                    $('.block-subnav a').click(function () {
+                        $(this).parent().find('a').removeClass();
+                        $(this).addClass('current');
+                        var src = $(this).attr("nmb");
+                        ajaxInit(src);
+                    });
+                }
             });
         }
     </script>

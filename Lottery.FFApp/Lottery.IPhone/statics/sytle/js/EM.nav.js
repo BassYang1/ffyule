@@ -22,6 +22,8 @@
     else {
         $("#model").val("1");
     }
+
+    //验证用户
     $.ajax({
         type: "get",
         dataType: "json",
@@ -30,7 +32,9 @@
         error: function (XmlHttpRequest, textStatus, errorThrown) { if (XmlHttpRequest.responseText != "") { emAlert("亲！页面过期,请刷新页面!"); } },
         success: function (d) {
             if (d.result == "1") {
+                //显示当前开奖信息，时间等
                 ajaxLotteryTime();
+                //加载玩法大类
                 ajaxBigType();
                 if (site.ZHIsOpen == 1) {
                     $(".iszh").hide();
@@ -49,13 +53,19 @@
             }
         }
     });
+    //添加后清空
     ajaxAddAfterClear();
+    //投注后清空
     ajaxBetAfterClear();
+
+    //设置彩种投注倍数
+    setBetTimes(false);
 });
 
+//加载前10期开奖信息
 function ajaxListNav() {
     var u = "/ajax/ajax.aspx?oper=GetKaiJiangInfoTop10";
-    var index = emLoading();
+    //var index = emLoading();
     $.ajax({
         type: "get",
         dataType: "json",
@@ -86,7 +96,7 @@ function ajaxListNav() {
                     }
                     break;
             }
-            closeload(index);
+            //closeload(index);
         }
     });
 }

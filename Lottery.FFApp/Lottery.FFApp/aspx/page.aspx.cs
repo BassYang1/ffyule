@@ -9,15 +9,18 @@ using System.Web.UI;
 
 namespace Lottery.FFApp
 {
-  public partial class page : Page
-  {
-    public string k = "b";
-
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class page : Page
     {
-      if (string.IsNullOrEmpty(this.Request.QueryString["k"] ?? ""))
-        return;
-      this.k = this.Request.QueryString["k"];
+        public string k = "b";
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.Request.QueryString["k"] ?? ""))
+            {
+                return;
+            }
+
+            this.k = this.Request.QueryString["k"];
+        }
     }
-  }
 }

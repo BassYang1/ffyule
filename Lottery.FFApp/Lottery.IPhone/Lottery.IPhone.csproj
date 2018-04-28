@@ -16,9 +16,9 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,12 +39,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lottery.Collect">
-      <HintPath>..\DLLs\Lottery.Collect.dll</HintPath>
-    </Reference>
-    <Reference Include="Lottery.DBUtility, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLLs\Lottery.DBUtility.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\DLLs\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -56,6 +52,12 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="money\chargeSelf.aspx" />
+    <Content Include="money\chargeSbf.aspx" />
+    <Content Include="pay\suibipay\notify.aspx" />
+    <Content Include="pay\suibipay\pay.aspx" />
+    <Content Include="pay\suibipay\result.aspx" />
     <Content Include="plus\ajaxuploadhandler.ashx" />
     <Content Include="statics\data\qqwry.dat" />
     <Content Include="statics\layer\layer.rar" />
@@ -80,6 +82,7 @@
     <Content Include="statics\log\hacker_20161029.log" />
     <Content Include="statics\log\hacker_20170428.log" />
     <Content Include="statics\log\hacker_20170607.log" />
+    <None Include="Properties\PublishProfiles\ffmobile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -461,6 +464,7 @@
     <Content Include="statics\sytle\images\logo\4002.png" />
     <Content Include="statics\sytle\images\logo\4003.png" />
     <Content Include="statics\sytle\images\logo\4004.png" />
+    <Content Include="statics\sytle\images\logo\5005.png" />
     <Content Include="statics\sytle\images\logo_cp_11x5_cq.png" />
     <Content Include="statics\sytle\images\logo_cp_11x5_gd.png" />
     <Content Include="statics\sytle\images\logo_cp_11x5_jx.png" />
@@ -517,7 +521,9 @@
     <Content Include="user\userteamtotal.html" />
     <Content Include="user\userupdate.aspx" />
     <Content Include="WEB-INF\site.xml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ajax\ajax.aspx.cs">
@@ -577,8 +583,19 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EMWeb\ajaxuploadhandler.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="money\charge.aspx.cs">
       <DependentUpon>charge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="money\chargeSelf.aspx.cs">
+      <DependentUpon>chargeSelf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="money\chargeSbf.aspx.cs">
+      <DependentUpon>chargeSbf.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="money\chargeZfb.aspx.cs">
@@ -595,6 +612,19 @@
     </Compile>
     <Compile Include="news\newsinfo.aspx.cs">
       <DependentUpon>newsinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\SbfHelper.cs" />
+    <Compile Include="pay\suibipay\notify.aspx.cs">
+      <DependentUpon>notify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\suibipay\pay.aspx.cs">
+      <DependentUpon>pay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\suibipay\result.aspx.cs">
+      <DependentUpon>result.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="plus\getcode.aspx.cs">
@@ -656,21 +686,33 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="statics\temp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lottery.Collect\Lottery.Collect.csproj">
+      <Project>{8db8a3f8-22f8-49a3-8271-adec06af09f1}</Project>
+      <Name>Lottery.Collect</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
       <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
       <Name>Lottery.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lottery.DBUtility\Lottery.DBUtility.csproj">
+      <Project>{71e9ac32-7eaf-4677-9b25-9adb150f8bcf}</Project>
+      <Name>Lottery.DBUtility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lottery.Entity\Lottery.Entity.csproj">
       <Project>{17a4cf66-b240-4a8f-8137-c134ca6a2c89}</Project>
       <Name>Lottery.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lottery.FFCache\Lottery.FFCache.csproj">
+      <Project>{13e68fae-a641-4e95-b08a-a6614bf530c8}</Project>
+      <Name>Lottery.FFCache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lottery.Utils\Lottery.Utils.csproj">
       <Project>{7fde2b50-2656-4ed1-8c0c-d6547fe9a21a}</Project>
       <Name>Lottery.Utils</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="statics\temp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>立博国际娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script type="text/javascript" src="/statics/jquery-1.11.3.min.js"></script>
@@ -32,29 +32,35 @@
                 dataType: "json",
                 data: "clienttime=" + Math.random(),
                 url: "/ajax/ajaxActive.aspx?oper=ajaxGetList",
-                error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
+                error: function (XmlHttpRequest, textStatus, errorThrown) { emAlert(XmlHttpRequest.responseText); },
                 success: function (d) {
                     switch (d.result) {
                         case '-1':
                             top.window.location = '/login.aspx';
                             break;
                         case '1':
-                            if (d.table[0].usergroup == "4") {
-                                $("#g1").hide();
-                                $("#g2").hide();
-                                $("#g3").hide();
+                            var userGroup = d.table[0].usergroup;
+                            if (isNaN(userGroup)) {
+                                emAlert("亲！页面过期,请刷新页面!");
+                                top.window.location = '/login.aspx';
                             }
-                            else if (d.table[0].usergroup == "3") {
-                                $("#g1").hide();
-                                $("#g2").hide();
-                                $("#g3").hide();
-                            }
-                            else {
-                                $("#g1").show();
-                                $("#g2").show();
-                                $("#g3").show();
-                            }
-                            break;
+
+                            userGroup = parseInt(userGroup);
+
+                            //20180207只有[会员]和[代理]两个级别
+                            //到[会员]不能签约下级
+                            //20180209所有会员都能分配置契约
+                            //if (userGroup <= 0) {
+                            //    $("#g1").hide();
+                            //    $("#g2").hide();
+                            //    $("#g3").hide();
+                            //}
+                            //else {
+                            //    $("#g1").show();
+                            //    $("#g2").show();
+                            //    $("#g3").show();
+                            //}
+                            //break;
                     }
                 }
             });
@@ -77,9 +83,10 @@
                        <div class="block-subnav">
                             <a href="javascript:;" nmb="/contract/Contractgz.aspx" class="current">我的日结契约</a>
                             <a href="javascript:;" nmb="/aspx/List.aspx?nav=AgentGZRecord">我的日结记录</a>
-                            <a id="g1" href="javascript:;" nmb="/aspx/List.aspx?nav=UserListGZ" style="display:none;">分配契约</a>
-                            <a id="g2" href="javascript:;" nmb="/aspx/List.aspx?nav=UserContractGZList" style="display:none;">已分配契约</a>
-                            <a id="g3" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractGZRecord" style="display:none;">下级日结记录</a>
+                            <a id="g1" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractUserListGZ">分配契约</a>
+                            <a id="g2" href="javascript:;" nmb="/aspx/List.aspx?nav=UserContractGZList">已分配契约</a>
+                            <a id="g3" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractGZRecord">下级日结记录</a>
+                            <a id="g4" href="javascript:;" nmb="/aspx/List.aspx?nav=ContractGZLog">日志记录</a>
                         </div>
 						<div class="block-panel">
                         <iframe id="workspace" name="workspace" src="/contract/Contractgz.aspx" scrolling="no"

@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>立博国际娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -16,95 +16,139 @@
     <script src="/statics/layer/layer.js" type="text/javascript"></script>
     <script src="/statics/js/EM.tools.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            ajaxGetList();
-        });
+        //会员信息
+        var userId = "<%=this.UserId%>"; //会员Id
+        var userName = "<%=this.UserName%>"; //会员名称
+        var userGroup = "<%=this.UserGroup%>"; //会员级别
+        var userGroupName = "<%=this.UserGroupName%>"; //会员级别名称
+        var isAdminUser = "<%=this.IsAdminUser %>"; //是否是管量员账户
+        var userDesc = "会员[" + userName + "]";
+        userDesc = userGroupName == "会员" ? userDesc : "[" + userGroupName + "]" + userDesc;
 
-        function ajaxGetList() {
+        //契约
+        var count = 0; //签订契约个数，最大10个
+        var contracts = null; //签订的契约
+        var state = 0;　//契约状态，默认[0-未使用]
+
+
+        $(document).ready(function () {
             $("#btnAgree").hide();
             $("#btnRefuse").hide();
             $("#btnRefuseCannel").hide();
             $("#btnAgreeCannel").hide();
+            
+            if (isAdminUser != "True") {
+                getContract();
+                showContract();
+                checkContractState();
+            }
+            else {
+                $i("info").innerHTML = "管理账户无需签订契约";
+            }
+        });
+
+        //获取契约数据
+        function getContract() {
             $.ajax({
                 type: "get",
                 dataType: "json",
-                data: "id=<%=AdminId %>&clienttime=" + Math.random(),
-                url: "/ajax/ajaxContractGZ.aspx?oper=GetContractInfo",
+                async: false,
+                data: "id=" + userId + "&clienttime=" + Math.random(),
+                url: "/ajax/ajaxContractGZ.aspx?oper=GetContractInfo2",
                 error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
                 success: function (d) {
-                    var html = "";
-                    if (d.table.length > 0) {
-                        html += '<table class="query-table">';
-                       html += ' <colgroup>';
-                       html += '<col class="w50"/>';
-                       html += '<col class="w150"/>';
-                       html += '<col class="w150"/>';
-                       html += '<col class="w500"/>';
-                       html += '</colgroup>';
+                    contracts = d; //契约
 
-                        html += '<thead><tr>';
-                        html += '<th>编号</th>';
-                        html += '<th>契约条件</th>';
-                        html += '<th>契约比例</th>';
-                        html += '<th>&nbsp;</th>';
-                        html += '</tr></thead>';
-						html += '<tbody>';
-                        for (var i = 0; i < d.table.length; i++) {
-                            var t = d.table[i];
-                                    html += '<tr>';
-                                    html += '<td>' + (i + 1) + '</td><td><label class="lab">每日销量</label><label class="lab">' + t.minmoney + '万</label></td><td><label class="lab">' + t.money + '%</label></td><td>&nbsp;</td>';
-									html += '</tr>';
-                                }
-                                html += '</tbody>';
-                                html += '</table>';
-                        if (d.table[0].groupid == 4) {
-                            $i("info").innerHTML = "您是招商级别，直接用平台工资标准";
-                            $("#add").html(html);
-                        }
-                        else if (d.table[0].groupid == 3) {
-                            $i("info").innerHTML = "您是特权直属级别，直接用平台工资标准";
-                            $("#add").html(html);
-                        }
-                        else if (d.table[0].groupid == 2) {
-                            $i("info").innerHTML = "您是直属级别，直接用平台工资标准";
-                            $("#add").html(html);
-                        }
-                        else {
-                            if (d.table[0].groupid >= 5) {
-                                $i("info").innerHTML = "您的级别不参与契约";
-                            }
-                            else {
-                                if (d.table[0].isused == 0) {
-                                    $i("info").innerHTML = "契约待接受，请您确认";
-                                    $("#btnAgree").show();
-                                    $("#btnRefuse").show();
-                                }
-                                if (d.table[0].isused == 1) {
-                                    $i("info").innerHTML = "契约已签订";
-                                }
-                                if (d.table[0].isused == 2) {
-                                    $i("info").innerHTML = "契约已拒绝，请联系上级重新分配";
-                                }
-                                if (d.table[0].isused == 3) {
-                                    $i("info").innerHTML = "上级要求撤销契约，请您确认";
-                                    $("#btnRefuseCannel").show();
-                                    $("#btnAgreeCannel").show();
-                                }
-                                if (d.table[0].isused == 4) {
-                                    $i("info").innerHTML = "您已同意撤销契约，请等待上级重新分配";
-                                }
-                                $("#add").html(html); 
-                            }
-                        }
-                    }
-                    else {
-						$i("info").innerHTML = "契约未分配，请联系上级！";
+                    if (contracts && contracts.table && contracts.table.length > 0) { //签订契约状态
+                        //0-契约待接受或未签定契约
+                        //1-契约已签订
+                        //2-契约已拒绝，可重新分配
+                        //3-契约撤销，等待会员同意！
+                        //4-会员同意撤销，请您修改契约！
+                        state = contracts.table[0].isused;
+
+                        //已有契约数量
+                        count = contracts.table.length;
                     }
                 }
             });
         }
 
-        function ajaxUpdate(state) {
+        //显示已有契约
+        function showContract() {
+            if (count > 0) { //已签订契约
+                var table = contracts.table;
+                var html = "";
+
+                html += '<table class="query-table">';
+                html += ' <colgroup>';
+                html += '<col class="w50"/>';
+                html += '<col class="w150"/>';
+                html += '<col class="w150"/>';
+                html += '<col class="w500"/>';
+                html += '</colgroup>';
+
+                html += '<thead><tr>';
+                html += '<th>编号</th>';
+                html += '<th>契约条件</th>';
+                html += '<th>契约比例</th>';
+                html += '<th>&nbsp;</th>';
+                html += '</tr></thead>';
+                html += '<tbody>';
+
+                for (var i = 0; i < count; i++) {
+                    var t = table[i];
+                    html += '<tr>';
+                    html += '<td>' + (i + 1) + '</td><td><label class="lab">每日销量</label><label class="lab">' + t.minmoney + '万</label></td><td><label class="lab">' + t.money + '%</label></td><td>&nbsp;</td>';
+                    html += '</tr>';
+                }
+
+                html += '</tbody>';
+                html += '</table>';
+
+                $("#add").html(html);
+            }
+        }
+
+        //检查契约状态
+        function checkContractState() {
+            if (count > 0) { //已签订契约                  
+                if (state == 0) {
+                    $i("info").innerHTML = "契约待接受，请您确认";
+                    $("#btnAgree").show();
+                    $("#btnRefuse").show();
+                }
+
+                if (state == 1) {
+                    $i("info").innerHTML = "契约已签订";
+                }
+
+                if (state == 2) {
+                    $i("info").innerHTML = "契约已拒绝，请联系上级重新分配";
+                }
+
+                if (state == 3) {
+                    $i("info").innerHTML = "上级要求撤销契约，请您确认";
+                    $("#btnRefuseCannel").show();
+                    $("#btnAgreeCannel").show();
+                }
+
+                if (state == 4) {
+                    $i("info").innerHTML = "您已同意撤销契约，请等待上级重新分配";
+                }
+            }
+            else { //未签订契约
+                $i("info").innerHTML = "契约未分配，请联系上级！";
+            }
+        }
+
+        //更新契约状态
+        //0-契约待接受或未签定契约
+        //1-契约已签订
+        //2-契约已拒绝，可重新分配
+        //3-契约撤销，等待会员同意！
+        //4-会员同意撤销，请您修改契约！
+        function updateContract(state) {
             var index = emLoading();
             $.ajax({
                 type: "post",
@@ -118,7 +162,13 @@
                             emAlert(d.message);
                             break;
                         case '1':
-                            ajaxGetList();
+                            getContract();
+                            showContract();
+                            checkContractState();
+                            $("#btnAgree").hide();
+                            $("#btnRefuse").hide();
+                            $("#btnRefuseCannel").hide();
+                            $("#btnAgreeCannel").hide();
                             break;
                     }
                     closeload(index);
@@ -133,10 +183,10 @@
             <form id="ajaxInput" action="" method="post">
             <div class="query-date"> <span id="info" class="info"></span></div>
 			<div class="btn-group" style="float:right; margin-right:-10px; ">
-                <input id="btnAgree" type="button" value="同意契约" onclick="ajaxUpdate(1)" class="btn btn-bg btn-primary" />
-			    <input id="btnRefuse" type="button" value="拒绝契约" onclick="ajaxUpdate(2)" class="btn btn-bg btn-primary" />
-                <input id="btnRefuseCannel" type="button" value="拒绝撤销" onclick="ajaxUpdate(1)" class="btn btn-bg btn-primary" />
-			    <input id="btnAgreeCannel" type="button" value="同意撤销" onclick="ajaxUpdate(4)" class="btn btn-bg btn-primary" />
+                <input id="btnAgree" type="button" value="同意契约" onclick="updateContract(1)" class="btn btn-bg btn-primary" />
+			    <input id="btnRefuse" type="button" value="拒绝契约" onclick="updateContract(2)" class="btn btn-bg btn-primary" />
+                <input id="btnRefuseCannel" type="button" value="拒绝撤销" onclick="updateContract(1)" class="btn btn-bg btn-primary" />
+			    <input id="btnAgreeCannel" type="button" value="同意撤销" onclick="updateContract(4)" class="btn btn-bg btn-primary" />
             </div>
             </form>
         </div>

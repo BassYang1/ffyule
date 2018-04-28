@@ -39,13 +39,14 @@ var SelectedData = [];
 var StartSn = "";
 var NmbZH = 1;
 var PricePos = 0.5;//系数，表示单倍还是双倍 
+var MinBouns = 0;
 
 $(document).ready(function () {
     if (getCookie("price") != null) {
         Price = getCookie("price");
     }
     else {
-        Price = 1;
+        Price = 2;
     }
     
 });
@@ -94,7 +95,7 @@ function ajaxUserInfo() {
             else {
                 var strmsg = "<table align='center' style='width:300px'><tr><td align='center' style='height:35px; font-size:16px;'>" + d.Message + "</td></tr></table>"
                 layer.open({
-                    title: '美金娱乐提示您',
+                    title: '九州娱乐提示您',
                     content: strmsg,
                     area: ['350px'],
                     btn: ['重新登陆'],

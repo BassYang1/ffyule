@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>九州娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -46,16 +46,18 @@
                         <span class="unit">元</span>
                     </div>
                     <div class="input-group">
-                        <label class="lab">
+                        <%--<label class="lab">
                             金额大写：</label>
                         <input id="moneyUpper" type="text" value="" class="ipt" />
-                        <span class="unit">元</span>
+                        <span class="unit">元</span>--%>
+                        &nbsp;
                     </div>
                     <div class="input-group">
-                        <label class="lab">
+                        <%--<label class="lab">
                             温馨提示：</label>
                         <div class="form-info">
-                            您今天还有<font id="synum"></font>次提款免手续费特权</div>
+                            您今天还有<font id="synum"></font>次提款免手续费特权</div>--%>                        
+                        &nbsp;
                     </div>
                     <div class="withdraw-help">
                         <table class="withdraw-table">
@@ -73,10 +75,10 @@
                                     <font id="money"></font>元
                                 </td>
                                 <td class="name">
-                                    彩票所需消费量
+                                    &nbsp;
                                 </td>
                                 <td>
-                                    0元
+                                    &nbsp;
                                 </td>
                             </tr>
                             <tr>
@@ -108,14 +110,14 @@
                                 </td>
                                 
                             </tr>
-                            <tr>
+                            <%--<tr>
                                 <td class="name">
                                     手续费说明
                                 </td>
                                 <td colspan="3">
                                 单笔提款金额1%，最小手续费1元，最高25元。
                                 </td>
-                            </tr>
+                            </tr>--%>
                         </table>
                     </div>
                 </div>

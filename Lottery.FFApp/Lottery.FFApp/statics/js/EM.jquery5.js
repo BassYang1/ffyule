@@ -1,4 +1,8 @@
 ﻿function OpenZhBet() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     if (SumCount == 0) {
         emAlert('注数错误，请重新选择号码！');
         return false;
@@ -317,6 +321,10 @@ function TimesChange(obj) {
 
 //追号投注
 function ajaxZHBetView() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     if ($i('spanSumTotal').innerHTML == "" || $i('spanSumTotal').innerHTML == "0.00") {
         emAlert('请选择追号期数，生成追号计划！');
         return false;

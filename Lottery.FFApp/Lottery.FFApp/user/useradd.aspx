@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>九州娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -25,7 +25,7 @@
                 onsuccess: function () { return true; }
             });
             $("#txtUserName").formValidator({ tipid: "tipUserName", onshow: "请输入会员账号", onfocus: "由0-9，z-a,A-Z组成的6-16位的字符" }).InputValidator({ min: 5, max: 20, onerror: "会员账号为5-20个字符" }).RegexValidator({ regexp: "username", datatype: "enum", onerror: "汉字或字母开头,不支持符号" });
-            $("#txtPoint").formValidator({ tipid: "tipPoint", onshow: "请输入返点", onfocus: "请输入返点" }).InputValidator({ min: 1, max: 5, onerror: "请输入返点" });
+            //$("#txtPoint").formValidator({ tipid: "tipPoint", onshow: "请输入返点", onfocus: "请输入返点" }).InputValidator({ min: 1, max: 5, onerror: "请输入返点" });
             $(".tto-tabs .tabs-nav").delegate('li', 'click', function (event) {
                 var nmb = $(this).attr("nmb");
                 $(this).parents().find("li").removeClass("ui-state-active");
@@ -200,22 +200,23 @@
         }
 
         function ajaxRegStr() {
-            var point = $("#txtPoint2").val();
+            //var point = $("#txtPoint2").val();
+            var point = 0;
             var yxtime = $("#yxtime").val();
             var times = $("#txtTimes").val();
-            if (/^\d+(\.\d{1,1})?$/.test(point)) {
-                if (parseFloat($("#txtUserPoint").val()) < 13.1) {
-                    if (parseFloat(point) < 10 || parseFloat(point) > parseFloat($("#txtUserPoint2").val())) {
-                        emAlert("返点不能小于10且不能大于您的返点！");
-                        return false;
-                    }
-                }
-                else {
-                    if (parseFloat(point) < 10 || parseFloat(point) >= parseFloat($("#txtUserPoint2").val())) {
-                        emAlert("返点不能小于10且不能大于等于您的返点！");
-                        return false;
-                    }
-                }
+            //if (/^\d+(\.\d{1,1})?$/.test(point)) {
+            //    if (parseFloat($("#txtUserPoint").val()) < 13.1) {
+            //        if (parseFloat(point) <= 0 || parseFloat(point) > parseFloat($("#txtUserPoint2").val())) {
+            //            emAlert("返点不能小于0且不能大于您的返点！");
+            //            return false;
+            //        }
+            //    }
+            //    else {
+            //        if (parseFloat(point) <= 10 || parseFloat(point) >= parseFloat($("#txtUserPoint2").val())) {
+            //            emAlert("返点不能小于0且不能大于等于您的返点！");
+            //            return false;
+            //        }
+            //    }
                 $.ajax({
                     type: "post",
                     dataType: "json",
@@ -231,11 +232,11 @@
                         }
                     }
                 });
-            }
-            else {
-                emAlert("返点只能为整数或者一位小数！");
-                return;
-            }
+            //}
+            //else {
+            //    emAlert("返点只能为整数或者一位小数！");
+            //    return;
+            //}
         }
 
         function ajaxRegStrAll() {
@@ -262,20 +263,21 @@
                 var type = $("#ddlType").val();
                 var uName = $("#txtUserName").val();
                 var oPass = "a123456";
-                var point = $("#txtPoint").val();
-                if (/^\d+(\.\d{1,1})?$/.test(point)) {
-                    if (parseFloat($("#txtUserPoint").val()) < 13.1) {
-                        if (parseFloat(point) < 10 || parseFloat(point) > parseFloat($("#txtUserPoint").val())) {
-                            emAlert("返点不能小于10且不能大于您的返点！");
-                            return false;
-                        }
-                    }
-                    else {
-                        if (parseFloat(point) < 10 || parseFloat(point) >= parseFloat($("#txtUserPoint").val())) {
-                            emAlert("返点不能小于10且不能大于等于您的返点！");
-                            return false;
-                        }
-                    }
+                //var point = $("#txtPoint").val();
+                var point = "0";
+                //if (/^\d+(\.\d{1,1})?$/.test(point)) {
+                    //if (parseFloat($("#txtUserPoint").val()) < 13.1) {
+                    //    if (parseFloat(point) <= 0 || parseFloat(point) > parseFloat($("#txtUserPoint").val())) {
+                    //        emAlert("返点不能小于0且不能大于您的返点！");
+                    //        return false;
+                    //    }
+                    //}
+                    //else {
+                    //    if (parseFloat(point) <= 0 || parseFloat(point) >= parseFloat($("#txtUserPoint").val())) {
+                    //        emAlert("返点不能小于0且不能大于等于您的返点！");
+                    //        return false;
+                    //    }
+                    //}
                     var index = emLoading();
                     $.ajax({
                         type: "post",
@@ -291,17 +293,17 @@
                                 case '1':
                                     emAlertSuccess(d[0].message);
                                     $("#txtUserName").val("");
-                                    $('#txtPoint').val("");
+                                    //$('#txtPoint').val("");
                                     ajaxUserGroupList(1);
                                     break;
                             }
                             closeload(index);
                         }
                     });
-                } else {
-                    emAlert("返点只能为整数或者一位小数！");
-                    return;
-                }
+                //} else {
+                //    emAlert("返点只能为整数或者一位小数！");
+                //    return;
+                //}
             }
         }
     </script>
@@ -326,11 +328,11 @@
                 <input id="txtUserName" type="text" value="" class="ipt" />
                 <div class="form-tips">5-20位字母或数字，字母开头</div>
             </div>
-            <div class="input-group">
+            <%--<div class="input-group">
                 <label class="lab">彩票返点：</label>
                 <input id="txtPoint" type="text" value="" class="ipt" />
                 <div class="form-tips" runat="server"><asp:Label ID="lblPoint2" runat="server" Text=""></asp:Label></div>
-            </div>
+            </div>--%>
             <div class="btn-group">
                 <input type="button" value="添加账户" class="btn btn-primary" onclick="ajaxRegsiter()" />
                 <input type="hidden" id="txtUserPoint" value="<%=Convert.ToDecimal(AdminPoint) / 10 %>" />
@@ -371,11 +373,11 @@
                 <label class="lab">使用次数：</label>
                 <input id="txtTimes" type="text" value="100" class="ipt" />
             </div>
-            <div class="input-group">
+            <%--<div class="input-group">
                 <label class="lab">彩票返点：</label>
                 <input id="txtPoint2" type="text" value="" class="ipt" />
                 <div class="form-tips" runat="server"><asp:Label ID="lblPoint3" runat="server" Text=""></asp:Label></div>
-            </div>
+            </div>--%>
             <div class="btn-group">
                 <input type="button" value="生成链接" class="btn btn-primary" onclick="ajaxRegStr()" />
                 <input type="hidden" id="txtUserPoint2" value="<%=Convert.ToDecimal(AdminPoint) / 10 %>" />

@@ -13,33 +13,29 @@
             TableTemplate = {
                 Title: "财务中心",
                 ListCount: 5,
-                ListName: [{ key: "存款" }, { key: "取款" }, { key: "存款记录" }, { key: "取款记录" }, { key: "转账记录"}],
-                ListUrl: [{ key: "/money/charge.aspx" }, { key: "/money/getcash.aspx" }, { key: "/aspx/list.aspx?nav=ChargeList" }, { key: "/aspx/list.aspx?nav=GetCashList" }, { key: "/aspx/list.aspx?nav=GetTranAccList"}]
+                ListName: [{ key: "专线充值" }, { key: "存款" }, { key: "取款" }, { key: "存款记录" }, { key: "取款记录" }, { key: "转账记录"}],
+                ListUrl: [{ key: "/money/specialcharge.html" }, { key: "/money/charge.aspx" }, { key: "/money/getcash.aspx" }, { key: "/aspx/list.aspx?nav=ChargeList" }, { key: "/aspx/list.aspx?nav=GetCashList" }, { key: "/aspx/list.aspx?nav=GetTranAccList" }]
             };
             break;
         case "u":
             TableTemplate = {
                 Title: "代理中心",
-                ListCount: 8,
+                ListCount: 6,
                 ListName: [
-                { key: "代理首页" },
                 { key: "开户中心" },
                 { key: "用户管理" },
-                { key: "在线会员" },
-                { key: "团队统计" },
                 { key: "充提记录" },
                 { key: "游戏记录" },
-                { key: "账变记录" }
+                { key: "账变记录" },
+                { key: "我的投注" }
                 ],
                 ListUrl: [
-                { key: "/user/userindex.aspx" },
                 { key: "/user/useradd.aspx" },
                 { key: "/aspx/list.aspx?nav=UserList" },
-                { key: "/aspx/list.aspx?nav=UserListOnline" },
-                { key: "/aspx/list.aspx?nav=UserProListSub" },
                 { key: "/aspx/list.aspx?nav=UserChargeCashHistory" },
                 { key: "/aspx/list.aspx?nav=betlist_User" },
-                { key: "/aspx/list.aspx?nav=UserHistory_User" }
+                { key: "/aspx/list.aspx?nav=UserHistory_User" },
+                { key: "/aspx/list.aspx?nav=MyBetHistory" }
                 ]
             };
             break;

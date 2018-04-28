@@ -151,6 +151,10 @@ function CreateList() {
 
 //投注预览
 function ajaxBetView() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     if (site.BetIsOpen == "1") {
         emAlert('系统正在维护不能投注！');
         return false;
@@ -210,6 +214,10 @@ function ajaxBetView() {
 
 //一键投注
 function ajaxQuickBetView() {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     ReplaceBalls();
     if (site.BetIsOpen == "1") {
         emAlert('系统正在维护不能投注！');
@@ -271,6 +279,34 @@ function ajaxQuickBetView() {
     setTimeout("Betting('" + strjson + "')", 100);
 }
 
+function checkBetTime() {
+    if (LotteryId != "1001") { //只处理重庆时时彩
+        return true;
+    }
+
+    var allowBet = true;
+
+    $.ajax({
+        type: "get",
+        dataType: "json",
+        async: false,
+        url: "/ajax/ajaxBetting.aspx?oper=ajaxCheckBetTime&id=" + LotteryId + "&clienttime=" + Math.random(),
+        error: function (XmlHttpRequest, textStatus, errorThrown) { emAlert("亲！页面过期,请刷新页面!"); },
+        success: function (d) {
+            switch (d.result) {
+                case '0':
+                    emAlert(d.returnval);
+                    allowBet = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+
+    return allowBet;
+}
+
 function ReplaceBalls() {
     switch (PlayCode) {
         case "R_4DS":
@@ -326,6 +362,10 @@ function BetDataOper() {
 }
 
 function Betting(obj) {
+    if (checkBetTime() == false) {
+        return false;
+    }
+
     obj = format(obj, true);
     $.ajax({
         type: "post",
@@ -730,6 +770,13 @@ function CreateRandom() {
                     case "PK10_DXOne":
                     case "PK10_DXTwo":
                     case "PK10_DXThree":
+                    case "PK10_DXFour":
+                    case "PK10_DXFive":
+                    case "PK10_DXSix":
+                    case "PK10_DXSeven":
+                    case "PK10_DXEight":
+                    case "PK10_DXNine":
+                    case "PK10_DXTen":
                         var rom = GetRandomNum(0, 1);
                         var strRom = "";
                         if (rom == 0)
@@ -741,6 +788,13 @@ function CreateRandom() {
                     case "PK10_DSOne":
                     case "PK10_DSTwo":
                     case "PK10_DSThree":
+                    case "PK10_DSFour":
+                    case "PK10_DSFive":
+                    case "PK10_DSSix":
+                    case "PK10_DSSeven":
+                    case "PK10_DSEight":
+                    case "PK10_DSNine":
+                    case "PK10_DSTen":
                         var rom = GetRandomNum(0, 1);
                         var strRom = "";
                         if (rom == 0)

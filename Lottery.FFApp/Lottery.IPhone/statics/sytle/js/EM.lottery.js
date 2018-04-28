@@ -12,7 +12,7 @@ function ajaxBigType() {
     }
     var frist = 0;
     var str = "";
-    for (i = 0; i < lotteryData.table.length; i++) {
+    for (i = 0; i < lotteryData.table.length; i++) { //大类
         if (lotteryData.table[i].typeid == Nmbtype) {
             var id = lotteryData.table[i].id;
             var title = lotteryData.table[i].title;
@@ -29,7 +29,7 @@ function ajaxBigType() {
                 }
             }
             else {
-                if (id == 1001 || id == 2001 || id == 3001 || id == 4001) {
+                if (id == 1001 || id == 2001 || id == 3001 || id == 4001 || title == "和值") {
                     PlayBigId = id;
                     PlayBigName = lotteryData.table[i].title;
                     $i("playTypeName").innerHTML = title;
@@ -75,8 +75,6 @@ function ajaxBigType() {
     });
 }
 
-
-
 //加载小类玩法
 function ajaxSmallType(bigid) {
     var str = "";
@@ -87,6 +85,7 @@ function ajaxSmallType(bigid) {
             for (i = 0; i < str2.length; i++) {
 
                 var id = str2[i].id; title0 = str2[i].title0; title = str2[i].title; wznum = str2[i].wznum; tplayRandoms = str2[i].randoms; code = str2[i].title2; maxnum = str2[i].maxnum;
+                minbouns = str2[i].minbonus;
                 if (getCookie("PlayId") != null) {
                     if (id == getCookie("PlayId")) {
                         PlayId = id;
@@ -95,6 +94,7 @@ function ajaxSmallType(bigid) {
                         PlayWzNum = wznum;
                         PlayCode = code;
                         PlayMaxNum = maxnum;
+                        MinBouns = minbouns;
                         $i("playName").innerHTML = title;
                         str += "<li class='selected'><a href='javascript:void(0);' nmb='" + id + "' nmbname='" + title + "' nmbcode='" + code + "' nmbwz='" + wznum + "' nmbrandoms='" + tplayRandoms + "' maxnum='" + maxnum + "'>" + title + "</a></li>";
                     }
@@ -111,6 +111,7 @@ function ajaxSmallType(bigid) {
                         PlayWzNum = wznum;
                         PlayCode = code;
                         PlayMaxNum = maxnum;
+                        MinBouns = minbouns;
                         $i("playName").innerHTML = title;
                         str += "<li class='selected'><a href='javascript:void(0);' nmb='" + id + "' nmbname='" + title + "' nmbcode='" + code + "' nmbwz='" + wznum + "' nmbrandoms='" + tplayRandoms + "' maxnum='" + maxnum + "'>" + title + "</a></li>";
                     }

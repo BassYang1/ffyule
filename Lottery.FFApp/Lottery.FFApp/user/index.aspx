@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>九州娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script type="text/javascript" src="/statics/jquery-1.11.3.min.js"></script>
@@ -33,12 +33,10 @@
                 url: "/ajax/ajaxActive.aspx?oper=ajaxGetList",
                 error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
                 success: function (d) {
-                    if (d.table[0].usergroup == "3") {
+                    if (d.table[0].usergroup != "0") { //会员不允许注册平级会员
+                        $("#ad").show();
                         $("#fh").show();
                     }
-					if (d.table[0].usergroup == "4") {
-                        $("#fh").show();
-					}
                 }
             });
         }
@@ -62,10 +60,10 @@
                     <div class="block-content">
                         <div class="block-subnav">
                                <a href="javascript:;" nmb="/user/userindex.aspx" class="current">代理首页</a>
-                               <a href="javascript:;" nmb="/user/useradd.aspx">开户中心</a>
+                               <a id="ad" href="javascript:;" nmb="/user/useradd.aspx" style="display:none;">开户中心</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserList">用户管理</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserListOnline">在线会员</a>
-                               <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserProListSub">团队统计</a>
+                               <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserProListSub">团队报表</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserChargeCashHistory">充提记录</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=betlist_User">游戏记录</a>
                                <a href="javascript:;" nmb="/aspx/list.aspx?nav=UserHistory_User">账变记录</a>

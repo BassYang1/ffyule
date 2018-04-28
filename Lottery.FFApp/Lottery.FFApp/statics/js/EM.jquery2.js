@@ -30,7 +30,216 @@ function CreateNumber() {
     var pk10DS = false;
     var pk10Num = 5;
 
+    //快三
+    var hezhi = false;
+    var hezhiNum = 16;
+    var chooseAll = false; //通选
+    var k3 = false; //快三
+
+    //11选5拖胆
+    var td11x5 = false;
+
     switch (PlayCode) {
+        case "P_DS_W": //时时彩，猜单双
+        case "P_DS_Q":
+        case "P_DS_B":
+        case "P_DS_S":
+        case "P_DS_G":
+            var wz1 = "", wz2 = "";
+            if (PlayCode == "P_DS_W") {
+                wz1 = "万位";
+                wz2 = "第一球";
+            }
+            else if (PlayCode == "P_DS_Q") {
+                wz1 = "千位";
+                wz2 = "第二球";
+            }
+            else if (PlayCode == "P_DS_B") {
+                wz1 = "百位";
+                wz2 = "第三球";
+            }
+            else if (PlayCode == "P_DS_S") {
+                wz1 = "十位";
+                wz2 = "第四球";
+            }
+            else if (PlayCode == "P_DS_G") {
+                wz1 = "个位";
+                wz2 = "第五球";
+            }
+
+            remark = '投注的号码与开出的号码' + wz1 + '(' + wz2 + ')一致即中奖。';
+            PlayExample = '单：1 3 5 7 9均中奖, 双: 0 2 4 6 8均中奖。';
+            PlayHelp = '投注的号码与开出的号码' + wz1 + '(' + wz2 + '一致即中奖。';
+
+            var str = "<ul class='lottery-choose'>";
+            str += "<li class='numbers'>";
+            str += "<span class='pos'>" + wz1 + "</span>";
+            str += "<div class='lottery-balls'>";
+            str += "<span class='ball' number='单'>单</span>";
+            str += "<span class='ball' number='双'>双</span>";
+            str += "</div>";
+            str += "<div class='oper'>";
+            str += "<a href='javascript:;' class='all'>全</a>";
+            str += "<a href='javascript:;' class='clear'>清</a>";
+            str += "</div></li>";
+            str += "</ul>";
+            $("#spchoose").html(str);
+            break;
+        case "P_DX_W": //时时彩，猜大小
+        case "P_DX_Q":
+        case "P_DX_B":
+        case "P_DX_S":
+        case "P_DX_G":
+            var wz1 = "", wz2 = "";
+            if (PlayCode == "P_DX_W") {
+                wz1 = "万位";
+                wz2 = "第一球";
+            }
+            else if (PlayCode == "P_DX_Q") {
+                wz1 = "千位";
+                wz2 = "第二球";
+            }
+            else if (PlayCode == "P_DX_B") {
+                wz1 = "百位";
+                wz2 = "第三球";
+            }
+            else if (PlayCode == "P_DX_S") {
+                wz1 = "十位";
+                wz2 = "第四球";
+            }
+            else if (PlayCode == "P_DX_G") {
+                wz1 = "个位";
+                wz2 = "第五球";
+            }
+
+            remark = '投注的号码与开出的号码' + wz1 + '(' + wz2 + ')一致即中奖。';
+            PlayExample = '大: 5 6 7 8 9均中奖, 小: 0 1 2 3 4均中奖。';
+            PlayHelp = '投注的号码与开出的号码' + wz1 + '(' + wz2 + ')一致即中奖。';
+
+            var str = "<ul class='lottery-choose'>";
+            str += "<li class='numbers'>";
+            str += "<span class='pos'>" + wz1 + "</span>";
+            str += "<div class='lottery-balls'>";
+            str += "<span class='ball' number='大'>大</span>";
+            str += "<span class='ball' number='小'>小</span>";
+            str += "</div>";
+            str += "<div class='oper'>";
+            str += "<a href='javascript:;' class='all'>全</a>";
+            str += "<a href='javascript:;' class='clear'>清</a>";
+            str += "</div></li>";
+            str += "</ul>";
+
+            $("#spchoose").html(str);
+            break;
+        case "P11_RXTD2": //11选5，二拖胆
+            td11x5 = true;
+            ballNum = 2;            
+            remark = '从01-11中，选取2个及以上的号码进行投注，每注需至少包括1个胆码及1个拖码。';
+            PlayExample = '如：选择胆码 08，选择拖码 06，开奖号码为 06 08 11 09 02，即为中奖。';
+            PlayHelp = '分别从胆码和拖码的01-11中，至少选择1个胆码和1个拖码组成一注，只要当期顺序摇出的5个开奖号码中同时包含所选的1个胆码和1个拖码，所选胆码必须全中，即为中奖。';
+            break;
+        case "P11_RXTD3": //11选5，三拖胆
+            td11x5 = true;
+            ballNum = 3;
+            remark = '从01-11中，选取3个及以上的号码进行投注，每注需至少包括1个胆码及2个拖码。';
+            PlayExample = '如：选择胆码 08，选择拖码 06 11，开奖号码为 06 08 11 09 02，即为中奖。';
+            PlayHelp = '分别从胆码和拖码的01-11中，至少选择1个胆码和2个拖码组成一注，只要当期顺序摇出的5个开奖号码中同时包含所选的1个胆码和2个拖码，所选胆码必须全中，即为中奖。';
+            break;
+        case "P11_RXTD4": //11选5，四拖胆
+            td11x5 = true;
+            ballNum = 4;
+            remark = '从01-11中，选取4个及以上的号码进行投注，每注需至少包括1个胆码及3个拖码。';
+            PlayExample = '如：选择胆码 08，选择拖码 06 09 11，开奖号码为 06 08 11 09 02，即为中奖。';
+            PlayHelp = '分别从胆码和拖码的01-11中，至少选择1个胆码和3个拖码组成一注，只要当期顺序摇出的5个开奖号码中同时包含所选的1个胆码和3个拖码，所选胆码必须全中，即为中奖。';
+            break;
+        case "P11_RXTD5": //11选5，五拖胆
+            td11x5 = true;
+            ballNum = 5;
+            remark = '从01-11中，选取5个及以上的号码进行投注，每注需至少包括1个胆码及4个拖码。';
+            PlayExample = '如：选择胆码 08，选择拖码 02 06 09 11，开奖号码为  06 08 11 09 02，即为中奖。';
+            PlayHelp = '分别从胆码和拖码的01-11中，至少选择1个胆码和4个拖码组成一注，只要当期顺序摇出的5个开奖号码中同时包含所选的1个胆码和4个拖码，所选胆码必须全中，即为中奖。';
+            break;
+        case "P11_RXTD6": //11选5，六拖胆
+            td11x5 = true;
+            ballNum = 6;
+            remark = '从01-11中，选取6个及以上的号码进行投注，每注需至少包括1个胆码及5个拖码。';
+            PlayExample = '如：选择胆码 08，选择拖码 01 02 05 06 09 11，开奖号码为 06 08 11 09 02，即为中奖。';
+            PlayHelp = '分别从胆码和拖码的01-11中，至少选择1个胆码和5个拖码组成一注，只要当期顺序摇出的5个开奖号码同时存在于胆码和拖码的任意组合中，即为中奖。';
+            break;
+        case "P11_RXTD7": //11选5，七拖胆
+            td11x5 = true;
+            ballNum = 7;
+            remark = '从01-11中，选取7个及以上的号码进行投注，每注需至少包括1个胆码及6个拖码。';
+            PlayExample = '如：选择胆码 08，选择拖码 01 02 05 06 07 09 11，开奖号码为 06 08 11 09 02，即为中奖。';
+            PlayHelp = '分别从胆码和拖码的01-11中，至少选择1个胆码和6个拖码组成一注，只要当期顺序摇出的5个开奖号码同时存在于胆码和拖码的任意组合中，即为中奖。';
+            break;
+        case "P11_RXTD8": //11选5，八拖胆
+            td11x5 = true;
+            ballNum = 8;
+            remark = '从01-11中，选取8个及以上的号码进行投注，每注需至少包括1个胆码及7个拖码。';
+            PlayExample = '如：选择胆码 08，选择拖码 01 02 03 05 06 07 09 11，开奖号码为 06 08 11 09 02，即为中奖。';
+            PlayHelp = '分别从胆码和拖码的01-11中，至少选择1个胆码和7个拖码组成一注，只要当期顺序摇出的5个开奖号码同时存在于胆码和拖码的任意组合中，即为中奖。';
+            break;
+        case "K_3HZ": //快3，和值
+            k3 = true;
+            hezhi = true;
+            ballNum = 16;
+            hezhiNum = 16;
+            remark = "对三个号码的和值进行投注，包括“和值3”至“和值18”投注。";
+            PlayExample = "投注号码与当期开奖号码的三个号码的和值相符，即中奖。";
+            PlayHelp = "和值：投注号码与当期开奖号码的三个号码的和值相符，即中奖，包括“和值3”至“和值18”。";
+            break;
+        case "K_32BT": //快3，二不同直选
+            k3 = true;
+            ballNum = 6;
+            remark = "对三个号码中两个指定的不同号码和一个任意号码进行投注。";
+            PlayExample = "当期开奖号码中有两个号码不相同，且投注号码中的两个不同号码与当期开奖号码中的两个不同号码相符，即中奖。";
+            PlayHelp = "二不同号投注：当期开奖号码中有两个号码不相同，且投注号码中的两个不同号码与当期开奖号码中的两个不同号码相符，即中奖";
+            break;
+        case "K_33BT": //快3，三不同直选
+            k3 = true;
+            ballNum = 6;
+            remark = "对三个各不相同的号码进行投注。";
+            PlayExample = "当期开奖号码的三个号码各不相同，且投注号码与当期开奖号码全部相符，即中奖。";
+            PlayHelp = "三不同号投注：当期开奖号码的三个号码各不相同，且投注号码与当期开奖号码全部相符，即中奖。";
+            break;
+        case "K_33LTX": //快3，三连号通选
+            k3 = true;
+            ballNum = 6;
+            remark = "对所有三个相连的号码（仅限：123、234、345、456）进行投注。";
+            PlayExample = "当期开奖号码为三个相连的号码（仅限：123、234、345、456），即中奖。";
+            PlayHelp = "三连号通选：当期开奖号码为三个相连的号码（仅限：123、234、345、456），即中奖。";
+            break;
+        case "K_3STDX": //快3，三同号单选
+            k3 = true;
+            ballNum = 6;
+            remark = "从所有相同的三个号码（111、222、…、666）中任意选择一组号码进行投注。";
+            PlayExample = "当期开奖号码的三个号码相同，且投注号码与当期开奖号码相符，即中奖。";
+            PlayHelp = "三同号单选：当期开奖号码的三个号码相同，且投注号码与当期开奖号码相符，即中奖。";
+            break;
+        case "K_3STTX": //快3，三同号通选
+            k3 = true;
+            chooseAll = true;
+            ballNum = 6;
+            remark = "对所有相同的三个号码（111、222、…、666）进行投注。";
+            PlayExample = "当期开奖号码的三个号码相同，且投注号码与当期开奖号码相符，即中奖。";
+            PlayHelp = "三同号通选：当期开奖号码的三个号码相同，即中奖。";
+            break;
+        case "K_32TDX": //快3，二同号单选
+            k3 = true;
+            ballNum = 6;
+            remark = "对三个号码中两个指定的相同号码和一个指定的不同号码进行投注。";
+            PlayExample = "当期开奖号码中有两个号码相同，且投注号码与当期开奖号码中两个相同号码和一个不同号码分别相符，即中奖。";
+            PlayHelp = "二同号单选：当期开奖号码中有两个号码相同，且投注号码与当期开奖号码中两个相同号码和一个不同号码分别相符，即中奖。";
+            break;
+        case "K_32TTX": //快3，二同号通选
+            k3 = true;
+            chooseAll = true;
+            ballNum = 6;
+            remark = "对三个号码中两个指定的相同号码和一个任意号码进行投注。";
+            PlayExample = "当期开奖号码中有两个号码相同，且投注号码中的两个相同号码与当期开奖号码中两个相同号码相符，即中奖。";
+            PlayHelp = "二同号复选：当期开奖号码中有两个号码相同，且投注号码中的两个相同号码与当期开奖号码中两个相同号码相符，即中奖。";
+            break;
         case "P_5FS":
             ssc = true;
             ballNum = 5;
@@ -797,7 +1006,16 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else{                        
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
+
                 }
                 str += "</div>";
             }
@@ -826,7 +1044,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
             }
@@ -1004,7 +1229,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
             }
@@ -1033,7 +1265,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
             }
@@ -1089,7 +1328,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1125,7 +1371,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1161,7 +1414,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1197,7 +1457,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1240,7 +1507,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1273,7 +1547,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1306,7 +1587,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1339,7 +1627,14 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    if (j >= 7 || j == 0) {
+                        if (LotteryId != "3007") {
+                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                        }
+                    }
+                    else {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1662,6 +1957,27 @@ function CreateNumber() {
             //PlayExample = "例如：第三名选择：大，开奖号码为07，即为中奖。";
             //PlayHelp = "选择大或小进行投注，只要开奖的名次对应车号的大小(注：01,02,03,04,05为小；06,07,08,09,10为大)与所选项一致即中奖。";
             break;
+        case "PK10_DXFour":
+            pk10DX = true;
+            strBalls = new Array("第4名");
+        case "PK10_DXFive":
+            pk10DX = true;
+            strBalls = new Array("第5名");
+        case "PK10_DXSix":
+            pk10DX = true;
+            strBalls = new Array("第6名");
+        case "PK10_DXSeven":
+            pk10DX = true;
+            strBalls = new Array("第7名");
+        case "PK10_DXEight":
+            pk10DX = true;
+            strBalls = new Array("第8名");
+        case "PK10_DXNine":
+            pk10DX = true;
+            strBalls = new Array("第9名");
+        case "PK10_DXTen":
+            pk10DX = true;
+            strBalls = new Array("第10名");
         case "PK10_DSOne":
             pk10DS = true;
             strBalls = new Array("第1名");
@@ -1683,6 +1999,125 @@ function CreateNumber() {
             //PlayExample = "例如：第三名选择 双，开奖号码为08，即为中奖。";
             //PlayHelp = "选择单或双进行投注，只要开奖对应车号的单双(注：01,03,05,07,09为单；02,04,06,08,10为双)与所选项一致即中奖。";
             break;
+        case "PK10_DSFour":
+            pk10DS = true;
+            strBalls = new Array("第4名");
+        case "PK10_DSFive":
+            pk10DS = true;
+            strBalls = new Array("第5名");
+        case "PK10_DSSix":
+            pk10DS = true;
+            strBalls = new Array("第6名");
+        case "PK10_DSSeven":
+            pk10DS = true;
+            strBalls = new Array("第7名");
+        case "PK10_DSEight":
+            pk10DS = true;
+            strBalls = new Array("第8名");
+        case "PK10_DSNine":
+            pk10DS = true;
+            strBalls = new Array("第9名");
+        case "PK10_DSTen":
+            pk10DS = true;
+            strBalls = new Array("第10名");
+    }
+
+
+    if (td11x5) {
+        $("#spchoose").html("");
+        //选号器
+        var str = "<ul class='lottery-choose'>";
+        str += "<li class='numbers'>";
+        str += "<span class='pos'>胆码</span>";
+        str += "<div class='lottery-balls'>";
+        for (var j = 0; j < 11; j++) {
+            var numVal = j + 1
+            if (numVal < 10)
+                str += "<span class='ball' number='0" + numVal + "'>0" + numVal + "</span>";
+            else
+                str += "<span class='ball' number='" + numVal + "'>" + numVal + "</span>";
+        }
+        str += "</div></li>";
+
+        str += "<li class='numbers'>";
+        str += "<span class='pos'>拖码</span>";
+        str += "<div class='lottery-balls'>";
+        for (var j = 0; j < 11; j++) {
+            var numVal = j + 1
+            if (numVal < 10)
+                str += "<span class='ball' number='0" + numVal + "'>0" + numVal + "</span>";
+            else
+                str += "<span class='ball' number='" + numVal + "'>" + numVal + "</span>";
+        }
+        str += "</div>";
+        str += "<div class='oper'>";
+        str += "<a href='javascript:;' class='all'>全</a>";
+        str += "<a href='javascript:;' class='big'>大</a>";
+        str += "<a href='javascript:;' class='small'>小</a>";
+        str += "<a href='javascript:;' class='odd'>奇</a>";
+        str += "<a href='javascript:;' class='even'>偶</a>";
+        str += "<a href='javascript:;' class='clear'>清</a>";
+        str += "</div></li>";
+
+        str += "</ul>";
+        $("#spchoose").html(str);
+    }
+    else if (hezhi) {
+        $("#spchoose").html("");
+        //选号器
+        var str = "<ul class='lottery-choose'>";
+        str += "<li class='numbers'>";
+        str += "<span class='pos'>和值</span>";
+        str += "<div class='lottery-balls'>";
+        for (var j = 0; j < hezhiNum; j++) {
+            var numVal = j + 3
+            if ((numVal + "").length == 1)
+                str += "<span class='ball' number='" + numVal + "'>" + numVal + "</span>";
+            else
+                str += "<span class='ball' number='" + numVal + "'>" + numVal + "</span>";
+        }
+        str += "</div>";
+        str += "<div class='oper'>";
+        str += "<a href='javascript:;' class='all'>全</a>";
+        str += "<a href='javascript:;' class='big'>大</a>";
+        str += "<a href='javascript:;' class='small'>小</a>";
+        str += "<a href='javascript:;' class='odd'>奇</a>";
+        str += "<a href='javascript:;' class='even'>偶</a>";
+        str += "<a href='javascript:;' class='clear'>清</a>";
+        str += "</div></li>";
+
+        str += "</ul>";
+        $("#spchoose").html(str);
+    }
+    else if (k3) {
+        $("#spchoose").html("");
+        //选号器
+        var str = "<ul class='lottery-choose'>";
+        str += "<li class='numbers'>";
+        str += "<span class='pos'>" + PlayName + "</span>";
+        str += "<div class='lottery-balls'>";
+        for (var j = 0; j < ballNum; j++) {
+            var numVal = j + 1
+            if ((numVal + "").length == 1)
+                str += "<span class='ball' number='" + numVal + "'>" + numVal + "</span>";
+            else
+                str += "<span class='ball' number='" + numVal + "'>" + numVal + "</span>";
+        }
+        str += "</div>";
+        str += "<div class='oper'>";
+        str += "<a href='javascript:;' class='all'>全</a>";
+
+        if (chooseAll == false) {
+            str += "<a href='javascript:;' class='big'>大</a>";
+            str += "<a href='javascript:;' class='small'>小</a>";
+            str += "<a href='javascript:;' class='odd'>奇</a>";
+            str += "<a href='javascript:;' class='even'>偶</a>";
+            str += "<a href='javascript:;' class='clear'>清</a>";
+            str += "</div></li>";
+        }
+
+        str += "</ul>";
+        $("#spchoose").html(str);
     }
 
     if (pk10) {
@@ -1712,6 +2147,7 @@ function CreateNumber() {
         str += "</ul>";
         $("#spchoose").html(str);
     }
+
     if (pk10Input) {
         $("#spchoose").html("");
         //输入区
@@ -1841,7 +2277,14 @@ function CreateNumber() {
             str += "<i class='pos'>" + strBalls[i] + "</i>";
             str += "<div class='lottery-balls'>";
             for (var j = 0; j <= 9; j++) {
-                str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                if (j >= 7 || j == 0) {
+                    if (LotteryId != "3007") {
+                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                    }
+                }
+                else {
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                }
             }
             str += "</div>";
             str += "</li>";
@@ -1884,7 +2327,14 @@ function CreateNumber() {
         str += "<i class='pos'>和值</i>";
         str += "<div class='lottery-balls'>";
         for (var j = 0; j <= heNum; j++) {
-            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+            if (j >= 7 || j == 0) {
+                if (LotteryId != "3007") {
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+                }
+            }
+            else {
+                str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+            }
         }
         str += "</div></li>";
         str += strwz;
@@ -1913,14 +2363,14 @@ function CreateNumber() {
     var userPoint = eval($('#txtUserPoint').val()) * 0.1;
     PlayPosBonus = (eval(PlayMaxBonus) - eval(PlayMinBonus)) / 260;
     playPoints = 0;
-    playBouns = (eval(PlayMinBonus) + eval(userPoint) * 20 * eval(PlayPosBonus)).toFixed(2);
-    playBounsOne = playBouns * PriceModel*0.5;
-    if (PlayCode == "P_3HX_L" || PlayCode == "P_3ZHE_L" || PlayCode == "P_3HX_C" || PlayCode == "R_3HX" || PlayCode == "P_3ZHE_C" || PlayCode == "P_3HX_R" || PlayCode == "P_3ZHE_R" || PlayCode == "R_3ZHE") {
+    playBouns = (eval(PlayMinBonus) + eval(userPoint) * 20 * eval(PlayPosBonus)).toFixed(3);
+    playBounsOne = playBouns * PriceModel;
+    if (PlayCode == "R_3HX" || PlayCode == "R_3ZHE") {
         PlayPosBonus = 0.333346; //(eval(PlayMinBonus) - eval(PlayMinBonus2)) / 260;
-        playBouns = (eval(PlayMinBonus) + eval(userPoint) * 20 * eval(PlayPosBonus)).toFixed(2);
+        playBouns = (eval(PlayMinBonus) + eval(userPoint) * 20 * eval(PlayPosBonus)).toFixed(3);
         playBounsOne = (playBouns * 0.5).toFixed(2);
-        $('#bonus').html(playBounsOne + "/" + (playBounsOne / 2).toFixed(2));
-        $('#bonus2').html(playBounsOne + "/" + (playBounsOne / 2).toFixed(2));
+        $('#bonus').html(playBounsOne + "/" + (playBounsOne / 2).toFixed(3));
+        $('#bonus2').html(playBounsOne + "/" + (playBounsOne / 2).toFixed(3));
         $('#lotBonus2').val("1");
         $('#bonusInfo').html(playPoints + "%");
     }
@@ -1939,22 +2389,78 @@ function CreateNumber() {
         $('#bonusInfo').html(playPoints + "%");
     }
     $('#lotBonus').val(playBouns);
-    $('.lottery-balls').on('click', 'span', function () {
-        var $this = $(this);
-        $this.toggleClass('selected');
-        AutoCalcBet();
-    });
+
+    if (td11x5) {
+        var $row1 = $('.lottery-balls:eq(0)');
+        var $row2 = $('.lottery-balls:eq(1)');
+
+        $row1.on('click', 'span', function () {
+            var $this = $(this);
+            var dm = $this.attr("number");
+
+            $row1.find("span[number!='" + dm + "']").removeClass("selected");
+            $this.toggleClass('selected');           
+            $row2.find("span[number='" + dm + "']").removeClass("selected");
+
+            AutoCalcBet();
+        });
+
+        $row2.on('click', 'span', function () {
+            var $this = $(this);
+            var dm = $row1.find("span.selected").attr("number");
+            var tm = $this.attr("number");
+
+            if (dm != tm) {
+                $this.toggleClass('selected');
+                AutoCalcBet();
+            }
+        });
+    }
+    else {
+        $('.lottery-balls').on('click', 'span', function () {
+            var $this = $(this);
+
+            if (chooseAll) {
+                $(".lottery-balls").find("span").toggleClass('selected');
+            }
+            else {
+                $this.toggleClass('selected');
+            }
+
+            AutoCalcBet();
+        });
+    }
 
     //号码批量操作
     $(".oper").delegate('a', 'click', function (event) {
         $(this).parents(".numbers").find(".lottery-balls").find("span[number]").removeClass().addClass("ball");
         switch ($(this).text()) {
             case "全":
-                $(this).parents(".numbers").find(".lottery-balls").find("span[number]").addClass("selected");
+                if (td11x5) {
+                    var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
+                    $(this).parents(".numbers").find(".lottery-balls").find("span[number!='" + dm + "']").addClass("selected");
+                }
+                else {
+                    $(this).parents(".numbers").find(".lottery-balls").find("span[number]").addClass("selected");
+                }
+
                 AutoCalcBet();
                 break;
             case "大":
-                if (Nmbtype != 2 && Nmbtype != 4) {
+
+                if (td11x5) {
+                    var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
+                    $(this).parents(".numbers").find(".lottery-balls").find("span:gt(4)[number!='" + dm + "']").addClass("selected");
+                }
+                else if (Nmbtype == 5) {
+                    if (PlayCode == "K_3HZ") {
+                        $(this).parents(".numbers").find(".lottery-balls").find("span:gt(7)").addClass("selected");
+                    }
+                    else {
+                        $(this).parents(".numbers").find(".lottery-balls").find("span:gt(2)").addClass("selected");
+                    }
+                }
+                else if (Nmbtype != 2 && Nmbtype != 4) {
                     $(this).parents(".numbers").find(".lottery-balls").find("span[number=5],span[number=6],span[number=7],span[number=8],span[number=9]").addClass("selected");
                 }
                 else {
@@ -1963,7 +2469,19 @@ function CreateNumber() {
                 AutoCalcBet();
                 break;
             case "小":
-                if (Nmbtype != 2 && Nmbtype != 4) {
+                if (td11x5) {
+                    var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
+                    $(this).parents(".numbers").find(".lottery-balls").find("span:lt(5)[number!='" + dm + "']").addClass("selected");
+                }
+                else if (Nmbtype == 5) {
+                    if (PlayCode == "K_3HZ") {
+                        $(this).parents(".numbers").find(".lottery-balls").find("span:lt(8)").addClass("selected");
+                    }
+                    else {
+                        $(this).parents(".numbers").find(".lottery-balls").find("span:lt(3)").addClass("selected");
+                    }
+                }
+                else if (Nmbtype != 2 && Nmbtype != 4) {
                     $(this).parents(".numbers").find(".lottery-balls").find("span[number=0],span[number=1],span[number=2],span[number=3],span[number=4]").addClass("selected");
                 }
                 else {
@@ -1972,7 +2490,14 @@ function CreateNumber() {
                 AutoCalcBet();
                 break;
             case "奇":
-                if (Nmbtype != 2 && Nmbtype != 4) {
+                if (td11x5) {
+                    var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
+                    $(this).parents(".numbers").find(".lottery-balls").find("span:even[number!='" + dm + "']").addClass("selected");
+                }
+                else if (Nmbtype == 5) {
+                    $(this).parents(".numbers").find(".lottery-balls").find("span:even").addClass("selected");
+                }
+                else if (Nmbtype != 2 && Nmbtype != 4) {
                     $(this).parents(".numbers").find(".lottery-balls").find("span[number=1],span[number=3],span[number=5],span[number=7],span[number=9]").addClass("selected");
                 }
                 else {
@@ -1981,7 +2506,14 @@ function CreateNumber() {
                 AutoCalcBet();
                 break;
             case "偶":
-                if (Nmbtype != 2 && Nmbtype != 4) {
+                if (td11x5) {
+                    var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
+                    $(this).parents(".numbers").find(".lottery-balls").find("span:odd[number!='" + dm + "']").addClass("selected");
+                }
+                else if (Nmbtype == 5) {
+                    $(this).parents(".numbers").find(".lottery-balls").find("span:odd").addClass("selected");
+                }
+                else if (Nmbtype != 2 && Nmbtype != 4) {
                     $(this).parents(".numbers").find(".lottery-balls").find("span[number=0],span[number=2],span[number=4],span[number=6],span[number=8],span[number=10]").addClass("selected");
                 }
                 else {

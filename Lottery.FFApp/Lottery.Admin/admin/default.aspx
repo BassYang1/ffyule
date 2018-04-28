@@ -6,13 +6,14 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>EM-CLUB后台管理系统</title>
+    <title>九州娱乐后台管理系统</title>
     <script type="text/javascript" src="/_libs/jquery.tools.pack.js"></script>
     <script type="text/javascript" src="/statics/global.js"></script>
     <script src="/statics/admin/js/yanue.pop.js" type="text/javascript"></script>
     <script src="/statics/admin/js/index.js" type="text/javascript"></script>
     <script type="text/javascript" src="/statics/admin/js/admin.js"></script>
     <script type="text/javascript" src="/statics/admin/js/common.js"></script>
+    <script type="text/javascript" src="/statics/admin/js/adm.notify.js"></script>
     <link type="text/css" rel="stylesheet" href="/statics/global.css" />
     <link rel="stylesheet" type="text/css" href="/statics/admin/css/style.css" />
 </head>
@@ -57,6 +58,19 @@
                             <dd>
                                 <a href="javascript:void(0);" onclick="ShowPage('银行信息','提现审核','/admin/conList.aspx?page=CashCheck');">
                                     <i class="icon icon-r"></i>查看所有提款请求</a></dd>
+                        </dl>
+                        <span class="icon icon-arrow"></span>
+                    </div>
+                </li>
+                <li class="tn-tk" style="display:none" id="charge"><a href="javascript:void(0);" onclick="ShowPage('充值信息','充值审核','/admin/conList.aspx?page=ChargeCheck');"
+                    class="tn-title"><i class="icon icon-tn"></i><span class="num" id="chargecount">0</span>
+                </a>
+                    <div class="tn-content">
+                        <dl class="tn-dl">
+                            <dt>您有<span id="chargecount2">0</span>条充值请求需要处理</dt>
+                            <dd>
+                                <a href="javascript:void(0);" onclick="ShowPage('充值信息','充值审核','/admin/conList.aspx?page=ChargeCheck');">
+                                    <i class="icon icon-r"></i>查看所有充值请求</a></dd>
                         </dl>
                         <span class="icon icon-arrow"></span>
                     </div>

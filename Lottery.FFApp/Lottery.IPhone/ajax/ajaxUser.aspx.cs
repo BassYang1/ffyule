@@ -122,26 +122,37 @@ namespace Lottery.IPhone
 
     private void ajaxGetTeamTotalList()
     {
-      int PageIndex = this.Int_ThisPage();
-      int PageSize = this.Str2Int(this.q("pagesize"), 20);
-      string str1 = this.q("flag");
-      string str2 = "dbo.f_GetUserCode(userId) like '%" + Strings.PadLeft(this.AdminId) + "%'";
-      DateTime dateTime1 = DateTime.Now;
-      dateTime1 = dateTime1.AddDays(0.0);
-      string str3 = dateTime1.ToString("yyyy-MM-dd") + " 00:00:00";
-      DateTime dateTime2 = DateTime.Now;
-      dateTime2 = dateTime2.AddDays(0.0);
-      string str4 = dateTime2.ToString("yyyy-MM-dd") + " 23:59:59";
-      if (string.IsNullOrEmpty(str1))
-        str1 = "1";
-      string whereStr = str2 + " and sort=" + str1;
-      string sql0 = SqlHelp.GetSql0("[sort],\r\n                                                    isnull(sum(Charge),0) as Charge,\r\n                                                    isnull(sum(getcash),0) as getcash, \r\n                                                    isnull(sum(bet),0) as bet ,\r\n                                                    isnull(sum(win),0) as win,\r\n                                                    isnull(sum(Point),0) as Point,\r\n                                                    isnull(sum(Give),0) as Give,\r\n                                                    isnull(sum(other),0) as other,  \r\n                                                    isnull(sum(-total),0) as total,\r\n                                                    isnull(sum(moneytotal),0) as moneytotal", "V_UserMoneyStatAllUserTotal", "sort", PageSize, PageIndex, "asc", whereStr, "sort");
-      this.doh.Reset();
-      this.doh.SqlCmd = sql0;
-      DataTable dataTable = this.doh.GetDataTable();
-      this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\"," + dtHelp.DT2JSON(dataTable) + "}";
-      dataTable.Clear();
-      dataTable.Dispose();
+        int PageIndex = this.Int_ThisPage();
+        int PageSize = this.Str2Int(this.q("pagesize"), 20);
+        string str1 = this.q("flag");
+        string str2 = "dbo.f_GetUserCode(userId) like '%" + Strings.PadLeft(this.AdminId) + "%'";
+        DateTime dateTime1 = DateTime.Now;
+        dateTime1 = dateTime1.AddDays(0.0);
+        string str3 = dateTime1.ToString("yyyy-MM-dd") + " 00:00:00";
+        DateTime dateTime2 = DateTime.Now;
+        dateTime2 = dateTime2.AddDays(0.0);
+        string str4 = dateTime2.ToString("yyyy-MM-dd") + " 23:59:59";
+        if (string.IsNullOrEmpty(str1))
+            str1 = "1";
+        string whereStr = str2 + " and sort=" + str1;
+        string fields = @"[sort],
+                    isnull(sum(Charge),0) as Charge,
+                    isnull(sum(getcash),0) as getcash,
+                    isnull(sum(bet),0) as bet ,
+                    isnull(sum(win),0) as win,
+                    isnull(sum(Point),0) as Point,
+                    isnull(sum(Give),0) as Give,
+                    isnull(sum(other),0) as other,
+                    isnull(sum(-total),0) as total,
+                    isnull(sum(moneytotal),0) as moneytotal";
+
+        string sql0 = SqlHelp.GetSql0(fields, "V_UserMoneyStatAllUserTotal", "sort", PageSize, PageIndex, "asc", whereStr, "sort");
+        this.doh.Reset();
+        this.doh.SqlCmd = sql0;
+        DataTable dataTable = this.doh.GetDataTable();
+        this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\"," + dtHelp.DT2JSON(dataTable) + "}";
+        dataTable.Clear();
+        dataTable.Dispose();
     }
 
     private void ajaxGetTeamType()

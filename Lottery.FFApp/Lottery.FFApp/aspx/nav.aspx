@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>九州娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/lottery.css" />
     <script src="/statics/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -96,22 +96,22 @@
                                 <div class="betting-mode">
                                     <span class="lab">模式</span>
                                     <ul class="optgroup" id="betting-mode">
-                                        <li number="1" class="option selected">元</li>
-                                        <li number="0.1" class="option">角</li>
-                                        <li number="0.01" class="option">分</li>
-                                        <li number="0.001" class="option">厘</li>
+                                        <li number="2" class="option selected">元</li>
+                                        <!--<li number="0.2" class="option">角</li>
+                                        <li number="0.02" class="option">分</li>
+                                        <li number="0.002" class="option">厘</li>-->
                                     </ul>
                                 </div>
                                 <div class="betting-bonus">
                                     奖金<span id="bonus2" class="money">0.00</span>元
                                 </div>
-                                <div class="betting-adjust" id="betting-adjust">
+                                <!--<div class="betting-adjust" id="betting-adjust">
                                     <span class="lab">调节</span>
                                     <div class="betting-slider">
                                         <span class="cover"></span>
                                     </div>
                                     <span id="bonusInfo" class="ratio">0% | 0</span>
-                                </div>
+                                </div>-->
                             </div>
                             <div class="lottery-tabs" id="lottery-tabs">
                                 <ul class="tabs-nav">

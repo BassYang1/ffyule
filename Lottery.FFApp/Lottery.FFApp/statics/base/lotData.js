@@ -41,8 +41,7 @@ var HistoryJsonData = [
     { key: "8", value: "转入资金" },
     { key: "9", value: "活动礼金" },
     { key: "10", value: "其他" },
-    { key: "11", value: "积分兑换" },
-    { key: "12", value: "分红"}];
+    { key: "11", value: "积分兑换" }];
 
 var ChargeJsonData = [
     { key: "", value: "所有类型" },
@@ -53,4 +52,10 @@ var GetCashJsonData = [
     { key: "", value: "所有类型" },
     { key: "0", value: "正在处理" },
     { key: "1", value: "已经成功" },
-    { key: "2", value: "提款失败"}];
+    { key: "2", value: "提款失败" }];
+
+
+var ContractLogData = [
+    { key: "0", value: "所有" },
+    //{ key: "1", value: "已发放" },
+    { key: "2", value: "未发放" }];

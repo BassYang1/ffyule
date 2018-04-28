@@ -8,7 +8,8 @@ var tabpanel = null;
 
 $(document).ready(function () {
     ShowLeftMenus();
-    setInterval("ajaxPopInfo()", 30000);
+    ajaxPopInfo();
+    setInterval(ajaxPopInfo, 30000);
     //setInterval("ajaxWarn()", 60000);
     if (getCookie("lock") != null) {
         top.Lottery.Popup.show('adminLock.aspx', 400, 180, false)
@@ -183,12 +184,21 @@ function ajaxPopInfo() {
         dataType: "json",
         data: "clienttime=" + Math.random(),
         url: "ajax.aspx?oper=ajaxPopInfo",
-        error: function (XmlHttpRequest, textStatus, errorThrown) { if (XmlHttpRequest.responseText != "") { } }, //alert("网络堵塞,稍后再试！");
+        error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); }, //alert("网络堵塞,稍后再试！");
         success: function (d) {
             $i('usercount').innerHTML = d.usercount;
             $i('usercount2').innerHTML = d.usercount2;
             $i('cashcount').innerHTML = d.cashcount;
             $i('cashcount2').innerHTML = d.cashcount;
+
+            if (d.chargecount != "0") {
+                $("#charge").show();
+                $i('chargecount').innerHTML = d.chargecount;
+                $i('chargecount2').innerHTML = d.chargecount;
+            }
+            else {
+                $("#charge").hide();
+            }
 //            if (d.cashcount != "0") {
 //                var pop = new Pop(d.title, "#", "您有" + d.cashcount + "笔提现请求，请您及时处理！");
 //                //document.getElementById('MUSIC1').play();

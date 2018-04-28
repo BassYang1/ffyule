@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
-    <title>非凡娱乐</title>
+    <title>九州娱乐</title>
     <link rel="stylesheet" type="text/css" href="/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="/statics/css/member.css" />
     <script type="text/javascript" src="/statics/jquery-1.11.3.min.js"></script>
@@ -22,9 +22,10 @@
     <script type="text/javascript">
         var itemid = joinValue('itemid');
         var id = joinValue('id');
+        var nav = GetQueryString("nav");
         var pagesize = 10;
         var page = thispage();
-        var TableTemplate = GetPage(GetQueryString("nav"));
+        var TableTemplate = GetPage(nav);
         var pagesize = TableTemplate.PageSize;
 
         $(document).ready(function () {
@@ -83,7 +84,22 @@
             }
             s += '</div>';
             $("#ajaxInput").html(s);
-            //            ajaxSearch();
+
+            switch (nav) {
+                case "ContractUserList":
+                case "ContractUserListFH":
+                case "ContractUserListGZ":
+                case "UserProListSub":
+                case "ContractGZRecord":
+                case "ContractFHRecord":
+                case "ContractFHLog":
+                case "ContractGZLog":
+                case "MyBetHistory":
+                    ajaxSearch();
+                    break;
+                default:
+                    break;
+            }
         });
 
         function CreateTable(d, list) {
@@ -106,7 +122,7 @@
                 for (var i = 0; i < d.table.length; i++) {
                     var t = d.table[i];
                     s += '<tr>';
-//                    s += '<td><i class="icon icon-shape"></i></td>';
+                    //                    s += '<td><i class="icon icon-shape"></i></td>';
                     //s += '<td>' + (i + 1) + '</td>';
                     for (var j = 0; j < TableTemplate.List.length; j++) {
                         var tlist = TableTemplate.List[j];
@@ -206,10 +222,74 @@
                                 for (var k = 0; k < fo.length; k++) {
                                     if (t[fo[k].F1] == t[fo[k].F2]) {
                                         if (fo[k].Type != "Link") {
-                                            s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+                                            if (nav == "ContractUserList") { //加载契约会员
+                                                if (fo[k].Page && fo[k].Page == "ContractGZ") {
+                                                    if (t.contractgz && t.contractgz == "1") {
+                                                        s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link" style="color:red;">[已签订工资]</a>'
+                                                    }
+                                                    else {
+                                                        s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>'
+                                                    }
+                                                }
+                                                else if (fo[k].Page && fo[k].Page == "ContractFH") {
+                                                    if (t.contractfh && t.contractfh == "1") {
+                                                        s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link" style="color:red;">[已签订分红]</a>'
+                                                    }
+                                                    else {
+                                                        s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>'
+                                                    }
+                                                }
+                                                else {
+                                                    s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>'
+                                                }
+                                            }
+                                            else if (nav == "ContractUserListFH") { //加载分红契约会员
+                                                //-1-未签定契约
+                                                //0-契约待接受
+                                                //1-契约已签订
+                                                //2-契约已拒绝，可重新分配
+                                                //3-契约撤销，等待会员同意！
+                                                //4-会员同意撤销，请您修改契约！
+                                                var title = fo[k].Title;
+                                                if (t.contractfh && t.contractfh == "0") title = "<font color='red'>等待确认</fond>";
+                                                if (t.contractfh && t.contractfh == "1") title = "<font color='red'>查看契约</fond>";
+                                                if (t.contractfh && t.contractfh == "3") title = "<font color='red'>等待确认</fond>";
+
+                                                s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + title + '</a>';
+                                            }
+                                            else if (nav == "ContractUserListGZ") { //加载工资契约会员
+                                                //-1-未签定契约
+                                                //0-契约待接受
+                                                //1-契约已签订
+                                                //2-契约已拒绝，可重新分配
+                                                //3-契约撤销，等待会员同意！
+                                                //4-会员同意撤销，请您修改契约！
+                                                var title = fo[k].Title;
+                                                if (t.contractgz && t.contractgz == "0") title = "<font color='red'>等待确认</fond>";
+                                                if (t.contractgz && t.contractgz == "1") title = "<font color='red'>查看契约</fond>";
+                                                if (t.contractgz && t.contractgz == "3") title = "<font color='red'>等待确认</fond>";
+
+                                                s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + title + '</a>';
+                                            }
+                                            else {
+                                                s += '<a href="javascript:;;" onclick="' + fo[k].Function.replace("@@", t.id).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+                                            }
                                         }
                                         else {
-                                            s += '<a href="' + fo[k].Function.replace("@@", t.id).replace("@url@", t.url).replace("@Code@", t.code).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+
+                                            if (nav == "ContractGZLog" || nav == "ContractFHLog") {
+                                                if (t.allowed == "True") {
+                                                    s += '<a href="' + fo[k].Function.replace("@@", t.id).replace("@url@", t.url).replace("@Code@", t.code).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+                                                }
+                                            }
+                                            else if (nav == "UserProListSub") {
+                                                if (t.subcount != "0") {
+                                                    s += '<a href="' + fo[k].Function.replace("@@", t.id).replace("@url@", t.url).replace("@Code@", t.code).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+                                                }
+                                            }
+                                            else {
+                                                s += '<a href="' + fo[k].Function.replace("@@", t.id).replace("@url@", t.url).replace("@Code@", t.code).replace("@UserId@", t.userid) + '" class="link">' + fo[k].Title + '</a>';
+                                            }
                                         }
                                     }
                                 }
@@ -299,6 +379,14 @@
             }
             itemid = s;
             ajaxList(1);
+
+            //if (nav == "UserProListSub") {
+            //    var $table = $("#ajaxList>.query-table>");
+
+            //    if ($table.find("tr").size() == 2) {
+            //        $table.find("tr:first").hide();
+            //    }
+            //}
         }
 
         function ajaxSearchById(obj) {
@@ -369,6 +457,42 @@
                 success: function (data) {
                     if (data.result == "1") {
                         ajaxList(page);
+                        emAlert(data.returnval);
+                    }
+                }
+            });
+        }
+
+        function ajaxGZReissue(id) {
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                data: "",
+                url: "/ajax/ajaxContractGZ.aspx?oper=ajaxGZReissue&id=" + id + "&clienttime=" + Math.random(),
+                success: function (data) {
+                    if (data.result == "0") {
+                        ajaxList(page);
+                        emAlert(data.returnval);
+                    }
+                    else {
+                        emAlert(data.returnval);
+                    }
+                }
+            });
+        }
+
+        function ajaxFHReissue(id) {
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                data: "",
+                url: "/ajax/ajaxContractFH.aspx?oper=ajaxFHReissue&id=" + id + "&clienttime=" + Math.random(),
+                success: function (data) {
+                    if (data.result == "0") {
+                        ajaxList(page);
+                        emAlert(data.returnval);
+                    }
+                    else {
                         emAlert(data.returnval);
                     }
                 }

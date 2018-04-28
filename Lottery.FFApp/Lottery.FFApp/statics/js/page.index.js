@@ -63,7 +63,11 @@ function ajaxUserBindInfo() {
                 ajaxNewsList();
                 ajaxUserLogin();
                 closeload(index);
-                LayerPop('系统公告', '800px', '550px', '/news/newsindex.html');
+
+                if (document.referrer == null || document.referrer == "") {
+                    LayerPop('系统公告', '800px', '550px', '/news/newsindex.html');
+                }
+
                 $.ajax({
                     type: "get",
                     dataType: "json",

@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="robots" content="noindex, nofollow" />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <title>EM-CLUB后台管理系统</title>
+    <title>九州娱乐后台管理系统</title>
     <script type="text/javascript" src="/_libs/jquery.tools.pack.js"></script>
     <script type="text/javascript" src="/statics/global.js"></script>
     <script src="/statics/admin/js/admin.js" type="text/javascript"></script>

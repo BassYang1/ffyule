@@ -9,62 +9,62 @@ using System;
 
 namespace Lottery.DAL
 {
-  public class UserRegLinkDAL : ComData
-  {
-    public void SaveUserRegLink(string UserId, Decimal Point, string Url)
+    public class UserRegLinkDAL : ComData
     {
-      using (DbOperHandler dbOperHandler = new ComData().Doh())
-      {
-        dbOperHandler.Reset();
-        dbOperHandler.ConditionExpress = "UserId=" + UserId + " and Point=" + (object) Point;
-        if (dbOperHandler.Exist("N_UserRegLink"))
+        public void SaveUserRegLink(string UserId, Decimal Point, string Url)
         {
-          dbOperHandler.Reset();
-          dbOperHandler.ConditionExpress = "UserId=" + UserId + " and Point=" + (object) Point;
-          dbOperHandler.AddFieldItem("UserId", (object) UserId);
-          dbOperHandler.AddFieldItem("Point", (object) Point);
-          dbOperHandler.AddFieldItem("Url", (object) Url);
-          dbOperHandler.Update("N_UserRegLink");
+            using (DbOperHandler dbOperHandler = new ComData().Doh())
+            {
+                dbOperHandler.Reset();
+                dbOperHandler.ConditionExpress = "UserId=" + UserId + " and Point=" + (object)Point;
+                if (dbOperHandler.Exist("N_UserRegLink"))
+                {
+                    dbOperHandler.Reset();
+                    dbOperHandler.ConditionExpress = "UserId=" + UserId + " and Point=" + (object)Point;
+                    dbOperHandler.AddFieldItem("UserId", (object)UserId);
+                    dbOperHandler.AddFieldItem("Point", (object)Point);
+                    dbOperHandler.AddFieldItem("Url", (object)Url);
+                    dbOperHandler.Update("N_UserRegLink");
+                }
+                else
+                {
+                    dbOperHandler.Reset();
+                    dbOperHandler.AddFieldItem("UserId", (object)UserId);
+                    dbOperHandler.AddFieldItem("Point", (object)Point);
+                    dbOperHandler.AddFieldItem("Url", (object)Url);
+                    dbOperHandler.Insert("N_UserRegLink");
+                }
+            }
         }
-        else
-        {
-          dbOperHandler.Reset();
-          dbOperHandler.AddFieldItem("UserId", (object) UserId);
-          dbOperHandler.AddFieldItem("Point", (object) Point);
-          dbOperHandler.AddFieldItem("Url", (object) Url);
-          dbOperHandler.Insert("N_UserRegLink");
-        }
-      }
-    }
 
-    public void SaveUserRegLink(string UserId, Decimal Point, string YxTime, string Times, string Url)
-    {
-      using (DbOperHandler dbOperHandler = new ComData().Doh())
-      {
-        dbOperHandler.Reset();
-        dbOperHandler.ConditionExpress = "UserId=" + UserId + " and Point=" + (object) Point;
-        if (dbOperHandler.Exist("N_UserRegLink"))
+        public void SaveUserRegLink(string UserId, Decimal Point, string YxTime, string Times, string Url)
         {
-          dbOperHandler.Reset();
-          dbOperHandler.ConditionExpress = "UserId=" + UserId + " and Point=" + (object) Point;
-          dbOperHandler.AddFieldItem("UserId", (object) UserId);
-          dbOperHandler.AddFieldItem("Point", (object) Point);
-          dbOperHandler.AddFieldItem("YxTime", (object) YxTime);
-          dbOperHandler.AddFieldItem("Times", (object) Times);
-          dbOperHandler.AddFieldItem("Url", (object) Url);
-          dbOperHandler.Update("N_UserRegLink");
+            using (DbOperHandler dbOperHandler = new ComData().Doh())
+            {
+                dbOperHandler.Reset();
+                dbOperHandler.ConditionExpress = "UserId=" + UserId + " and Point=" + (object)Point;
+                if (dbOperHandler.Exist("N_UserRegLink"))
+                {
+                    dbOperHandler.Reset();
+                    dbOperHandler.ConditionExpress = "UserId=" + UserId + " and Point=" + (object)Point;
+                    dbOperHandler.AddFieldItem("UserId", (object)UserId);
+                    dbOperHandler.AddFieldItem("Point", (object)Point);
+                    dbOperHandler.AddFieldItem("YxTime", (object)YxTime);
+                    dbOperHandler.AddFieldItem("Times", (object)Times);
+                    dbOperHandler.AddFieldItem("Url", (object)Url);
+                    dbOperHandler.Update("N_UserRegLink");
+                }
+                else
+                {
+                    dbOperHandler.Reset();
+                    dbOperHandler.AddFieldItem("UserId", (object)UserId);
+                    dbOperHandler.AddFieldItem("Point", (object)Point);
+                    dbOperHandler.AddFieldItem("YxTime", (object)YxTime);
+                    dbOperHandler.AddFieldItem("Times", (object)Times);
+                    dbOperHandler.AddFieldItem("Url", (object)Url);
+                    dbOperHandler.Insert("N_UserRegLink");
+                }
+            }
         }
-        else
-        {
-          dbOperHandler.Reset();
-          dbOperHandler.AddFieldItem("UserId", (object) UserId);
-          dbOperHandler.AddFieldItem("Point", (object) Point);
-          dbOperHandler.AddFieldItem("YxTime", (object) YxTime);
-          dbOperHandler.AddFieldItem("Times", (object) Times);
-          dbOperHandler.AddFieldItem("Url", (object) Url);
-          dbOperHandler.Insert("N_UserRegLink");
-        }
-      }
     }
-  }
 }

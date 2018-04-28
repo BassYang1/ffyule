@@ -15,11 +15,117 @@
     }
     PlayPos = PlayPos.substring(0, PlayPos.length - 1);
     switch (PlayCode) {
+        case "P_DX_W": //时时彩，猜大小
+        case "P_DX_Q":
+        case "P_DX_B":
+        case "P_DX_S":
+        case "P_DX_G":
+        case "P_DS_W": //时时彩，猜单双
+        case "P_DS_Q":
+        case "P_DS_B":
+        case "P_DS_S":
+        case "P_DS_G":
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = selectCount;
+            break;
+        case "P11_RXTD2":
+        case "P11_RXTD3":
+        case "P11_RXTD4":
+        case "P11_RXTD5":
+        case "P11_RXTD6":
+        case "P11_RXTD7":
+        case "P11_RXTD8":
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_";
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+                if (i != rowsLen - 1) {
+                    orderItem += ',';
+                }
+            }
+            SingleOrderItem = orderItem;
+
+            Znum = Red11X5TD(SingleOrderItem, PlayCode.replace("P11_RXTD", ""));
+            break;
+        case "K_3HZ":
+        case "K_3STDX":
+        case "K_32TDX":
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = RedK3HZ(SingleOrderItem);
+            break;
+        case "K_32BT": //二不同直选
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = RedK32BT(SingleOrderItem);
+            break;
+        case "K_33BT":
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = RedK33BT(SingleOrderItem);
+            break;
+        case "K_33LTX": //三连号通选
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = RedK33LTX(SingleOrderItem);
+            break;
+        case "K_3STTX":
+        case "K_32TTX":
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = 1;
+            break;
         case "P_5ZX120":
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -34,7 +140,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -49,7 +155,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -64,7 +170,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -79,7 +185,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -94,7 +200,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -112,7 +218,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -128,7 +234,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -141,13 +247,19 @@
                 Znum = RedZu24(SingleOrderItem.replace(/_/g, "")) * Combine((PlayPos.split('1')).length - 1, 4);
             else
                 Znum = RedZu24(SingleOrderItem.replace(/_/g, ""));
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_4ZX12":
         case "R_4ZX12":
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -160,13 +272,19 @@
                 Znum = RedZu12(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 4);
             else
                 Znum = RedZu12(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_4ZX6":
         case "R_4ZX6":
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -179,13 +297,19 @@
                 Znum = RedZu61(SingleOrderItem.replace(/_/g, "")) * Combine((PlayPos.split('1')).length - 1, 4);
             else
                 Znum = RedZu61(SingleOrderItem.replace(/_/g, ""));
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_4ZX4":
         case "R_4ZX4":
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -198,6 +322,12 @@
                 Znum = RedZu4(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 4);
             else
                 Znum = RedZu4(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
 
         case "P_5FS":
@@ -218,6 +348,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedFS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "R_4FS":
         case "R_3FS":
@@ -253,6 +389,12 @@
                 Znum = RedZu3(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 3);
             else
                 Znum = RedZu3(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_3Z6_L":
         case "P_3Z6_C":
@@ -273,6 +415,12 @@
                 Znum = RedZu6(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 3);
             else
                 Znum = RedZu6(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_2Z2_L":
         case "P_2Z2_R":
@@ -292,6 +440,12 @@
                 Znum = RedZu2(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 2);
             else
                 Znum = RedZu2(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
 
         case "P_5DS":
@@ -360,6 +514,12 @@
                 Znum = RedDS_R(SingleOrderItem, PlayPos);
             else
                 Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             //排序去除重复
             //            numberArray = numberArray.sort(function (a, b) {
             //                return a - b;
@@ -384,7 +544,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -397,6 +557,12 @@
                 Znum = RedHE3(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 3);
             else
                 Znum = RedHE3(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
 
         case "P_3ZHE_L":
@@ -406,7 +572,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -419,6 +585,12 @@
                 Znum = RedZHE3(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 3);
             else
                 Znum = RedZHE3(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
 
         case "P_3KD_L":
@@ -428,7 +600,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -441,6 +613,12 @@
                 Znum = Red3KD(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 3);
             else
                 Znum = Red3KD(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
 
         case "P_3ZBD_L":
@@ -450,7 +628,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -468,6 +646,12 @@
                     Znum = selectCount * 54 * Combine((PlayPos.split('1')).length - 1, 3);
                 else
                     Znum = selectCount * 54;
+                if (Znum > 0) {
+                    $('#bonus2').html(PlayMinBonus * Znum);
+                }
+                else {
+                    $('#bonus2').html(PlayMinBonus);
+                }
             }
             break;
         case "P_3QTWS_L":
@@ -476,7 +660,7 @@
         case "R_3QTWS":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
             }
@@ -493,7 +677,7 @@
         case "R_3QTTS":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -513,7 +697,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -526,6 +710,12 @@
                 Znum = RedHE2(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 2);
             else
                 Znum = RedHE2(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
 
         case "P_2KD_L":
@@ -534,7 +724,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -547,13 +737,19 @@
                 Znum = Red2KD(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 2);
             else
                 Znum = Red2KD(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_2ZHE_L":
         case "P_2ZHE_R":
         case "R_2ZHE":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -565,6 +761,12 @@
                 Znum = RedZHE2(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 2);
             else
                 Znum = RedZHE2(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_2ZBD_L":
         case "P_2ZBD_R":
@@ -572,7 +774,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -590,6 +792,12 @@
                     Znum = selectCount * 9 * Combine((PlayPos.split('1')).length - 1, 2);
                 else
                     Znum = selectCount * 9;
+                if (Znum > 0) {
+                    $('#bonus2').html(PlayMinBonus * Znum);
+                }
+                else {
+                    $('#bonus2').html(PlayMinBonus);
+                }
             }
             break;
         case "P_DD":
@@ -604,6 +812,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedDD(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_3BDD1_R":
         case "P_3BDD1_L":
@@ -620,6 +834,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedDD(SingleOrderItem.replace(/_/g, ""));
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_3BDD2_R":
         case "P_3BDD2_L":
@@ -637,6 +857,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedZu2(SingleOrderItem.replace(/_/g, ""));
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_5BDD3":
             for (var i = 0; i < rowsLen; i++) {
@@ -651,6 +877,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedZu6(SingleOrderItem.replace(/_/g, ""));
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_2DXDS_L":
         case "P_2DXDS_R":
@@ -668,6 +900,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedFS(SingleOrderItem.replace(/_/g, ""));
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P_LHH_WQ":
         case "P_LHH_WB":
@@ -697,7 +935,7 @@
         case "P_5QJ3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -713,7 +951,7 @@
         case "P_4QJ3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -730,7 +968,7 @@
         case "P_3QJ2_R":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -746,7 +984,7 @@
         case "P_5QW3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -762,7 +1000,7 @@
         case "P_4QW3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -778,7 +1016,7 @@
         case "P_3QW2_L":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -794,7 +1032,7 @@
         case "P_3QW2_R":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_"; ;
+                    orderItem += $(dom).attr("number") + "_";;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -809,13 +1047,13 @@
             break;
 
         case "P_5ZH": for (var i = 0; i < rowsLen; i++) {
-                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "";
-                });
-                if (i != rowsLen - 1) {
-                    orderItem += ',';
-                }
+            $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                orderItem += $(dom).attr("number") + "";
+            });
+            if (i != rowsLen - 1) {
+                orderItem += ',';
             }
+        }
             SingleOrderItem = orderItem;
             Znum = Red5ZuHe(SingleOrderItem);
             break;
@@ -835,19 +1073,19 @@
         case "P_3ZH_L":
         case "P_3ZH_C":
         case "P_3ZH_R": for (var i = 0; i < rowsLen; i++) {
-                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "";
-                });
-                if (i != rowsLen - 1) {
-                    orderItem += ',';
-                }
+            $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                orderItem += $(dom).attr("number") + "";
+            });
+            if (i != rowsLen - 1) {
+                orderItem += ',';
             }
+        }
             SingleOrderItem = orderItem;
             Znum = Red3ZuHe(SingleOrderItem);
             break;
 
 
-        //11选5                            
+            //11选5                            
         case "P11_RXDS_1":
             $i("message").innerHTML = '';
             var allText = $("#inputtext").val();
@@ -897,6 +1135,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXDS_2": $i("message").innerHTML = '';
             var allText = $("#inputtext").val();
@@ -946,6 +1190,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXDS_3": $i("message").innerHTML = '';
             var allText = $("#inputtext").val();
@@ -995,6 +1245,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXDS_4": $i("message").innerHTML = '';
             var allText = $("#inputtext").val();
@@ -1044,6 +1300,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXDS_5": $i("message").innerHTML = '';
             var allText = $("#inputtext").val();
@@ -1094,6 +1356,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXDS_6": $i("message").innerHTML = '';
             var allText = $("#inputtext").val();
@@ -1144,6 +1412,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXDS_7": $i("message").innerHTML = '';
             var allText = $("#inputtext").val();
@@ -1195,6 +1469,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXDS_8": $i("message").innerHTML = '';
             var allText = $("#inputtext").val();
@@ -1245,6 +1525,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXFS_1":
             for (var i = 0; i < rowsLen; i++) {
@@ -1257,6 +1543,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 1);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXFS_2":
             for (var i = 0; i < rowsLen; i++) {
@@ -1269,6 +1561,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 2);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXFS_3":
             for (var i = 0; i < rowsLen; i++) {
@@ -1281,6 +1579,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 3);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXFS_4":
             for (var i = 0; i < rowsLen; i++) {
@@ -1293,6 +1597,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 4);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXFS_5":
             for (var i = 0; i < rowsLen; i++) {
@@ -1305,6 +1615,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 5);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXFS_6":
             for (var i = 0; i < rowsLen; i++) {
@@ -1317,6 +1633,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 6);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXFS_7":
             for (var i = 0; i < rowsLen; i++) {
@@ -1329,6 +1651,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 7);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_RXFS_8":
             for (var i = 0; i < rowsLen; i++) {
@@ -1341,6 +1669,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 8);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_3FS_L":
             for (var i = 0; i < rowsLen; i++) {
@@ -1356,6 +1690,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = Red3FS_11(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_3ZFS_L":
             for (var i = 0; i < rowsLen; i++) {
@@ -1371,6 +1711,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = Red3ZFS_11(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
 
         case "P11_2FS_L":
@@ -1387,6 +1733,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = Red2FS_11(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
 
         case "P11_2ZFS_L":
@@ -1403,6 +1755,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = Red2ZFS_11(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_3DS_L":
         case "P11_3ZDS_L":
@@ -1456,6 +1814,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_2DS_L":
         case "P11_2ZDS_L":
@@ -1508,6 +1872,12 @@
             }
             SingleOrderItem = arr.toString();
             Znum = RedDS(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_DD":
             for (var i = 0; i < rowsLen; i++) {
@@ -1523,6 +1893,12 @@
                 orderItem = orderItem.substring(0, orderItem.length - 1)
             SingleOrderItem = orderItem;
             Znum = RedDD_11(SingleOrderItem);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_BDD_L":
             for (var i = 0; i < rowsLen; i++) {
@@ -1535,6 +1911,12 @@
             }
             SingleOrderItem = orderItem;
             Znum = RedRXFS_11(SingleOrderItem, 1);
+            if (Znum > 0) {
+                $('#bonus2').html(PlayMinBonus * Znum);
+            }
+            else {
+                $('#bonus2').html(PlayMinBonus);
+            }
             break;
         case "P11_CDS":
             for (var i = 0; i < rowsLen; i++) {
@@ -1574,7 +1956,7 @@
             Znum = RedDD(SingleOrderItem);
             break;
 
-        //PK10             
+            //PK10             
         case "PK10_One":
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
@@ -1748,9 +2130,23 @@
         case "PK10_DXOne":
         case "PK10_DXTwo":
         case "PK10_DXThree":
+        case "PK10_DXFour":
+        case "PK10_DXFive":
+        case "PK10_DXSix":
+        case "PK10_DXSeven":
+        case "PK10_DXEight":
+        case "PK10_DXNine":
+        case "PK10_DXTen":
         case "PK10_DSOne":
         case "PK10_DSTwo":
         case "PK10_DSThree":
+        case "PK10_DSFour":
+        case "PK10_DSFive":
+        case "PK10_DSSix":
+        case "PK10_DSSeven":
+        case "PK10_DSEight":
+        case "PK10_DSNine":
+        case "PK10_DSTen":
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {

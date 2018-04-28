@@ -33,6 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CashGetModel.cs" />
+    <Compile Include="ChannelModel.cs" />
+    <Compile Include="LotteryDataModel.cs" />
+    <Compile Include="SysLotteryModel.cs" />
+    <Compile Include="UserModel.cs" />
     <Compile Include="UserZhDetailModel.cs" />
     <Compile Include="SiteModel.cs" />
     <Compile Include="UserZhBetModel.cs" />
@@ -41,6 +46,9 @@
     <Compile Include="UserBetModel.cs" />
     <Compile Include="KeyValue.cs" />
     <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

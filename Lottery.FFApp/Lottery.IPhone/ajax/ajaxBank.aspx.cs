@@ -52,10 +52,20 @@ namespace Lottery.IPhone
 
     private void ajaxGetChargeSetList()
     {
-      string Id = this.q("id");
-      string _jsonstr = "";
-      new Lottery.DAL.Flex.UserBankDAL().GetIphoneChargeSetJSON(Id, ref _jsonstr);
-      this._response = _jsonstr;
+        string id = this.q("id");
+        string code = this.q("code");
+        string _jsonstr = "";
+
+        if (!string.IsNullOrEmpty(code))
+        {
+            new Lottery.DAL.Flex.UserBankDAL().GetIphoneChargeSetJSONByCode(code, ref _jsonstr);
+        }
+        else
+        {
+            new Lottery.DAL.Flex.UserBankDAL().GetIphoneChargeSetJSON(id, ref _jsonstr);
+        }
+
+        this._response = _jsonstr;
     }
 
     private void ajaxAddBank()

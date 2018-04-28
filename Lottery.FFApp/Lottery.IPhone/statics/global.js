@@ -9,7 +9,7 @@ var swfobject = function () { var D = "undefined", r = "object", S = "Shockwave 
 var site = new Object();
 site.Dir = '/';
 site.WebIsOpen = '0';
-site.WebCloseSeason = '22222222222222222';
+site.WebCloseSeason = '系统更新';
 site.ZHIsOpen = '0';
 site.RegIsOpen = '0';
 site.BetIsOpen = '0';
@@ -17,11 +17,11 @@ site.CSUrl = 'http://www.hao123.com';
 site.SignMinTotal = '1';
 site.SignMaxTotal = '5';
 site.SignNum = '100';
-site.WarnTotal = '5000.00';
+site.WarnTotal = '100000000.00';
 site.MaxBet = '1000000.00';
-site.MaxWin = '200000.00';
-site.MaxLevel = '13.10';
-site.MinCharge = '50.00';
+site.MaxWin = '2000000.00';
+site.MaxLevel = '18.00';
+site.MinCharge = '0.01';
 site.Points = '500';
 site.PriceOutCheck = '30.00';
 site.PriceOut = '100.00';
@@ -31,7 +31,7 @@ site.PriceTime1 = '12:00';
 site.PriceTime2 = '02:00';
 site.BankTime = '6.00';
 site.PriceOutPerson = '3';
-site.ClientVersion = 'v1.0.0.6';
+site.ClientVersion = '1.006';
 site.UpdateTime = '2014/11/4 12:46:18';
 site.NewsUpdateTime = '2014/11/4 12:48:16';
 site.AutoLottery = '0';
@@ -42,7 +42,7 @@ site.CookieDomain = '';
 site.CookiePath = '/';
 site.CookiePrev = 'LotteryUser';
 site.CookieKeyCode = '';
-site.Version = 'v1.0.0.6';
+site.Version = '1.006';
 
 
 //-->网站参数end
