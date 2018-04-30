@@ -44,6 +44,31 @@ function RedK3HZ(balls) {
     return 0;
 }
 
+//普通记录
+function RedCommon(balls) {
+    if (balls != "") {
+        var strArray2 = balls.split("_");
+        return strArray2.length;
+    }
+    return 0;
+}
+
+//普通记录
+function RedCommon2(balls) {
+    var num = 0;
+    if (balls != "") {
+        var strArray1 = balls.split(",");
+        num = 1;
+
+        for (var i = 0; i < strArray1.length; i++) {
+            var strArray2 = strArray1[i].split("_");
+            num *= strArray2.length;
+        }
+    }
+
+    return num;
+}
+
 //快三,二不同直选
 function RedK32BT(balls) {
     if (balls != "") {

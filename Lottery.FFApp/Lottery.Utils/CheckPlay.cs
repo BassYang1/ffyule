@@ -12,6 +12,7 @@ namespace Lottery.Utils
     {
         public static int Check(string LotteryNumber, string CheckNumber, string Pos, string sType)
         {
+
             if (Pos != "")
             {
                 string str = "";
@@ -38,7 +39,32 @@ namespace Lottery.Utils
                 LotteryNumber.Split(',');
                 switch (sType)
                 {
-
+                    case "H_TMBBB":
+                        return CheckHK3_Start.TMBBB(LotteryNumber, CheckNumber);
+                    case "H_TMBB":
+                        return CheckHK3_Start.TMBB(LotteryNumber, CheckNumber);
+                    case "H_TMSB":
+                        return CheckHK3_Start.TMSB(LotteryNumber, CheckNumber);
+                    case "H_TMBT":
+                        return CheckHK3_Start.TMBT(LotteryNumber, CheckNumber);
+                    case "H_TM": //六合彩，特码
+                        return CheckHK3_Start.TM(LotteryNumber, CheckNumber);
+                    case "H_TMDX":
+                        return CheckHK3_Start.TMDX(LotteryNumber, CheckNumber);
+                    case "H_TMDS":
+                        return CheckHK3_Start.TMDS(LotteryNumber, CheckNumber);
+                    case "H_TMHDX":
+                        return CheckHK3_Start.TMHDX(LotteryNumber, CheckNumber);
+                    case "H_TMHDS":
+                        return CheckHK3_Start.TMHDS(LotteryNumber, CheckNumber);
+                    case "H_TMWDX":
+                        return CheckHK3_Start.TMWDX(LotteryNumber, CheckNumber);
+                    case "H_TMWDS":
+                        return CheckHK3_Start.TMWDS(LotteryNumber, CheckNumber);
+                    case "H_TMTS":
+                        return CheckHK3_Start.TMTS(LotteryNumber, CheckNumber);
+                    case "H_TMWS":
+                        return CheckHK3_Start.TMWS(LotteryNumber, CheckNumber);
                     case "P_DX_W": //时时彩，猜大小
                     case "P_DX_Q":
                     case "P_DX_B":

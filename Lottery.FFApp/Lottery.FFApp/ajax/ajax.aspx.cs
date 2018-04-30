@@ -489,7 +489,7 @@ namespace Lottery.WebApp
                 timeSpan = Convert.ToDateTime(str8) - Convert.ToDateTime(curTime);
             }
             //香港六合彩
-            else if (ltId == "5001")
+            else if (ltId == "6001")
             {
                 if (UserCenterSession.LotteryDateTime == null)
                 {

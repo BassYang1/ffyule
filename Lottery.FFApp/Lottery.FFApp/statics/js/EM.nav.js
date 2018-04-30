@@ -776,27 +776,27 @@ function InitNumber() {
         html += '</div>';
         html += '</li>';
     }
-    //if (Nmbtype == 5) { //六合彩
-    //    var count = 7;
-    //    html = "";
+    if (Nmbtype == 5) { //六合彩
+        var count = 7;
+        html = "";
 
-    //    while (count-- > 0) {
-    //        var num = 1;
+        while (count-- > 0) {
+            var num = 1;
 
-    //        html += '<li>';
-    //        html += '<div class="inner">';
-    //        html += '<div class="number-run">';
+            html += '<li>';
+            html += '<div class="inner">';
+            html += '<div class="number-run">';
 
-    //        while (num <= 49) {
-    //            html += '<span class="number" data-number="' + (num < 10 ? "0" + num : num) + '">' + (num < 10 ? "0" + num : num) + '</span>';
-    //            num++;
-    //        }
+            while (num <= 49) {
+                html += '<span class="number" data-number="' + (num < 10 ? "0" + num : num) + '">' + (num < 10 ? "0" + num : num) + '</span>';
+                num++;
+            }
 
-    //        html += '</div>';
-    //        html += '</div>'; 
-    //        html += '</li>';
-    //    }
-    //}
+            html += '</div>';
+            html += '</div>'; 
+            html += '</li>';
+        }
+    }
 
     $("#lottery-numbers").html(html);
 }

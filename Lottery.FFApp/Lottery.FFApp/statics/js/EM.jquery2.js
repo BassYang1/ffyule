@@ -39,7 +39,176 @@ function CreateNumber() {
     //11选5拖胆
     var td11x5 = false;
 
+    //六合彩
+    var hk6 = false;
+
     switch (PlayCode) {
+        case "H_TMBT":
+        case "H_TMBB":
+        case "H_TMBBB":
+            var balls = null;
+
+            switch (PlayCode) {
+                case "H_TMBT":
+                    balls = new Array(2);
+                    balls[0] = new Array("大小", "大", "小");
+                    balls[1] = new Array("单双", "单", "双");
+                    break;
+                case "H_TMBB":
+                    balls = new Array(2);
+                    balls[0] = new Array("色波", "红", "蓝", "绿");
+                    balls[1] = new Array("大小单双", "大", "小", "单", "双");
+                    break;
+                case "H_TMBBB":
+                    balls = new Array(2);
+                    balls[0] = new Array("色波", "红", "蓝", "绿");
+                    balls[1] = new Array("大小", "大", "小");
+                    balls[2] = new Array("单双", "单", "双");
+                    break;
+                default:
+                    break;
+            }
+
+            $("#spchoose").html("");
+            var str = "<ul class='lottery-choose'>";
+
+            for (var i in balls) {
+                str += "<li class='numbers'>";
+                str += "<span class='pos'>" + balls[i][0] + "</span>";
+
+                str += "<div class='lottery-balls'>";
+
+                for (var j = 1; j < balls[i].length; j++) {
+                    str += "<span class='ball' number='" + balls[i][j] + "'>" + balls[i][j] + "</span>";
+                }
+
+                str += "</div>";
+                str += "<div class='oper'>";
+                str += "<a href='javascript:;' class='all'>全</a>";
+                str += "<a href='javascript:;' class='clear'>清</a>";
+                str += "</div></li>";
+            }
+
+            str += "</ul>";
+            $("#spchoose").html(str);
+            break;
+        case "H_TMTS":
+        case "H_TMWS":
+            var title = "";
+            switch (PlayCode) {
+                case "H_TMTS":
+                    ballNum = 5;
+                    title = "特码头数";
+                    break;
+                case "H_TMWS":
+                    ballNum = 10;
+                    title = "特码尾数";
+                    break;
+                default:
+                    break;
+            }
+
+            $("#spchoose").html("");
+            var str = "<ul class='lottery-choose'>";
+            str += "<li class='numbers'>";
+            str += "<span class='pos'>" + title + "</span>";
+            str += "<div class='lottery-balls'>";
+
+            for (var j = 0; j < ballNum; j++) {
+                str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+            }
+
+            str += "</div>";
+            str += "<div class='oper'>";
+            str += "<a href='javascript:;' class='all'>全</a>";
+            str += "<a href='javascript:;' class='odd'>奇</a>";
+            str += "<a href='javascript:;' class='even'>偶</a>";
+            str += "<a href='javascript:;' class='clear'>清</a>";
+            str += "</div></li>";
+            str += "</ul>";
+
+            $("#spchoose").html(str);
+            break;
+        case "H_TMDX": //⑥合彩 特码, 大小
+        case "H_TMDS": //⑥合彩 特码, 单双
+        case "H_TMHDX": //⑥合彩 特码, 合数大小
+        case "H_TMWDX":
+        case "H_TMHDS":
+        case "H_TMWDS":
+        case "H_TMSB":
+            var title = "", balls = null;
+            switch(PlayCode){                
+                case "H_TMDX": 
+                case "H_TMHDX":
+                case "H_TMWDX":
+                    title = "大小";
+                    balls = new Array("大", "小");
+                    break;
+                case "H_TMDS":
+                case "H_TMHDS":
+                case "H_TMWDS":
+                    title = "单双";
+                    balls = new Array("大", "小");
+                    break;
+                case "H_TMSB":
+                    title = "色波";
+                    balls = new Array("红", "蓝", "绿");
+                    break;
+                default:
+                    break;
+            }
+
+            $("#spchoose").html("");
+            var str = "<ul class='lottery-choose'>";
+            str += "<li class='numbers'>";
+            str += "<span class='pos'>" + title + "</span>";
+            str += "<div class='lottery-balls'>";
+
+            for (var i in balls) {
+                str += "<span class='ball' number='" + balls[i] + "'>" + balls[i] + "</span>";
+            }
+
+            str += "</div>";
+            str += "<div class='oper'>";
+            str += "<a href='javascript:;' class='all'>全</a>";
+            str += "<a href='javascript:;' class='clear'>清</a>";
+            str += "</div></li>";
+            str += "</ul>";
+
+            $("#spchoose").html(str);
+            break;
+        case "H_TM": //⑥合彩 特码
+            hk6 = true;
+            ballNum = 49;
+            remark = '香港⑥合彩公司当期开出的最后一码为特码。';
+            PlayExample = '开奖号码：30 40 34 08 25 15 + 42, 投注特码：42。';
+            PlayHelp = '香港⑥合彩公司当期开出的最后一码为特码。';
+
+            $("#spchoose").html("");
+            var str = "<ul class='lottery-choose'>";
+            str += "<li class='numbers'>";
+            str += "<span class='pos'>特码</span>";
+            str += "<div class='lottery-balls'>";
+            for (var j = 1; j <= ballNum; j++) {
+                if ((j + "").length == 1)
+                    str += "<span class='ball' number='0" + j + "'>0" + j + "</span>";
+                else
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
+            }
+            str += "</div>";
+            str += "<div class='oper'>";
+            str += "<a href='javascript:;' class='all'>全</a>";
+            str += "<a href='javascript:;' class='big'>大</a>";
+            str += "<a href='javascript:;' class='small'>小</a>";
+            str += "<a href='javascript:;' class='odd'>奇</a>";
+            str += "<a href='javascript:;' class='even'>偶</a>";
+            str += "<a href='javascript:;' class='clear'>清</a>";
+            str += "</div>";
+            str += "</li>";
+            str += "</ul>";
+
+            $("#spchoose").html(str);
+            break;
         case "P_DS_W": //时时彩，猜单双
         case "P_DS_Q":
         case "P_DS_B":
@@ -2447,8 +2616,10 @@ function CreateNumber() {
                 AutoCalcBet();
                 break;
             case "大":
-
-                if (td11x5) {
+                if (hk6) {
+                    $(this).parents(".numbers").find(".lottery-balls").find("span:gt(24)").addClass("selected");
+                }
+                else if (td11x5) {
                     var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
                     $(this).parents(".numbers").find(".lottery-balls").find("span:gt(4)[number!='" + dm + "']").addClass("selected");
                 }
@@ -2469,7 +2640,10 @@ function CreateNumber() {
                 AutoCalcBet();
                 break;
             case "小":
-                if (td11x5) {
+                if (hk6) {
+                    $(this).parents(".numbers").find(".lottery-balls").find("span:lt(25)").addClass("selected");
+                }
+                else if (td11x5) {
                     var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
                     $(this).parents(".numbers").find(".lottery-balls").find("span:lt(5)[number!='" + dm + "']").addClass("selected");
                 }
@@ -2494,7 +2668,7 @@ function CreateNumber() {
                     var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
                     $(this).parents(".numbers").find(".lottery-balls").find("span:even[number!='" + dm + "']").addClass("selected");
                 }
-                else if (Nmbtype == 5) {
+                else if (Nmbtype == 5 || Nmbtype == 6) {
                     $(this).parents(".numbers").find(".lottery-balls").find("span:even").addClass("selected");
                 }
                 else if (Nmbtype != 2 && Nmbtype != 4) {
@@ -2510,7 +2684,7 @@ function CreateNumber() {
                     var dm = $('.lottery-balls:eq(0)').find("span.selected").attr("number");
                     $(this).parents(".numbers").find(".lottery-balls").find("span:odd[number!='" + dm + "']").addClass("selected");
                 }
-                else if (Nmbtype == 5) {
+                else if (Nmbtype == 5 || Nmbtype == 6) {
                     $(this).parents(".numbers").find(".lottery-balls").find("span:odd").addClass("selected");
                 }
                 else if (Nmbtype != 2 && Nmbtype != 4) {

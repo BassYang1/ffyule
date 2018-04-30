@@ -76,8 +76,6 @@ namespace Lottery.DAL
           return "纽约30秒3D";
         case 3006:
           return "一分3d";
-        case 3010:
-          return "六合彩";
         case 4001:
           return "北京PK10";
         case 4002:
@@ -88,6 +86,8 @@ namespace Lottery.DAL
           return "英国120秒赛车";
         case 5005:
           return "广西快3";
+        case 6001:
+          return "六合彩";
         default:
           return "未知彩票";
       }

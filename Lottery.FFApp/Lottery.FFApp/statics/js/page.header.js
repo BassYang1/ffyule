@@ -115,7 +115,7 @@ function GetLottery() {
         }
         if (indextype == 5) {
             str5 += "<li><a  href='/" + code + "'>" + title;
-            if (id == 3002) {
+            if (id == 3002 || id == 6001) {
                 str5 += "<i class='icon icon-h'></i>";
             }
             if (id == 3005) {

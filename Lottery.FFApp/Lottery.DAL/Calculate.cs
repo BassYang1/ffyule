@@ -87,7 +87,24 @@ namespace Lottery.DAL
 
             int num5;
             switch (str1)
-            { 
+            {
+                case "H_TMBT":
+                case "H_TMBB":
+                case "H_TMBBB":
+                    num5 = RedCommon2(balls);
+                    break;
+                case "H_TM": //六合彩，特码
+                case "H_TMDX":
+                case "H_TMDS":
+                case "H_TMHDX":
+                case "H_TMHDS":
+                case "H_TMWDX":
+                case "H_TMWDS":
+                case "H_TMTS":
+                case "H_TMWS":
+                case "H_TMSB":
+                    num5 = string.IsNullOrEmpty(balls) ? 0 : balls.Split('_').Length;
+                    break;
                 case "P_DX_W": //时时彩，猜大小
                 case "P_DX_Q":
                 case "P_DX_B":
@@ -574,6 +591,27 @@ namespace Lottery.DAL
             if (num1 < num5)
                 return Calculate.JsonResult(0, "投注失败,该玩法最大允许投注" + (object)num1 + "注！");
             return "";
+        }
+        
+        //普通记录
+        public static int RedCommon2(string balls)
+        {
+            var num = 0;
+
+            if (balls != "")
+            {
+                num = 1;
+                string[] strArray2;
+                string[] strArray1 = balls.Split(',');
+
+                for (int i = 0; i < strArray1.Length; i++)
+                {
+                    strArray2 = strArray1[i].Split('_');
+                    num *= strArray2.Length;
+                }
+            }
+
+            return num;
         }
 
         //11选5, 任选拖胆

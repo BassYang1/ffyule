@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Check11X5_RXTD.cs" />
+    <Compile Include="CheckHK3_Start.cs" />
     <Compile Include="CheckK3_Start.cs" />
     <Compile Include="SqlHelp.cs" />
     <Compile Include="MailHelp.cs" />

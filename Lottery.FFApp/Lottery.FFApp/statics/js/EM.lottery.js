@@ -5,7 +5,7 @@ function ajaxBigType() {
         if (lotteryData.table[i].typeid == Nmbtype) {
             var id = lotteryData.table[i].id;
             var title = lotteryData.table[i].title;
-            if (id == 1002 || id == 2001 || id == 3001 || id == 4001 || title == "和值") {
+            if (id == 1002 || id == 2001 || id == 3001 || id == 4001 || title == "和值" || title == "特码") {
                 PlayBigId = id;
                 PlayBigName = title;
                 str += "<li class='selected' nmb='" + id + "' nmbname='" + title + "'>" + title + "</li>";

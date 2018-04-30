@@ -557,7 +557,38 @@ namespace Lottery.DAL
                     num10 = 3;
 
                     //3152.3800 * 1 *  num9 * 2 / 2.0
-                    winMoney = bonus * times * (Decimal)winNum * singleMoney / 2.0M;
+                    if (lotteryId == 6001)
+                    {
+                        switch (sType)
+                        {
+                            case "H_TMDX":
+                            case "H_TMDS":
+                            case "H_TMHDX":
+                            case "H_TMHDS":
+                            case "H_TMWDX":
+                            case "H_TMWDS":
+                            case "H_TMBT":
+                            case "H_TMBB":
+                                if (CheckHK3_Start.isDraw(lotNumber))
+                                {
+                                    num10 = 4;
+                                    winMoney = betMoney;
+                                }
+                                else
+                                {
+                                    winMoney = bonus * times * (Decimal)winNum * singleMoney / 2.0M;
+                                }
+
+                                break;
+                            default:
+                                winMoney = bonus * times * (Decimal)winNum * singleMoney / 2.0M;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        winMoney = bonus * times * (Decimal)winNum * singleMoney / 2.0M;
+                    }
 
                     //奖金(赔率) * 倍数 * 中奖注数，
                     //winMoney = bonus * times * winNum * singleMoney;

@@ -1,4 +1,49 @@
-﻿function AutoCalcBet() {
+﻿function CalcSingleOrderItem() {
+    var rowsLen = $(".numbers").length;
+    var orderItem = '';
+    var selectCount = 0;
+
+    for (var i = 0; i < rowsLen; i++) {
+        selectCount = 0;
+
+        $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+            orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+            selectCount++;
+        });
+        orderItem = orderItem.substring(0, orderItem.length - 1);
+    }
+
+    return orderItem;
+}
+
+function CalcSingleOrderItem2() {
+    var rowsLen = $(".numbers").length;
+    var orderItem = '';
+    var selectCount = 0;
+
+    for (var i = 0; i < rowsLen; i++) {
+        selectCount = 0;
+
+        $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+            orderItem += $(dom).attr("number") + "_";
+            selectCount++;
+        });
+
+        orderItem = orderItem.substring(0, orderItem.length - 1);
+
+        if (i != rowsLen - 1) {
+            orderItem += ',';
+        }
+
+        if(selectCount == 0){
+            return "";
+        }
+    }
+
+    return orderItem;
+}
+
+function AutoCalcBet() {
     var rowsLen = $(".numbers").length;
     var orderItem = '';
     var selectCount = '';
@@ -15,6 +60,25 @@
     }
     PlayPos = PlayPos.substring(0, PlayPos.length - 1);
     switch (PlayCode) {
+        case "H_TMBT":
+        case "H_TMBB":
+        case "H_TMBBB":
+            SingleOrderItem = CalcSingleOrderItem2();
+            Znum = RedCommon2(SingleOrderItem);
+            break;
+        case "H_TM": //六合彩，特码
+        case "H_TMDX":
+        case "H_TMDS":
+        case "H_TMHDX":
+        case "H_TMHDS":
+        case "H_TMWDX":
+        case "H_TMWDS":
+        case "H_TMTS":
+        case "H_TMWS":
+        case "H_TMSB":
+            SingleOrderItem = CalcSingleOrderItem();
+            Znum = RedCommon(SingleOrderItem);
+            break;
         case "P_DX_W": //时时彩，猜大小
         case "P_DX_Q":
         case "P_DX_B":
