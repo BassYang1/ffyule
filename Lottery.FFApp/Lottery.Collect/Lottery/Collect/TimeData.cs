@@ -21,13 +21,9 @@ namespace Lottery.Collect
             TimeData.timerQQ60.Elapsed += new ElapsedEventHandler(TimeData.timerQQ60_Elapsed);
             ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThQQ60_Fun));
 
-            //广西快三
-            //TimeData.timerGxk3.Elapsed += new ElapsedEventHandler(TimeData.timerGxk3_Elapsed);
-            //ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThGxk3_Fun));
-
             //香港六合彩
-            //TimeData.timerHk6.Elapsed += new ElapsedEventHandler(TimeData.timerHk6_Elapsed);
-            //ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThHk6_Fun));
+            TimeData.timerHk6.Elapsed += new ElapsedEventHandler(TimeData.timerHk6_Elapsed);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThHk6_Fun));
 
             //官方时时彩
             TimeData.timerOfficLot.Elapsed += new ElapsedEventHandler(TimeData.timerOfficLot_Elapsed);
@@ -42,9 +38,10 @@ namespace Lottery.Collect
             ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThP3_Fun));
 
             //系统彩
-            //TimeData.timerSystemLot.Elapsed += new ElapsedEventHandler(TimeData.timerSystemLot_Elapsed);
-            //ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThSystemLot_Fun));
+            TimeData.timerSystemLot.Elapsed += new ElapsedEventHandler(TimeData.timerSystemLot_Elapsed);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThSystemLot_Fun));
 
+            /*
             //新德里1.5分彩
             TimeData.timerXdl90.Elapsed += new ElapsedEventHandler(TimeData.timerXdl90_Elapsed);
             ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThXdl90_Fun));
@@ -116,6 +113,7 @@ namespace Lottery.Collect
             //英国120秒赛车
             TimeData.timerYg120sc.Elapsed += new ElapsedEventHandler(TimeData.timerYg120sc_Elapsed);
             ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThYg120sc_Fun));
+            */
 
             //TimeData.timerHg90.Elapsed += new ElapsedEventHandler(TimeData.timerHg90_Elapsed);
             //ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThHg90_Fun));
@@ -155,6 +153,7 @@ namespace Lottery.Collect
             //系统彩
             //TimeData.timerSystemLot.Enabled = false;
 
+            /*
             //新德里1.5分彩
             TimeData.timerXdl90.Enabled = false;
 
@@ -208,6 +207,7 @@ namespace Lottery.Collect
 
             //英国120秒赛车
             TimeData.timerYg120sc.Enabled = false;
+            */
         }
 
         #region 腾迅分分彩
@@ -252,41 +252,6 @@ namespace Lottery.Collect
             }
         }
         
-        #endregion
-
-        #region 广西快三
-        /// <summary>
-        /// 广西快三
-        /// </summary>
-        private static System.Timers.Timer timerGxk3 = new System.Timers.Timer(4000.0);
-
-        /// <summary>
-        /// 广西快三, 锁
-        /// </summary>
-        private static object obj_locGxk3 = new object();
-
-
-        private static void ThGxk3_Fun(object stateInfo)
-        {
-            TimeData.timerGxk3_Elapsed(null, null);
-            TimeData.timerGxk3.Start();
-        }
-
-        private static void timerGxk3_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            try
-            {
-                lock (TimeData.obj_locGxk3)
-                {
-                    OfficialLotteryData.UpdateData("gxk3");
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.ErrorFormat("采集广西快三异常 {0}", ex);
-            }
-        }
-
         #endregion
 
         #region 香港六合彩
@@ -519,6 +484,7 @@ namespace Lottery.Collect
         }
         #endregion
 
+        /*
         #region 新德里1.5分彩
         //private static SystemLotteryData xdl90m = new SystemLotteryData("xdl90m");
 
@@ -681,6 +647,7 @@ namespace Lottery.Collect
                 lock (TimeData.obj_locDj15)
                 {
                     SysDj15Data.UpdateData();
+                    //SysHk6TestData.UpdateData();
                 }
             }
             catch (Exception ex)
@@ -1208,6 +1175,7 @@ namespace Lottery.Collect
         }
 
         #endregion
+        */
 
         //private static void ThHg90_Fun(object stateInfo)
         //{

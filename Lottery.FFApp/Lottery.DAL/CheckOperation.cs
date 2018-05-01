@@ -561,6 +561,21 @@ namespace Lottery.DAL
                     {
                         switch (sType)
                         {
+                            case "H_ZMDX":
+                            case "H_ZMDS":
+                            case "H_ZMHSDX":
+                            case "H_ZMHSDS":
+                            case "H_ZMWSDX":
+                                int draw = CheckHK3_Start.checkDrawZM(lotNumber);
+                                winMoney = 0.0M;
+
+                                if(draw > 0)
+                                {
+                                    winMoney = draw * times * singleMoney;
+                                }
+
+                                winMoney += bonus * times * (Decimal)winNum * singleMoney / 2.0M;
+                                break;
                             case "H_TMDX":
                             case "H_TMDS":
                             case "H_TMHDX":
@@ -569,7 +584,7 @@ namespace Lottery.DAL
                             case "H_TMWDS":
                             case "H_TMBT":
                             case "H_TMBB":
-                                if (CheckHK3_Start.isDraw(lotNumber))
+                                if (CheckHK3_Start.isDrawTM(lotNumber))
                                 {
                                     num10 = 4;
                                     winMoney = betMoney;

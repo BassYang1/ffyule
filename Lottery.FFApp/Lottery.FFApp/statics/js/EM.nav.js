@@ -776,7 +776,7 @@ function InitNumber() {
         html += '</div>';
         html += '</li>';
     }
-    if (Nmbtype == 5) { //六合彩
+    if (Nmbtype == 6) { //六合彩
         var count = 7;
         html = "";
 

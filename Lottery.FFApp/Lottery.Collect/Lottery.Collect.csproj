@@ -61,6 +61,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\ffcollect.pubxml" />
@@ -116,6 +117,7 @@
     <Compile Include="Lottery\Sys\SysHg90mData.cs" />
     <Compile Include="Lottery\Sys\SysFlb90mData.cs" />
     <Compile Include="Lottery\Sys\SysYg120scData.cs" />
+    <Compile Include="Lottery\Sys\SysHk6TestData.cs" />
     <Compile Include="Lottery\Sys\SysYg60scData.cs" />
     <Compile Include="Lottery\Sys\SysYfpk10Data.cs" />
     <Compile Include="Lottery\Sys\SysHg11x5Data.cs" />

@@ -69,6 +69,23 @@ function RedCommon2(balls) {
     return num;
 }
 
+//普通记录
+function RedCommon3(balls) {
+    var num = 0;
+    if (balls != "") {
+        var strArray1 = balls.split(",");
+
+        for (var i = 0; i < strArray1.length; i++) {
+            if (strArray1[i] != "") {
+                var strArray2 = strArray1[i].split("_");
+                num += strArray2.length;
+            }
+        }
+    }
+
+    return num;
+}
+
 //快三,二不同直选
 function RedK32BT(balls) {
     if (balls != "") {

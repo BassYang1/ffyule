@@ -22,6 +22,9 @@ namespace Lottery.Collect
             //SysNy30mData.UpdateData();
             //LotteryCheck.RunOfIssueNum(5005, "20180422-018");
             //LotteryCheck.RunOper(5005, sn);
+
+            //SysHk6TestData.UpdateData();
+            LotteryCheck.RunOfIssueNum(6001, "2018-167");
 			base.Response.Write("程序已经启动，开奖进行中。" + DateTime.Now.ToString());
 			base.Response.End();
 		}

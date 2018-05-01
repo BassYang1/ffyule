@@ -88,6 +88,20 @@ namespace Lottery.DAL
             int num5;
             switch (str1)
             {
+                case "H_SXZX":
+                case "H_SXZXDS":
+                    num5 = 1;
+                    break;
+                case "H_ZMDX":
+                case "H_ZMDS":
+                case "H_ZMHSDX":
+                case "H_ZMHSDS":
+                case "H_ZMSBH":
+                case "H_ZMSBLAN":
+                case "H_ZMSBLV":
+                case "H_ZMWSDX":
+                    num5 = RedCommon3(balls);
+                    break;
                 case "H_TMBT":
                 case "H_TMBB":
                 case "H_TMBBB":
@@ -103,6 +117,9 @@ namespace Lottery.DAL
                 case "H_TMTS":
                 case "H_TMWS":
                 case "H_TMSB":
+                case "H_TMSX":
+                case "H_ZHDX":
+                case "H_ZHDS":
                     num5 = string.IsNullOrEmpty(balls) ? 0 : balls.Split('_').Length;
                     break;
                 case "P_DX_W": //时时彩，猜大小
@@ -608,6 +625,29 @@ namespace Lottery.DAL
                 {
                     strArray2 = strArray1[i].Split('_');
                     num *= strArray2.Length;
+                }
+            }
+
+            return num;
+        }
+
+        //普通记录
+        public static int RedCommon3(string balls)
+        {
+            var num = 0;
+
+            if (balls != "")
+            {
+                string[] strArray2;
+                string[] strArray1 = balls.Split(',');
+
+                for (int i = 0; i < strArray1.Length; i++)
+                {
+                    if (!string.IsNullOrEmpty(strArray1[i]))
+                    {
+                        strArray2 = strArray1[i].Split('_');
+                        num += strArray2.Length;
+                    }
                 }
             }
 

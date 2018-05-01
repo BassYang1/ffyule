@@ -43,6 +43,31 @@ function CalcSingleOrderItem2() {
     return orderItem;
 }
 
+function CalcSingleOrderItem3() {
+    var rowsLen = $(".numbers").length;
+    var orderItem = '';
+    var selectCount = 0;
+
+    for (var i = 0; i < rowsLen; i++) {
+        selectCount = 0;
+
+        $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+            selectCount++;
+            orderItem += $(dom).attr("number") + "_";
+        });
+
+        if (selectCount != 0) {
+            orderItem = orderItem.substring(0, orderItem.length - 1);
+        }
+
+        if (i != rowsLen - 1) {
+            orderItem += ',';
+        }
+    }
+
+    return orderItem;
+}
+
 function AutoCalcBet() {
     var rowsLen = $(".numbers").length;
     var orderItem = '';
@@ -60,6 +85,17 @@ function AutoCalcBet() {
     }
     PlayPos = PlayPos.substring(0, PlayPos.length - 1);
     switch (PlayCode) {
+        case "H_ZMDX":
+        case "H_ZMDS":
+        case "H_ZMHSDX":
+        case "H_ZMHSDS":
+        case "H_ZMSBH":
+        case "H_ZMSBLAN":
+        case "H_ZMSBLV":
+        case "H_ZMWSDX":
+            SingleOrderItem = CalcSingleOrderItem3();
+            Znum = RedCommon3(SingleOrderItem);
+            break;
         case "H_TMBT":
         case "H_TMBB":
         case "H_TMBBB":
@@ -76,6 +112,11 @@ function AutoCalcBet() {
         case "H_TMTS":
         case "H_TMWS":
         case "H_TMSB":
+        case "H_TMSX":
+        case "H_SXZX":
+        case "H_SXZXDS":
+        case "H_ZHDX":
+        case "H_ZHDS":
             SingleOrderItem = CalcSingleOrderItem();
             Znum = RedCommon(SingleOrderItem);
             break;
@@ -189,7 +230,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -204,7 +245,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -219,7 +260,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -234,7 +275,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -249,7 +290,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -264,7 +305,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -282,7 +323,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -298,7 +339,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -317,7 +358,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -336,7 +377,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -355,7 +396,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -554,7 +595,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -576,7 +617,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -598,7 +639,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -620,7 +661,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -646,7 +687,7 @@ function AutoCalcBet() {
         case "R_3QTWS":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
             }
@@ -663,7 +704,7 @@ function AutoCalcBet() {
         case "R_3QTTS":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -683,7 +724,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -704,7 +745,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -723,7 +764,7 @@ function AutoCalcBet() {
         case "R_2ZHE":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -742,7 +783,7 @@ function AutoCalcBet() {
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -867,7 +908,7 @@ function AutoCalcBet() {
         case "P_5QJ3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -883,7 +924,7 @@ function AutoCalcBet() {
         case "P_4QJ3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -900,7 +941,7 @@ function AutoCalcBet() {
         case "P_3QJ2_R":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -916,7 +957,7 @@ function AutoCalcBet() {
         case "P_5QW3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -932,7 +973,7 @@ function AutoCalcBet() {
         case "P_4QW3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -948,7 +989,7 @@ function AutoCalcBet() {
         case "P_3QW2_L":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -964,7 +1005,7 @@ function AutoCalcBet() {
         case "P_3QW2_R":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {

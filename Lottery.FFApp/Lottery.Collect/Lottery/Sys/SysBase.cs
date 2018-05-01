@@ -252,6 +252,76 @@ namespace Lottery.Collect.Sys
         }
 
         /// <summary>
+        /// 初使化彩种期号
+        /// </summary>
+        public void UpdateExpectTest()
+        {
+            try
+            {
+                // DateTime.Now = 2018-03-05 00:00:03
+                //this.OpenTime = "2018-03-03 23:59:59.000";
+
+                //上一期开奖时间已结束，才生成本期号码
+                if (!string.IsNullOrEmpty(this.OpenTime) && Convert.ToDateTime(this.OpenTime) >= DateTime.Now)
+                {
+                    return;
+                }
+
+                Log.DebugFormat("更新开奖期号：{0} {1}", this.Name, this.Code);
+
+                if (this.SysLottery == null)
+                {
+                    throw new Exception("无效的彩种配置");
+                }
+
+                using (SqlConnection conn = new SqlConnection(Const.ConnectionString))
+                {
+                    using (DbOperHandler doh = new SqlDbOperHandler(conn))
+                    {
+                        DateTime lastTime = Convert.ToDateTime(this.OpenTime);
+                        string ltId = this.SysLottery.Id.ToString();
+                        //DateTime curDateTime = GetDateTime(); //当前日期时间
+                        DateTime curDateTime = DateTime.Now; //当前日期时间
+                        string curDate = curDateTime.ToString("yyyyMMdd"); //当前日期
+                        string curTime = curDateTime.ToString("HH:mm:ss"); //当前时间
+
+                        string curNum = ""; //当前期数
+                        string curExpect = ""; //当前期号
+                        DateTime openTime = DateTime.Now; //当前开奖时间
+
+                        //香港六合彩
+                        if (UserCenterSession.LotteryDateTime == null)
+                        {
+                            UserCenterSession.LotteryDateTime = new LotteryTimeDAL().GetDateTimeTable(); //开奖时间
+                        }
+
+                        DataRow[] dataRowArray2 = UserCenterSession.LotteryDateTime.Select("Time >'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' and LotteryId=6001", "Time ASC");
+
+                        if (dataRowArray2.Length > 0)
+                        {
+                            curNum = dataRowArray2[0]["Sn"].ToString(); //当前期开奖时间
+                            curExpect = curDateTime.ToString("yyyy") + "-" + (Int32.Parse(curNum) - 1).ToString();
+                            openTime = Convert.ToDateTime(dataRowArray2[0]["Time"]);
+                        }
+
+                        this.Expect = Int32.Parse(curNum) - 1; //开奖期数
+                        this.ExpectNo = curExpect; //当前开奖期号
+                        this.OpenTime = openTime.ToString("yyyy-MM-dd HH:mm:ss"); //当前开奖时间
+
+                        //Console.WriteLine("彩种: {0}, 开奖时间: {1}, 期号: {2}, {3}", this.Code, this.OpenTime, this.ExpectNo, this.Expect);
+                        //Console.WriteLine("当前时间: {0}", curDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                        Log.DebugFormat("彩种: {0}, 开奖时间: {1}, 期号: {2}, {3}", this.Name, this.OpenTime, this.ExpectNo, this.Expect);
+                        //Log.DebugFormat("当前时间: {0}", curDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorFormat("更新期号发生异常: {0} {1}", this.Name, ex);
+            }
+        }
+
+        /// <summary>
         /// 生成彩票开奖信息
         /// </summary>
         /// <returns></returns>
@@ -272,67 +342,75 @@ namespace Lottery.Collect.Sys
                 DataTable lotteryCheck = LotteryDAL.GetLotteryCheck(this.Id);
 
                 //CheckPer: 杀数比
-                decimal checkPer = Convert.ToDecimal(lotteryCheck.Rows[0]["CheckPer"]);
-                if (LotteryDAL.GetCurRealGet(this.Id) < checkPer)
+                if (lotteryCheck != null && lotteryCheck.Rows.Count >0 && lotteryCheck.Columns.Contains("CheckPer"))
                 {
-                    int num1 = 0;
-                    //杀数个数
-                    int checkNum = Convert.ToInt32(lotteryCheck.Rows[0]["CheckNum"]);
-
-                    Log.DebugFormat("控制杀数比{0}: {1}, {2}", this.Name, checkPer, checkNum);
-
-                    do
+                    decimal checkPer = Convert.ToDecimal(lotteryCheck.Rows[0]["CheckPer"]);
+                    if (LotteryDAL.GetCurRealGet(this.Id) < checkPer)
                     {
-                        Decimal num2 = new Decimal(0);
-                        Decimal num3 = new Decimal(0);
-                        Decimal num4 = new Decimal(0);
+                        int num1 = 0;
+                        //杀数个数
+                        int checkNum = Convert.ToInt32(lotteryCheck.Rows[0]["CheckNum"]);
 
+                        Log.DebugFormat("控制杀数比{0}: {1}, {2}", this.Name, checkPer, checkNum);
+
+                        do
+                        {
+                            Decimal num2 = new Decimal(0);
+                            Decimal num3 = new Decimal(0);
+                            Decimal num4 = new Decimal(0);
+
+                            Generate(); //生成开奖号码
+
+                            for (int index = 0; index < dataTable.Rows.Count; ++index)
+                            {
+                                DataRow row = dataTable.Rows[index];
+                                int betId = Convert.ToInt32(row["Id"]); //下注Id
+                                int userId = Convert.ToInt32(row["UserId"]); //用户Id
+                                string playCode = row["PlayCode"].ToString(); //玩法
+                                string betDate = Convert.ToDateTime(row["STime2"]).ToString("yyyyMMdd");
+
+                                //下注号码
+                                string betNumber = FlexDal.BetDetailDAL.GetBetDetail2(betDate, userId.ToString(), betId.ToString());
+                                if (string.IsNullOrEmpty(betNumber))
+                                    betNumber = "";
+
+                                string Pos = row["Pos"].ToString();
+                                Decimal num5 = Convert.ToDecimal(row["SingleMoney"]);
+                                Decimal num6 = Convert.ToDecimal(row["Bonus"]);
+                                Decimal num7 = Convert.ToDecimal(row["PointMoney"]);
+                                Decimal num8 = Convert.ToDecimal(row["Times"]);
+                                Decimal num9 = Convert.ToDecimal(row["Total"]);
+                                num3 += num9 * num8; //本期下注总金额
+
+                                int num10 = CheckPlay.Check(this.Number, betNumber, Pos, playCode);
+
+                                num4 += num6 * num8 * num5 * (Decimal)num10 / new Decimal(2) + num7; //本期中奖总金额
+                            }
+                            Decimal num11 = num3 - num4;
+
+                            if (num11 > new Decimal(0))
+                                num1 = checkNum; //杀数个数
+
+                            //中奖号码
+                            this.CheckList.Add(new CheckLotteryModel()
+                            {
+                                Number = this.Number,
+                                NumberAll = this.NumberAll,
+                                Income = num11
+                            });
+
+                            ++num1;
+                        } while (num1 < checkNum); //中奖数大于杀数个数，重新开奖
+
+                        CheckLotteryModel lottery = this.CheckList.OrderByDescending(i => i.Income).First();
+                        this.Number = lottery.Number;
+                        this.NumberAll = lottery.NumberAll;
+                    }
+                    else
+                    {
+                        Log.DebugFormat("正常开奖{0}", this.Name);
                         Generate(); //生成开奖号码
-
-                        for (int index = 0; index < dataTable.Rows.Count; ++index)
-                        {
-                            DataRow row = dataTable.Rows[index];
-                            int betId = Convert.ToInt32(row["Id"]); //下注Id
-                            int userId = Convert.ToInt32(row["UserId"]); //用户Id
-                            string playCode = row["PlayCode"].ToString(); //玩法
-                            string betDate = Convert.ToDateTime(row["STime2"]).ToString("yyyyMMdd");
-
-                            //下注号码
-                            string betNumber = FlexDal.BetDetailDAL.GetBetDetail2(betDate, userId.ToString(), betId.ToString());
-                            if (string.IsNullOrEmpty(betNumber))
-                                betNumber = "";
-
-                            string Pos = row["Pos"].ToString();
-                            Decimal num5 = Convert.ToDecimal(row["SingleMoney"]);
-                            Decimal num6 = Convert.ToDecimal(row["Bonus"]);
-                            Decimal num7 = Convert.ToDecimal(row["PointMoney"]);
-                            Decimal num8 = Convert.ToDecimal(row["Times"]);
-                            Decimal num9 = Convert.ToDecimal(row["Total"]);
-                            num3 += num9 * num8; //本期下注总金额
-
-                            int num10 = CheckPlay.Check(this.Number, betNumber, Pos, playCode);
-
-                            num4 += num6 * num8 * num5 * (Decimal)num10 / new Decimal(2) + num7; //本期中奖总金额
-                        }
-                        Decimal num11 = num3 - num4;
-
-                        if (num11 > new Decimal(0))
-                            num1 = checkNum; //杀数个数
-
-                        //中奖号码
-                        this.CheckList.Add(new CheckLotteryModel()
-                        {
-                            Number = this.Number,
-                            NumberAll = this.NumberAll,
-                            Income = num11
-                        });
-
-                        ++num1;
-                    } while (num1 < checkNum); //中奖数大于杀数个数，重新开奖
-
-                    CheckLotteryModel lottery = this.CheckList.OrderByDescending(i => i.Income).First();
-                    this.Number = lottery.Number;
-                    this.NumberAll = lottery.NumberAll;
+                    }
                 }
                 else
                 {

@@ -36,9 +36,36 @@ namespace Lottery.Utils
             CheckNumber = CheckNumber.Replace("９", "9");
             if (LotteryNumber != "" && CheckNumber != "" && sType != "")
             {
+ 
                 LotteryNumber.Split(',');
                 switch (sType)
                 {
+                    case "H_ZMWSDX":
+                        return CheckHK3_Start.ZMWSDX(LotteryNumber, CheckNumber);
+                    case "H_ZMSBH":
+                        return CheckHK3_Start.ZMSB(LotteryNumber, CheckNumber, "红");
+                    case "H_ZMSBLAN":
+                        return CheckHK3_Start.ZMSB(LotteryNumber, CheckNumber, "蓝");
+                    case "H_ZMSBLV":
+                        return CheckHK3_Start.ZMSB(LotteryNumber, CheckNumber, "绿");
+                    case "H_ZMHSDX":
+                        return CheckHK3_Start.ZMHSDX(LotteryNumber, CheckNumber);
+                    case "H_ZMHSDS":
+                        return CheckHK3_Start.ZMHSDS(LotteryNumber, CheckNumber);
+                    case "H_ZMDX":
+                        return CheckHK3_Start.ZMDX(LotteryNumber, CheckNumber);
+                    case "H_ZMDS":
+                        return CheckHK3_Start.ZMDS(LotteryNumber, CheckNumber);
+                    case "H_ZHDX":
+                        return CheckHK3_Start.ZHDX(LotteryNumber, CheckNumber);
+                    case "H_ZHDS":
+                        return CheckHK3_Start.ZHDS(LotteryNumber, CheckNumber);
+                    case "H_SXZXDS":
+                        return CheckHK3_Start.SXZXDS(LotteryNumber, CheckNumber);
+                    case "H_SXZX":
+                        return CheckHK3_Start.SXZX(LotteryNumber, CheckNumber);
+                    case "H_TMSX":
+                        return CheckHK3_Start.TMSX(LotteryNumber, CheckNumber);
                     case "H_TMBBB":
                         return CheckHK3_Start.TMBBB(LotteryNumber, CheckNumber);
                     case "H_TMBB":

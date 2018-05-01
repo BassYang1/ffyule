@@ -42,10 +42,20 @@ function CreateNumber() {
     //六合彩
     var hk6 = false;
 
+    var onlyone = false;
+
     switch (PlayCode) {
         case "H_TMBT":
         case "H_TMBB":
         case "H_TMBBB":
+        case "H_ZMDX":
+        case "H_ZMDS":
+        case "H_ZMHSDX":
+        case "H_ZMHSDS":
+        case "H_ZMSBH":
+        case "H_ZMSBLAN":
+        case "H_ZMSBLV":
+        case "H_ZMWSDX":
             var balls = null;
 
             switch (PlayCode) {
@@ -64,6 +74,54 @@ function CreateNumber() {
                     balls[0] = new Array("色波", "红", "蓝", "绿");
                     balls[1] = new Array("大小", "大", "小");
                     balls[2] = new Array("单双", "单", "双");
+                    break;
+                case "H_ZMDX":
+                case "H_ZMHSDX":
+                case "H_ZMWSDX":
+                    balls = new Array(6);
+                    balls[0] = new Array("正码一", "大", "小");
+                    balls[1] = new Array("正码二", "大", "小");
+                    balls[2] = new Array("正码三", "大", "小");
+                    balls[3] = new Array("正码四", "大", "小");
+                    balls[4] = new Array("正码五", "大", "小");
+                    balls[5] = new Array("正码六", "大", "小");
+                    break;
+                case "H_ZMDS":
+                case "H_ZMHSDS":
+                    balls = new Array(6);
+                    balls[0] = new Array("正码一", "单", "双");
+                    balls[1] = new Array("正码二", "单", "双");
+                    balls[2] = new Array("正码三", "单", "双");
+                    balls[3] = new Array("正码四", "单", "双");
+                    balls[4] = new Array("正码五", "单", "双");
+                    balls[5] = new Array("正码六", "单", "双");
+                    break;
+                case "H_ZMSBH":
+                    balls = new Array(6);
+                    balls[0] = new Array("正码一", "红");
+                    balls[1] = new Array("正码二", "红");
+                    balls[2] = new Array("正码三", "红");
+                    balls[3] = new Array("正码四", "红");
+                    balls[4] = new Array("正码五", "红");
+                    balls[5] = new Array("正码六", "红");
+                    break;
+                case "H_ZMSBLAN":
+                    balls = new Array(6);
+                    balls[0] = new Array("正码一", "蓝");
+                    balls[1] = new Array("正码二", "蓝");
+                    balls[2] = new Array("正码三", "蓝");
+                    balls[3] = new Array("正码四", "蓝");
+                    balls[4] = new Array("正码五", "蓝");
+                    balls[5] = new Array("正码六", "蓝");
+                    break;
+                case "H_ZMSBLV":
+                    balls = new Array(6);
+                    balls[0] = new Array("正码一", "绿");
+                    balls[1] = new Array("正码二", "绿");
+                    balls[2] = new Array("正码三", "绿");
+                    balls[3] = new Array("正码四", "绿");
+                    balls[4] = new Array("正码五", "绿");
+                    balls[5] = new Array("正码六", "绿");
                     break;
                 default:
                     break;
@@ -92,43 +150,6 @@ function CreateNumber() {
             str += "</ul>";
             $("#spchoose").html(str);
             break;
-        case "H_TMTS":
-        case "H_TMWS":
-            var title = "";
-            switch (PlayCode) {
-                case "H_TMTS":
-                    ballNum = 5;
-                    title = "特码头数";
-                    break;
-                case "H_TMWS":
-                    ballNum = 10;
-                    title = "特码尾数";
-                    break;
-                default:
-                    break;
-            }
-
-            $("#spchoose").html("");
-            var str = "<ul class='lottery-choose'>";
-            str += "<li class='numbers'>";
-            str += "<span class='pos'>" + title + "</span>";
-            str += "<div class='lottery-balls'>";
-
-            for (var j = 0; j < ballNum; j++) {
-                str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-            }
-
-            str += "</div>";
-            str += "<div class='oper'>";
-            str += "<a href='javascript:;' class='all'>全</a>";
-            str += "<a href='javascript:;' class='odd'>奇</a>";
-            str += "<a href='javascript:;' class='even'>偶</a>";
-            str += "<a href='javascript:;' class='clear'>清</a>";
-            str += "</div></li>";
-            str += "</ul>";
-
-            $("#spchoose").html(str);
-            break;
         case "H_TMDX": //⑥合彩 特码, 大小
         case "H_TMDS": //⑥合彩 特码, 单双
         case "H_TMHDX": //⑥合彩 特码, 合数大小
@@ -136,23 +157,54 @@ function CreateNumber() {
         case "H_TMHDS":
         case "H_TMWDS":
         case "H_TMSB":
+        case "H_TMTS": 
+        case "H_TMWS":
+        case "H_TMSX":
+        case "H_SXZX":
+        case "H_SXZXDS":
+        case "H_ZHDX":
+        case "H_ZHDS":
             var title = "", balls = null;
-            switch(PlayCode){                
-                case "H_TMDX": 
+            switch (PlayCode) {
+                case "H_TMDX":
                 case "H_TMHDX":
                 case "H_TMWDX":
+                case "H_ZHDX":
                     title = "大小";
                     balls = new Array("大", "小");
                     break;
                 case "H_TMDS":
                 case "H_TMHDS":
                 case "H_TMWDS":
+                case "H_ZHDS":
                     title = "单双";
-                    balls = new Array("大", "小");
+                    balls = new Array("单", "双");
+                    break;
+                case "H_SXZXDS":
+                    title = "单双";
+                    balls = new Array("单", "双");
+                    onlyone = true;
                     break;
                 case "H_TMSB":
                     title = "色波";
                     balls = new Array("红", "蓝", "绿");
+                    break;
+                case "H_TMTS":
+                    balls = new Array(0, 1, 2, 3, 4);
+                    title = "特码头数";
+                    break;
+                case "H_TMWS":
+                    balls = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+                    title = "特码尾数";
+                    break;
+                case "H_TMSX":
+                    balls = new Array("鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪");
+                    title = "特码生肖";
+                    break;
+                case "H_SXZX":
+                    balls = new Array("2", "3", "4", "5", "6", "7");
+                    title = "生肖总肖";
+                    onlyone = true;
                     break;
                 default:
                     break;
@@ -170,7 +222,13 @@ function CreateNumber() {
 
             str += "</div>";
             str += "<div class='oper'>";
-            str += "<a href='javascript:;' class='all'>全</a>";
+            
+            if (onlyone == false) {
+                str += "<a href='javascript:;' class='all'>全</a>";
+                str += "<a href='javascript:;' class='odd'>奇</a>";
+                str += "<a href='javascript:;' class='even'>偶</a>";
+            }
+
             str += "<a href='javascript:;' class='clear'>清</a>";
             str += "</div></li>";
             str += "</ul>";
@@ -1175,16 +1233,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else{                        
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
-
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
             }
@@ -1213,14 +1262,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
             }
@@ -1398,14 +1440,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
             }
@@ -1434,14 +1469,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
             }
@@ -1497,14 +1525,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1540,14 +1561,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1583,14 +1597,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1626,14 +1633,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1676,14 +1676,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1716,14 +1709,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1756,14 +1742,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -1796,14 +1775,7 @@ function CreateNumber() {
                 str += "<span class='pos'>" + strBalls[i] + "</span>";
                 str += "<div class='lottery-balls'>";
                 for (var j = 0; j <= 9; j++) {
-                    if (j >= 7 || j == 0) {
-                        if (LotteryId != "3007") {
-                            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                        }
-                    }
-                    else {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
+                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
                 }
                 str += "</div>";
                 str += "<div class='oper'>";
@@ -2446,14 +2418,7 @@ function CreateNumber() {
             str += "<i class='pos'>" + strBalls[i] + "</i>";
             str += "<div class='lottery-balls'>";
             for (var j = 0; j <= 9; j++) {
-                if (j >= 7 || j == 0) {
-                    if (LotteryId != "3007") {
-                        str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                    }
-                }
-                else {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                }
+                str += "<span class='ball' number='" + j + "'>" + j + "</span>";
             }
             str += "</div>";
             str += "</li>";
@@ -2496,14 +2461,7 @@ function CreateNumber() {
         str += "<i class='pos'>和值</i>";
         str += "<div class='lottery-balls'>";
         for (var j = 0; j <= heNum; j++) {
-            if (j >= 7 || j == 0) {
-                if (LotteryId != "3007") {
-                    str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-                }
-            }
-            else {
-                str += "<span class='ball' number='" + j + "'>" + j + "</span>";
-            }
+            str += "<span class='ball' number='" + j + "'>" + j + "</span>";
         }
         str += "</div></li>";
         str += strwz;
@@ -2528,36 +2486,7 @@ function CreateNumber() {
 
     $("#remark").html(PlayRemark);
     $("#example").html(PlayExample + '<br/>' + PlayHelp);
-
-    var userPoint = eval($('#txtUserPoint').val()) * 0.1;
-    PlayPosBonus = (eval(PlayMaxBonus) - eval(PlayMinBonus)) / 260;
-    playPoints = 0;
-    playBouns = (eval(PlayMinBonus) + eval(userPoint) * 20 * eval(PlayPosBonus)).toFixed(3);
-    playBounsOne = playBouns * PriceModel;
-    if (PlayCode == "R_3HX"|| PlayCode == "R_3ZHE") {
-        PlayPosBonus = 0.333346; //(eval(PlayMinBonus) - eval(PlayMinBonus2)) / 260;
-        playBouns = (eval(PlayMinBonus) + eval(userPoint) * 20 * eval(PlayPosBonus)).toFixed(3);
-        playBounsOne = (playBouns * 0.5).toFixed(2);
-        $('#bonus').html(playBounsOne + "/" + (playBounsOne / 2).toFixed(3));
-        $('#bonus2').html(playBounsOne + "/" + (playBounsOne / 2).toFixed(3));
-        $('#lotBonus2').val("1");
-        $('#bonusInfo').html(playPoints + "%");
-    }
-    else if (PlayCode == "P_LHH_WQ" || PlayCode == "P_LHH_WB" || PlayCode == "P_LHH_WS" || PlayCode == "P_LHH_WG" || PlayCode == "P_LHH_QB"
-        || PlayCode == "P_LHH_QS" || PlayCode == "P_LHH_QG" || PlayCode == "P_LHH_BS" || PlayCode == "P_LHH_BG" || PlayCode == "P_LHH_SG") {
-        var lhBonus = (playBounsOne / 4.5).toFixed(4);
-        $('#bonus').html(lhBonus + "/" + playBounsOne);
-        $('#bonus2').html(lhBonus + "/" + playBounsOne);
-        $('#lotBonus2').val("2");
-        $('#bonusInfo').html(playPoints + "%");
-    }
-    else {
-        $('#bonus').html(playBounsOne);
-        $('#bonus2').html(playBounsOne);
-        $('#lotBonus2').val("0");
-        $('#bonusInfo').html(playPoints + "%");
-    }
-    $('#lotBonus').val(playBouns);
+    bindBouns();
 
     if (td11x5) {
         var $row1 = $('.lottery-balls:eq(0)');
@@ -2592,11 +2521,16 @@ function CreateNumber() {
             if (chooseAll) {
                 $(".lottery-balls").find("span").toggleClass('selected');
             }
+            else if (onlyone) {
+                $this.parents(".numbers").find(".lottery-balls").find("span[number]").removeClass().addClass("ball");
+                $this.toggleClass('selected');
+            }
             else {
                 $this.toggleClass('selected');
             }
 
             AutoCalcBet();
+            SwitchBouns(SingleOrderItem);
         });
     }
 

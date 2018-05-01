@@ -1099,21 +1099,17 @@ namespace Lottery.DAL.Flex
                         break;
                     }
                 case 6001:
-                    using (DbOperHandler dbOperHandler = new ComData().Doh())
+                    if (UserCenterSession.LotteryDateTime == null)
                     {
-                        dbOperHandler.Reset();
-                        if (UserCenterSession.LotteryDateTime == null)
-                        {
-                            UserCenterSession.LotteryDateTime = new LotteryTimeDAL().GetDateTimeTable(); //开奖时间
-                        }
+                        UserCenterSession.LotteryDateTime = new LotteryTimeDAL().GetDateTimeTable(); //开奖时间
+                    }
 
-                        DataRow[] dataRowArray2 = UserCenterSession.LotteryDateTime.Select("Time >'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' and LotteryId=6001", "Time ASC");
+                    DataRow[] dataRowArray2 = UserCenterSession.LotteryDateTime.Select("Time >'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' and LotteryId=6001", "Time ASC");
 
-                        if (dataRowArray2.Length > 0)
-                        {
-                            strArray[1] = Convert.ToDateTime(dataRowArray2[0]["Time"]).ToString("yyyy-MM-dd HH:mm:ss");
-                            strArray[0] = dataRowArray2[0]["Sn"].ToString(); //当前期开奖时间
-                        }
+                    if (dataRowArray2.Length > 0)
+                    {
+                        strArray[1] = Convert.ToDateTime(dataRowArray2[0]["Time"]).ToString("yyyy-MM-dd HH:mm:ss");
+                        strArray[0] = now.ToString("yyyy") + "-" + dataRowArray2[0]["Sn"].ToString(); //当前期开奖时间
                     }
                     break;
                 default:
