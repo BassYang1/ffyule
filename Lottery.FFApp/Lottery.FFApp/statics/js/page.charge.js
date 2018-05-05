@@ -85,7 +85,7 @@ function InItInfo(typeId, setId) {
         if (ChargeSetJson.table[i].id == setId) {
             $("#minCharge").html(ChargeSetJson.table[i].mincharge);
             $("#maxCharge").html(ChargeSetJson.table[i].maxcharge);
-            $("#wrong-amount").html("<i class='icon icon-wrong'></i>充值限额：最低" + ChargeSetJson.table[i].mincharge + "元，最高" + ChargeSetJson.table[i].maxcharge + "元");
+            //$("#wrong-amount").html("<i class='icon icon-wrong'></i>充值限额：最低" + ChargeSetJson.table[i].mincharge + "元，最高" + ChargeSetJson.table[i].maxcharge + "元");
             $("#startTime").html(ChargeSetJson.table[i].starttime);
             $("#endTime").html(ChargeSetJson.table[i].endtime);
             merCode = ChargeSetJson.table[i].mercode;
@@ -169,8 +169,12 @@ function InItInfo(typeId, setId) {
         $("#divName").hide();
         bankHtml += "<li class='cashier-bank selected'><label><input type='radio' value='ZFB' title='支付宝扫码支付' class='radio' name='bank' checked/><span class='icon-bank bank-ZFB'></span></label></li>";
         bankHtml += "<li class='cashier-bank'><label><input type='radio' value='WX' title='微信扫码支付' class='radio' name='bank'/><span class='icon-bank bank-WX'></span></label></li>";
-        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='ICBC' title='银行卡支付' class='radio' name='bank'/><span class='icon-bank bank-ICBC'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CCB' title='银行卡支付' class='radio' name='bank'/><span class='icon-bank bank-CCB'></span></label></li>";
         bank = "commonpay";
+
+        $("#minCharge").html("100.0000");
+        $("#maxCharge").html("50000.0000");
+        $("#wrong-amount").html("<i class='icon icon-wrong'></i>充值限额：最低100.0000元，最高50000.0000元");
     }
     bankHtml += "</ul>";
     $("#choose-bank").html(bankHtml);
@@ -181,11 +185,22 @@ function InItInfo(typeId, setId) {
         var selected = "selected";
         $banks.each(function () {
             var $bank = $(this),
-				                $radio = $bank.find(".radio");
+			$radio = $bank.find(".radio");
             $bank.on("click", function () {
                 $banks.removeClass(selected);
                 $bank.addClass(selected);
                 $radio.prop("checked", true);
+
+                if ($radio.val() == "ZFB" || $radio.val() == "WX") {
+                    $("#minCharge").html("100.0000");
+                    $("#maxCharge").html("50000.0000");
+                    $("#wrong-amount").html("<i class='icon icon-wrong'></i>充值限额：最低100.0000元，最高50000.0000元");
+                }
+                else if ($radio.val() == "CCB") {
+                    $("#minCharge").html("100.0000");
+                    $("#maxCharge").html("500000.0000");
+                    $("#wrong-amount").html("<i class='icon icon-wrong'></i>充值限额：最低100.0000元，最高500000.0000元");
+                }
             });
         });
     });
@@ -299,7 +314,7 @@ function step21Post() {
                     msg = "请使用支付宝扫码付款";
                 }
                 else {
-                    msg = "中国工商银行(世纪城支行) " + "<font color='red'>王林 6212262********7306</font>";
+                    msg = "中国工商银行(世纪城支行) " + "<font color='red'>6236681460013254491 唐先跃</font>";
                 }
 
                 var info = '<li><span class="si-name">充值银行：</span> <span class="si-con"><i class="icon-bank ' + bankCss + '"></i></span></li>';
@@ -358,15 +373,15 @@ function step2Post() {
             $("#payHistory").show();
 
 
-            if (ucode == "commonpay") {
+            if (typeId == 8) {
 
                 if (bank == "WX") {
                     $(".payment-qrcode").show();
-                    $(".payment-qrcode").html('<img src="../statics/img/wxpayQC.jpg" />');
+                    $(".payment-qrcode").html('<img src="../statics/img/wxpayQC.png" />');
                 }
                 else if (bank == "ZFB") {
                     $(".payment-qrcode").show();
-                    $(".payment-qrcode").html('<img src="../statics/img/zfbpayQC.jpg" />');
+                    $(".payment-qrcode").html('<img src="../statics/img/zfbpayQC.png" />');
                 }
                 else {
                     $(".payment-qrcode").show();

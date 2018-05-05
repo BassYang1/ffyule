@@ -204,6 +204,7 @@
             var point = 0;
             var yxtime = $("#yxtime").val();
             var times = $("#txtTimes").val();
+			var usergroup = $("#usergroup").val();
             //if (/^\d+(\.\d{1,1})?$/.test(point)) {
             //    if (parseFloat($("#txtUserPoint").val()) < 13.1) {
             //        if (parseFloat(point) <= 0 || parseFloat(point) > parseFloat($("#txtUserPoint2").val())) {
@@ -220,7 +221,7 @@
                 $.ajax({
                     type: "post",
                     dataType: "json",
-                    data: "point=" + point + "&yxtime=" + yxtime + "&times=" + times,
+                    data: "point=" + point + "&yxtime=" + yxtime + "&times=" + times + "&usergroup=" + usergroup,
                     url: "/ajax/ajaxUser.aspx?oper=ajaxRegStr&clienttime=" + Math.random(),
                     success: function (data) {
                         if (data.result == "1") {
@@ -356,9 +357,9 @@
             <form class="tto-form mt30">
             <div class="input-group">
                 <label class="lab">开户类别：</label>
-                <select>
-                <option value="代理">代理</option>
-                <option value="会员">会员</option>
+                <select id="usergroup">
+                <option value="1">代理</option>
+                <option value="0">会员</option>
                 </select>
             </div>
             <div class="input-group">

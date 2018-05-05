@@ -98,7 +98,11 @@ namespace Lottery.WebApp
       if (Convert.ToDateTime(str1) > Convert.ToDateTime(str2))
         str1 = str2;
       string _wherestr1 = "" + "usercode like '%" + Strings.PadLeft(this.AdminId) + "%'";
-      if (!string.IsNullOrEmpty(str5))
+        if (this.AdminUserGroup == "1")
+        {
+            _wherestr1 += " and ( UserId = " + this.AdminId + " or (UserId <> " + this.AdminId + " and Code <> 14)) ";
+        }
+        if (!string.IsNullOrEmpty(str5))
         _wherestr1 = _wherestr1 + " and " + str4 + " like '%" + str5 + "%'";
       if (!string.IsNullOrEmpty(str3))
         _wherestr1 = _wherestr1 + " and Code =" + str3;

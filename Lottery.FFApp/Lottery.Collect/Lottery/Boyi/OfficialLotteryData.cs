@@ -65,6 +65,9 @@ namespace Lottery.Collect.Boyi
 
             //广西快三 gxk3
             ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateData), "gxk3");
+
+            //山东11选5 sd11x5
+            ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateData), "sd11x5");
         }
 
         /// <summary>
@@ -140,6 +143,7 @@ namespace Lottery.Collect.Boyi
                 case "gd11x5":
                 case "sh11x5":
                 case "jx11x5":
+                case "sd11x5":
                     return expect.Substring(0, 8) + "-" + expect.Substring(9);
                 case "p3":
                 case "3d":

@@ -64,7 +64,7 @@ namespace Lottery.Collect
             ThreadPool.QueueUserWorkItem(new WaitCallback(SysHg90sdData.UpdateData));
 
             //北京PK10
-            ThreadPool.QueueUserWorkItem(new WaitCallback(SysBjpk10Data.UpdateData));
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(SysBjpk10Data.UpdateData));
 
             //英国30秒赛车
             ThreadPool.QueueUserWorkItem(new WaitCallback(SysYfpk10Data.UpdateData));

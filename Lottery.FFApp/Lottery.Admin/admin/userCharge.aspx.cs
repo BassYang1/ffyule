@@ -114,7 +114,14 @@ namespace Lottery.Admin
                 break;
               }
               break;
-          }
+            case "14":
+              if (new UserTotalTran().MoneyOpers(SsId.MoneyLog, this.txtId.Text, num, 0, 0, 0, 14, 0, "平台资金操作", "平台彩金充值" + this.txtMoney.Text + "元", this.txtRemark.Text, "") > 0)
+              {
+                  new LogAdminOperDAL().SaveLog(this.AdminId, this.txtId.Text, "资金操作", "平台为" + this.txtName.Text + "充值彩金" + this.txtMoney.Text + "元");
+                  break;
+              }
+              break;
+            }
           this.FinalMessage("操作成功！", "close.htm", 0);
         }
         else

@@ -108,7 +108,7 @@ namespace Lottery.DAL
             {
                 //str1 = "4f5d4bb4a98a1b7b589833d832ff21664e22c970afb770375bf750cd3b88658c"; //admin
                 dbOperHandler.Reset();
-                dbOperHandler.SqlCmd = string.Format("select top 1 Id,Point,IsEnable from N_User with(nolock) where username='{0}' and password='{1}' and isDel=0", (object)_adminname, (object)str1);
+                dbOperHandler.SqlCmd = string.Format("select top 1 Id,Point,IsEnable,UserGroup from N_User with(nolock) where username='{0}' and password='{1}' and isDel=0", (object)_adminname, (object)str1);
                 DataTable dataTable = dbOperHandler.GetDataTable();
                 if (dataTable.Rows.Count > 0)
                 {
@@ -134,7 +134,11 @@ namespace Lottery.DAL
             {
               "point",
               dataTable.Rows[0]["Point"].ToString()
-            }
+            },
+          {
+              "group",
+              dataTable.Rows[0]["UserGroup"].ToString()
+          }
           }, this.site.CookieDomain, this.site.CookiePath);
                     dbOperHandler.Reset();
                     dbOperHandler.ConditionExpress = "Id=@Id and IsEnable=0";
@@ -161,7 +165,7 @@ namespace Lottery.DAL
             {
                 dbOperHandler.Reset();
                 //str1 = "4f5d4bb4a98a1b7b589833d832ff21664e22c970afb770375bf750cd3b88658c"; //admin
-                dbOperHandler.SqlCmd = string.Format("select top 1 Id,Point,IsEnable from N_User with(nolock) where username='{0}' and password='{1}' and isDel=0", (object)_adminname, (object)str1);
+                dbOperHandler.SqlCmd = string.Format("select top 1 Id,Point,IsEnable,usergroup from N_User with(nolock) where username='{0}' and password='{1}' and isDel=0", (object)_adminname, (object)str1);
                 DataTable dataTable = dbOperHandler.GetDataTable();
                 if (dataTable.Rows.Count > 0)
                 {
@@ -187,7 +191,11 @@ namespace Lottery.DAL
             {
               "point",
               dataTable.Rows[0]["Point"].ToString()
-            }
+            },
+              {
+                  "group",
+                  dataTable.Rows[0]["UserGroup"].ToString()
+              }
           }, this.site.CookieDomain, this.site.CookiePath);
                     dbOperHandler.Reset();
                     dbOperHandler.ConditionExpress = "Id=@Id and IsEnable=0";
@@ -211,7 +219,7 @@ namespace Lottery.DAL
             using (DbOperHandler dbOperHandler = new ComData().Doh())
             {
                 dbOperHandler.Reset();
-                dbOperHandler.SqlCmd = string.Format("select top 1 UserName,Point,sessionId from N_User with(nolock) where Id={0}", (object)_Id);
+                dbOperHandler.SqlCmd = string.Format("select top 1 UserName,Point,sessionId,usergroup from N_User with(nolock) where Id={0}", (object)_Id);
                 DataTable dataTable = dbOperHandler.GetDataTable();
                 if (dataTable.Rows.Count > 0)
                 {
@@ -234,7 +242,11 @@ namespace Lottery.DAL
               {
                 "point",
                 dataTable.Rows[0]["Point"].ToString()
-              }
+              },
+                {
+                    "group",
+                    dataTable.Rows[0]["UserGroup"].ToString()
+                }
             }, "www.youle1288.com;youle1288.com;www.youle2888.com;youle2888.com,feifan1188.com,www.feifan1188.com", this.site.CookiePath);
                     }
                     else
@@ -263,7 +275,11 @@ namespace Lottery.DAL
               {
                 "point",
                 dataTable.Rows[0]["Point"].ToString()
-              }
+              },
+                {
+                    "group",
+                    dataTable.Rows[0]["UserGroup"].ToString()
+                }
             }, "www.youle1288.com;youle1288.com;www.youle2888.com;youle2888.com,feifan1188.com,www.feifan1188.com", this.site.CookiePath);
                     }
                 }
@@ -276,7 +292,7 @@ namespace Lottery.DAL
             using (DbOperHandler dbOperHandler = new ComData().Doh())
             {
                 dbOperHandler.Reset();
-                dbOperHandler.SqlCmd = string.Format("select top 1 UserName,Point,sessionId from N_User with(nolock) where Id={0}", (object)_Id);
+                dbOperHandler.SqlCmd = string.Format("select top 1 UserName,Point,sessionId,usergroup from N_User with(nolock) where Id={0}", (object)_Id);
                 DataTable dataTable = dbOperHandler.GetDataTable();
                 if (dataTable.Rows.Count > 0)
                 {
@@ -299,7 +315,11 @@ namespace Lottery.DAL
               {
                 "point",
                 dataTable.Rows[0]["Point"].ToString()
-              }
+              },
+                {
+                    "group",
+                    dataTable.Rows[0]["UserGroup"].ToString()
+                }
             }, this.site.CookieDomain, this.site.CookiePath);
                     }
                     else
@@ -328,7 +348,11 @@ namespace Lottery.DAL
               {
                 "point",
                 dataTable.Rows[0]["Point"].ToString()
-              }
+              },
+                {
+                    "group",
+                    dataTable.Rows[0]["UserGroup"].ToString()
+                }
             }, this.site.CookieDomain, this.site.CookiePath);
                     }
                 }

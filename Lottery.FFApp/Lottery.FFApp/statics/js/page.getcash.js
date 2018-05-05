@@ -94,10 +94,10 @@ function ajaxList() {
                     $i("txcs").innerHTML = parseFloat(d.table[0].txcs).toFixed(2);
                     $i("txje").innerHTML = parseFloat(d.table[0].txje).toFixed(2);
                     // parseInt(d.table[0].maxgetcash) - parseInt(d.table[0].txcs);
-                    if(parseInt(d.table[0].txcs)<=5)
-                        $i("synum").innerHTML = 5 - parseInt(d.table[0].txcs);
-                    else
-                        $i("synum").innerHTML = 0;
+                    //if(parseInt(d.table[0].txcs)<=5)
+                    //    $i("synum").innerHTML = 5 - parseInt(d.table[0].txcs);
+                    //else
+                    //    $i("synum").innerHTML = 0;
                     maxgetcash = d.table[0].maxgetcash;
                 }
                 else {
@@ -140,10 +140,10 @@ function ajaxList() {
                 $i("txcs").innerHTML = parseFloat(t.txcs).toFixed(2);
                 $i("txje").innerHTML = parseFloat(t.txje).toFixed(2);
                 // parseInt(d.table[0].maxgetcash) - parseInt(d.table[0].txcs);
-                if (parseInt(t.txcs) <= 5)
-                    $i("synum").innerHTML = 5 - parseInt(t.txcs);
-                else
-                    $i("synum").innerHTML = 0;
+                //if (parseInt(t.txcs) <= 5)
+                //    $i("synum").innerHTML = 5 - parseInt(t.txcs);
+                //else
+                //    $i("synum").innerHTML = 0;
                 maxgetcash = t.maxgetcash;
             }
         }
@@ -188,7 +188,7 @@ function chkPost() {
                     emAlertSuccess(d.returnval);
                     $("#txtPayMoney").val("");
                     $("#txtNewPass1").val("");
-                    $i('moneyUpper').innerHTML = "";
+                    //$i('moneyUpper').innerHTML = "";
 //                    ajaxList();
                     closeload(index);
                 }

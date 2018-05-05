@@ -952,7 +952,9 @@
     <Content Include="statics\data\ios.rar" />
     <Content Include="statics\data\pc.rar" />
     <Content Include="statics\data\qqwry.dat" />
-    <Content Include="statics\data\UrlRewriter.config" />
+    <Content Include="statics\data\UrlRewriter.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="statics\log\hacker_20170504.log" />
     <Content Include="statics\log\hacker_20170505.log" />
     <Content Include="statics\log\hacker_20170512.log" />

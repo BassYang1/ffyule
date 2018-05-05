@@ -38,14 +38,15 @@
                 充值类型：</label>
             <asp:DropDownList ID="ddlType" runat="server" CssClass="sel">
                 <asp:ListItem Value="1">存款</asp:ListItem>
-                <asp:ListItem Value="2">取款</asp:ListItem>
-                <asp:ListItem Value="3">投注</asp:ListItem>
-                <asp:ListItem Value="5">派奖</asp:ListItem>
-                <asp:ListItem Value="4">返点</asp:ListItem>
-                <asp:ListItem Value="9">活动</asp:ListItem>
-                <asp:ListItem Value="6">撤单</asp:ListItem>
-                <asp:ListItem Value="12">分红</asp:ListItem>
-                <asp:ListItem Value="10">其他</asp:ListItem>
+                <asp:ListItem Value="2" Enabled="false">取款</asp:ListItem>
+                <asp:ListItem Value="3" Enabled="false">投注</asp:ListItem>
+                <asp:ListItem Value="5" Enabled="false">派奖</asp:ListItem>
+                <asp:ListItem Value="4" Enabled="false">返点</asp:ListItem>
+                <asp:ListItem Value="9" Enabled="false">活动</asp:ListItem>
+                <asp:ListItem Value="6" Enabled="false">撤单</asp:ListItem>
+                <asp:ListItem Value="12" Enabled="false">分红</asp:ListItem>
+                <asp:ListItem Value="14">彩金</asp:ListItem>
+                <asp:ListItem Value="10" Enabled="false">其他</asp:ListItem>
             </asp:DropDownList>
         </div>
         <div class="form-group">

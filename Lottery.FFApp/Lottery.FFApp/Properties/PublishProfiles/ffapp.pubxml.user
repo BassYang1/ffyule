@@ -115,25 +115,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>05/01/2018 14:52:31</publishTime>
+      <publishTime>05/05/2018 13:18:15</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>05/01/2018 14:52:26</publishTime>
+      <publishTime>05/05/2018 13:18:15</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
       <publishTime>06/15/2017 00:57:59</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>05/01/2018 14:52:20</publishTime>
+      <publishTime>05/05/2018 13:18:13</publishTime>
     </File>
     <File Include="bin/Lottery.FFApp.dll">
-      <publishTime>05/01/2018 14:52:32</publishTime>
+      <publishTime>05/05/2018 13:18:16</publishTime>
     </File>
     <File Include="bin/Lottery.FFCache.dll">
-      <publishTime>05/01/2018 14:52:23</publishTime>
+      <publishTime>05/05/2018 13:18:14</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>05/01/2018 14:52:20</publishTime>
+      <publishTime>05/05/2018 13:18:14</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -427,7 +427,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/data/UrlRewriter.config">
-      <publishTime>05/01/2018 14:09:44</publishTime>
+      <publishTime>05/01/2018 20:47:07</publishTime>
     </File>
     <File Include="statics/echarts.min.js">
       <publishTime>05/01/2018 14:21:57</publishTime>
@@ -436,7 +436,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/global.js">
-      <publishTime>05/01/2018 13:49:19</publishTime>
+      <publishTime>05/01/2018 20:29:50</publishTime>
     </File>
     <File Include="statics/img/1001.png">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -1597,7 +1597,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/15/2018 20:00:08</publishTime>
     </File>
     <File Include="statics/include/nav.html">
-      <publishTime>03/15/2018 15:27:08</publishTime>
+      <publishTime>05/05/2018 12:53:48</publishTime>
     </File>
     <File Include="statics/include/pop.html">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -1618,7 +1618,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/EM.jquery2.js">
-      <publishTime>05/01/2018 13:49:32</publishTime>
+      <publishTime>05/01/2018 14:53:14</publishTime>
     </File>
     <File Include="statics/js/EM.jquery3.js">
       <publishTime>05/01/2018 14:23:13</publishTime>
@@ -1663,13 +1663,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/page.charge.js">
-      <publishTime>03/21/2018 07:33:13</publishTime>
+      <publishTime>05/03/2018 23:21:52</publishTime>
     </File>
     <File Include="statics/js/page.contract.js">
       <publishTime>02/09/2018 22:29:59</publishTime>
     </File>
     <File Include="statics/js/page.getcash.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>05/04/2018 22:55:41</publishTime>
     </File>
     <File Include="statics/js/page.header.js">
       <publishTime>04/29/2018 07:47:20</publishTime>
@@ -1684,91 +1684,91 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/json/1001.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1003.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1004.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1005.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1007.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1010.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1011.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1012.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1013.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1015.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1016.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1018.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1019.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/1020.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/2002.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/2003.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/2004.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/2005.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/2006.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/3001.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/3002.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/3003.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/3004.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/3005.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/4001.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/4002.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/4003.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/4004.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/BigAndSmalldata.js">
-      <publishTime>05/01/2018 13:49:19</publishTime>
+      <publishTime>05/01/2018 20:29:50</publishTime>
     </File>
     <File Include="statics/json/json_0.00.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -1933,13 +1933,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/json/LotAndSmalldata.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/Lottery.js">
-      <publishTime>05/01/2018 13:49:18</publishTime>
+      <publishTime>05/01/2018 20:29:49</publishTime>
     </File>
     <File Include="statics/json/PlayBigdate.js">
-      <publishTime>05/01/2018 13:49:19</publishTime>
+      <publishTime>05/01/2018 20:29:50</publishTime>
     </File>
     <File Include="statics/layer/layer.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -2104,7 +2104,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/01/2018 13:37:45</publishTime>
     </File>
     <File Include="user/useradd.aspx">
-      <publishTime>04/06/2018 20:31:21</publishTime>
+      <publishTime>05/03/2018 20:44:36</publishTime>
     </File>
     <File Include="user/userAgentFH.aspx">
       <publishTime>04/01/2018 13:37:45</publishTime>
@@ -2122,10 +2122,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/01/2018 13:37:45</publishTime>
     </File>
     <File Include="WEB-INF/site.xml">
-      <publishTime>05/01/2018 13:49:19</publishTime>
+      <publishTime>05/01/2018 20:29:50</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/01/2018 14:52:53</publishTime>
+      <publishTime>05/05/2018 13:18:56</publishTime>
     </File>
   </ItemGroup>
 </Project>

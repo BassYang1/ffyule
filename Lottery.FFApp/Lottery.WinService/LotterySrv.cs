@@ -101,6 +101,7 @@ namespace Lottery.WinService
             TimeData.Stop();
         }
         
+        /*
         /// <summary>
         /// 每天凌晨3点派发前一天契约工资
         /// </summary>
@@ -229,5 +230,6 @@ namespace Lottery.WinService
                 log.Error(ex);
             }
         }
+         * */
     }
 }

@@ -40,7 +40,9 @@ namespace Lottery.DAL
           return this.UserOpersCmd(ssId, userId, Money, Money, "Change", logLotteryId, logPlayId, logSysId, logCode, logIsSoft, messageTitle, messageContent, reMark, STime2);
         case 12:
           return this.UserOpersCmd(ssId, userId, Money, Money, "AgentFH", logLotteryId, logPlayId, logSysId, logCode, logIsSoft, messageTitle, messageContent, reMark, STime2);
-        default:
+        case 14:
+          return this.UserOpersCmd(ssId, userId, Money, Money, "Benifit", logLotteryId, logPlayId, logSysId, logCode, logIsSoft, messageTitle, messageContent, reMark, STime2);
+            default:
           return 0;
       }
     }

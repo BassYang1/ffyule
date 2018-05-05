@@ -80,7 +80,7 @@ namespace Lottery.Collect
 		public static string HttpGet(string url, Encoding enc)
 		{
 			HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-			httpWebRequest.Timeout = 10000;
+			httpWebRequest.Timeout = 5000;
 			httpWebRequest.Proxy = null;
 			httpWebRequest.Method = "GET";
 			httpWebRequest.ContentType = "application/x-www-from-urlencoded";

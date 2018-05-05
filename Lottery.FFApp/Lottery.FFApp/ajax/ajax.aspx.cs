@@ -710,12 +710,12 @@ namespace Lottery.WebApp
                         if (!string.IsNullOrEmpty(str1))
                         {
                             string decryptKey = "qazwsxed";
-                            if (str1.Length != 12)
-                            {
-                                this._response = this.JsonResult(0, "对不起，该注册链接不正确！");
-                            }
-                            else
-                            {
+                            //if (str1.Length < 20)
+                            //{
+                            //    this._response = this.JsonResult(0, "对不起，该注册链接不正确！");
+                            //}
+                            //else
+                            //{
                                 string str2 = this.DecryptDES(str1.Replace("@", "+"), decryptKey);
                                 string str3 = str2.Substring(0, str2.IndexOf('@'));
                                 this.doh.Reset();
@@ -735,6 +735,13 @@ namespace Lottery.WebApp
                                         int num = new UserDAL().Register(str3, _UserName, _Password, Convert.ToDecimal(str4) * new Decimal(10));
                                         if (num > 0)
                                         {
+                                            string regUrl = string.Format("register.aspx?u={0}", str1);
+                                            this.doh.Reset();
+                                            this.doh.ConditionExpress = string.Format("Url LIKE '%{0}'", regUrl);
+                                            this.doh.AddConditionParameter("@UserName", (object)_UserName.Trim());
+                                            string userGroup = this.doh.GetField("N_UserRegLink", "UserGroup").ToString();
+                                            userGroup = string.IsNullOrEmpty(userGroup) ? "0" : userGroup;
+
                                             this.doh.Reset();
                                             this.doh.ConditionExpress = "id=@id";
                                             this.doh.AddConditionParameter("@id", (object)str3);
@@ -742,7 +749,7 @@ namespace Lottery.WebApp
                                             this.doh.Reset();
                                             this.doh.ConditionExpress = "id=" + (object)num;
                                             this.doh.AddFieldItem("UserCode", (object)str5);
-                                            this.doh.AddFieldItem("UserGroup", (object)"0");
+                                            this.doh.AddFieldItem("UserGroup", userGroup);
                                             this.doh.Update("N_User");
                                             new LogSysDAL().Save("会员管理", "Id为" + (object)num + "的会员注册成功！");
                                             this._response = this.JsonResult(1, "会员注册成功");
@@ -757,7 +764,7 @@ namespace Lottery.WebApp
                         }
                         else
                             this._response = this.JsonResult(0, "对不起，该注册链接不正确！");
-                    }
+                    //}
                 }
             }
             catch (Exception ex)

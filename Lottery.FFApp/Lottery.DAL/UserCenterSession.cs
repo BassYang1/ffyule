@@ -27,6 +27,7 @@ namespace Lottery.DAL
         protected string AdminScore = "0";
         protected string AdminPic = "1";
         protected string AdminPoint = "1";
+        protected string AdminUserGroup = "0";
         public string loStr = "";
         public string StartTime = DateTime.Now.AddDays(-10.0).ToString("yyyy-MM-dd") + " 00:00:00";
         public string EndTime = DateTime.Now.AddDays(1.0).ToString("yyyy-MM-dd") + " 00:00:00";
@@ -74,6 +75,7 @@ namespace Lottery.DAL
                 this.AdminName = Cookie.GetValue(this.site.CookiePrev + "WebApp", "name");
                 this.AdminCookiess = Cookie.GetValue(this.site.CookiePrev + "WebApp", "cookiess");
                 this.AdminPoint = Cookie.GetValue(this.site.CookiePrev + "WebApp", "point");
+                this.AdminUserGroup = Cookie.GetValue(this.site.CookiePrev + "WebApp", "group");
                 if (this.AdminId != "0")
                     flag = true;
             }
@@ -86,6 +88,7 @@ namespace Lottery.DAL
             {
                 this.AdminId = this.Str2Str(Cookie.GetValue(this.site.CookiePrev + "WebApp", "id"));
                 this.AdminCookiess = Cookie.GetValue(this.site.CookiePrev + "WebApp", "cookiess");
+                this.AdminUserGroup = Cookie.GetValue(this.site.CookiePrev + "WebApp", "group");
                 if (this.AdminId != "0" && this.AdminCookiess != "")
                 {
                     this.doh.Reset();

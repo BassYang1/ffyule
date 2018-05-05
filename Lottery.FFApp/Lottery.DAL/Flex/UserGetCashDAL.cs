@@ -168,7 +168,8 @@ namespace Lottery.DAL.Flex
                 //每日最大提款金额
                 decimal minCharge = Convert.ToDecimal(dataTable1.Rows[0]["MinCharge"]);
                 decimal maxCharge = Convert.ToDecimal(dataTable1.Rows[0]["MaxCharge"]);
-                maxCharge = maxCharge > 20000M ? 20000M : maxCharge;
+                minCharge = minCharge < 100M ? 100M : minCharge;
+                maxCharge = maxCharge > 100000M ? 100000M : maxCharge;
 
                 if (Convert.ToDecimal(Money) > maxCharge || Convert.ToDecimal(Money) < minCharge)
                 {
@@ -181,7 +182,7 @@ namespace Lottery.DAL.Flex
 
                 //充值消费额度
                 double betPerCheck = Convert.ToDouble(dataTable1.Rows[0]["BetPerCheck"]);
-                betPerCheck = betPerCheck < 50.0 ? 50.0 : betPerCheck;
+                betPerCheck = betPerCheck < 200.0 ? 200.0 : betPerCheck;
 
                 //绑卡时间提现期限, 至少绑定24小时，才能提现
                 int bindTime = Convert.ToInt32(dataTable1.Rows[0]["BindTime"]);
@@ -222,11 +223,11 @@ namespace Lottery.DAL.Flex
                 }
 
                 //检查绑定时间
-                DateTime addTime = Convert.ToDateTime(dataTable5.Rows[0]["AddTime"]);
-                if ((DateTime.Now - addTime).TotalHours <= bindTime)
-                {
-                    return string.Format("您的银行卡绑定还未满{0}小时", bindTime);
-                }
+                //DateTime addTime = Convert.ToDateTime(dataTable5.Rows[0]["AddTime"]);
+                //if ((DateTime.Now - addTime).TotalHours <= bindTime)
+                //{
+                //    return string.Format("您的银行卡绑定还未满{0}小时", bindTime);
+                //}
 
                 //今天的充值记录
                 dbOperHandler.Reset();

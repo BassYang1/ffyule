@@ -38,8 +38,8 @@ namespace Lottery.Collect
             ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThP3_Fun));
 
             //系统彩
-            TimeData.timerSystemLot.Elapsed += new ElapsedEventHandler(TimeData.timerSystemLot_Elapsed);
-            ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThSystemLot_Fun));
+            //TimeData.timerSystemLot.Elapsed += new ElapsedEventHandler(TimeData.timerSystemLot_Elapsed);
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(TimeData.ThSystemLot_Fun));
 
             /*
             //新德里1.5分彩
@@ -445,43 +445,43 @@ namespace Lottery.Collect
         /// <summary>
         /// 系统彩
         /// </summary>
-        private static System.Timers.Timer timerSystemLot = new System.Timers.Timer(5000.0);
+        //private static System.Timers.Timer timerSystemLot = new System.Timers.Timer(5000.0);
 
         /// <summary>
         /// 系统彩, 锁
         /// </summary>
-        private static object obj_locSystemLot = new object();
+        //private static object obj_locSystemLot = new object();
 
 
-        /// <summary>
-        /// 系统彩
-        /// </summary>
-        /// <param name="stateInfo"></param>
-        private static void ThSystemLot_Fun(object stateInfo)
-        {
-            TimeData.timerSystemLot_Elapsed(null, null);
-            TimeData.timerSystemLot.Start();
-        }
+        ///// <summary>
+        ///// 系统彩
+        ///// </summary>
+        ///// <param name="stateInfo"></param>
+        //private static void ThSystemLot_Fun(object stateInfo)
+        //{
+        //    TimeData.timerSystemLot_Elapsed(null, null);
+        //    TimeData.timerSystemLot.Start();
+        //}
 
-        /// <summary>
-        /// 系统彩
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void timerSystemLot_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            try
-            {
-                lock (TimeData.obj_locSystemLot)
-                {
-                    SystemLotteryData.UpdateLottery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.ErrorFormat("采集重庆时时彩异常: {0}", ex);
-            }
-        }
+        ///// <summary>
+        ///// 系统彩
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private static void timerSystemLot_Elapsed(object sender, ElapsedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        lock (TimeData.obj_locSystemLot)
+        //        {
+        //            SystemLotteryData.UpdateLottery();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.ErrorFormat("采集重庆时时彩异常: {0}", ex);
+        //    }
+        //}
         #endregion
 
         /*
