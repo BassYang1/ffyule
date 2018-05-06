@@ -1,4 +1,74 @@
-﻿function AutoCalcBet() {
+﻿function CalcSingleOrderItem() {
+    var rowsLen = $(".numbers").length;
+    var orderItem = '';
+    var selectCount = 0;
+
+    for (var i = 0; i < rowsLen; i++) {
+        selectCount = 0;
+
+        $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+            orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+            selectCount++;
+        });
+        orderItem = orderItem.substring(0, orderItem.length - 1);
+    }
+
+    return orderItem;
+}
+
+function CalcSingleOrderItem2() {
+    var rowsLen = $(".numbers").length;
+    var orderItem = '';
+    var selectCount = 0;
+
+    for (var i = 0; i < rowsLen; i++) {
+        selectCount = 0;
+
+        $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+            orderItem += $(dom).attr("number") + "_";
+            selectCount++;
+        });
+
+        orderItem = orderItem.substring(0, orderItem.length - 1);
+
+        if (i != rowsLen - 1) {
+            orderItem += ',';
+        }
+
+        if(selectCount == 0){
+            return "";
+        }
+    }
+
+    return orderItem;
+}
+
+function CalcSingleOrderItem3() {
+    var rowsLen = $(".numbers").length;
+    var orderItem = '';
+    var selectCount = 0;
+
+    for (var i = 0; i < rowsLen; i++) {
+        selectCount = 0;
+
+        $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+            selectCount++;
+            orderItem += $(dom).attr("number") + "_";
+        });
+
+        if (selectCount != 0) {
+            orderItem = orderItem.substring(0, orderItem.length - 1);
+        }
+
+        if (i != rowsLen - 1) {
+            orderItem += ',';
+        }
+    }
+
+    return orderItem;
+}
+
+function AutoCalcBet() {
     var rowsLen = $(".numbers").length;
     var orderItem = '';
     var selectCount = '';
@@ -15,6 +85,156 @@
     }
     PlayPos = PlayPos.substring(0, PlayPos.length - 1);
     switch (PlayCode) {
+        case "H_ZMPTX1":
+        case "H_ZMPTX2":
+        case "H_ZMPTX3":
+        case "H_ZMPTX4":
+        case "H_ZMPTX5":
+            SingleOrderItem = CalcSingleOrderItem();
+            Znum = RedCommon4(SingleOrderItem, parseInt(PlayCode.replace("H_ZMPTX", "")));
+            break;
+        case "H_ZMP1Z1":
+        case "H_ZMP2Z2":
+        case "H_ZMP3Z2X3":
+        case "H_ZMP3Z3":
+        case "H_ZMP4Z4":
+            var msg = "";
+            var balls = 0;
+            SingleOrderItem = CalcSingleOrderItem();
+            Znum = RedCommon4(SingleOrderItem, balls);
+            var selectedNum = SingleOrderItem.split("_").length;
+            Znum = 0;
+
+            switch (PlayCode) {
+                case "H_ZMP1Z1": balls = 0;
+                    balls = 1;
+                    break;
+                case "H_ZMP2Z2":
+                    balls = 2;
+                    break;
+                case "H_ZMP3Z2X3":
+                    balls = 3;
+                    break;
+                case "H_ZMP3Z3":
+                    balls = 3;
+                    if (selectedNum > 15) {
+                        msg = "注数过多，只允许选择15个球";
+                    }
+                    break;
+                case "H_ZMP4Z4":
+                    balls = 4;
+                    if (selectedNum > 15) {
+                        msg = "注数过多，只允许选择15个球";
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            if (msg != "") {
+                emAlert(msg);
+            }
+            else {
+                Znum = RedCommon4(SingleOrderItem, balls);
+            }
+
+            break;
+        case "H_BZ5":
+        case "H_BZ6":
+        case "H_BZ7":
+        case "H_BZ8":
+        case "H_BZ9":
+        case "H_BZ10":
+        case "H_BZ11":
+        case "H_BZ12":
+        case "H_BZ15":
+            var msg = "";
+            var balls = parseInt(PlayCode.replace("H_BZ", ""));
+            SingleOrderItem = CalcSingleOrderItem();
+            var selectedNum = SingleOrderItem.split("_").length;
+            Znum = 0;
+
+            switch (balls) {
+                case 5:
+                case 6:
+                case 7:
+                    if (selectedNum > 11) {
+                        msg = "注数过多，只允许选择11个球";
+                    }
+                    break;
+                case 8:
+                case 9:
+                    if (selectedNum > 12) {
+                        msg = "注数过多，只允许选择12个球";
+                    }
+                    break;
+                case 10:
+                    if (selectedNum > 13) {
+                        msg = "注数过多，只允许选择13个球";
+                    }
+                    break;
+                case 11:
+                    if (selectedNum > 14) {
+                        msg = "注数过多，只允许选择14个球";
+                    }
+                    break;
+                case 12:
+                    if (selectedNum > 15) {
+                        msg = "注数过多，只允许选择15个球";
+                    }
+                    break;
+                case 15:
+                    if (selectedNum > 17) {
+                        msg = "注数过多，只允许选择17个球";
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            if (msg != "") {
+                emAlert(msg);
+            }
+            else {
+                Znum = RedCommon4(SingleOrderItem, balls);
+            }
+
+            break;
+        case "H_ZMDX":
+        case "H_ZMDS":
+        case "H_ZMHSDX":
+        case "H_ZMHSDS":
+        case "H_ZMSBH":
+        case "H_ZMSBLAN":
+        case "H_ZMSBLV":
+        case "H_ZMWSDX":
+            SingleOrderItem = CalcSingleOrderItem3();
+            Znum = RedCommon3(SingleOrderItem);
+            break;
+        case "H_TMBT":
+        case "H_TMBB":
+        case "H_TMBBB":
+            SingleOrderItem = CalcSingleOrderItem2();
+            Znum = RedCommon2(SingleOrderItem);
+            break;
+        case "H_TM": //六合彩，特码
+        case "H_TMDX":
+        case "H_TMDS":
+        case "H_TMHDX":
+        case "H_TMHDS":
+        case "H_TMWDX":
+        case "H_TMWDS":
+        case "H_TMTS":
+        case "H_TMWS":
+        case "H_TMSB":
+        case "H_TMSX":
+        case "H_SXZX":
+        case "H_SXZXDS":
+        case "H_ZHDX":
+        case "H_ZHDS":
+            SingleOrderItem = CalcSingleOrderItem();
+            Znum = RedCommon(SingleOrderItem);
+            break;
         case "P_DX_W": //时时彩，猜大小
         case "P_DX_Q":
         case "P_DX_B":
@@ -72,11 +292,60 @@
             SingleOrderItem = orderItem;
             Znum = RedK3HZ(SingleOrderItem);
             break;
+        case "K_32BT": //二不同直选
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = RedK32BT(SingleOrderItem);
+            break;
+        case "K_33BT":
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = RedK33BT(SingleOrderItem);
+            break;
+        case "K_33LTX": //三连号通选
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = RedK33LTX(SingleOrderItem);
+            break;
+        case "K_3STTX":
+        case "K_32TTX":
+            for (var i = 0; i < rowsLen; i++) {
+                var selectCount = 0;
+                $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
+                    orderItem += $(dom).attr("number") + "_"; //当成多注来处理
+                    selectCount++;
+                });
+                orderItem = orderItem.substring(0, orderItem.length - 1);
+            }
+            SingleOrderItem = orderItem;
+            Znum = 1;
+            break;
         case "P_5ZX120":
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -91,7 +360,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -106,7 +375,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -121,7 +390,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -136,7 +405,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -151,7 +420,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -169,7 +438,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -185,7 +454,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -204,7 +473,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -223,7 +492,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -242,7 +511,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -330,7 +599,6 @@
                 Znum = RedZu6(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 3);
             else
                 Znum = RedZu6(SingleOrderItem);
-
             break;
         case "P_2Z2_L":
         case "P_2Z2_R":
@@ -350,7 +618,6 @@
                 Znum = RedZu2(SingleOrderItem) * Combine((PlayPos.split('1')).length - 1, 2);
             else
                 Znum = RedZu2(SingleOrderItem);
-
             break;
 
         case "P_5DS":
@@ -443,7 +710,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -465,7 +732,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -487,7 +754,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -509,7 +776,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -535,7 +802,7 @@
         case "R_3QTWS":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
             }
@@ -552,7 +819,7 @@
         case "R_3QTTS":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -572,7 +839,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -593,7 +860,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -612,7 +879,7 @@
         case "R_2ZHE":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -631,7 +898,7 @@
             for (var i = 0; i < rowsLen; i++) {
                 var selectCount = 0;
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                     selectCount++;
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
@@ -731,7 +998,7 @@
         case "P_5QJ3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -747,7 +1014,7 @@
         case "P_4QJ3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -764,7 +1031,7 @@
         case "P_3QJ2_R":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -780,7 +1047,7 @@
         case "P_5QW3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -796,7 +1063,7 @@
         case "P_4QW3":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -812,7 +1079,7 @@
         case "P_3QW2_L":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {
@@ -828,7 +1095,7 @@
         case "P_3QW2_R":
             for (var i = 0; i < rowsLen; i++) {
                 $($(".numbers").eq(i).find("span[number].selected")).each(function (j, dom) {
-                    orderItem += $(dom).attr("number") + "_";;
+                    orderItem += $(dom).attr("number") + "_";
                 });
                 orderItem = orderItem.substring(0, orderItem.length - 1);
                 if (i != rowsLen - 1) {

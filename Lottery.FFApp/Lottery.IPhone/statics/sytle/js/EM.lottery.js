@@ -29,7 +29,7 @@ function ajaxBigType() {
                 }
             }
             else {
-                if (id == 1002 || id == 2001 || id == 3001 || id == 4001 || title == "和值") {
+                if (id == 1002 || id == 2001 || id == 3001 || id == 4001 || title == "和值" || title == "正码") {
                     PlayBigId = id;
                     PlayBigName = lotteryData.table[i].title;
                     $i("playTypeName").innerHTML = title;
@@ -84,8 +84,13 @@ function ajaxSmallType(bigid) {
             var str = ""; str2 = lotteryData.table[k].table2;
             for (i = 0; i < str2.length; i++) {
 
-                var id = str2[i].id; title0 = str2[i].title0; title = str2[i].title; wznum = str2[i].wznum; tplayRandoms = str2[i].randoms; code = str2[i].title2; maxnum = str2[i].maxnum;
+                var id = str2[i].id; title0 = str2[i].title0; title = str2[i].title; wznum = str2[i].wznum; tplayRandoms = str2[i].randoms; code = str2[i].title2; maxnum = str2[i].maxnum; type = str2[i].type;
                 minbouns = str2[i].minbonus;
+
+                if (type == "") {
+                    continue;
+                }
+
                 if (getCookie("PlayId") != null) {
                     if (id == getCookie("PlayId")) {
                         PlayId = id;

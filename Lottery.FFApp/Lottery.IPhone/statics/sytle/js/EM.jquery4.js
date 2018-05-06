@@ -1,4 +1,12 @@
-﻿//11选5, 任选拖胆
+﻿function randomNum(minNum, maxNum) {
+    var r = Math.random() * (maxNum - minNum);
+    var re = Math.round(r + minNum);
+    re = Math.max(Math.min(re, maxNum), minNum)
+
+    return re;
+}
+
+//11选5, 任选拖胆
 function Red11X5TD(balls, type) {
     if (balls != "") {
         var strArray1 = balls.split(",");
@@ -41,6 +49,71 @@ function RedK3HZ(balls) {
         var strArray2 = balls.split("_");
         return strArray2.length;
     }
+    return 0;
+}
+
+//普通记录
+function RedCommon(balls) {
+    if (balls != "") {
+        var strArray2 = balls.split("_");
+        return strArray2.length;
+    }
+    return 0;
+}
+
+//普通记录
+function RedCommon2(balls) {
+    var num = 0;
+    if (balls != "") {
+        var strArray1 = balls.split(",");
+        num = 1;
+
+        for (var i = 0; i < strArray1.length; i++) {
+            var strArray2 = strArray1[i].split("_");
+            num *= strArray2.length;
+        }
+    }
+
+    return num;
+}
+
+//普通记录
+function RedCommon3(balls) {
+    var num = 0;
+    if (balls != "") {
+        var strArray1 = balls.split(",");
+
+        for (var i = 0; i < strArray1.length; i++) {
+            if (strArray1[i] != "") {
+                var strArray2 = strArray1[i].split("_");
+                num += strArray2.length;
+            }
+        }
+    }
+
+    return num;
+}
+
+//组合数
+function RedCommon4(balls, len) {
+    var num = 1;
+    var repeat = 1;
+
+    if (balls != "") {
+        var strArray2 = balls.split("_");
+
+        if (strArray2.length < len) {
+            return 0;
+        }
+        
+        for (var i = 0; i < len; i++) {
+            num *= (strArray2.length - i);
+            repeat *= (len - i);
+        }
+
+        return num / repeat;
+    }
+
     return 0;
 }
 

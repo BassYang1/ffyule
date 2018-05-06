@@ -314,7 +314,7 @@ function step21Post() {
                     msg = "请使用支付宝扫码付款";
                 }
                 else {
-                    msg = "中国工商银行(世纪城支行) " + "<font color='red'>6236681460013254491 唐先跃</font>";
+                    msg = "建设银行 " + "<font color='red'>6236681460013254491 唐先跃</font>";
                 }
 
                 var info = '<li><span class="si-name">充值银行：</span> <span class="si-con"><i class="icon-bank ' + bankCss + '"></i></span></li>';
@@ -373,7 +373,7 @@ function step2Post() {
             $("#payHistory").show();
 
 
-            if (typeId == 8) {
+            if (ucode == "commonpay") {
 
                 if (bank == "WX") {
                     $(".payment-qrcode").show();
