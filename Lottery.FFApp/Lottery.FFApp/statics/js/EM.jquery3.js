@@ -85,6 +85,121 @@ function AutoCalcBet() {
     }
     PlayPos = PlayPos.substring(0, PlayPos.length - 1);
     switch (PlayCode) {
+        case "H_ZMPTX1":
+        case "H_ZMPTX2":
+        case "H_ZMPTX3":
+        case "H_ZMPTX4":
+        case "H_ZMPTX5":
+            SingleOrderItem = CalcSingleOrderItem();
+            Znum = RedCommon4(SingleOrderItem, parseInt(PlayCode.replace("H_ZMPTX", "")));
+            break;
+        case "H_ZMP1Z1":
+        case "H_ZMP2Z2":
+        case "H_ZMP3Z2X3":
+        case "H_ZMP3Z3":
+        case "H_ZMP4Z4":
+            var msg = "";
+            var balls = 0;
+            SingleOrderItem = CalcSingleOrderItem();
+            Znum = RedCommon4(SingleOrderItem, balls);
+            var selectedNum = SingleOrderItem.split("_").length;
+            Znum = 0;
+
+            switch (PlayCode) {
+                case "H_ZMP1Z1": balls = 0;
+                    balls = 1;
+                    break;
+                case "H_ZMP2Z2":
+                    balls = 2;
+                    break;
+                case "H_ZMP3Z2X3":
+                    balls = 3;
+                    break;
+                case "H_ZMP3Z3":
+                    balls = 3;
+                    if (selectedNum > 15) {
+                        msg = "注数过多，只允许选择15个球";
+                    }
+                    break;
+                case "H_ZMP4Z4":
+                    balls = 4;
+                    if (selectedNum > 15) {
+                        msg = "注数过多，只允许选择15个球";
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            if (msg != "") {
+                emAlert(msg);
+            }
+            else {
+                Znum = RedCommon4(SingleOrderItem, balls);
+            }
+
+            break;
+        case "H_BZ5":
+        case "H_BZ6":
+        case "H_BZ7":
+        case "H_BZ8":
+        case "H_BZ9":
+        case "H_BZ10":
+        case "H_BZ11":
+        case "H_BZ12":
+        case "H_BZ15":
+            var msg = "";
+            var balls = parseInt(PlayCode.replace("H_BZ", ""));
+            SingleOrderItem = CalcSingleOrderItem();
+            var selectedNum = SingleOrderItem.split("_").length;
+            Znum = 0;
+
+            switch (balls) {
+                case 5:
+                case 6:
+                case 7:
+                    if (selectedNum > 11) {
+                        msg = "注数过多，只允许选择11个球";
+                    }
+                    break;
+                case 8:
+                case 9:
+                    if (selectedNum > 12) {
+                        msg = "注数过多，只允许选择12个球";
+                    }
+                    break;
+                case 10:
+                    if (selectedNum > 13) {
+                        msg = "注数过多，只允许选择13个球";
+                    }
+                    break;
+                case 11:
+                    if (selectedNum > 14) {
+                        msg = "注数过多，只允许选择14个球";
+                    }
+                    break;
+                case 12:
+                    if (selectedNum > 15) {
+                        msg = "注数过多，只允许选择15个球";
+                    }
+                    break;
+                case 15:
+                    if (selectedNum > 17) {
+                        msg = "注数过多，只允许选择17个球";
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            if (msg != "") {
+                emAlert(msg);
+            }
+            else {
+                Znum = RedCommon4(SingleOrderItem, balls);
+            }
+
+            break;
         case "H_ZMDX":
         case "H_ZMDS":
         case "H_ZMHSDX":

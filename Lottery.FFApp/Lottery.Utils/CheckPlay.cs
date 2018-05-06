@@ -40,6 +40,32 @@ namespace Lottery.Utils
                 LotteryNumber.Split(',');
                 switch (sType)
                 {
+                    case "H_ZMP1Z1":
+                        return CheckHK3_Start.ZMP1Z1(LotteryNumber, CheckNumber);
+                    case "H_ZMP2Z2":
+                        return CheckHK3_Start.ZMP2Z2(LotteryNumber, CheckNumber);
+                    case "H_ZMP3Z2X3":
+                        return CheckHK3_Start.ZMP3Z2X3(LotteryNumber, CheckNumber);
+                    case "H_ZMP3Z3":
+                        return CheckHK3_Start.ZMP3Z3(LotteryNumber, CheckNumber);
+                    case "H_ZMP4Z4":
+                        return CheckHK3_Start.ZMP4Z4(LotteryNumber, CheckNumber);
+                    case "H_BZ5":
+                    case "H_BZ6":
+                    case "H_BZ7":
+                    case "H_BZ8":
+                    case "H_BZ9":
+                    case "H_BZ10":
+                    case "H_BZ11":
+                    case "H_BZ12":
+                    case "H_BZ15":
+                        return CheckHK3_Start.BZ(LotteryNumber, CheckNumber, Convert.ToInt32(sType.Replace("H_BZ", "")));
+                    case "H_ZMPTX1":
+                    case "H_ZMPTX2":
+                    case "H_ZMPTX3":
+                    case "H_ZMPTX4":
+                    case "H_ZMPTX5":
+                        return CheckHK3_Start.ZMPTX(LotteryNumber, CheckNumber, Convert.ToInt32(sType.Replace("H_ZMPTX", "")));
                     case "H_ZMWSDX":
                         return CheckHK3_Start.ZMWSDX(LotteryNumber, CheckNumber);
                     case "H_ZMSBH":
