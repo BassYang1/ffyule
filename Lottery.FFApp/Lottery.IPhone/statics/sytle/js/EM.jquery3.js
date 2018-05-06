@@ -2107,5 +2107,5 @@ function AutoCalcBet() {
             break;
     }
     $i("fromBuyNumberCount").innerHTML = SingleCount = Znum;
-    $i("fromBuyPriceTotal").innerHTML = SingleTotal = parseFloat(parseInt(Znum) * PriceTimes * Price * 2 * parseFloat(PricePos)).toFixed(4);
+    $i("fromBuyPriceTotal").innerHTML = SingleTotal = parseFloat(parseInt(Znum) * PriceTimes * Price * parseFloat(PricePos)).toFixed(4);
 }

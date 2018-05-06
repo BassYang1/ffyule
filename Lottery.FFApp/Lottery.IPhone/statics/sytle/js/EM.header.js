@@ -14,8 +14,8 @@ var PlayExample;
 var PlayHelp;
 var playPoints;
 var PlayPos = "";
-var Price = 1; //圆角分
-var PriceName = "元";
+var Price = 1; //圆角分类型
+var PriceName = "元"; //圆角分类型
 var PlayMaxNum = 100;
 var Nmbtype = 1;
 var PriceTimes = 1; //倍数
@@ -38,7 +38,7 @@ var ZhSumCount;
 var SelectedData = [];
 var StartSn = "";
 var NmbZH = 1;
-var PricePos = 0.5;//系数，表示单倍还是双倍 
+var PricePos = 1; //系数，表示1元还是2元模式 
 
 $(document).ready(function () {
     if (getCookie("price") != null) {

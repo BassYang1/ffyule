@@ -114,7 +114,7 @@ function SelectPoints() {
         if (PointJsonData.table[i].SmallTypeId == PlayId) {
             for (j = 0; j <= PointJsonData.table[i].points.length - 1; j++) {
                 var no = PointJsonData.table[i].points[j].no;
-                var bonus = PointJsonData.table[i].points[j].bonus * parseFloat(PricePos) * 2;
+                var bonus = PointJsonData.table[i].points[j].bonus * parseFloat(PricePos);
                 var point2 = PointJsonData.table[i].points[j].point;
                 var value2 = point2 + '/' + bonus;
                 if (selno == no) {
@@ -138,7 +138,7 @@ function fromTimesChange() {
     if (strPrice == null)
         strPrice = "1";
     if (!isNaN(PriceTimes)) {
-        SingleTotal = (eval(SingleCount) * eval(PriceTimes) * eval(strPrice) * 2 * parseFloat(PricePos)).toFixed(4);
+        SingleTotal = (eval(SingleCount) * eval(PriceTimes) * eval(strPrice) * parseFloat(PricePos)).toFixed(4);
         $("#fromBuyPriceTotal").html(SingleTotal);
     } else {
         emAlert('倍数必须为数字');

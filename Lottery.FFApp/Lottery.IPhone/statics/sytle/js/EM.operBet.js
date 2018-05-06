@@ -200,8 +200,8 @@ function CreateList() {
 
         SumOrder += 1;
         SumCount += parseInt(ArrayOrder[k].Num);
-        SumTotal += parseFloat(PriceTimes * parseInt(ArrayOrder[k].Num) * Price * 2 * parseFloat(PricePos));
-        PriceTotal += parseFloat(parseInt(ArrayOrder[k].Num) * Price * 2 * parseFloat(PricePos));
+        SumTotal += parseFloat(PriceTimes * parseInt(ArrayOrder[k].Num) * Price * parseFloat(PricePos));
+        PriceTotal += parseFloat(parseInt(ArrayOrder[k].Num) * Price * parseFloat(PricePos));
     }
     $("#ajaxList").html(str);
     $("#sumOrder").html(SumOrder);
@@ -841,7 +841,7 @@ function ajaxQuickBetView() {
         "balls": SingleOrderItem,
         "strPos": PlayPos,
         "PlayName": PlayName,
-        "alltotal": Price * SingleCount * PriceTimes * 2 * parseFloat(PricePos)
+        "alltotal": Price * SingleCount * PriceTimes * parseFloat(PricePos)
     };
 
     ArrayOrder.push(json);
