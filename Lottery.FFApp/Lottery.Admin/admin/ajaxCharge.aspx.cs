@@ -39,6 +39,9 @@ namespace Lottery.Admin
         case "ajaxGetCashCheck":
           this.ajaxGetCashCheck();
           break;
+        case "ajaxGetChargeCheck":
+          this.ajaxGetChargeCheck();
+          break;
         case "ajaxStates":
           this.ajaxStates();
           break;
@@ -351,6 +354,42 @@ namespace Lottery.Admin
       dataTable.Dispose();
     }
 
+    private void ajaxGetChargeCheck()
+    {
+        string str1 = this.q("d1");
+        string str2 = this.q("d2");
+        string str3 = this.q("u"); //用户账号
+        int num1 = this.Int_ThisPage();
+        int num2 = this.Str2Int(this.q("pagesize"), 20);
+
+        this.doh.Reset();
+        this.doh.ConditionExpress = "UCode='commonpay' AND ISNULL(IsUsed, 0) = 0";
+        int chargeSetId = (int)this.doh.GetField("Sys_ChargeSet", "id");
+
+        string whereStr = "state=0 AND bankId=" + chargeSetId;
+
+        if (str1.Trim().Length == 0)
+            str1 = this.StartTime;
+        if (str2.Trim().Length == 0)
+            str2 = this.EndTime;
+        if (Convert.ToDateTime(str1) > Convert.ToDateTime(str2))
+            str1 = str2;
+        if (str1.Trim().Length > 0 && str2.Trim().Length > 0)
+            whereStr = whereStr + " and STime >='" + str1 + "' and STime <'" + str2 + "'";
+        if (!string.IsNullOrEmpty(str3))
+            whereStr = whereStr + " and userName  like '%" + str3 + "%'";
+
+        this.doh.Reset();
+        this.doh.ConditionExpress = whereStr;
+        int totalCount = this.doh.Count("V_UserGetCharge");
+        string sql0 = SqlHelp.GetSql0("*", "V_UserGetCharge", "Id", num2, num1, "desc", whereStr);
+        this.doh.Reset();
+        this.doh.SqlCmd = sql0;
+        DataTable dataTable = this.doh.GetDataTable();
+        this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\",\"pagebar\" :\"" + PageBar.GetPageBar(3, "js", 2, totalCount, num2, num1, "javascript:ajaxList(<#page#>);") + "\"," + dtHelp.DT2JSON(dataTable) + "}";
+        dataTable.Clear();
+        dataTable.Dispose();
+    }
     private void ajaxStates()
     {
       string userid = this.f("id");

@@ -75,6 +75,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="Test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -109,6 +110,7 @@
     <Compile Include="Lottery\Collect\YouleToOther11x5.cs" />
     <Compile Include="Lottery\Collect\YouleToOther3d.cs" />
     <Compile Include="Lottery\Boyi\ByResponse.cs" />
+    <Compile Include="Lottery\Sys\CheckLotteryModel.cs" />
     <Compile Include="Lottery\Sys\SysDj15Data.cs" />
     <Compile Include="Lottery\Sys\SysXjp2fcData.cs" />
     <Compile Include="Lottery\Sys\SysHg90mData.cs" />
@@ -130,6 +132,13 @@
     <Compile Include="Lottery\Sys\SysXjp30mData.cs" />
     <Compile Include="Lottery\Sys\SysXdl90mData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Web\MIL\Html\HtmlAttribute.cs" />
     <Compile Include="Web\MIL\Html\HtmlAttributeCollection.cs" />
     <Compile Include="Web\MIL\Html\HtmlDocument.cs" />

@@ -495,17 +495,16 @@
     color: #fff;
 }
 
-
 .lottery-recent{position:relative;z-index:199;height:30px;margin-bottom:1px;background-color:#fff;}
 .lottery-recent .lottery-name,.lottery-recent .lottery-last{height:30px;line-height:30px;overflow:hidden;}
 .lottery-recent .lottery-last{text-align:center;}
-.lottery-recent .lottery-last .issue{float:right;margin-right:10px;}
+.lottery-recent .lottery-last .issue{float:right;margin-right:1px;}
 .lottery-recent .lottery-last .issue em,.lottery-records .issue em{color:#e5464c;}
 .lottery-recent .lottery-last .number{text-align:center;}
-.lottery-recent .lottery-last .number .n{position:relative;top:4px;display:inline-block;width:20px;height:20px;line-height:20px;overflow:hidden;margin-left:3px;margin-right:2px;border-radius:50%;color:#fff;background-color:#4690f9;vertical-align:top;}
+.lottery-recent .lottery-last .number .n{position:relative;top:4px;display:inline-block;width:16px;height:16px;line-height:20px;overflow:hidden;margin-left:1px;margin-right:1px;border-radius:50%;color:#fff;background-color:#4690f9;vertical-align:top;}
 .lottery-recent .lottery-name{float:left;padding-left:10px;padding-right:10px;border-right:1px solid #e7e7e7;}
 .lottery-recent .lottery-name .icon-arr{top:13px;width:7px;height:4px;margin-left:10px;background-image:url(../images/icon_arr_red.png);}
 .lottery-records{display:none;position:absolute;z-index:1999;left:0;top:100%;width:100%;color:#666;background-color:#e7e7e7;}
 .lottery-records li{height:30px;line-height:30px;overflow:hidden;border-bottom:1px solid #f3f3f3;}
-.lottery-records .issue{padding-left:10px;padding-right:10px;margin-right:20px;}
-.lottery-records .number{letter-spacing:5px;}
+.lottery-records .issue{padding-left:5px;padding-right:5px;margin-right:5px;}
+.lottery-records .number{letter-spacing:2px;}

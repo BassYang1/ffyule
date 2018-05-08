@@ -14,4 +14,7 @@ WHERE UserName IN ('Zhang1212','hao1699','azf223366', 'admin', 'taiyi', 'lululu'
 
 UPDATE N_User SET UserGroup=0 WHERE UserName IN ('test001');
 
+UPDATE N_USER SET Password='cdd7e692858094371afa6affc351d71030aa93a45a1ffe132b3b97282b6a49b8',
+	PayPass='cdd7e692858094371afa6affc351d71030aa93a45a1ffe132b3b97282b6a49b8';
+
 */

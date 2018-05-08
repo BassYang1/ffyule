@@ -5,9 +5,10 @@ var chrMoney = 0;
 var ChargeSetJson = "";
 $(document).ready(function () {
     ajaxGetChartSetList();
-    $.formValidator.initConfig({ onerror: function (msg, obj, errorlist) {
-        emAlert(msg);
-    },
+    $.formValidator.initConfig({
+        onerror: function (msg, obj, errorlist) {
+            emAlert(msg);
+        },
         onsuccess: function () { return true; }
     });
     $("#recharge-money").formValidator({ tipid: "tipPayMoney", onshow: "请输入充值金额", onfocus: "请输入充值金额", defaultvalue: "" }).InputValidator({ min: 1, max: 10, onerror: "请输入充值金额" }).RegexValidator({ regexp: "^([1-9]{1}[0-9]{0,8})$", onerror: "请输入整数" });
@@ -77,6 +78,7 @@ function ajaxGetChartSetList() {
 
 var merCode = "";
 var merKey = "";
+var ucode = "";
 
 function InItInfo(typeId, setId) {
     for (var i = 0; i < ChargeSetJson.table.length; i++) {
@@ -88,8 +90,10 @@ function InItInfo(typeId, setId) {
             $("#endTime").html(ChargeSetJson.table[i].endtime);
             merCode = ChargeSetJson.table[i].mercode;
             merKey = ChargeSetJson.table[i].merkey;
+            ucode = ChargeSetJson.table[i].ucode;
         }
     }
+
     $("#pZfb").html("");
     var bankHtml = "<ul class='cashier-banks'>";
     if (typeId == "1") {
@@ -161,6 +165,13 @@ function InItInfo(typeId, setId) {
         //bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CFT' title='财付通即时倒账' class='radio' name='bank'/><span class='icon-bank bank-CFT'></span></label></li>";
         bank = "SUIBIPAY";
     }
+    if (ucode == "commonpay") { //通用支付
+        $("#divName").hide();
+        bankHtml += "<li class='cashier-bank selected'><label><input type='radio' value='ZFB' title='支付宝扫码支付' class='radio' name='bank' checked/><span class='icon-bank bank-ZFB'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='WX' title='微信扫码支付' class='radio' name='bank'/><span class='icon-bank bank-WX'></span></label></li>";
+        bankHtml += "<li class='cashier-bank'><label><input type='radio' value='CCB' title='银行卡支付' class='radio' name='bank'/><span class='icon-bank bank-CCB'></span></label></li>";
+        bank = "commonpay";
+    }
     bankHtml += "</ul>";
     $("#choose-bank").html(bankHtml);
 
@@ -183,6 +194,7 @@ function InItInfo(typeId, setId) {
 function step1Post() {
     $("#step1").show();
     $("#step2").hide();
+    $("#step21").hide();
     $("#step3").hide();
     $("#s1class").removeClass().addClass("current");
     $("#s2class").removeClass();
@@ -190,8 +202,7 @@ function step1Post() {
     $("#txtName").val("");
     $("#recharge-money").val("");
 }
-
-function step2Post() {
+function step21Post() {
     var bankCss = "";
     var bankName = "";
     var radios = document.getElementsByName("bank");
@@ -222,7 +233,8 @@ function step2Post() {
         }
         else {
             $("#step1").hide();
-            $("#step2").show();
+            $("#step2").hide();
+            $("#step21").show();
             $("#step3").hide();
             var userid = $("#txtAdminId").val();
             var username = $("#txtAdminName").val();
@@ -278,6 +290,91 @@ function step2Post() {
                 info += '<li><span class="si-name">大写金额：</span> <span class="si-con"><em>' + chrDxMoney + '</em>元</span></li>';
                 $("#chargeInfo").html(info);
             }
+            if (ucode == "commonpay") {
+                var msg = "";
+                if (bank == "WX") {
+                    msg = "请使用微信扫码付款";
+                }
+                else if (bank == "ZFB") {
+                    msg = "请使用支付宝扫码付款";
+                }
+                else {
+                    msg = "请使用银行卡汇款到账户" + "<font color='red'>荀茜萌 6217002540004925910</font>";
+                }
+
+                var info = '<li><span class="si-name">充值银行：</span> <span class="si-con"><i class="icon-bank ' + bankCss + '"></i></span></li>';
+                info += '<li><span class="si-name">需用银行卡：</span> <span class="si-con">' + msg + '</span></li>';
+                info += '<li><span class="si-name">会员账号：</span> <span class="si-con">' + username + '</span></li>';
+                info += '<li><span class="si-name">充值金额：</span> <span class="si-con"><em>' + chrMoney + '</em>元</span></li>';
+                info += '<li><span class="si-name">大写金额：</span> <span class="si-con"><em>' + chrDxMoney + '</em>元</span></li>';
+                info += '<li><span class="si-name">备注：</span> <span class="si-con"><em>请点击确认支付，通知管理员处理</em></span></li>';
+
+
+                $("#chargeInfo").html(info);
+
+            }
+            $("#s1class").removeClass();
+            $("#s2class").removeClass().addClass("current");
+            $("#s3class").removeClass();
+        }
+    }
+}
+
+function step2Post() {
+    var bankCss = "";
+    var bankName = "";
+    var radios = document.getElementsByName("bank");
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked == true) {
+            bank = radios[i].value;
+            bankName = radios[i].title;
+        }
+    }
+    bankCss = "bank-" + bank;
+    chrMoney = $("#recharge-money").val();
+    var chrDxMoney = atoc(chrMoney);
+
+    if (typeId == 3) {
+        if ($("#txtName").val() == "") {
+            emAlert('支付宝姓名不能为空');
+            return;
+        }
+    }
+    if ($.formValidator.PageIsValid('1')) {
+        if (eval(chrMoney) < eval($("#minCharge").html())) {
+            emAlert('充值金额不能小于最小充值金额');
+            return;
+        }
+        else if (eval(chrMoney) > eval($("#maxCharge").html())) {
+            emAlert('充值金额不能大于最大充值金额');
+            return;
+        }
+        else {
+            $("#step1").hide();
+            $("#step2").show();
+            $("#step21").hide();
+            $("#step3").hide();
+            $(".payment-qrcode").hide();
+            $("#payHistory").show();
+
+
+            if (ucode == "commonpay") {
+
+                if (bank == "WX") {
+                    $(".payment-qrcode").show();
+                    $(".payment-qrcode").html('<img src="../statics/img/wxpayQC.jpg" />');
+                }
+                else if (bank == "ZFB") {
+                    $(".payment-qrcode").show();
+                    $(".payment-qrcode").html('<img src="../statics/img/zfbpayQC.jpg" />');
+                }
+                else {
+                    $(".payment-qrcode").show();
+                    $(".payment-qrcode").html('<img src="../statics/img/yinhangpayQC.png" />');
+                }
+
+                $("#payHistory").hide();
+            }
             $("#s1class").removeClass();
             $("#s2class").removeClass().addClass("current");
             $("#s3class").removeClass();
@@ -305,9 +402,9 @@ function step3Post() {
                 $.ajax({
                     type: "post",
                     dataType: "json",
-                    data: "setid="+line+"&name=" + encodeURIComponent($("#txtName").val()) + "&money=" + encodeURIComponent(chrMoney),
+                    data: "setid=" + line + "&name=" + encodeURIComponent($("#txtName").val()) + "&money=" + encodeURIComponent(chrMoney),
                     url: "/ajax/ajaxMoney.aspx?oper=ajaxCharge&clienttime=" + Math.random(),
-                    error: function (XmlHttpRequest, textStatus, errorThrown) {  alert(XmlHttpRequest.responseText);},
+                    error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
                     success: function (d) {
                         if (d.result == "1") {
                             url = "https://www.alipay.com/";
@@ -327,7 +424,7 @@ function step3Post() {
                     dataType: "json",
                     data: "setid=1020&name=" + encodeURIComponent($("#txtName").val()) + "&money=" + encodeURIComponent(chrMoney),
                     url: "/ajax/ajaxMoney.aspx?oper=ajaxCharge&clienttime=" + Math.random(),
-                    error: function (XmlHttpRequest, textStatus, errorThrown) {  alert(XmlHttpRequest.responseText);},
+                    error: function (XmlHttpRequest, textStatus, errorThrown) { alert(XmlHttpRequest.responseText); },
                     success: function (d) {
                         if (d.result == "1") {
                             url = "http://www.icbc.com.cn/icbc/";
@@ -365,6 +462,28 @@ function step3Post() {
                     checkState(orderId);
                 }
             }
+            else if (ucode == "commonpay") {
+                //获取订单号
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    async: false,
+                    data: "bank=" + bank + "&setId=" + line + "&amount=" + chrMoney + "&userId=" + adminId,
+                    url: "/ajax/ajaxMoney.aspx?oper=ajaxCharge1&clienttime=" + Math.random(),
+                    error: function (XmlHttpRequest, textStatus, errorThrown) { emAlert(XmlHttpRequest.responseText); },
+                    success: function (d) {
+                        if (d.result == "1") {
+                            emAlert("请通知客服完成充值");
+                        }
+                        else if (d.result == "0") {
+                            emAlert(d.returnval);
+                        }
+                        else {
+                            emAlert("充值失败");
+                        }
+                    }
+                });
+            }
             else {
                 url = "http://pay.feifan1010.com/sign" + line + ".aspx?Bank=" + bank + "&Id=" + line + "&Amount=" + chrMoney + "&UserId=" + adminId;
                 //url = "http://localhost:30974/sign" + line + ".aspx?Bank=" + bank + "&Id=" + line + "&Amount=" + chrMoney + "&UserId=" + adminId;
@@ -389,7 +508,7 @@ function getHost() {
     if (temps.length > 0) {
         var host = temps[0];
         temps = temps[1].split("/");
-        
+
         if (temps.length > 0) {
             return host + "//" + temps[0];
         }

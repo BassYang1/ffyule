@@ -373,9 +373,10 @@ namespace Lottery.WebApp
             string str = this.f("point");
             string YxTime = this.f("yxtime");
             string Times = this.f("times");
+            string userGroup = this.f("userGroup");
             string encryptKey = ConfigurationManager.AppSettings["DesKey"].ToString();
             string Url = ConfigurationManager.AppSettings["RootUrl"].ToString() + "/register.aspx?u=" + this.EncryptDES(this.AdminId + "@" + str, encryptKey).Replace("+", "@");
-            new UserRegLinkDAL().SaveUserRegLink(this.AdminId, Convert.ToDecimal(str), YxTime, Times, Url);
+            new UserRegLinkDAL().SaveUserRegLink(this.AdminId, Convert.ToDecimal(str), YxTime, Times, Url, userGroup);
             this._response = this.JsonResult(1, "注册链接全部生成成功！");
         }
 

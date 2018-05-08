@@ -337,14 +337,14 @@ namespace Lottery.Collect
         /// 存储彩票数据到磁盘
         /// </summary>
         /// <param name="lotteryId">彩票类型Id</param>
-        public static void SaveLotteryData2File(int lotteryId)
+        public static void SaveLotteryData2File(int lotteryId, bool refresh)
         {
             try
             {
                 //获取json和xml字符串
                 string xmlData = "";
                 string jsonData = "";
-                new LotteryDataDAL().ConvertLotteryDataToStr(lotteryId, ref jsonData, ref xmlData);
+                new LotteryDataDAL().ConvertLotteryDataToStr(lotteryId, ref jsonData, ref xmlData, refresh);
 
                 //保存json字符串到文件
                 string path = ConfigurationManager.AppSettings["DataUrl"].ToString();

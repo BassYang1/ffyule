@@ -14,7 +14,7 @@ namespace Lottery.Collect.Sys
     public class SysTw5fcData : SysBase
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SysTw5fcData));
-        private static SysBase Lottery = new SysTw5fcData();
+        public static SysBase Lottery = new SysTw5fcData();
 
         public SysTw5fcData()
             : base("tw5fc", "台湾5分彩")

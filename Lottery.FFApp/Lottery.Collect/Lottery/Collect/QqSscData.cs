@@ -78,7 +78,7 @@ namespace Lottery.Collect
                     if (_dal.Update(1005, expect, openCode, openTime, openCode))
                     {
                         OpenTime = Convert.ToDateTime(openTime); //开奖时间
-                        Public.SaveLotteryData2File(1005); //存储开奖号码到JSON/XML文件
+                        Public.SaveLotteryData2File(1005, false); //存储开奖号码到JSON/XML文件
                         LotteryCheck.RunOfIssueNum(1005, expect); //处理开奖信息
                     }
                 }
@@ -102,7 +102,7 @@ namespace Lottery.Collect
         public static bool ExistLottery(int type, string title, string number, string opentime, string numberAll)
         {
             string cacheKey = string.Format(Const.CACHE_KEY_LOTTERY_HISTORY, type);
-            IList<LotteryDataModel> history = _dal.GetLotteryHistory(type);
+            IList<LotteryDataModel> history = _dal.GetLotteryHistory(type, false);
 
             //数据已存在
             if ((from it in history where it.Title == title select it).Count() > 0)

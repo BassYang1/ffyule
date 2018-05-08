@@ -62,6 +62,19 @@
                         <span class="icon icon-arrow"></span>
                     </div>
                 </li>
+                <li class="tn-tk" style="display:none" id="charge"><a href="javascript:void(0);" onclick="ShowPage('充值信息','充值审核','/admin/conList.aspx?page=ChargeCheck');"
+                    class="tn-title"><i class="icon icon-tn"></i><span class="num" id="chargecount">0</span>
+                </a>
+                    <div class="tn-content">
+                        <dl class="tn-dl">
+                            <dt>您有<span id="chargecount2">0</span>条充值请求需要处理</dt>
+                            <dd>
+                                <a href="javascript:void(0);" onclick="ShowPage('充值信息','充值审核','/admin/conList.aspx?page=ChargeCheck');">
+                                    <i class="icon icon-r"></i>查看所有充值请求</a></dd>
+                        </dl>
+                        <span class="icon icon-arrow"></span>
+                    </div>
+                </li>
                 <li class="tn-jg" <%=act1 %>><a href="javascript:void(0);" class="tn-title"><i class="icon icon-tn">
                 </i><span id="WarnCount" class="num">0</span> </a>
                     <div class="tn-content">

@@ -164,24 +164,74 @@ namespace Lottery.DAL.Flex
                 dbOperHandler.Reset();
                 dbOperHandler.SqlCmd = "select top 1 * from Sys_Bank where id=" + BankId;
                 DataTable dataTable1 = dbOperHandler.GetDataTable();
+
+                //每日最大提款金额
+                decimal minCharge = Convert.ToDecimal(dataTable1.Rows[0]["MinCharge"]);
+                decimal maxCharge = Convert.ToDecimal(dataTable1.Rows[0]["MaxCharge"]);
+                maxCharge = maxCharge > 20000M ? 20000M : maxCharge;
+
+                if (Convert.ToDecimal(Money) > maxCharge || Convert.ToDecimal(Money) < minCharge)
+                {
+                    return string.Format("提款金额最大{0}元，最小{0}元", maxCharge, minCharge);
+                }
+
+                //每日最大提现次数
+                int maxCashCount = Convert.ToInt32(dataTable1.Rows[0]["MaxGetCash"]);
+                maxCashCount = maxCashCount > 5 ? 5 : maxCashCount;
+
+                //充值消费额度
+                double betPerCheck = Convert.ToDouble(dataTable1.Rows[0]["BetPerCheck"]);
+                betPerCheck = betPerCheck < 50.0 ? 50.0 : betPerCheck;
+
+                //绑卡时间提现期限, 至少绑定24小时，才能提现
+                int bindTime = Convert.ToInt32(dataTable1.Rows[0]["BindTime"]);
+                bindTime = bindTime < 24 ? 24 : bindTime;
+
+                //是否允许银行卡提现
                 if (Convert.ToInt32(dataTable1.Rows[0]["IsUsed"]) == 1)
                     return "取款失败,当前银行禁止取款!";
+
+                //会员信息
                 dbOperHandler.Reset();
                 dbOperHandler.ConditionExpress = "id=@id";
                 dbOperHandler.AddConditionParameter("@id", (object)UserId);
                 object[] fields = dbOperHandler.GetFields("N_User", "Money,PayPass,IsGetCash,EnableSeason,UserGroup");
                 if (fields.Length <= 0)
                     return "账号出现问题，请您重新登陆！";
-                int int32 = Convert.ToInt32(fields[2]);
-                fields[3].ToString();
+
+                //会员是否允许提现
+                int int32 = Convert.ToInt32(fields[2]); //IsGetCash
                 if (int32 != 0)
                     return "取款失败,您的帐号禁止取款!";
+
+                //提款金额是否大于会员余额
                 if (Convert.ToDecimal(Money) > Convert.ToDecimal(fields[0]))
                     return "您的可用余额不足";
+
+                //提款密码是否正确
                 if (!MD5.Last64(MD5.Lower32(PassWord)).Equals(fields[1].ToString()))
                     return "您的提现密码错误";
+
+                //会员银行卡信息
                 dbOperHandler.Reset();
-                dbOperHandler.SqlCmd = string.Format("select STime from Act_ActiveRecord where UserId={0} and ActiveType='Charge' and Convert(varchar(10),STime,120)=Convert(varchar(10),Getdate(),120)", (object)UserId);
+                dbOperHandler.SqlCmd = "SELECT [PayBank],[PayAccount],[PayName], AddTime FROM [N_UserBank] where UserId=" + UserId + " and Id=" + UserBankId;
+                DataTable dataTable5 = dbOperHandler.GetDataTable();
+                if (dataTable5.Rows.Count <= 0)
+                {
+                    return "您的银行卡无效";
+                }
+
+                //检查绑定时间
+                DateTime addTime = Convert.ToDateTime(dataTable5.Rows[0]["AddTime"]);
+                if ((DateTime.Now - addTime).TotalHours <= bindTime)
+                {
+                    return string.Format("您的银行卡绑定还未满{0}小时", bindTime);
+                }
+
+                //今天的充值记录
+                dbOperHandler.Reset();
+                dbOperHandler.SqlCmd = string.Format(@"select STime from Act_ActiveRecord where UserId={0} 
+                                and ActiveType='Charge' and Convert(varchar(10),STime,120)=Convert(varchar(10),Getdate(),120)", (object)UserId);
                 DataTable dataTable2 = dbOperHandler.GetDataTable();
                 if (dataTable2.Rows.Count > 0)
                 {
@@ -199,10 +249,10 @@ namespace Lottery.DAL.Flex
                     dbOperHandler.Reset();
                     dbOperHandler.SqlCmd = "SELECT (isnull(sum(Bet),0)-isnull(sum(Cancellation),0)) as bet,isnull(sum(charge),0) as charge FROM [N_UserMoneyStatAll] with(nolock) where userId=" + UserId;
                     DataTable dataTable3 = dbOperHandler.GetDataTable();
-                    double num1 = Convert.ToDouble(dataTable3.Rows[0]["bet"].ToString());
-                    double num2 = Convert.ToDouble(dataTable3.Rows[0]["charge"].ToString());
-                    if (num2 > 0.0 && num1 * 100.0 / num2 < Convert.ToDouble(dataTable1.Rows[0]["BetPerCheck"]))
-                        return "对不起，您未消费到充值的" + dataTable1.Rows[0]["BetPerCheck"] + "%，不能提现！";
+                    double num1 = Convert.ToDouble(dataTable3.Rows[0]["bet"].ToString()); //消费金额, 下注金额
+                    double num2 = Convert.ToDouble(dataTable3.Rows[0]["charge"].ToString()); //充值金额总数
+                    if (num2 > 0.0 && num1 * 100.0 / num2 < betPerCheck)
+                        return "对不起，您未消费到充值的" + betPerCheck + "%，不能提现！";
                 }
                 if (Convert.ToDecimal(Money) < Convert.ToDecimal(dataTable1.Rows[0]["MinCharge"]))
                     return "提现金额不能小于单笔最小金额";
@@ -218,20 +268,20 @@ namespace Lottery.DAL.Flex
                 }
                 else if (now < dateTime1 || now > dateTime2)
                     return "提现时间为" + dataTable1.Rows[0]["StartTime"] + "至" + dataTable1.Rows[0]["EndTime"];
-                string str = "0";
+
+                int cashCount = 0; //已提现次数
                 dbOperHandler.Reset();
                 dbOperHandler.SqlCmd = "select count(*) as txcs,isnull(sum(Money),0) as txje from N_UserGetCash where userId=" + UserId + " and datediff(d,STime,getdate())=0 and State<>2";
                 DataTable dataTable4 = dbOperHandler.GetDataTable();
                 if (dataTable4.Rows.Count > 0)
                 {
-                    str = dataTable4.Rows[0]["txcs"].ToString();
+                    cashCount = Convert.ToInt32(dataTable4.Rows[0]["txcs"]);
                     dataTable4.Rows[0]["txje"].ToString();
                 }
-                if (Convert.ToDecimal(str) > Convert.ToDecimal(dataTable1.Rows[0]["MaxGetCash"]))
-                    return "今日提现已得到最大提现次数";
-                dbOperHandler.Reset();
-                dbOperHandler.SqlCmd = "SELECT [PayBank],[PayAccount],[PayName] FROM [N_UserBank] where UserId=" + UserId + " and Id=" + UserBankId;
-                DataTable dataTable5 = dbOperHandler.GetDataTable();
+
+                if (cashCount > maxCashCount)
+                    return string.Format("今日提现已得到最大提现次数{0}次", maxCashCount);
+
                 if (dataTable5.Rows.Count <= 0 || this.Save(UserId, UserBankId, dataTable5.Rows[0]["PayBank"].ToString(), dataTable5.Rows[0]["PayAccount"].ToString(), dataTable5.Rows[0]["PayName"].ToString(), Convert.ToDecimal(Money)) <= 0)
                     return "申请提现失败！";
                 new LogSysDAL().Save("会员管理", "Id为" + UserId + "的会员申请提现！");

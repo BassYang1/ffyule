@@ -79,6 +79,43 @@ var Lottery2JsonData = [
     { key: "4003", value: "英国60秒赛车" },
     { key: "4004", value: "英国120秒赛车"}];
 
+var LotteryOffJsonData = [
+    { key: "1001", value: "重庆时时彩" },
+    { key: "1003", value: "新疆时时彩" },
+    { key: "1005", value: "腾讯分分彩" },
+    { key: "1007", value: "天津时时彩" },
+    { key: "1008", value: "云南时时彩" },
+    { key: "2001", value: "山东11选5" },
+    { key: "2002", value: "广东11选5" },
+    { key: "2003", value: "上海11选5" },
+    { key: "2004", value: "江西11选5" },
+    { key: "3001", value: "时时乐" },
+    { key: "3002", value: "福彩3D" },
+    { key: "3003", value: "体彩P3" },
+    { key: "4001", value: "北京PK10" }];
+
+var LotterySysJsonData = [
+    { key: "1010", value: "韩国1.5分彩" },
+    { key: "1017", value: "老韩国1.5分" },
+    { key: "1015", value: "菲律宾1.5分" },
+    { key: "1014", value: "老东京1.5分" },
+    { key: "1016", value: "东京1.5分彩" },
+    { key: "1012", value: "新加坡2分彩" },
+    { key: "1013", value: "台湾5分彩" },
+    { key: "1011", value: "新德里1.5分彩" },
+    { key: "1018", value: "新加坡30秒彩" },
+    { key: "1019", value: "台湾60秒彩" },
+    { key: "1020", value: "首尔60秒彩" },
+    { key: "1004", value: "纽约30秒彩" },
+    { key: "1009", value: "泰国一分彩" },
+    { key: "2006", value: "韩国11选5" },
+    { key: "3004", value: "韩国3D" },
+    { key: "3005", value: "首尔3D" },
+    { key: "3006", value: "一分3d" },
+    { key: "4002", value: "一分PK10" },
+    { key: "4003", value: "英国60秒赛车" },
+    { key: "4004", value: "英国120秒赛车" }];
+
 var MoneyStatOrderData = [
     { key: "", value: "默认排序" },
     { key: "Charge", value: "充值" },

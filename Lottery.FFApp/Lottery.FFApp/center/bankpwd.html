@@ -21,15 +21,21 @@
                 onsuccess: function () { return true; }
             });
             $("#txtNewPass1").formValidator({ tipid: "message", onshow: "请输入新密码", onfocus: "请输入新密码" }).InputValidator({ min: 6, max: 14, onerror: "新密码6-14位" });
-            $("#txtNewPass2").formValidator({ tipid: "message", onshow: "请确认新密码", onfocus: "请确认新密码" }).InputValidator({ min: 6, max: 14, onerror: "确认密码6-14位,请确认" }).CompareValidator({ desID: "txtNewPass1", operateor: "=", onerror: "两次密码不一致" });
+            $("#txtNewPass2").formValidator({ tipid: "message", onshow: "请确认新密码", onfocus: "请确认新密码" }).InputValidator({ min: 6, max: 14, onerror: "确认密码6-14位,请确认" });
             $("#txtOldPass").formValidator({ tipid: "message", onshow: "请输入旧密码", onfocus: "请正确输入旧密码", defaultvalue: "" }).InputValidator({ min: 6, onerror: "旧密码不低于6位" });
             $("#txtOldPass").focus();
         });
 
         function chkMoneyPost() {
+            if ($("#txtNewPass1").val() != $("#txtNewPass2").val()) {
+                emAlert("两次密码不一致");
+                return false;
+            }
+
             if ($.formValidator.PageIsValid('1'))
                 ajaxMoneyPass();
         }
+
         function ajaxMoneyPass() {
             var index = emLoading();
             $.ajax({

@@ -90,7 +90,15 @@ namespace Lottery.Admin
       this.doh.Reset();
       this.doh.ConditionExpress = "datediff(minute,ontime ,getdate())<5 and Source=1";
       int num3 = this.doh.Count("N_User");
-      this._response = "{\"result\" :\"1\",\"returnval\" :\"加载完成\",\"title\":\"提现请求\",\"usercount\":\"" + (object) num2 + "\",\"usercount2\":\"" + (object) num3 + "\",\"cashcount\":\"" + (object) num1 + "\"}";
+      this.doh.Reset();
+      this.doh.ConditionExpress = "UCode='commonpay' AND ISNULL(IsUsed, 0) = 0";
+      object field = this.doh.GetField("Sys_ChargeSet", "id");
+      int chargeSetId = field == null || string.IsNullOrEmpty(field.ToString()) ? 0 : (int)field;
+      this.doh.Reset();
+      this.doh.ConditionExpress = "state=0 AND bankId=" + chargeSetId;
+      int num4 = this.doh.Count("N_UserCharge");
+
+      this._response = "{\"result\" :\"1\",\"returnval\" :\"加载完成\",\"title\":\"提现请求\",\"usercount\":\"" + (object)num2 + "\",\"usercount2\":\"" + (object)num3 + "\",\"cashcount\":\"" + (object)num1 + "\",\"chargecount\":\"" + (object)num4 + "\"}";
     }
 
     private void GetLeftMenu()

@@ -665,7 +665,7 @@ namespace Lottery.DAL
             if (string.IsNullOrEmpty(string.Concat(obj)))
                 return;
             int int32_2 = Convert.ToInt32(obj);
-            if (int32_2 >= 133 || int32_2 < UserPoint)
+            if (int32_2 >= 145 || int32_2 < UserPoint)
                 return;
             Decimal Money = BetMoney * Convert.ToDecimal(int32_2 - UserPoint) / new Decimal(1000);
             if (Convert.ToDecimal(Money.ToString("0.0000")) > new Decimal(0))

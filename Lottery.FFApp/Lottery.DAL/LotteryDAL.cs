@@ -311,6 +311,22 @@ namespace Lottery.DAL
             }
         }
 
+        public static DataTable GetPreDataTable(string lotteryId, string IssueNum)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(ComData.connectionString))
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = sqlConnection;
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+                sqlDataAdapter.SelectCommand = sqlCommand;
+                sqlDataAdapter.SelectCommand.CommandText = "select TOP 1 Type, Number, NumberAll, Total, OpenTime from Sys_LotteryManualData where type=" + lotteryId + " and Title='" + IssueNum + "'";
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                return dataTable;
+            }
+        }
+
         public static Decimal GetCurRealGet(int lotteryId)
         {
             using (DbOperHandler dbOperHandler = new ComData().Doh())

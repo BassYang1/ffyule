@@ -19,6 +19,9 @@ namespace Lottery.WinService
         private System.Timers.Timer gzTimer;
         private System.Timers.Timer fh2610Timer;
         private System.Timers.Timer fh1125Timer;
+        private System.Timers.Timer manualTimer;
+        private object lockManualTimer = new object();
+        private bool execManualTimer = false; //是否在执行
         private static string connStr = string.Empty;
         private static string hourStr = "3"; //执行时间, 默认凌晨3点
         private static readonly ILog log = log4net.LogManager.GetLogger(typeof(LotterySrv));
@@ -66,6 +69,12 @@ namespace Lottery.WinService
             fh1125Timer.Elapsed += new ElapsedEventHandler(FH1125_Elapsed);
             fh1125Timer.AutoReset = true;
             log.Info("开始定时发放工资(结算当月11号到25号的分红)...");
+
+            //手动开奖
+            manualTimer = new System.Timers.Timer(3 * 1000);
+            manualTimer.Elapsed += new ElapsedEventHandler(ManualTimer_Elapsed);
+            manualTimer.AutoReset = true;
+            log.Info("开始定时检查否有手动补单...");
         }
 
         protected override void OnStart(string[] args)
@@ -74,6 +83,7 @@ namespace Lottery.WinService
             gzTimer.Enabled = true;
             fh2610Timer.Enabled = true;
             fh1125Timer.Enabled = true;
+            manualTimer.Enabled = true;
 
             //log.Info("开始采集程序...");
             TimeData.Run();
@@ -85,6 +95,7 @@ namespace Lottery.WinService
             gzTimer.Enabled = false;
             fh2610Timer.Enabled = false;
             fh1125Timer.Enabled = false;
+            manualTimer.Enabled = false;
 
             //log.Info("停止采集程序...");
             TimeData.Stop();
@@ -96,11 +107,12 @@ namespace Lottery.WinService
             gzTimer.Enabled = false;
             fh2610Timer.Enabled = false;
             fh1125Timer.Enabled = false;
+            manualTimer.Enabled = false;
 
             //log.Info("停止采集程序...");
             TimeData.Stop();
         }
-        
+
         /// <summary>
         /// 每天凌晨3点派发前一天契约工资
         /// </summary>
@@ -143,7 +155,7 @@ namespace Lottery.WinService
                 log.Error(ex);
             }
         }
-                
+
         /// <summary>
         /// 结算上月26号到当月10号的分红
         /// </summary>
@@ -222,6 +234,70 @@ namespace Lottery.WinService
                     }
 
                     log.Info("结束结算当月11号到25号的分红...");
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+        }
+
+        /// <summary>
+        /// 检查否有手动补单
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private void ManualTimer_Elapsed(object source, ElapsedEventArgs e)
+        {
+            if (execManualTimer)
+            {
+                return;
+            }
+            
+            try
+            {
+                lock (lockManualTimer)
+                {
+                    execManualTimer = true;
+
+                    log.Debug("检查否有手动补单...");
+                    DataTable dataTable = new DataTable();
+
+                    using (SqlConnection conn = new SqlConnection(connStr))
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.CommandText = "SELECT DISTINCT MAX(Id) AS Id, Type FROM Sys_LotteryManualData WHERE ISNULL(State, 0) = 0 AND Target=1 GROUP BY Type;";
+
+                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                            {
+                                conn.Open();
+                                adapter.Fill(dataTable);
+                                adapter.Dispose();
+
+                                if (dataTable != null && dataTable.Rows.Count > 0)
+                                {
+                                    foreach (DataRow row in dataTable.Rows)
+                                    {
+                                        int id = Convert.ToInt32(row["Id"]);
+                                        int lotteryId = Convert.ToInt32(row["Type"]);
+                                        Public.SaveLotteryData2File(lotteryId, true); //更新文件
+                                        cmd.CommandType = CommandType.Text;
+                                        cmd.CommandText = String.Format(@"UPDATE Sys_LotteryManualData SET State=1 
+                                                    WHERE ISNULL(State, 0) = 0 AND Type={0} AND Id <= {1} AND Target=1", lotteryId, id);
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                }
+
+                                cmd.Dispose();
+                                conn.Close();
+                            }
+                        }
+                    }
+
+                    execManualTimer = false;
+                    log.Info("结束检查否有手动补单...");
                 }
             }
             catch (Exception ex)

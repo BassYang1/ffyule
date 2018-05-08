@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Projects\ffyule\publish\ffweb</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Projects\dtss\publish\ffweb</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="active/actCharge.html">
@@ -115,25 +115,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/22/2009 16:41:14</publishTime>
     </File>
     <File Include="bin/Lottery.Collect.dll">
-      <publishTime>03/07/2018 17:12:48</publishTime>
+      <publishTime>03/24/2018 10:59:15</publishTime>
     </File>
     <File Include="bin/Lottery.DAL.dll">
-      <publishTime>03/07/2018 17:12:46</publishTime>
+      <publishTime>03/24/2018 10:59:14</publishTime>
     </File>
     <File Include="bin/Lottery.DBUtility.dll">
       <publishTime>06/15/2017 00:57:59</publishTime>
     </File>
     <File Include="bin/Lottery.Entity.dll">
-      <publishTime>03/07/2018 17:12:44</publishTime>
+      <publishTime>03/24/2018 10:59:13</publishTime>
     </File>
     <File Include="bin/Lottery.FFApp.dll">
-      <publishTime>03/07/2018 17:12:49</publishTime>
+      <publishTime>03/24/2018 10:59:15</publishTime>
     </File>
     <File Include="bin/Lottery.FFCache.dll">
-      <publishTime>03/07/2018 17:12:45</publishTime>
+      <publishTime>03/24/2018 10:59:13</publishTime>
     </File>
     <File Include="bin/Lottery.Utils.dll">
-      <publishTime>03/07/2018 17:12:45</publishTime>
+      <publishTime>03/24/2018 10:59:13</publishTime>
     </File>
     <File Include="bin/Lucene.Net.dll">
       <publishTime>02/09/2012 17:01:10</publishTime>
@@ -157,7 +157,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 22:29:59</publishTime>
     </File>
     <File Include="center/bankpwd.html">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/24/2018 08:49:52</publishTime>
     </File>
     <File Include="center/email.html">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -328,7 +328,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 22:29:59</publishTime>
     </File>
     <File Include="money/charge.aspx">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/21/2018 06:56:18</publishTime>
     </File>
     <File Include="money/getcash.aspx">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -388,7 +388,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/base/lotMenu.js">
-      <publishTime>02/27/2018 13:32:16</publishTime>
+      <publishTime>03/21/2018 07:06:00</publishTime>
     </File>
     <File Include="statics/css/common.css">
       <publishTime>02/04/2018 11:25:46</publishTime>
@@ -406,7 +406,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/css/member.css">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/21/2018 07:05:04</publishTime>
     </File>
     <File Include="statics/css/test.css">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -436,7 +436,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/global.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/15/2018 07:30:49</publishTime>
     </File>
     <File Include="statics/img/1001.png">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -1657,7 +1657,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/js/page.charge.js">
-      <publishTime>02/09/2018 22:29:59</publishTime>
+      <publishTime>03/21/2018 06:59:55</publishTime>
     </File>
     <File Include="statics/js/page.contract.js">
       <publishTime>02/09/2018 22:29:59</publishTime>
@@ -1762,7 +1762,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/json/BigAndSmalldata.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/15/2018 07:30:46</publishTime>
     </File>
     <File Include="statics/json/json_0.00.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -1933,7 +1933,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/02/2018 21:45:38</publishTime>
     </File>
     <File Include="statics/json/PlayBigdate.js">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/15/2018 07:30:46</publishTime>
     </File>
     <File Include="statics/layer/layer.js">
       <publishTime>02/02/2018 21:45:38</publishTime>
@@ -2116,10 +2116,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 22:29:59</publishTime>
     </File>
     <File Include="WEB-INF/site.xml">
-      <publishTime>02/02/2018 21:45:38</publishTime>
+      <publishTime>03/15/2018 07:30:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/07/2018 17:13:00</publishTime>
+      <publishTime>03/24/2018 11:00:09</publishTime>
     </File>
   </ItemGroup>
 </Project>

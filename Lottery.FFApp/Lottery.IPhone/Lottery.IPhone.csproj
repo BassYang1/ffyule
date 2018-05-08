@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="money\chargeSelf.aspx" />
     <Content Include="money\chargeSbf.aspx" />
     <Content Include="pay\suibipay\notify.aspx" />
     <Content Include="pay\suibipay\pay.aspx" />
@@ -586,6 +587,10 @@
     </Compile>
     <Compile Include="money\charge.aspx.cs">
       <DependentUpon>charge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="money\chargeSelf.aspx.cs">
+      <DependentUpon>chargeSelf.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="money\chargeSbf.aspx.cs">

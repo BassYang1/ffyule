@@ -63,6 +63,9 @@ namespace Lottery.Collect
 
             //北京PK10 bjpk10
             ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateData), "bjpk10");
+
+            //山东11选5 sd11x5
+            ThreadPool.QueueUserWorkItem(new WaitCallback(UpdateData), "sd11x5");
         }
 
         /// <summary>
@@ -103,7 +106,7 @@ namespace Lottery.Collect
 
                     if (_dal.Update(lotId, expect, openCode, openTime, openCode))
                     {
-                        Public.SaveLotteryData2File(lotId);
+                        Public.SaveLotteryData2File(lotId, false);
                         LotteryCheck.RunOfIssueNum(lotId, expect);
                         Log.DebugFormat("发布开奖信息: {0} {1}", sysLottery.Title, openCode);
                     }
@@ -137,6 +140,7 @@ namespace Lottery.Collect
                 case "gd11x5":
                 case "sh11x5":
                 case "jx11x5":
+                case "sd11x5":
                     return expect.Substring(0, 8) + "-" + expect.Substring(9);
                 case "p3":
                 case "3d":

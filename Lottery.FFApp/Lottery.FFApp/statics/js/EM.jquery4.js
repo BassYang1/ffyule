@@ -123,6 +123,7 @@ function RedZu20(balls) {
     }
     return 0;
 }
+
 //组10
 function RedZu10(balls) {
     if (balls != "") {

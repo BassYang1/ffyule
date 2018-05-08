@@ -31,6 +31,9 @@ namespace Lottery.IPhone
                 case "ajaxCharge":
                     this.ajaxCharge();
                     break;
+                case "ajaxCharge1":
+                    this.ajaxCharge1();
+                    break;
                 case "ajaxChargeState": //支付订单状态
                     this.ajaxChargeState();
                     break;
@@ -78,6 +81,28 @@ namespace Lottery.IPhone
                 else
                     this._response = this.JsonResult(0, "充值失败");
             }
+        }
+
+        private void ajaxCharge1()
+        {
+            //用户Id
+            string adminId = this.f("userId");
+            //支付方式Code
+            string ucode = this.f("setCode");
+            int chargeSetId = new Lottery.DAL.Flex.UserBankDAL().GetIphoneChargeSetByCode(ucode);
+
+            //金额
+            string amount = this.f("amount");
+            //支付方式
+            string bank = this.f("bank"); ; //平台支付类型码
+
+            int num = new Lottery.DAL.Flex.UserChargeDAL().Save(adminId, SsId.Charge, chargeSetId.ToString(), bank, Convert.ToDecimal(amount)); ;
+            if (num == -1)
+                this._response = this.JsonResult(0, "充值金额不能小于最小充值金额!");
+            else if (num > 0)
+                this._response = this.JsonResult(1, this.AdminId.ToString());
+            else
+                this._response = this.JsonResult(0, "充值失败");
         }
 
         /// <summary>

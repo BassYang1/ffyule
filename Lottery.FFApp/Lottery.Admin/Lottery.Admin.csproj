@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lottery.Collect">
-      <HintPath>..\DLLs\Lottery.Collect.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json.Net20">
       <HintPath>..\DLLs\Newtonsoft.Json.Net20.dll</HintPath>
@@ -58,6 +55,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\lotteryManualDataAdd.aspx" />
     <Content Include="statics\admin\js\adm.notify.js" />
     <Content Include="statics\app\Thumbs.db" />
     <Content Include="statics\config\site.config" />
@@ -1235,6 +1233,10 @@
       <DependentUpon>login20170109.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\lotteryManualDataAdd.aspx.cs">
+      <DependentUpon>lotteryManualDataAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="admin\lotteryDataAdd.aspx.cs">
       <DependentUpon>lotteryDataAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1369,6 +1371,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lottery.Collect\Lottery.Collect.csproj">
+      <Project>{8db8a3f8-22f8-49a3-8271-adec06af09f1}</Project>
+      <Name>Lottery.Collect</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lottery.DAL\Lottery.DAL.csproj">
       <Project>{90c59389-0af4-4c84-b839-4b50c5cc3027}</Project>
       <Name>Lottery.DAL</Name>

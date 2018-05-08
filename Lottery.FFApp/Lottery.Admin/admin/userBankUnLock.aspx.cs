@@ -25,26 +25,33 @@ namespace Lottery.Admin
 
     protected void Page_Load(object sender, EventArgs e)
     {
-      this.Admin_Load("master", "html");
-      string str = this.txtId.Text = this.Str2Str(this.q("id"));
-      if (this.IsPostBack)
-        return;
-      this.doh.Reset();
-      this.doh.SqlCmd = "select top 1 * from N_UserBank where Id=" + str + "order by Id desc";
-      DataTable dataTable1 = this.doh.GetDataTable();
-      if (dataTable1.Rows.Count > 0)
-      {
-        this.txtUserId.Text = dataTable1.Rows[0]["UserId"].ToString();
+        this.Admin_Load("master", "html");
+        string str = this.txtId.Text = this.Str2Str(this.q("id"));
+        if (this.IsPostBack)
+            return;
         this.doh.Reset();
-        this.doh.SqlCmd = "select top 1 * from V_User where Id=" + dataTable1.Rows[0]["UserId"].ToString();
-        DataTable dataTable2 = this.doh.GetDataTable();
-        this.txtId.Text = dataTable2.Rows[0]["Id"].ToString();
-        this.txtName.Text = dataTable2.Rows[0]["UserName"].ToString();
-        if (string.IsNullOrEmpty(dataTable2.Rows[0]["Question"].ToString()) || string.IsNullOrEmpty(dataTable2.Rows[0]["Answer"].ToString()))
-          this.FinalMessage("会员未绑定密保，不能解绑！", "close.htm", 0);
-        else
-          this.txtQuestion.Text = dataTable2.Rows[0]["Question"].ToString();
-      }
+        this.doh.SqlCmd = "select top 1 * from N_UserBank where Id=" + str + "order by Id desc";
+        DataTable dataTable1 = this.doh.GetDataTable();
+        if (dataTable1.Rows.Count > 0)
+        {
+            this.txtUserId.Text = dataTable1.Rows[0]["UserId"].ToString();
+            this.doh.Reset();
+            this.doh.SqlCmd = "select top 1 * from V_User where Id=" + dataTable1.Rows[0]["UserId"].ToString();
+            DataTable dataTable2 = this.doh.GetDataTable();
+            if (dataTable2 != null && dataTable2.Rows.Count > 0)
+            {
+                this.txtId.Text = dataTable2.Rows[0]["Id"].ToString();
+                this.txtName.Text = dataTable2.Rows[0]["UserName"].ToString();
+                if (string.IsNullOrEmpty(dataTable2.Rows[0]["Question"].ToString()) || string.IsNullOrEmpty(dataTable2.Rows[0]["Answer"].ToString()))
+                    this.FinalMessage("会员未绑定密保，不能解绑！", "close.htm", 0);
+                else
+                    this.txtQuestion.Text = dataTable2.Rows[0]["Question"].ToString();
+            }
+            else
+            {
+                this.FinalMessage("会员数据异常，不能编辑！", "close.htm", 0);
+            }
+        }
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

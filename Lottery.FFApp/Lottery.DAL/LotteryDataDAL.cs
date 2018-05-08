@@ -135,16 +135,48 @@ namespace Lottery.DAL
             }
             return false;
         }
-        
+
+        /// <summary>
+        /// 手动添加
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="title"></param>
+        /// <param name="Number"></param>
+        /// <param name="opentime"></param>
+        /// <param name="NumberAll"></param>
+        /// <returns></returns>
+        public bool ManualAdd(int type, string title, string Number, string opentime, string NumberAll)
+        {
+            int num = LotterySum.SumNumber(Number);
+            using (DbOperHandler dbOperHandler = new ComData().Doh())
+            {
+                dbOperHandler.Reset();
+                dbOperHandler.AddFieldItem("Type", type);
+                dbOperHandler.AddFieldItem("Title", title);
+                dbOperHandler.AddFieldItem("Number", Number);
+                dbOperHandler.AddFieldItem("NumberAll", NumberAll);
+                dbOperHandler.AddFieldItem("Total", num);
+                dbOperHandler.AddFieldItem("Opentime", Convert.ToDateTime(opentime));
+                dbOperHandler.AddFieldItem("STime", DateTime.Now);
+                dbOperHandler.AddFieldItem("State", 0);
+                dbOperHandler.AddFieldItem("Target", 1);
+                if (dbOperHandler.Insert("Sys_LotteryManualData") > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// 对象转字符串
         /// </summary>
         /// <param name="lotteryId"></param>
         /// <param name="_jsonstr"></param>
         /// <param name="_xml"></param>
-        public void ConvertLotteryDataToStr(int lotteryId, ref string _jsonstr, ref string _xml)
+        public void ConvertLotteryDataToStr(int lotteryId, ref string _jsonstr, ref string _xml, bool refresh)
         {
-            IList<LotteryDataModel> history = GetLotteryHistory(lotteryId) ?? new List<LotteryDataModel>();
+            IList<LotteryDataModel> history = GetLotteryHistory(lotteryId, refresh) ?? new List<LotteryDataModel>();
 
             //转json
             IsoDateTimeConverter dtFormat = new IsoDateTimeConverter();
@@ -174,7 +206,7 @@ namespace Lottery.DAL
         public bool Update(int type, string title)
         {
             string cacheKey = string.Format(Const.CACHE_KEY_LOTTERY_HISTORY, type);
-            IList<LotteryDataModel> history = GetLotteryHistory(type);
+            IList<LotteryDataModel> history = GetLotteryHistory(type, false);
 
             //获取缓存数据
             LotteryDataModel lottery = (from it in history where it.Type == type && it.Title == title select it).FirstOrDefault();
@@ -232,7 +264,7 @@ namespace Lottery.DAL
         public bool Update(int type, string title, string number, string opentime, string numberAll)
         {
             string cacheKey = string.Format(Const.CACHE_KEY_LOTTERY_HISTORY, type);
-            IList<LotteryDataModel> history = GetLotteryHistory(type);
+            IList<LotteryDataModel> history = GetLotteryHistory(type, false);
 
             //数据已存在
             if ((from it in history where it.Title == title select it).Count() > 0)
@@ -309,7 +341,7 @@ namespace Lottery.DAL
         /// <returns></returns>
         public LotteryDataModel GetLatestLottery(int ltId)
         {
-            IList<LotteryDataModel> lotteries = GetLotteryHistory(ltId);
+            IList<LotteryDataModel> lotteries = GetLotteryHistory(ltId, false);
 
             if (lotteries != null && lotteries.Count > 0)
             {
@@ -319,12 +351,18 @@ namespace Lottery.DAL
             return null;
         }
 
-        public IList<LotteryDataModel> GetLotteryHistory(int ltId)
+        /// <summary>
+        /// 获取历史数据
+        /// </summary>
+        /// <param name="ltId"></param>
+        /// <param name="refresh">刷新缓存</param>
+        /// <returns></returns>
+        public IList<LotteryDataModel> GetLotteryHistory(int ltId, bool refresh)
         {
             string cacheKey = string.Format(Const.CACHE_KEY_LOTTERY_HISTORY, ltId);
             IList<LotteryDataModel> history = (IList<LotteryDataModel>)RTCache.Get(cacheKey);
 
-            if (history == null || history.Count < 0)
+            if (refresh || history == null || history.Count < 0)
             {
                 history = new List<LotteryDataModel>();
 

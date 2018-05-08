@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>立博国际娱乐</title>
-	<meta http-equiv="refresh" content="1">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta name="format-detection" content="telephone=no,email=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,11 +18,12 @@
         var lid = joinValue('lid');
         $(document).ready(function () {
             ajaxList();
+            window.setInterval(ajaxList, 1000); //定时刷新开奖信息
         });
 
         function ajaxList() {
             var u = "/ajax/ajax.aspx?oper=GetKaiJiangInfo";
-            var index = emLoading();
+            //var index = emLoading();
             $.ajax({
                 type: "get",
                 dataType: "json",
@@ -44,7 +44,7 @@
                             $i("lotName").innerHTML = d.table[0].lotteryname;
                             break;
                     }
-                    closeload(index);
+                    //closeload(index);
                 }
             });
         }

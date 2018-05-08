@@ -31,6 +31,9 @@ namespace Lottery.WebApp
                 case "ajaxCharge":
                     this.ajaxCharge();
                     break;
+                case "ajaxCharge1":
+                    this.ajaxCharge1();
+                    break;
                 case "ajaxChargeState": //支付订单状态
                     this.ajaxChargeState();
                     break;
@@ -68,6 +71,26 @@ namespace Lottery.WebApp
             string str2 = this.f("money");
             this.f("code");
             int num = new Lottery.DAL.Flex.UserChargeDAL().Save(this.AdminId, bankId, str1.Trim(), Convert.ToDecimal(str2));
+            if (num == -1)
+                this._response = this.JsonResult(0, "充值金额不能小于最小充值金额!");
+            else if (num > 0)
+                this._response = this.JsonResult(1, this.AdminId.ToString());
+            else
+                this._response = this.JsonResult(0, "充值失败");
+        }
+        
+        private void ajaxCharge1()
+        {
+            //用户Id
+            string adminId = this.f("userId");
+            //支付方式Id
+            string chargeSetId = this.f("setId");
+            //金额
+            string amount = this.f("amount");
+            //支付方式
+            string bank = this.f("bank"); ; //平台支付类型码
+
+            int num = new Lottery.DAL.Flex.UserChargeDAL().Save(adminId, SsId.Charge, chargeSetId, bank, Convert.ToDecimal(amount)); ;
             if (num == -1)
                 this._response = this.JsonResult(0, "充值金额不能小于最小充值金额!");
             else if (num > 0)

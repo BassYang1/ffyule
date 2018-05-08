@@ -58,7 +58,7 @@
                                     $i('time2').innerHTML = d.table[0].endtime;
                                     $i('mincharge').innerHTML = d.table[0].mincharge;
                                     $i('maxcharge').innerHTML = d.table[0].maxcharge;
-                                    $i('lblPayName').innerHTML = d.table[0].merkey;
+                                    //$i('lblPayName').innerHTML = d.table[0].merkey;
                                     $i('lblPayAccount').innerHTML = d.table[0].mercode;
                                 }
                                 else {

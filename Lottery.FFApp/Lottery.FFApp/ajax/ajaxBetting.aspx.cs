@@ -299,12 +299,14 @@ namespace Lottery.WebApp
                                     this._response = this.JsonResult(0, "投注错误！请重新投注！");
                                     return;
                                 }
+
                                 string str4 = Calculate.BetNumerice(int32, lotteryId, requestDataJson2.balls, requestDataJson2.playId.ToString(), requestDataJson2.strPos, Convert.ToInt32(requestDataJson2.Num), Convert.ToDecimal(requestDataJson2.Point), ref singelBouns);
                                 if (!string.IsNullOrEmpty(str4))
                                 {
                                     this._response = str4.Replace("[", "").Replace("]", "");
                                     return;
                                 }
+
                                 if (singelBouns <= Decimal.Zero)
                                 {
                                     this._response = this.JsonResult(0, "投注失败,返点错误，请重新投注！");

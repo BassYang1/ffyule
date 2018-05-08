@@ -5,6 +5,7 @@
 // Assembly location: F:\pros\tianheng\bf\admin\bin\Lottery.Admin.dll
 
 using Lottery.Collect;
+using Lottery.Collect.Sys;
 using Lottery.DAL;
 using Lottery.Utils;
 using System;
@@ -29,6 +30,15 @@ namespace Lottery.Admin
         case "ajaxGetList":
           this.ajaxGetList();
           break;
+        case "ajaxGetIssueNum":
+          this.ajaxGetIssueNum();
+          break;
+        case "ajaxGetLotteryData":
+          this.ajaxGetLotteryData();
+          break;
+        case "ajaxGetManualList":
+          this.ajaxGetManualList();
+          break;
         case "ajaxGetNum":
           this.ajaxGetNum();
           break;
@@ -40,6 +50,9 @@ namespace Lottery.Admin
           break;
         case "ajaxDel":
           this.ajaxDel();
+          break;
+        case "ajaxDelManualData":
+          this.ajaxDelManualData();
           break;
         case "ajaxGetDNList":
           this.ajaxGetDNList();
@@ -98,6 +111,146 @@ namespace Lottery.Admin
       dataTable.Dispose();
     }
 
+    private void ajaxGetManualList()
+    {
+        string str1 = this.q("d1");
+        string str2 = this.q("d2");
+        string str4 = this.q("u");
+        this.Str2Int(this.q("gId"), 0);
+        int num1 = this.Int_ThisPage();
+        int num2 = this.Str2Int(this.q("pagesize"), 20);
+        int num3 = this.Str2Int(this.q("flag"), 0);
+        if (str1.Trim().Length == 0)
+            str1 = this.StartTime;
+        if (str2.Trim().Length == 0)
+            str2 = this.EndTime;
+        if (Convert.ToDateTime(str1) > Convert.ToDateTime(str2))
+            str1 = str2;
+        string whereStr = " STime >='" + str1 + "' and STime <'" + str2 + "' and [Type]=" + (object)num3;
+        this.q("id");
+        if (!string.IsNullOrEmpty(str4))
+            whereStr = whereStr + "and Title like '" + str4 + "%'";
+
+        this.doh.Reset();
+        this.doh.ConditionExpress = whereStr;
+        int totalCount = this.doh.Count("V_LotteryData");
+        string sql0 = SqlHelp.GetSql0("Id,TypeName,Title,Number,NumberAll,Total,OpenTime,STime", "V_LotteryManualData", "STime", num2, num1, "desc", whereStr);
+        this.doh.Reset();
+        this.doh.SqlCmd = sql0;
+        DataTable dataTable = this.doh.GetDataTable();
+        this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\",\"pagebar\" :\"" + PageBar.GetPageBar(3, "js", 2, totalCount, num2, num1, "javascript:ajaxList(<#page#>);") + "\"," + dtHelp.DT2JSON(dataTable) + "}";
+        dataTable.Clear();
+        dataTable.Dispose();
+    }
+
+    private void ajaxGetIssueNum()
+    {
+        int lotId = this.Str2Int(this.q("lotId"), 0);
+
+        this.doh.Reset();
+        this.doh.SqlCmd = "SELECT Sn FROM Sys_LotteryTime WHERE LotteryId=" + lotId + " ORDER BY Sn ASC";
+        DataTable dataTable = this.doh.GetDataTable();
+        this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\"," + dtHelp.DT2JSON(dataTable) + "}";
+        dataTable.Clear();
+        dataTable.Dispose();
+    }
+
+    private void ajaxGetLotteryData()
+    {
+        int lotId = this.Str2Int(this.q("lotId"), 0);
+        string sn = this.q("sn");
+
+        this.doh.Reset();
+        this.doh.SqlCmd = "SELECT * FROM Sys_Lottery WHERE Id=" + lotId;
+        DataTable dataTable = this.doh.GetDataTable();
+
+        if(dataTable != null && dataTable.Rows.Count <= 0)
+        {
+            this._response = "{\"result\" :\"0\",\"returnval\" :\"操作失败\"}";
+            return;
+        }
+
+        SysBase sysLottery = null;
+        string code = dataTable.Rows[0]["code"].ToString();
+        string no = string.Empty;
+        string time = string.Empty;
+        string number = string.Empty;
+        string numberAll = string.Empty;
+        int total = 0;
+
+        switch (code)
+        {
+            case "bjpk10":
+                sysLottery = new SysBjpk10Data();
+                break;
+            case "dj15":
+                sysLottery = new SysDj15Data();
+                break;
+            case "flb90m":
+                sysLottery = new SysFlb90mData();
+                break;
+            case "hg11x5":
+                sysLottery = new SysHg11x5Data();;
+                break;
+            case "hg90m":
+                sysLottery = new SysHg90mData();
+                break;
+            case "hg90sd":
+                sysLottery = new SysHg90sdData();
+                break;
+            case "ny30m":
+                sysLottery = new SysNy30mData();
+                break;
+            case "se60m":
+                sysLottery = new SysSe60mData();
+                break;
+            case "se60sd":
+                sysLottery = new SysSe60sdData();
+                break;
+            case "tw60m":
+                sysLottery = new SysTw45mData();
+                break;
+            case "tw5fc":
+                sysLottery = new SysTw5fcData();
+                break;
+            case "xdl90m":
+                sysLottery = new SysXdl90mData();
+                break;
+            case "xjp2fc":
+                sysLottery = new SysXjp2fcData();
+                break;
+            case "xjp30m":
+                sysLottery = new SysXjp30mData();
+                break;
+            case "yf11x5":
+                sysLottery = new SysYf11x5Data();
+                break;
+            case "yfpk10":
+                sysLottery = new SysYfpk10Data();
+                break;
+            case "yg120sc":
+                sysLottery = new SysYg120scData();
+                break;
+            case "yg60sc":
+                sysLottery = new SysYg60scData();
+                break;
+            default:
+                break;
+        }
+
+        sysLottery.GetLotteryData(lotId.ToString(), code, sn);
+        no = sysLottery.ExpectNo;
+        time = sysLottery.OpenTime;
+        number = sysLottery.Number;
+        numberAll = sysLottery.NumberAll;
+        total = LotterySum.SumNumber(sysLottery.Number);
+
+        this._response = "{\"result\" :\"1\",\"returnval\" :\"操作成功\",\"no\" :\"" + no + "\",\"time\" :\"" + time + "\",\"number\" :\"" + number + "\",\"numberall\" :\"" + numberAll + "\",\"total\" :\"" + total + "\"}";
+        dataTable.Clear();
+        dataTable.Dispose();
+    }
+
+
     private void ajaxGetListNo()
     {
       string str1 = this.q("d1");
@@ -136,8 +289,10 @@ namespace Lottery.Admin
       {
         case 1001:
           this.GetLotteryNumber("cqssc");
+              //OfficialLotteryData.UpdateData("cqssc");
           break;
         case 1003:
+          //OfficialLotteryData.UpdateData("xjssc");
           this.GetLotteryNumber("xjssc");
           break;
         case 1004:
@@ -239,6 +394,20 @@ namespace Lottery.Admin
         this._response = this.JsonResult(1, "删除成功");
       else
         this._response = this.JsonResult(0, "删除失败");
+    }
+
+    private void ajaxDelManualData()
+    {
+        string str = this.f("id");
+        this.doh.Reset();
+        this.doh.ConditionExpress = "id=@id";
+        this.doh.AddConditionParameter("@id", (object)str);
+        int num = this.doh.Delete("Sys_LotteryManualData");
+        new LogAdminOperDAL().SaveLog(this.AdminId, "0", "游戏管理", "删除Id为" + str + "的彩种预设开奖数据");
+        if (num > 0)
+            this._response = this.JsonResult(1, "删除成功");
+        else
+            this._response = this.JsonResult(0, "删除失败");
     }
 
     private void ajaxGetDNList()
